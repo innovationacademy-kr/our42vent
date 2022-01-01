@@ -4,6 +4,7 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import expressLayouts from 'express-ejs-layouts';
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
 
@@ -11,15 +12,17 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 
-// ejs 로 view engine 설정
-app.set('views', join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(join(__dirname, 'public')));
+
+// ejs 로 view engine 설정
+app.set('views', join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.use(expressLayouts);
+app.set('layout', 'layouts/desktopLayout');
 
 // router 연결
 app.use('/', indexRouter);

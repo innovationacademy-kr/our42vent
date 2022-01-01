@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%- defineContent('title') %></title>
+    <link rel="stylesheet" href="/stylesheets/style_desktop.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Rounded" />
+  </head>
+  <body>
+    <div class="layout">
+      <header class="header">
+        <div class="header-logo">
+          <a href="/"
+            ><img class="header-logo-img" src="/assets/images/42_logo_nav.svg" alt="42 logo"
+          /></a>
+        </div>
+        <div class="header-month"></div>
+        <div class="header-user"></div>
+      </header>
+      <nav class="navbar">nav</nav>
+      <main class="main"><%- defineContent('content') %></main>
+      <footer class="footer">
+        <p class="footer-developers small">
+          <a href="https://github.com/42ghan" target="_blank">ghan</a> &nbsp|&nbsp
+          <a href="https://github.com/jis-kim" target="_blank">jiskim</a> &nbsp|&nbsp
+          <a href="https://github.com/sehhong3317" target="_blank">sehhong</a> &nbsp|&nbsp
+          <a href="https://github.com/yongjulejule" target="_blank">yongjule</a>
+        </p>
+        <p class="footer-copyright small">© 2021 42 Seoul, Innovation Academy</p>
+      </footer>
+    </div>
+  </body>
+</html>
