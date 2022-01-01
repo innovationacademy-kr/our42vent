@@ -1,0 +1,11 @@
+.header {
+  background: var(--header_bg);
+  display: grid;
+  grid-template-columns: 120px 1fr 200px;
+  height: 80px;
+  place-items: center;
+}
+
+.header-logo-img {
+  height: 30px;
+}

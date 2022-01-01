@@ -1,0 +1,26 @@
+.main {
+  display: grid;
+  place-items: center;
+}
+
+/* SECTION: 월단위 캘린더 */
+
+.calendar-month {
+  display: grid;
+  grid-template: 20px repeat(5, 1fr) / repeat(7, 1fr);
+  height: 97%;
+  width: 75%;
+}
+
+.day-title {
+  text-align: center;
+}
+
+.day-title,
+.month-date {
+  border: black dotted 1px;
+}
+
+/* SECTION: 주단위 캘린더 */
+
+/* SECTION: 내가 만든 이벤트 리스트 */

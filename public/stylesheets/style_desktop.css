@@ -1,0 +1,20 @@
+/* SECTION: 프리셋 */
+
+@import 'presets/reset.css';
+@import 'presets/color.css';
+@import 'presets/font.css';
+@import 'presets/layout_desktop.css';
+
+/* SECTION: 컴포넌트 */
+
+@import 'components/header.css';
+@import 'components/main.css';
+@import 'components/footer.css';
+@import 'components/main.css';
+@import 'components/nav.css';
+
+/* SECTION: 폰트 적용 */
+
+*:not(.material-icons) {
+  font-family: 'Source Sans Pro';
+}
