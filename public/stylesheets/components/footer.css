@@ -1,0 +1,13 @@
+.footer {
+  background: var(--grey);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer-developers,
+.footer-copyright {
+  color: var(--footer_font);
+  margin: 2px 0;
+  text-align: center;
+}

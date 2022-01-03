@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap");
+@import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css");
+
+.small {
+  font-size: 0.87em;
+}
+
+.large {
+  font-size: 1.2em;
+}
+
+.xlarge {
+  font-size: 1.5em;
+}
+
+.xxlarge {
+  font-size: 2em;
+}
+
+.xxxlarge {
+  font-size: 3em;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-bold {
+  font-weight: bold;
+}

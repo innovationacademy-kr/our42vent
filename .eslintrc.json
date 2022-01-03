@@ -1,0 +1,22 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "airbnb", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-unused-vars": 0,
+    "no-console": 0,
+    "import/no-import-module-exports": 0,
+    "import/extensions": 0,
+    "no-underscore-dangle": 0,
+    "no-use-before-define": 0,
+    "no-shadow": 0
+  }
+}
