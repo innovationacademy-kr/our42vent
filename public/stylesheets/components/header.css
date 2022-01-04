@@ -9,3 +9,32 @@
 .header-logo-img {
   height: 30px;
 }
+
+.header-user {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 200px;
+}
+
+.user-username {
+  color: var(--white);
+  margin: 0 20px 0 0;
+}
+
+.user-image-wrapper {
+  border-radius: 50%;
+  display: grid;
+  height: 42px;
+  margin: 0 0 0 10px;
+  overflow: hidden;
+  place-items: center;
+  position: relative;
+  width: 42px;
+}
+
+.user-imageurl {
+  position: absolute;
+  width: 56px;
+}

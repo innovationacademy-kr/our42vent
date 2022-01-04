@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="description" content="" />
+    <meta name="description" content="42 Seoul Event Calendar" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title><%- title %></title>
     <link rel="stylesheet" href="/stylesheets/style_desktop.css" />
@@ -22,7 +22,12 @@
           /></a>
         </div>
         <div class="header-month"></div>
-        <div class="header-user"></div>
+        <div class="header-user">
+          <span class="user-username large text-bold"><%- username %></span>
+          <div class="user-image-wrapper">
+            <img class="user-imageurl" src="<%= profileImage %>" alt="user profile image" />
+          </div>
+        </div>
       </header>
       <nav class="navbar">nav</nav>
       <main class="main"><%- content %></main>
