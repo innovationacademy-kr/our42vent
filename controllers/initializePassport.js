@@ -22,12 +22,10 @@ export default function initializePassport(passport, connection) {
   );
 
   passport.deserializeUser((obj, cb) => {
-    connection.connect();
     connection.query(
       'INSERT INTO user (name, profileImage, createdAt, updatedAt) VALUES ' +
         `("${obj.username}", "${obj.profileImage}", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);`,
       (err, rows, fields) => {
-        connection.end();
         if (!err) {
           console.log(rows);
           console.log(fields);
