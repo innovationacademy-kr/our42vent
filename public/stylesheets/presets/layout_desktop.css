@@ -17,16 +17,9 @@ body {
 }
 
 .layout-login {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   height: 320px;
   width: 480px;
-  place-items: center;
-}
-
-.login-logo {
-  width: 100px;
-}
-
-.login-version {
-  color: var(--white);
+  align-items: center;
 }
