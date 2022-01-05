@@ -17,9 +17,9 @@ body {
 }
 
 .layout-login {
+  align-items: center;
   display: flex;
   flex-direction: column;
   height: 320px;
   width: 480px;
-  align-items: center;
 }
