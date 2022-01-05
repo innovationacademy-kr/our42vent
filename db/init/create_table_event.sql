@@ -9,7 +9,8 @@ CREATE TABLE event (
 	category ENUM('lecture', 'exam', 'contest', 'conference', 'community') NOT NULL,
 	topic VARCHAR(512) NOT NULL,
 	details VARCHAR(4096),
-	createdAt DATETIME NOT NULL,
-	modifiedAt DATETIME NOT NULL,
-	PRIMARY KEY (id)
+	createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	modifiedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	FOREIGN KEY (creator) REFERENCES user(id),
 )
