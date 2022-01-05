@@ -13,7 +13,7 @@ import { fileURLToPath } from 'url';
 import initMySQLConnection from './models/initConnection.js';
 import initializePassport from './controllers/initializePassport.js';
 import loginRoute from './routes/login.js';
-import indexRouter from './routes/index.js';
+import indexRoute from './routes/index.js';
 
 // dotenv 로드
 dotenv.config();
@@ -45,7 +45,7 @@ app.set('layout', 'layouts/desktopLayout');
 
 // router 연결
 app.use('/login', loginRoute(passport));
-app.use('/', ensureLoggedIn('/login'), indexRouter);
+app.use('/', ensureLoggedIn('/login'), indexRoute(connection));
 
 // 404 발생 시 에러 핸들러로
 app.use((req, res, next) => next(createError(404)));
