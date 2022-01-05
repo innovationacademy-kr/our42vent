@@ -1,5 +1,4 @@
 import { Strategy as FortyTwoStrategy } from 'passport-42';
-// import insertNewUser from '../models/insertNewUser.js';
 
 export default function initializePassport(passport, connection) {
   passport.use(

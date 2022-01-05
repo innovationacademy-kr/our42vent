@@ -1,7 +1,6 @@
-import express from 'express';
 import indexController from '../controllers/indexController.js';
 
-export default function indexRouter(connection) {
+export default function indexRouter(express, connection) {
   const router = express.Router();
 
   // GET 홈페이지
