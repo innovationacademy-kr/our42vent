@@ -1,6 +1,6 @@
 import { Strategy as FortyTwoStrategy } from 'passport-42';
 
-export default function initializePassport(passport, connection) {
+export default function initializePassport(passport) {
   passport.use(
     new FortyTwoStrategy(
       {
