@@ -1,3 +1,5 @@
+import consoleLogger from '../controllers/consoleLogger.js';
+
 export default async function insertNewUser(pool, user) {
   try {
     pool.getConnection(async (err, connection) => {
@@ -9,21 +11,21 @@ export default async function insertNewUser(pool, user) {
         (err, rows, fields) => {
           connection.release();
           if (!err) {
-            console.log('rows: ', rows);
-            console.log('fields: ', fields);
+            consoleLogger.info('rows: ', rows);
+            consoleLogger.info('fields: ', fields);
           } else if (err.code === 'ER_DUP_ENTRY') {
-            console.log(
+            consoleLogger.info(
               '=============================================\n' +
                 `이미 등록돼 있는 사용자입니다!\n` +
                 '============================================='
             );
           } else {
-            console.error(`query error : ${err}`);
+            consoleLogger.error(`query error : ${err}`);
           }
         }
       );
     });
   } catch (err) {
-    console.error(`Error in getConnection: ${err}`);
+    consoleLogger.error(`Error in getConnection: ${err}`);
   }
 }

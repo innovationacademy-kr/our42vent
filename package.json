@@ -23,6 +23,7 @@
     "jwt-decode": "^3.1.2",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
+    "node-color-log": "^7.0.0",
     "passport": "^0.5.2",
     "passport-42": "^1.2.6"
   },
@@ -36,5 +37,18 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1"
-  }
+  },
+  "main": "app.js",
+  "bin": {
+    "our42vent": "bin/www.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/innovationacademy-kr/our42vent.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/innovationacademy-kr/our42vent/issues"
+  },
+  "homepage": "https://github.com/innovationacademy-kr/our42vent#readme"
 }
