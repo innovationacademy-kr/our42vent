@@ -12,7 +12,6 @@ export default async function insertNewUser(pool, user) {
           connection.release();
           if (!err) {
             consoleLogger.info('rows: ', rows);
-            consoleLogger.info('fields: ', fields);
           } else if (err.code === 'ER_DUP_ENTRY') {
             consoleLogger.info(
               '=============================================\n' +
