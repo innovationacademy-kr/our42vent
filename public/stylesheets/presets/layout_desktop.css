@@ -7,3 +7,19 @@ body {
   grid-template-rows: 80px 50px 1fr 60px;
   height: inherit;
 }
+
+.login-body {
+  background: black;
+  display: grid;
+  height: 100vh;
+  place-items: center;
+  width: 100%;
+}
+
+.layout-login {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 320px;
+  width: 480px;
+}

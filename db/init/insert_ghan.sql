@@ -1,0 +1,1 @@
+INSERT INTO user (name, profileImage, createdAt, updatedAt) VALUES ('ghan', 'https://cdn.intra.42.fr/users/medium_ghan.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);

@@ -1,0 +1,21 @@
+.login-logo {
+  margin: 40px 0 0px;
+  width: 320px;
+}
+
+.login-version {
+  color: var(--white);
+}
+
+.login-button {
+  background: var(--turq_btn);
+  border: none;
+  color: white;
+  margin: 80px 0 10px;
+  height: 50px;
+  width: 320px;
+}
+
+.login-button:hover {
+  background: var(--login_btn_hover);
+}

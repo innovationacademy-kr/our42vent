@@ -11,13 +11,20 @@
   "license": "MIT",
   "author": "ghan, jiskim, sehhong, yongjule",
   "dependencies": {
+    "connect-ensure-login": "^0.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.2",
     "http-errors": "~1.6.3",
-    "morgan": "~1.9.1"
+    "jwt-decode": "^3.1.2",
+    "morgan": "~1.9.1",
+    "mysql": "^2.18.1",
+    "passport": "^0.5.2",
+    "passport-42": "^1.2.6"
   },
   "devDependencies": {
     "eslint": "^8.6.0",
