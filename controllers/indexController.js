@@ -1,11 +1,11 @@
 import insertNewUser from '../models/insertNewUser.js';
 
-export default function indexController(req, res, connection) {
+export default function indexController(req, res, pool) {
   const { registeredUser } = req.session.passport.user;
 
   // 사용자 db 등록 여부 확인
   if (registeredUser === false) {
-    insertNewUser(connection, req.user);
+    insertNewUser(pool, req.user);
     req.session.passport.user.registeredUser = true;
   }
   res.status(200).render('index', {
