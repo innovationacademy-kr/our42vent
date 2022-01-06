@@ -1,4 +1,5 @@
 import { Strategy as FortyTwoStrategy } from 'passport-42';
+import consoleLogger from './consoleLogger.js';
 
 export default function initializePassport(passport) {
   passport.use(
@@ -11,7 +12,7 @@ export default function initializePassport(passport) {
       },
       (req, accessToken, refreshToken, profile, cb) => {
         req.session.accessToken = accessToken;
-        console.log('accessToken', accessToken, 'refreshToken', refreshToken);
+        consoleLogger.info('accessToken', accessToken, 'refreshToken', refreshToken);
         return cb(null, profile);
       }
     )
