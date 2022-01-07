@@ -6,11 +6,10 @@ import expressLayouts from 'express-ejs-layouts';
 import session from 'express-session';
 import createError from 'http-errors';
 import logger from 'morgan';
-import mysql from 'mysql';
 import passport from 'passport';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
-import initMySQLConnection from './models/initConnection.js';
+import InitMySQLConnection from './models/initConnection.js';
 import initializePassport from './controllers/initializePassport.js';
 import loginRoute from './routes/login.js';
 import indexRoute from './routes/index.js';
@@ -20,10 +19,10 @@ dotenv.config();
 
 // 앱 전역 변수 설정
 const __dirname = dirname(fileURLToPath(import.meta.url)); // 현재 디렉토리 주소 __dirname 에 저장
-const pool = initMySQLConnection(mysql); // db pool 생성
+const pool = new InitMySQLConnection('userDB'); // db pool 생성
 
 // passport-42 초기 설정
-initializePassport(passport, pool);
+initializePassport(passport);
 
 // express 세팅
 const app = express();

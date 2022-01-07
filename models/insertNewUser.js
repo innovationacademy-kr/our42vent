@@ -1,13 +1,13 @@
 import consoleLogger from '../controllers/consoleLogger.js';
 
-export default async function insertNewUser(pool, user) {
+export default function insertNewUser(pool, user) {
   try {
-    pool.getConnection(async (err, connection) => {
+    pool.pool.getConnection((err, connection) => {
       if (err) throw err; // 연결되지 않았을 때
       const sql = 'INSERT INTO user SET ?';
-      await connection.query(
+      connection.query(
         sql,
-        { name: user.username, profileImage: user.profileImage },
+        { id: 2, name: user.username, profileImage: user.profileImage },
         (err, rows, fields) => {
           connection.release();
           if (!err) {

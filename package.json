@@ -25,7 +25,8 @@
     "mysql": "^2.18.1",
     "node-color-log": "^7.0.0",
     "passport": "^0.5.2",
-    "passport-42": "^1.2.6"
+    "passport-42": "^1.2.6",
+    "tunnel-ssh": "^4.1.6"
   },
   "devDependencies": {
     "eslint": "^8.6.0",
