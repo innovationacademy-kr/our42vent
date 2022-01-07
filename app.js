@@ -6,7 +6,7 @@ import expressLayouts from 'express-ejs-layouts';
 import session from 'express-session';
 import createError from 'http-errors';
 import logger from 'morgan';
-import mysql from 'mysql';
+import mysql from 'mysql2/promise';
 import passport from 'passport';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
