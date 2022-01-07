@@ -20,6 +20,7 @@ export default function initializePassport(passport) {
 
   passport.serializeUser((user, cb) => {
     cb(null, {
+      id: Number(user.id),
       username: user.username,
       profileImage: user.photos[0].value,
       registeredUser: false,

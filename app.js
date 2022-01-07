@@ -1,3 +1,4 @@
+import bodyParser from 'body-parser';
 import { ensureLoggedIn } from 'connect-ensure-login';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
@@ -12,8 +13,9 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import initMySQLConnection from './models/initConnection.js';
 import initializePassport from './controllers/initializePassport.js';
-import loginRoute from './routes/login.js';
 import indexRoute from './routes/index.js';
+import loginRoute from './routes/login.js';
+import postEventRoute from './routes/postEvent.js';
 
 // dotenv 로드
 dotenv.config();
@@ -30,7 +32,7 @@ const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({ resave: false, saveUninitialized: false, secret: '!Seoul' }));
 app.use(express.static(join(__dirname, 'public')));
@@ -46,6 +48,7 @@ app.set('layout', 'layouts/desktopLayout');
 // router 연결
 app.use('/login', loginRoute(express, passport));
 app.use('/', ensureLoggedIn('/login'), indexRoute(express, pool));
+app.use('/post/event', postEventRoute);
 
 // 404 발생 시 에러 핸들러로
 app.use((req, res, next) => next(createError(404)));

@@ -7,7 +7,7 @@ export default async function insertNewUser(pool, user) {
       const sql = 'INSERT INTO user SET ?';
       await connection.query(
         sql,
-        { name: user.username, profileImage: user.profileImage },
+        { id: user.id, name: user.username, profileImage: user.profileImage },
         (err, rows, fields) => {
           connection.release();
           if (!err) {
