@@ -1,6 +1,6 @@
 import consoleLogger from '../controllers/consoleLogger.js';
 
-export default async function insertNewUser(pool, user) {
+export default function insertNewUser(pool, user) {
   const sql = 'INSERT INTO user SET ?';
   pool
     .query(sql, { id: user.id, name: user.username, profileImage: user.profileImage })
