@@ -26,8 +26,7 @@
     "mysql2": "^2.3.3",
     "node-color-log": "^7.0.0",
     "passport": "^0.5.2",
-    "passport-42": "^1.2.6",
-    "passport-jwt": "^4.0.0"
+    "passport-42": "^1.2.6"
   },
   "devDependencies": {
     "eslint": "^8.6.0",

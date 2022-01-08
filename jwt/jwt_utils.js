@@ -5,29 +5,27 @@ dotenv.config();
 
 const secretKey = process.env.SECRET_KEY;
 
-const accessSign = userId => {
-  const payload = {
-    id: userId,
-  };
-  return jwt.sign(payload, secretKey, {
-    expiresIn: '1h',
-  });
-};
+// access token 생성
+function accessSign(userId) {
+  const payload = { id: userId };
+  return jwt.sign(payload, secretKey, { expiresIn: '1h' });
+}
 
-const accessVerity = token => {
+// 토큰 유효성 검사
+function accessVerity(token) {
   let decoded = null;
   try {
     decoded = jwt.verify(token, secretKey);
     return {
-      ok: true,
+      verified: true,
       id: decoded.id,
     };
-  } catch (error) {
+  } catch (err) {
     return {
-      ok: false,
-      message: error.message,
+      verified: false,
+      message: err.message,
     };
   }
-};
+}
 
 export { accessSign, accessVerity };
