@@ -1,0 +1,111 @@
+.form {
+  background: #c4c4c4;
+  display: grid;
+  height: 500px;
+  width: 900px;
+  grid-template-rows: 440px 60px;
+  padding: 50px;
+  place-items: center;
+}
+
+.form-content {
+  background: #c4c4c4;
+  display: grid;
+  grid-template: repeat(5, 1fr) / 25% 25% 50%;
+  grid-template-areas:
+    'a a b'
+    'c c b'
+    'd e f'
+    'g g f'
+    'h h f';
+  height: 440px;
+  width: 800px;
+}
+
+.form-title {
+  grid-area: a;
+}
+
+.form-topic {
+  grid-area: b;
+}
+
+.form-pic {
+  grid-area: c;
+}
+
+.form-beginat {
+  grid-area: d;
+}
+
+.form-endat {
+  grid-area: e;
+}
+
+.form-details {
+  grid-area: f;
+}
+
+.form-location {
+  grid-area: g;
+}
+
+.form-category {
+  grid-area: h;
+}
+
+.form-button {
+  display: flex;
+  flex-direction: row-reverse;
+  background: #c4c4c4;
+  cursor: pointer;
+  width: 800px;
+}
+
+.title-style {
+  display: block;
+  height: 40px;
+  width: 350px;
+}
+
+.pic-style {
+  display: block;
+  height: 40px;
+  width: 350px;
+}
+
+.beginat-style {
+  display: block;
+  height: 40px;
+  width: 150px;
+}
+
+.endat-style {
+  display: block;
+  height: 40px;
+  width: 150px;
+}
+
+.location-style {
+  display: block;
+  height: 40px;
+  width: 350px;
+}
+
+.topic-style {
+  display: block;
+  height: 140px;
+  width: 400px;
+}
+
+.details-style {
+  display: block;
+  height: 210px;
+  width: 400px;
+}
+
+.category-style {
+  display: block;
+  height: 40px;
+  width: 360px;
+}

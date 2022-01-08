@@ -10,37 +10,57 @@
     <title></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="./public/stylesheets/components/event_form.css" />
   </head>
   <body>
     <section class="layout-form">
-      <form action="/post/event" method="post">
-        <label for="form-title">제목</label>
-        <input id="form-title" type="text" />
-        <label for="form-pic">발표자 / 담당자</label>
-        <input id="form-pic" type="text" />
-        <label for="form-beginat">시작 시간</label>
-        <input id="form-beginat" type="datetime-local" />
-        <label for="form-endat">종료 시간</label>
-        <input id="form-endat" type="datetime-local" />
-        <label for="form-location">장소</label>
-        <input id="form-location" type="text" />
-        <label for="form-category">카테고리</label>
-        <select id="form-category" autocomplete="off" required>
-          <option value="lecture">멘토특강</option>
-          <option value="exam">시험</option>
-          <option value="contest">해커톤/공모전</option>
-          <option value="conference">세미나/컨퍼런스</option>
-          <option value="community">커뮤니티</option>
-        </select>
-        <label for="form-topic">주제</label>
-        <input id="form-topic" type="text" />
-        <label for="form-details">상세설명</label>
-        <input id="form-details" type="text" />
-        <button type="submit">이벤트 생성</button>
+      <form class="form" action="/post/event" method="post">
+        <div class="form-content">
+          <div class="form-title">
+            <label class="block" for="event-title">제목</label>
+            <input class="block" id="event-title" type="text" />
+          </div>
+          <div class="form-pic">
+            <label class="block" for="event-pic">발표자 / 담당자</label>
+            <input class="block" id="event-pic" type="text" />
+          </div>
+          <div class="form-beginat">
+            <label class="block" for="event-beginat">시작 시간</label>
+            <input class="block" id="event-beginat" type="datetime-local" />
+          </div>
+          <div class="form-endat">
+            <label class="block" for="event-endat">종료 시간</label>
+            <input class="block" id="event-endat" type="datetime-local" />
+          </div>
+          <div class="form-location">
+            <label class="block" for="event-location">장소</label>
+            <input class="block" id="event-location" type="text" />
+          </div>
+          <div class="form-category">
+            <label class="block" for="event-category">카테고리</label>
+            <select class="block" id="event-category" autocomplete="off" required>
+              <option value="lecture">멘토특강</option>
+              <option value="exam">시험</option>
+              <option value="contest">해커톤/공모전</option>
+              <option value="conference">세미나/컨퍼런스</option>
+              <option value="community">커뮤니티</option>
+            </select>
+          </div>
+          <div class="form-topic">
+            <label class="block" for="event-topic">주제</label>
+            <input class="block" id="event-topic" type="text" />
+          </div>
+          <div class="form-details">
+            <label class="block" for="event-details">상세설명</label>
+            <input class="block" id="event-details" type="text" />
+          </div>
+        </div>
+        <div class="form-button">
+          <button>홍보글 미리보기</button>
+          <button type="submit">이벤트 생성</button>
+        </div>
       </form>
     </section>
-
     <script src="" async defer></script>
   </body>
 </html>

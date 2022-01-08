@@ -12,9 +12,9 @@
 @import 'components/footer.css';
 @import 'components/nav.css';
 @import 'components/login.css';
+@import 'components/event_form.css';
 
 /* SECTION: 폰트 적용 */
-
-*:not(.material-icons) {
+*:ot(.material-icons) {
   font-family: 'Source Sans Pro';
 }

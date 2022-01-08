@@ -23,3 +23,18 @@ body {
   height: 320px;
   width: 480px;
 }
+
+.layout-form {
+  background: rgba(255, 255, 255, 0.9);
+  display: grid;
+  height: 100vh;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+/* SECTION: display 형태 공통 적용 class */
+.block {
+  display: block;
+}
