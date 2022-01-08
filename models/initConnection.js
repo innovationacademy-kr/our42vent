@@ -5,7 +5,9 @@ export default function initMySQLConnection(mysql) {
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    connectionLimit: 5, // max connections
+    waitForConnections: true,
+    connectionLimit: 10, // max connections
+    queueLimit: 50,
   });
   return pool;
 }
