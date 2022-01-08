@@ -1,9 +1,10 @@
 import consoleLogger from '../controllers/consoleLogger.js';
 
 export default function insertNewUser(pool, user) {
-  const sql = 'INSERT INTO user SET ?';
+  const sql = 'INSERT INTO user (id, name, profileImage) VALUES (?, ?, ?)';
+
   pool
-    .query(sql, { id: user.id, name: user.username, profileImage: user.profileImage })
+    .execute(sql, [user.id, user.username, user.profileImage])
     .then((rows, fields) => consoleLogger.info('rows: ', rows))
     .catch(err => {
       if (err.code === 'ER_DUP_ENTRY') {
