@@ -1,4 +1,3 @@
-import bodyParser from 'body-parser';
 import { ensureLoggedIn } from 'connect-ensure-login';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
@@ -32,7 +31,7 @@ const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({ resave: false, saveUninitialized: false, secret: '!Seoul' }));
 app.use(express.static(join(__dirname, 'public')));
