@@ -1,17 +1,12 @@
-import insertNewUser from '../models/insertNewUser.js';
+import selectUser from '../models/selectUser.js';
 
-export default function indexController(req, res, pool) {
-  const { registeredUser } = req.session.passport.user;
-
-  // 사용자 db 등록 여부 확인
-  if (registeredUser === false) {
-    insertNewUser(pool, req.user);
-    req.session.passport.user.registeredUser = true;
-  }
+export default async function indexController(req, res) {
+  const user = await selectUser(res.locals.userId);
+  console.log(user);
   res.status(200).render('index', {
     layout: 'layouts/desktopLayout',
     title: '우리42벤트 | ALL EVENTS',
-    username: req.user.username,
-    profileImage: req.user.profileImage,
+    username: user.name,
+    profileImage: user.profileImage,
   });
 }
