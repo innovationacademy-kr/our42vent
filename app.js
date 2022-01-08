@@ -47,7 +47,7 @@ app.set('layout', 'layouts/desktopLayout');
 // router 연결
 app.use('/login', loginRoute(express, passport));
 app.use('/', ensureLoggedIn('/login'), indexRoute(express, pool));
-app.use('/post/event', postEventRoute);
+app.use('/post/event', postEventRoute(express));
 
 // 404 발생 시 에러 핸들러로
 app.use((req, res, next) => next(createError(404)));
