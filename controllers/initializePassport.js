@@ -1,6 +1,15 @@
 import { Strategy as FortyTwoStrategy } from 'passport-42';
 import consoleLogger from './consoleLogger.js';
 
+const profileToUser = async (token, rt, profile) => {
+  const user = {
+    id: profile.id,
+    username: profile.username,
+    profileImage: profile.photos[0].value,
+  };
+  return user;
+};
+
 export default function initializePassport(passport) {
   passport.use(
     new FortyTwoStrategy(
@@ -8,23 +17,16 @@ export default function initializePassport(passport) {
         clientID: process.env.FORTYTWO_APP_ID,
         clientSecret: process.env.FORTYTWO_APP_SECRET,
         callbackURL: 'http://localhost:3000/login/42/return',
-        passReqToCallback: true,
       },
-      (req, accessToken, refreshToken, profile, cb) => {
-        req.session.accessToken = accessToken;
-        consoleLogger.info('accessToken', accessToken, 'refreshToken', refreshToken);
-        return cb(null, profile);
-      }
+      (accessToken, refreshToken, profile, cb) =>
+        profileToUser(accessToken, refreshToken, profile).then(user => {
+          cb(null, user);
+        })
     )
   );
 
   passport.serializeUser((user, cb) => {
-    cb(null, {
-      id: user.id,
-      username: user.username,
-      profileImage: user.photos[0].value,
-      registeredUser: false,
-    });
+    cb(null, user);
   });
 
   passport.deserializeUser((obj, cb) => {
