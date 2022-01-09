@@ -12,6 +12,7 @@ async function loginController(req, res) {
       res.cookie('accessToken', accessToken, {
         httpOnly: true,
         expires: new Date(Date.now() + 1000 * 60 * 60),
+        sameSite: 'strict',
       });
       res.redirect('/');
     });

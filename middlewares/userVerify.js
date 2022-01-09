@@ -1,9 +1,9 @@
 import consoleLogger from '../controllers/consoleLogger.js';
-import { accessVerity } from '../lib/jwtUtils.js';
+import { accessVerify } from '../lib/jwtUtils.js';
 
 async function verifyUser(req, res, next) {
   try {
-    const result = accessVerity(req.cookies.accessToken);
+    const result = accessVerify(req.cookies.accessToken);
 
     if (result.verified === true) {
       consoleLogger.info(result);

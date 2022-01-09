@@ -20,18 +20,24 @@ fi
 mysql -u$user -p$passwd $DATABASE < create_table_user.sql
 if [ $? -eq 0 ]; then
 	echo "user table을 만드는데 성공하였습니다"
-else 
+else
 	echo "user table이 이미 존재하는지 확인해주세요"
 fi
 mysql -u$user -p$passwd $DATABASE < create_table_event.sql
 if [ $? -eq 0 ]; then
 	echo "event table을 만드는데 성공하였습니다"
-else 
+else
 	echo "event table이 이미 존재하는지 확인해주세요"
 fi
 mysql -u$user -p$passwd $DATABASE < create_table_my_event.sql
 if [ $? -eq 0 ]; then
 	echo "my_event table을 만드는데 성공하였습니다"
-else 
+else
 	echo "my_event table이 이미 존재하는지 확인해주세요"
+fi
+mysql -u$user -p$passwd $DATABASE < create_table_token.sql
+if [ $? -eq 0 ]; then
+	echo "token table을 만드는데 성공하였습니다"
+else
+	echo "token table이 이미 존재하는지 확인해주세요"
 fi
