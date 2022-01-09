@@ -49,15 +49,15 @@ function onListening() {
 }
 
 // HTTP 서버 에러 발생 시 listener
-function onError(error) {
-  if (error.syscall !== 'listen') {
-    throw error;
+function onError(err) {
+  if (err.syscall !== 'listen') {
+    throw err;
   }
 
   const bind = `Pipe ${port}`;
 
   // 에러 메시지
-  switch (error.code) {
+  switch (err.code) {
     case 'EACCES':
       console.error(`${bind} requires elevated privileges`);
       process.exit(1);
@@ -67,6 +67,6 @@ function onError(error) {
       process.exit(1);
       break;
     default:
-      throw error;
+      throw err;
   }
 }

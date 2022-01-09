@@ -1,9 +1,11 @@
+import { ensureLoggedIn } from 'connect-ensure-login';
 import indexController from '../controllers/indexController.js';
+import verifyUser from '../middlewares/userVerify.js';
 
-export default function indexRouter(express, pool) {
+export default function indexRouter(express) {
   const router = express.Router();
 
   // GET 홈페이지
-  router.get('/', (req, res) => indexController(req, res, pool));
+  router.get('/', verifyUser, indexController);
   return router;
 }

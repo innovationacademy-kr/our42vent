@@ -10,7 +10,7 @@ export default function loginRoute(express, passport) {
   router.get('/42', passport.authenticate('42'));
   router.get(
     '/42/return',
-    passport.authenticate('42', { successRedirect: '/', failureRedirect: '/login' })
+    passport.authenticate('42', { successRedirect: '/user/insert', failureRedirect: '/login' })
   );
   return router;
 }
