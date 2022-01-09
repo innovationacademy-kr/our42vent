@@ -3,53 +3,34 @@
   <form class="form" action="/post/event" method="post">
     <div class="form-content">
       <div class="form-title">
-        <label class="block text-bold" for="event-title">제목</label>
-        <input
-          class="title-style"
-          id="event-title"
-          maxlength="2"
-          name="titleName"
-          required
-          type="text"
-        />
+        <label class="form-label text-bold" for="event-title">제목</label>
+        <input class="form-oneline" id="event-title" name="title" required type="text" />
       </div>
       <div class="form-pic">
-        <label class="block text-bold" for="event-pic">발표자 / 담당자</label>
-        <input class="pic-style" id="event-pic" name="picName" type="text" />
+        <label class="form-label text-bold" for="event-pic">발표자 / 담당자</label>
+        <input class="form-oneline" id="event-pic" name="personInCharge" type="text" />
       </div>
       <div class="form-beginat">
-        <label class="block text-bold" for="event-beginat">시작 시간</label>
+        <label class="form-label text-bold" for="event-beginat">시작 시간</label>
         <input
-          class="beginat-style"
+          class="form-oneline"
           id="event-beginat"
-          name="beginatName"
+          name="beginAt"
           required
           type="datetime-local"
         />
       </div>
       <div class="form-endat">
-        <label class="block text-bold" for="event-endat">종료 시간</label>
-        <input
-          class="endat-style"
-          id="event-endat"
-          name="endatName"
-          required
-          type="datetime-local"
-        />
+        <label class="form-label text-bold" for="event-endat">종료 시간</label>
+        <input class="form-oneline" id="event-endat" name="endAt" required type="datetime-local" />
       </div>
       <div class="form-location">
-        <label class="block text-bold" for="event-location">장소</label>
-        <input
-          class="location-style"
-          id="event-location"
-          name="locationName"
-          required
-          type="text"
-        />
+        <label class="form-label text-bold" for="event-location">장소</label>
+        <input class="form-oneline" id="event-location" name="location" required type="text" />
       </div>
       <div class="form-category">
-        <label class="block text-bold" for="event-category">카테고리</label>
-        <select class="category-style" id="event-category" name="categoryName" required>
+        <label class="form-label text-bold" for="event-category">카테고리</label>
+        <select class="form-oneline" id="event-category" name="category" required>
           <option value="lecture">멘토특강</option>
           <option value="exam">시험</option>
           <option value="contest">해커톤/공모전</option>
@@ -58,28 +39,20 @@
         </select>
       </div>
       <div class="form-topic">
-        <label class="block text-bold" for="event-topic">주제</label>
-        <textarea
-          class="topic-style"
-          id="event-topic"
-          name="topicName"
-          required
-          type="text"
-        ></textarea>
+        <label class="form-label text-bold" for="event-topic">주제</label>
+        <textarea id="event-topic" name="topic" required type="text"></textarea>
       </div>
       <div class="form-details">
-        <label class="block text-bold" for="event-details">상세설명</label>
-        <textarea
-          class="details-style"
-          id="event-details"
-          name="detailsName"
-          type="text"
-        ></textarea>
+        <label class="form-label text-bold" for="event-details">상세설명</label>
+        <textarea id="event-details" name="details" type="text"></textarea>
       </div>
     </div>
     <div class="form-button">
-      <button type="submit">이벤트 생성</button>
-      <button type="submit" formaction="/event_text">홍보글 미리보기</button>
+      <button class="event-exit-button text-bold">취소</button>
+      <button class="event-text-button text-bold" type="submit" formaction="/event_text">
+        홍보글 미리보기
+      </button>
+      <button class="new-event-button text-bold" type="submit">이벤트 생성</button>
     </div>
   </form>
 </section>

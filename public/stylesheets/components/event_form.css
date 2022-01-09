@@ -1,7 +1,7 @@
 .form {
   background: #c4c4c4;
   display: grid;
-  grid-template-rows: 440px 60px;
+  grid-template-rows: 420px 80px;
   height: 500px;
   width: 900px;
   padding: 50px;
@@ -18,8 +18,23 @@
     'd e f'
     'g g f'
     'h h f';
-  height: 440px;
+  height: 420px;
   width: 800px;
+}
+
+.form-content > div {
+  display: grid;
+  grid-template-rows: 32px 1fr;
+  align-items: center;
+}
+
+.form-oneline {
+  border: none;
+  height: 42px;
+}
+
+.form-label {
+  display: block;
 }
 
 .form-title {
@@ -54,62 +69,69 @@
   grid-area: h;
 }
 
+.form-label,
+.form-title,
+.form-pic,
+.form-beginat,
+.form-endat,
+.form-location,
+.form-category {
+  margin: 0 16px 0 0;
+}
+
+.form-topic,
+.form-details {
+  margin: 0 0 0 16px;
+}
+
 .form-button {
-  display: flex;
-  flex-direction: row-reverse;
-  background: #c4c4c4;
-  cursor: pointer;
+  align-items: center;
+  background: var(--grey);
+  display: grid;
+  grid-template-columns: 416px 192px 192px;
+  height: 80px;
   width: 800px;
 }
 
-.title-style {
-  display: block;
-  height: 40px;
-  width: 350px;
+#event-topic {
+  height: 126px;
 }
 
-.pic-style {
-  display: block;
-  height: 40px;
-  width: 350px;
-}
-
-.beginat-style {
-  display: block;
-  height: 40px;
-  width: 150px;
-}
-
-.endat-style {
-  display: block;
-  height: 40px;
-  width: 150px;
-}
-
-.location-style {
-  display: block;
-  height: 40px;
-  width: 350px;
-}
-
-.topic-style {
-  display: block;
-  height: 140px;
-  resize: none;
-  width: 400px;
-}
-
-.details-style {
-  display: block;
+#event-details {
   height: 210px;
-  resize: none;
-  width: 400px;
 }
 
-.category-style {
-  display: block;
-  height: 40px;
-  width: 360px;
+#event-topic,
+#event-details {
+  border: none;
+  resize: none;
+}
+
+.event-exit-button {
+  background: var(--cancel_btn);
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  height: 50px;
+  width: 120px;
+}
+
+.new-event-button {
+  margin: 0 0 0 12px;
+}
+
+.event-text-button {
+  margin: 0 12px 0 0;
+}
+
+.new-event-button,
+.event-text-button {
+  background: var(--turq_btn);
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  height: 50px;
+  width: 180px;
 }
 
 /* SECTION: 새 이벤트 생성 버튼 */
