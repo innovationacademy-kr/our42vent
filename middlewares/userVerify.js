@@ -1,5 +1,5 @@
 import consoleLogger from '../controllers/consoleLogger.js';
-import { accessVerity } from '../jwt/jwt_utils.js';
+import { accessVerity } from '../lib/jwtUtils.js';
 
 async function verifyUser(req, res, next) {
   try {

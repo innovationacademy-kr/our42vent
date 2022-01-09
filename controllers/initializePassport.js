@@ -20,6 +20,7 @@ export default function initializePassport(passport) {
       },
       (accessToken, refreshToken, profile, cb) =>
         profileToUser(accessToken, refreshToken, profile).then(user => {
+          consoleLogger.info(user);
           cb(null, user);
         })
     )

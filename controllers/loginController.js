@@ -1,6 +1,6 @@
 import insertNewUser from '../models/insertNewUser.js';
 import consoleLogger from './consoleLogger.js';
-import { accessSign } from '../jwt/jwt_utils.js';
+import { accessSign } from '../lib/jwtUtils.js';
 
 async function loginController(req, res) {
   const { user } = req;
@@ -9,7 +9,10 @@ async function loginController(req, res) {
   try {
     insertNewUser(user, () => {
       const accessToken = accessSign(user.id);
-      res.cookie('accessToken', accessToken, { httpOnly: true });
+      res.cookie('accessToken', accessToken, {
+        httpOnly: true,
+        expires: new Date(Date.now() + 1000 * 60 * 60),
+      });
       res.redirect('/');
     });
   } catch (err) {
