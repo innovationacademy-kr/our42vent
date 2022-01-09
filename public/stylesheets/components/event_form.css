@@ -1,5 +1,31 @@
+/* SECTION: 새 이벤트 생성 버튼 */
+
+.create-event-btn {
+  background: var(--turq_btn);
+  border: none;
+  border-radius: 50%;
+  bottom: 0;
+  color: var(--white);
+  height: 80px;
+  margin: 0 3.75% 2.5em 0;
+  position: absolute;
+  right: 0;
+  width: 80px;
+}
+
+.create-event-btn:hover {
+  background: var(--turq_btn_hover);
+}
+
+.create-event-icon.material-icons {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+/* SECTION: 양식 레이아웃 */
+
 .form {
-  background: #c4c4c4;
+  background: var(--grey);
   display: grid;
   grid-template-rows: 420px 80px;
   height: 500px;
@@ -9,9 +35,9 @@
 }
 
 .form-content {
-  background: #c4c4c4;
+  background: var(--grey);
   display: grid;
-  grid-template: repeat(5, 1fr) / 25% 25% 50%;
+  grid-template: repeat(5, 1fr) / 1fr 1fr 50%;
   grid-template-areas:
     'a a b'
     'c c b'
@@ -20,17 +46,6 @@
     'h h f';
   height: 420px;
   width: 800px;
-}
-
-.form-content > div {
-  display: grid;
-  grid-template-rows: 32px 1fr;
-  align-items: center;
-}
-
-.form-oneline {
-  border: none;
-  height: 42px;
 }
 
 .form-label {
@@ -84,13 +99,17 @@
   margin: 0 0 0 16px;
 }
 
-.form-button {
-  align-items: center;
-  background: var(--grey);
+/* SECTION: 양식 input field 별 레이아웃 */
+
+.form-content > div {
   display: grid;
-  grid-template-columns: 416px 192px 192px;
-  height: 80px;
-  width: 800px;
+  grid-template-rows: 32px 1fr;
+  align-items: center;
+}
+
+.form-oneline {
+  border: none;
+  height: 42px;
 }
 
 #event-topic {
@@ -107,8 +126,19 @@
   resize: none;
 }
 
-.event-exit-button {
-  background: var(--cancel_btn);
+/* SECTION: 버튼 레이아웃 & style */
+
+.form-button {
+  align-items: center;
+  background: var(--grey);
+  display: grid;
+  grid-template-columns: 416px 1fr 1fr;
+  height: 80px;
+  width: 800px;
+}
+
+.form-button-exit {
+  background: var(--red_cancel_btn);
   border: none;
   color: var(--white);
   cursor: pointer;
@@ -116,16 +146,20 @@
   width: 120px;
 }
 
-.new-event-button {
+.form-button-exit:hover {
+  background: var(--red_cancel_btn_hover);
+}
+
+.form-button-new {
   margin: 0 0 0 12px;
 }
 
-.event-text-button {
+.form-button-text {
   margin: 0 12px 0 0;
 }
 
-.new-event-button,
-.event-text-button {
+.form-button-new,
+.form-button-text {
   background: var(--turq_btn);
   border: none;
   color: var(--white);
@@ -134,26 +168,7 @@
   width: 180px;
 }
 
-/* SECTION: 새 이벤트 생성 버튼 */
-
-.create-event-btn {
-  background: var(--turq_btn);
-  border: none;
-  border-radius: 50%;
-  bottom: 0;
-  color: var(--white);
-  height: 80px;
-  margin: 0 3.75% 2.5em 0;
-  position: absolute;
-  right: 0;
-  width: 80px;
-}
-
-.create-event-btn:hover {
-  background: var(--login_btn_hover);
-}
-
-.create-event-icon.material-icons {
-  font-size: 36px;
-  font-weight: bold;
+.form-button-new:hover,
+.form-button-text:hover {
+  background: var(--turq_btn_hover);
 }
