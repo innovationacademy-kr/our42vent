@@ -1,9 +1,9 @@
 .form {
   background: #c4c4c4;
   display: grid;
+  grid-template-rows: 440px 60px;
   height: 500px;
   width: 900px;
-  grid-template-rows: 440px 60px;
   padding: 50px;
   place-items: center;
 }
@@ -95,12 +95,14 @@
 .topic-style {
   display: block;
   height: 140px;
+  resize: none;
   width: 400px;
 }
 
 .details-style {
   display: block;
   height: 210px;
+  resize: none;
   width: 400px;
 }
 
@@ -108,4 +110,28 @@
   display: block;
   height: 40px;
   width: 360px;
+}
+
+/* SECTION: 새 이벤트 생성 버튼 */
+
+.create-event-btn {
+  background: var(--turq_btn);
+  border: none;
+  border-radius: 50%;
+  bottom: 0;
+  color: var(--white);
+  height: 80px;
+  margin: 0 3.75% 2.5em 0;
+  position: absolute;
+  right: 0;
+  width: 80px;
+}
+
+.create-event-btn:hover {
+  background: var(--login_btn_hover);
+}
+
+.create-event-icon.material-icons {
+  font-size: 36px;
+  font-weight: bold;
 }

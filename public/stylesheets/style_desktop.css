@@ -15,28 +15,6 @@
 @import 'components/event_form.css';
 
 /* SECTION: 폰트 적용 */
-*:ot(.material-icons) {
+*:not(.material-icons) {
   font-family: 'Source Sans Pro';
-}
-
-.new-event-btn {
-  background: var(--turq_btn);
-  border: none;
-  border-radius: 50%;
-  bottom: 0;
-  color: var(--white);
-  height: 80px;
-  margin: 0 3.75% 2.5em 0;
-  position: absolute;
-  right: 0;
-  width: 80px;
-}
-
-.new-event-btn:hover {
-  background: var(--login_btn_hover);
-}
-
-.new-event-icon.material-icons {
-  font-size: 36px;
-  font-weight: bold;
 }
