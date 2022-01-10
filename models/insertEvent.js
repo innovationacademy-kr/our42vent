@@ -1,9 +1,7 @@
 import consoleLogger from '../controllers/consoleLogger.js';
 import pool from '../config/createPool.js';
 
-export default function insertNewUser(req, res, next) {
-  // 이벤트 form 에 작성된 내용 req.body에 담겨있다
-  const event = req.body;
+export default function insertEvent(userId, event) {
   const sql =
     'INSERT INTO event ' +
     '(creator, title, personInCharge, beginAt, endAt, location, category, ' +
@@ -15,7 +13,7 @@ export default function insertNewUser(req, res, next) {
   // 이벤트 insert 쿼리
   pool
     .execute(sql, [
-      res.locals.userId,
+      userId,
       event.title,
       event.personInCharge,
       event.beginAt,
@@ -26,6 +24,5 @@ export default function insertNewUser(req, res, next) {
       event.details,
     ])
     .then(rows => consoleLogger.info('새 이벤트 생성!', rows))
-    .catch(err => consoleLogger.error(`insert event : query error : ${err}`));
-  next();
+    .catch(err => consoleLogger.error(`INSERT EVENT : query error : ${err}`));
 }
