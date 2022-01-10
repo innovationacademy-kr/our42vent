@@ -5,7 +5,7 @@
     <meta name="description" content="42 Seoul Event Calendar" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="/assets/favicons/our42vent.ico" rel="short icon" type="image/x-icon" />
-    <title><%- title %></title>
+    <title><%= title %></title>
     <link rel="stylesheet" href="/stylesheets/style_desktop.css" />
     <link
       rel="stylesheet"
@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Rounded" />
+    <script defer src="/javascripts/userDropDown.js"></script>
   </head>
   <body>
     <div class="layout">
@@ -27,10 +28,16 @@
         </div>
         <div class="header-month"></div>
         <div class="header-user">
-          <span class="user-username large text-bold"><%= username %></span>
-          <div class="user-image-wrapper">
-            <img class="user-imageurl" src="<%= profileImage %>" alt="user profile image" />
+          <div class="user-drop-button">
+            <span class="user-username large text-bold"><%= username %></span>
+            <div class="user-image-wrapper">
+              <img class="user-imageurl" src="<%= profileImage %>" alt="user profile image" />
+            </div>
           </div>
+          <ul class="user-drop-content">
+            <a href="#"><li class="small text-bold">내가 생성한 이벤트</li></a
+            ><a href="/logout"><li class="small text-bold">로그아웃</li></a>
+          </ul>
         </div>
       </header>
       <nav class="navbar">nav</nav>

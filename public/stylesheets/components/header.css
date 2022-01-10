@@ -6,15 +6,25 @@
   place-items: center;
 }
 
+/* SECTION: 로고 */
+
 .header-logo-img {
   margin: 0 0 0 3em;
   width: 84px;
 }
 
+/* SECTION: 사용자 dropdown */
+
 .header-user {
+  position: relative;
+}
+
+.user-drop-button {
   align-items: center;
+  cursor: pointer;
   display: flex;
   flex-direction: row;
+  height: 80px;
   justify-content: center;
   width: 200px;
 }
@@ -38,4 +48,28 @@
 .user-imageurl {
   position: absolute;
   width: 56px;
+}
+
+.user-drop-button:hover > .user-username {
+  color: var(--light_mint);
+}
+
+.user-drop-content {
+  background: var(--white);
+  border: 1px solid var(--header_bg);
+  border-top: none;
+  color: var(--header_bg);
+  display: none;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  width: 160px;
+}
+
+.user-drop-content li {
+  padding: 1em 0;
+}
+
+.user-drop-content li:hover {
+  background: var(--light_grey);
 }
