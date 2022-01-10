@@ -11,7 +11,7 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import initializePassport from './controllers/initializePassport.js';
 import loginRoute from './routes/login.js';
-import postEventRoute from './routes/postEvent.js';
+import postEventRoute from './routes/event.js';
 import indexRoute from './routes/index.js';
 import userRoute from './routes/user.js';
 
@@ -45,7 +45,7 @@ app.set('layout', 'layouts/desktopLayout');
 app.use('/login', loginRoute(express, passport));
 app.use('/', indexRoute(express));
 app.use('/user', userRoute(express));
-app.use('/post/event', postEventRoute(express));
+app.use('/event', postEventRoute(express));
 
 // 404 발생 시 에러 핸들러로
 app.use((req, res, next) => next(createError(404)));
