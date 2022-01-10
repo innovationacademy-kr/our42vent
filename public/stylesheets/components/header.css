@@ -1,7 +1,7 @@
 .header {
   background: var(--header_bg);
   display: grid;
-  grid-template-columns: 120px 1fr 200px;
+  grid-template-columns: 200px 1fr 200px;
   height: 80px;
   place-items: center;
 }
@@ -9,7 +9,6 @@
 /* SECTION: 로고 */
 
 .header-logo-img {
-  margin: 0 0 0 3em;
   width: 84px;
 }
 
@@ -24,8 +23,7 @@
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  height: 80px;
-  justify-content: center;
+  justify-content: right;
   width: 200px;
 }
 
@@ -38,7 +36,7 @@
   border-radius: 50%;
   display: grid;
   height: 42px;
-  margin: 0 0 0 10px;
+  margin: 0 58px 0 10px;
   overflow: hidden;
   place-items: center;
   position: relative;

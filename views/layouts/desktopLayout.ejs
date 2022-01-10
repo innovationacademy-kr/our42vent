@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html lang="ko">
 <html>
   <head>
     <meta charset="utf-8" />
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Rounded" />
     <script defer src="/javascripts/userDropDown.js"></script>
+    <script defer src="/javascripts/eventForm/eventFormDisplay.js"></script>
   </head>
   <body>
     <div class="layout">
@@ -41,7 +42,7 @@
         </div>
       </header>
       <nav class="navbar">nav</nav>
-      <main class="main"><%- content %></main>
+      <main class="main"><%- content %><%- defineContent('eventForm') %></main>
       <footer class="footer">
         <p class="footer-developers small">
           <a href="https://github.com/42ghan" target="_blank">ghan</a> &nbsp|&nbsp

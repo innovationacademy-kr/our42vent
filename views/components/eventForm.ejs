@@ -1,0 +1,58 @@
+<button class="create-event-btn"><i class="create-event-icon material-icons">add</i></button>
+<section class="layout-form hidden">
+  <form class="form" action="/event/new" method="post">
+    <div class="form-content">
+      <div class="form-title">
+        <label class="form-label text-bold" for="event-title">제목</label>
+        <input class="form-oneline" id="event-title" name="title" required type="text" />
+      </div>
+      <div class="form-pic">
+        <label class="form-label text-bold" for="event-pic">발표자 / 담당자</label>
+        <input class="form-oneline" id="event-pic" name="personInCharge" type="text" />
+      </div>
+      <div class="form-beginat">
+        <label class="form-label text-bold" for="event-beginat">시작 시간</label>
+        <input
+          class="form-oneline"
+          id="event-beginat"
+          name="beginAt"
+          required
+          type="datetime-local"
+        />
+      </div>
+      <div class="form-endat">
+        <label class="form-label text-bold" for="event-endat">종료 시간</label>
+        <input class="form-oneline" id="event-endat" name="endAt" required type="datetime-local" />
+      </div>
+      <div class="form-location">
+        <label class="form-label text-bold" for="event-location">장소</label>
+        <input class="form-oneline" id="event-location" name="location" required type="text" />
+      </div>
+      <div class="form-category">
+        <label class="form-label text-bold" for="event-category">카테고리</label>
+        <select class="form-oneline" id="event-category" name="category" required>
+          <option value="lecture">멘토특강</option>
+          <option value="exam">시험</option>
+          <option value="contest">해커톤/공모전</option>
+          <option value="conference">세미나/컨퍼런스</option>
+          <option value="community">커뮤니티</option>
+        </select>
+      </div>
+      <div class="form-topic">
+        <label class="form-label text-bold" for="event-topic">주제</label>
+        <textarea id="event-topic" name="topic" required type="text"></textarea>
+      </div>
+      <div class="form-details">
+        <label class="form-label text-bold" for="event-details">상세설명</label>
+        <textarea id="event-details" name="details" type="text"></textarea>
+      </div>
+    </div>
+    <div class="form-button">
+      <button class="form-button-exit text-bold" type="reset">취소</button>
+      <button class="form-button-text text-bold" type="submit" formaction="/event_text">
+        홍보글 미리보기
+      </button>
+      <button class="form-button-new text-bold" type="submit">이벤트 생성</button>
+    </div>
+  </form>
+</section>

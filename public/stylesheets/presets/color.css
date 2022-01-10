@@ -7,7 +7,9 @@
   --header_bg: #2a2d38;
   --footer_font: #777;
   --turq_btn: #58b7ba;
-  --login_btn_hover: #6d9fa1;
+  --red_cancel_btn: #e2667c;
+  --red_cancel_btn_hover: #d9324f;
+  --turq_btn_hover: #6d9fa1;
 
   /* 카테고리 색 */
   --category_lecture: #f26cd5;

@@ -1,4 +1,3 @@
-import { ensureLoggedIn } from 'connect-ensure-login';
 import indexController from '../controllers/indexController.js';
 import verifyUser from '../middlewares/userVerify.js';
 
