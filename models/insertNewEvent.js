@@ -2,7 +2,7 @@ import consoleLogger from '../controllers/consoleLogger.js';
 import pool from '../config/createPool.js';
 
 export default function insertNewUser(req, res, next) {
-  // 이벤트 form 에 작성된 내용 req.body에 저장돼 있다.
+  // 이벤트 form 에 작성된 내용 req.body에 담겨있다
   const event = req.body;
   const sql =
     'INSERT INTO event ' +
