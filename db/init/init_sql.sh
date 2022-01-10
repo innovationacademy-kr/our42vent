@@ -41,3 +41,15 @@ if [ $? -eq 0 ]; then
 else
 	echo "token table이 이미 존재하는지 확인해주세요"
 fi
+mysql -u$user -p$passwd $DATABASE < start_event.sql
+if [ $? -eq 0 ]; then
+	echo "event_scheduler를 실행합니다"
+else
+	echo "event_scheduler 실행에 실패하였습니다."
+fi
+mysql -u$user -p$passwd $DATABASE < set_token_event.sql
+if [ $? -eq 0 ]; then
+	echo "token expire 이벤트를 실행합니다"
+else
+	echo "token expire event 실행에 실패하였습니다"
+fi
