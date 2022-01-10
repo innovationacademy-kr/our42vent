@@ -13,7 +13,6 @@ import initializePassport from './controllers/initializePassport.js';
 import loginRoute from './routes/login.js';
 import logoutRoute from './routes/logout.js';
 import indexRoute from './routes/index.js';
-import userRoute from './routes/user.js';
 
 // dotenv 로드
 dotenv.config();
@@ -45,7 +44,6 @@ app.set('layout', 'layouts/desktopLayout');
 // router 연결
 app.use('/login', loginRoute(express, passport));
 app.use('/', indexRoute(express));
-app.use('/user', userRoute(express));
 app.use('/logout', logoutRoute(express));
 
 // 404 발생 시 에러 핸들러로

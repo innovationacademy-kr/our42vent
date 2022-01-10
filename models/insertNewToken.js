@@ -6,18 +6,16 @@ export default function insertNewToken(id, token) {
 
   pool
     .execute(sql, [id, token])
-    .then((rows, fields) => {
-      consoleLogger.info('rows: ', rows);
-    })
+    .then(rows => consoleLogger.info('rows: ', rows))
     .catch(err => {
       if (err.code === 'ER_DUP_ENTRY') {
         consoleLogger.info(
           '=============================================\n' +
-            `이미 등록돼 있는 사용자입니다!\n` +
+            `이미 등록된 토큰입니다!\n` +
             '============================================='
         );
       } else {
-        consoleLogger.error(`query error : ${err}`);
+        consoleLogger.error(`Insert new token : query error : ${err}`);
       }
     });
 }

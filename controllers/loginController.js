@@ -1,19 +1,27 @@
 import insertNewUser from '../models/insertNewUser.js';
 import consoleLogger from './consoleLogger.js';
-import { accessSign } from '../lib/jwtUtils.js';
+import { accessSign, refreshSign } from '../lib/jwtUtils.js';
+import insertNewToken from '../models/insertNewToken.js';
 
-async function loginController(req, res) {
+function loginController(req, res) {
   const { user } = req;
 
   // 사용자 db 등록 여부 확인
   try {
     insertNewUser(user, () => {
       const accessToken = accessSign(user.id);
+      const refreshToken = refreshSign(user.id);
       res.cookie('accessToken', accessToken, {
         httpOnly: true,
         expires: new Date(Date.now() + 1000 * 60 * 60),
-        sameSite: 'strict',
+        sameSite: 'lax',
       });
+      res.cookie('refreshToken', refreshToken, {
+        httpOnly: true,
+        expires: new Date(Date.now() + 1.21e9),
+        sameSite: 'lax',
+      });
+      insertNewToken(user.id, refreshToken);
       res.redirect('/');
     });
   } catch (err) {
