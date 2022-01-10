@@ -35,10 +35,10 @@ body {
 }
 
 /* SECTION: display 형태 공통 적용 class */
-.block {
+.show {
   display: block;
 }
 
-.none {
+.hidden {
   display: none;
 }
