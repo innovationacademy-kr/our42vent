@@ -1,28 +1,33 @@
-import consoleLogger from '../controllers/consoleLogger.js';
-import { accessVerify } from '../lib/jwtUtils.js';
+import consoleLogger from '../lib/consoleLogger.js';
+import { accessSign, accessVerify, refreshVerify } from '../lib/jwtUtils.js';
 
 async function verifyUser(req, res, next) {
   try {
     const accessResult = accessVerify(req.cookies.accessToken);
 
-    console.log('!!!verifyUser!!!!');
-    console.log(accessResult);
-    console.log(req.cookies);
     if (accessResult.verified === true) {
-      console.log('accheck');
-      consoleLogger.info(accessResult);
       res.locals.userId = accessResult.id;
       next();
     } else {
-      // refresh token check
-      console.log('else');
-      const { refreshToken } = req.cookies;
-      console.log('refresh check');
-      console.log(refreshToken);
-      if (!refreshToken) res.redirect('/login');
+      const refreshResult = await refreshVerify(req.cookies.refreshToken);
+
+      res.locals.userId = refreshResult.id;
+      if (refreshResult.verified === true) {
+        const accessToken = accessSign(refreshResult.id);
+        consoleLogger.info(`accessToken reissued ${accessToken}`);
+        res.cookie('accessToken', accessToken, {
+          httpOnly: true,
+          expires: new Date(Date.now() + 1000 * 60 * 60),
+          sameSite: 'lax',
+        });
+        next();
+      } else {
+        res.redirect('/login');
+      }
     }
   } catch (err) {
-    res.status(401).json({ error: 'token expired' });
+    consoleLogger.error(err);
+    res.status(401).json({ error: 'Unexpected Error in verifyUser' });
   }
 }
 

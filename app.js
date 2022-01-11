@@ -1,4 +1,3 @@
-import { ensureLoggedIn } from 'connect-ensure-login';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import express from 'express';

@@ -1,4 +1,4 @@
-import consoleLogger from '../controllers/consoleLogger.js';
+import consoleLogger from '../lib/consoleLogger.js';
 import pool from '../config/createPool.js';
 
 export default function insertNewUser(user, next) {

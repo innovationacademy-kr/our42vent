@@ -1,5 +1,5 @@
 import { Strategy as FortyTwoStrategy } from 'passport-42';
-import consoleLogger from './consoleLogger.js';
+import consoleLogger from '../lib/consoleLogger.js';
 
 const profileToUser = async (token, rt, profile) => {
   const user = {

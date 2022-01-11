@@ -3,7 +3,7 @@ import loginController from '../controllers/loginController.js';
 export default function loginRoute(express, passport) {
   const router = express.Router();
 
-  // GET 로그인 페이지
+  // GET 로그인 페이지 미들웨어를 만들어서 ok면 렌더 페이지 not ok이면 홈
   router.get('/', (req, res) => {
     res.status(200).render('login', { layout: false });
   });

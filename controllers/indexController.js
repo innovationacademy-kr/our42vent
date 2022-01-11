@@ -1,7 +1,13 @@
 import selectUser from '../models/selectUser.js';
+import consoleLogger from '../lib/consoleLogger.js';
 
 export default async function indexController(req, res) {
-  const user = await selectUser(res.locals.userId);
+  let user = await selectUser(res.locals.userId);
+
+  if (!user) {
+    consoleLogger.error('fail to get user data');
+    user = { name: 'default', profileImage: '' };
+  }
 
   res.status(200).render('index', {
     layout: 'layouts/desktopLayout',

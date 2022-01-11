@@ -1,5 +1,5 @@
 import insertNewUser from '../models/insertNewUser.js';
-import consoleLogger from './consoleLogger.js';
+import consoleLogger from '../lib/consoleLogger.js';
 import { accessSign, refreshSign } from '../lib/jwtUtils.js';
 import insertNewToken from '../models/insertNewToken.js';
 
@@ -11,16 +11,19 @@ function loginController(req, res) {
     insertNewUser(user, () => {
       const accessToken = accessSign(user.id);
       const refreshToken = refreshSign(user.id);
+
       res.cookie('accessToken', accessToken, {
         httpOnly: true,
         expires: new Date(Date.now() + 1000 * 60 * 60),
         sameSite: 'lax',
       });
+
       res.cookie('refreshToken', refreshToken, {
         httpOnly: true,
-        expires: new Date(Date.now() + 1.21e9),
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14),
         sameSite: 'lax',
       });
+
       insertNewToken(user.id, refreshToken);
       res.redirect('/');
     });
