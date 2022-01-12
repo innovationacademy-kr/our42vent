@@ -4,7 +4,7 @@ import {
   getMonthDates,
   getMonthRange,
   mapDayEvent,
-} from '../lib/calendar/calendarMonthData.js';
+} from '../lib/calendar/calendarMonthUtils.js';
 import selectMonthEvents from '../models/selectMonthEvents.js';
 
 export default async function calendarMonthController(req, res) {
