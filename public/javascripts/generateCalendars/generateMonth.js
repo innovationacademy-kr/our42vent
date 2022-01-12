@@ -1,0 +1,53 @@
+const monthWords = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+async function getMonthData() {
+  try {
+    const res = await axios.get('/calendar/month/2022/0', {
+      headers: { 'Content-Type': 'application/json' },
+    });
+    console.log(res.data); // TODO: 지워야하는 로그
+    return res.data;
+  } catch (err) {
+    console.log(err.message); // TODO: 지워야하는 로그
+    return err;
+  }
+}
+
+async function generateMonth() {
+  try {
+    const calendarMonth = document.querySelector('.calendar-month');
+    const { dateInfo, noWeeks, year, month, monthIndex } = await getMonthData();
+
+    if (noWeeks === 6) {
+      for (let i = 0; i < 7; i += 1) {
+        const newDiv = document.createElement('div');
+        newDiv.classList.add('month-date');
+        calendarMonth.appendChild(newDiv);
+      }
+      calendarMonth.style.gridTemplate = '20px repeat(6, 1fr) / repeat(7, 1fr)';
+    } else if (noWeeks === 4) {
+      for (let i = 0; i < 7; i += 1) {
+        calendarMonth.removeChild(calendarMonth.lastChild);
+      }
+      calendarMonth.style.gridTemplate = '20px repeat(4, 1fr) / repeat(7, 1fr)';
+    }
+    return dateInfo;
+  } catch (err) {
+    return err;
+  }
+}
+
+generateMonth();

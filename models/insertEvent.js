@@ -23,6 +23,6 @@ export default function insertEvent(userId, event) {
       event.topic,
       event.details,
     ])
-    .then(rows => consoleLogger.info('새 이벤트 생성!', rows))
+    .then(rows => consoleLogger.info('새 이벤트 생성! ', rows))
     .catch(err => consoleLogger.error(`INSERT EVENT : query error : ${err}`));
 }
