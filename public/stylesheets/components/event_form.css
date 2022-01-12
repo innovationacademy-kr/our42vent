@@ -15,6 +15,7 @@
 
 .create-event-btn:hover {
   background: var(--turq_btn_hover);
+  cursor: pointer;
 }
 
 .create-event-icon.material-icons {
