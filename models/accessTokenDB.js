@@ -1,7 +1,7 @@
 import consoleLogger from '../lib/consoleLogger.js';
 import pool from '../config/createPool.js';
 
-export function insertNewToken(id, token) {
+export function insertToken(id, token) {
   const sql =
     'INSERT INTO token (userId, content) VALUES (?, ?)' +
     'ON DUPLICATE KEY UPDATE content=?, expireAt=DATE_ADD(NOW(), INTERVAL 2 WEEK)';

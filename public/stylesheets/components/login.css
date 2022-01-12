@@ -17,5 +17,5 @@
 }
 
 .login-button:hover {
-  background: var(--login_btn_hover);
+  background: var(--turq_btn_hover);
 }

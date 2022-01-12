@@ -1,5 +1,5 @@
-import { insertNewUser } from '../models/accessUserDB.js';
-import { insertNewToken } from '../models/accessTokenDB.js';
+import { insertUser } from '../models/accessUserDB.js';
+import { insertToken } from '../models/accessTokenDB.js';
 import consoleLogger from '../lib/consoleLogger.js';
 import { accessSign, refreshSign } from '../lib/jwtUtils.js';
 
@@ -8,7 +8,7 @@ function loginController(req, res) {
 
   // 사용자 db 등록 여부 확인
   try {
-    insertNewUser(user, () => {
+    insertUser(user, () => {
       const accessToken = accessSign(user.id);
       const refreshToken = refreshSign(user.id);
 
@@ -24,7 +24,7 @@ function loginController(req, res) {
         sameSite: 'lax',
       });
 
-      insertNewToken(user.id, refreshToken);
+      insertToken(user.id, refreshToken);
       res.redirect('/');
     });
   } catch (err) {

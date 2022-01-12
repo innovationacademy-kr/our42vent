@@ -9,6 +9,7 @@ import passport from 'passport';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import initializePassport from './controllers/initializePassport.js';
+import eventRoute from './routes/event.js';
 import indexRoute from './routes/index.js';
 import loginRoute from './routes/login.js';
 import logoutRoute from './routes/logout.js';
@@ -44,6 +45,7 @@ app.set('layout', 'layouts/desktopLayout');
 app.use('/', indexRoute(express));
 app.use('/login', loginRoute(express, passport));
 app.use('/logout', logoutRoute(express));
+app.use('/event', eventRoute(express));
 
 // 404 발생 시 에러 핸들러로
 app.use((req, res, next) => next(createError(404)));

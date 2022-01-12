@@ -1,7 +1,7 @@
 import consoleLogger from '../lib/consoleLogger.js';
 import pool from '../config/createPool.js';
 
-export function insertNewUser(user, next) {
+export function insertUser(user, next) {
   const sql = 'INSERT INTO user (id, name, profileImage) VALUES (?, ?, ?)';
 
   pool
