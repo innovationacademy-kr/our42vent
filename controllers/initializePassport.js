@@ -1,7 +1,7 @@
 import { Strategy as FortyTwoStrategy } from 'passport-42';
 import consoleLogger from '../lib/consoleLogger.js';
 
-// 42-api의 유저 profile에서 필요한 유저 정보 추출
+// 42-api의 사용자 profile에서 필요한 사용자 정보 추출
 async function profileToUser(token, rt, profile) {
   const user = {
     id: profile.id,
@@ -11,7 +11,7 @@ async function profileToUser(token, rt, profile) {
   return user;
 }
 
-export default function iniializePassport(passport) {
+export default function initializePassport(passport) {
   passport.use(
     new FortyTwoStrategy(
       {
@@ -21,7 +21,7 @@ export default function iniializePassport(passport) {
       },
       (accessToken, refreshToken, profile, cb) =>
         profileToUser(accessToken, refreshToken, profile).then(user => {
-          consoleLogger.info('FortyTwoStrategy : ', user);
+          consoleLogger.info('profileToUser : ', user);
           cb(null, user);
         })
     )
