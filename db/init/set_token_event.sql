@@ -1,3 +1,3 @@
-create event if not exists expire_token 
-on schedule every 10 minute starts CURRENT_TIMESTAMP
-do DELETE FROM token where expireAt <= CURRENT_TIMESTAMP
+CREATE EVENT IF NOT EXISTS expire_token 
+ON schedule every 10 minute starts CURRENT_TIMESTAMP
+do DELETE FROM token WHERE expireAt <= CURRENT_TIMESTAMP

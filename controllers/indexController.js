@@ -1,4 +1,4 @@
-import { selectUser } from '../models/accessUserDB.js';
+import { selectUser } from '../models/accessUserTable.js';
 
 export default async function indexController(req, res) {
   let user = await selectUser(res.locals.userId);

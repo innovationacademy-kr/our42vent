@@ -1,4 +1,4 @@
-CREATE TABLE if not exists event (
+CREATE TABLE IF NOT EXISTS event (
 	id INT NOT NULL AUTO_INCREMENT,
 	creator INT NOT NULL,
 	title VARCHAR(256) NOT NULL,

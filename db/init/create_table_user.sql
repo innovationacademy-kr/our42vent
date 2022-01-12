@@ -1,4 +1,4 @@
-CREATE TABLE if not exists user (
+CREATE TABLE IF NOT EXISTS user (
 	id INT NOT NULL,
 	name VARCHAR(64) NOT NULL UNIQUE,
 	profileImage VARCHAR(256) NOT NULL,

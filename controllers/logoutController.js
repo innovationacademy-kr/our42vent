@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
-import { deleteToken } from '../models/accessTokenDB.js';
 import consoleLogger from '../lib/consoleLogger.js';
+import { deleteToken } from '../models/accessTokenTable.js';
 
-async function logoutController(req, res, next) {
+export default async function logoutController(req, res, next) {
   try {
     res.clearCookie('accessToken');
 
@@ -10,11 +10,9 @@ async function logoutController(req, res, next) {
     const { id } = decoded;
     deleteToken(id);
     res.clearCookie('refreshToken');
-    consoleLogger.info('Logged out Successfully');
+    consoleLogger.info(`logoutController : ${id} : 로그아웃 성공!`);
   } catch (err) {
-    consoleLogger.error(`logout : Error : ${err}`);
+    consoleLogger.error('logoutController : ', err);
   }
   res.redirect('/login');
 }
-
-export default logoutController;

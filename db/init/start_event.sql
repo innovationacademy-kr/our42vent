@@ -1,1 +1,1 @@
-SET global event_scheduler = on
+SET GLOBAL event_scheduler = ON
