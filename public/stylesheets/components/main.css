@@ -1,5 +1,6 @@
 .main {
   display: grid;
+  height: calc(100vh - 120px);
   place-items: center;
   position: relative;
 }
@@ -9,8 +10,8 @@
 .calendar-month {
   display: grid;
   grid-template: 20px repeat(5, 1fr) / repeat(7, 1fr);
-  height: 97%;
-  width: 75%;
+  height: 99%;
+  width: 80%;
 }
 
 .day-title {

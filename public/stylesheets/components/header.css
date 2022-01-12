@@ -12,6 +12,34 @@
   width: 84px;
 }
 
+/* SECTION: Calendar 타이틀 */
+
+.header-title {
+  align-items: center;
+  color: var(--white);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.header-title > .material-icons {
+  font-size: 32px;
+}
+
+.header-title > .material-icons:hover {
+  cursor: pointer;
+  color: var(--light_grey);
+}
+
+.title-calendar {
+  text-align: center;
+  width: 300px;
+}
+
+.title-calendar > * {
+  line-height: 1.2em;
+}
+
 /* SECTION: 사용자 dropdown */
 
 .header-user {
