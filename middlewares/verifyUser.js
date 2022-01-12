@@ -34,7 +34,7 @@ export async function verifyUser(req, res, next) {
   }
 }
 
-// 로그인된 사용자가 로그인 페이지로 접근시 홈으로 redirect.
+// 로그인된 사용자가 로그인 페이지로 접근시 홈으로 redirect
 export async function verifyLoginUser(req, res, next) {
   try {
     const accessResult = verifyAccess(req.cookies.accessToken);

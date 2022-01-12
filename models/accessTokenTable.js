@@ -13,7 +13,7 @@ export function insertToken(id, token) {
 }
 
 export function deleteToken(id) {
-  const sql = 'DELETE FROM token where userId=?';
+  const sql = 'DELETE FROM token WHERE userId=?';
 
   pool
     .execute(sql, [id])
