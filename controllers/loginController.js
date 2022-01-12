@@ -1,7 +1,7 @@
-import insertNewUser from '../models/insertNewUser.js';
+import { insertNewUser } from '../models/accessUserDB.js';
+import { insertNewToken } from '../models/accessTokenDB.js';
 import consoleLogger from '../lib/consoleLogger.js';
 import { accessSign, refreshSign } from '../lib/jwtUtils.js';
-import insertNewToken from '../models/insertNewToken.js';
 
 function loginController(req, res) {
   const { user } = req;
@@ -14,13 +14,13 @@ function loginController(req, res) {
 
       res.cookie('accessToken', accessToken, {
         httpOnly: true,
-        expires: new Date(Date.now() + 1000 * 60 * 60),
+        expires: new Date(Date.now() + 3.6e6), // 1시간 뒤 만료
         sameSite: 'lax',
       });
 
       res.cookie('refreshToken', refreshToken, {
         httpOnly: true,
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14),
+        expires: new Date(Date.now() + 1.2096e9), // 2주 뒤 만료
         sameSite: 'lax',
       });
 

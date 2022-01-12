@@ -1,13 +1,9 @@
-import selectUser from '../models/selectUser.js';
-import consoleLogger from '../lib/consoleLogger.js';
+import { selectUser } from '../models/accessUserDB.js';
 
 export default async function indexController(req, res) {
   let user = await selectUser(res.locals.userId);
 
-  if (!user) {
-    consoleLogger.error('fail to get user data');
-    user = { name: 'default', profileImage: '' };
-  }
+  if (!user) user = { name: 'anonymous', profileImage: '' };
 
   res.status(200).render('index', {
     layout: 'layouts/desktopLayout',

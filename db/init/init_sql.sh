@@ -45,11 +45,13 @@ mysql -u$user -p$passwd $DATABASE < start_event.sql
 if [ $? -eq 0 ]; then
 	echo "event_scheduler를 실행합니다"
 else
-	echo "event_scheduler 실행에 실패하였습니다."
+	echo "event_scheduler 실행에 실패하였습니다. 권한이 필요합니다.
+	 권한이 있는 유저로 $(cat start_event.sql) 을 실행해주세요"
 fi
 mysql -u$user -p$passwd $DATABASE < set_token_event.sql
 if [ $? -eq 0 ]; then
 	echo "token expire 이벤트를 실행합니다"
 else
-	echo "token expire event 실행에 실패하였습니다"
+	echo "token expire event 실행에 실패하였습니다. 권한이 필요합니다.
+권한이 있는 유저로 mysql에 접속하여 \"$(cat set_token_event.sql)\" 을 실행해주세요"
 fi

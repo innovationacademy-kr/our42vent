@@ -1,13 +1,14 @@
 import jwt from 'jsonwebtoken';
-import deleteToken from '../models/deleteToken.js';
+import { deleteToken } from '../models/accessTokenDB.js';
 import consoleLogger from '../lib/consoleLogger.js';
 
 async function logoutController(req, res, next) {
   try {
-    const { accessToken } = req.cookies;
     res.clearCookie('accessToken');
-    const userId = jwt.decode(req.cookies.refreshToken).id;
-    deleteToken(userId);
+
+    const decoded = jwt.decode(req.cookies.refreshToken);
+    const { id } = decoded;
+    deleteToken(id);
     res.clearCookie('refreshToken');
     consoleLogger.info('Logged out Successfully');
   } catch (err) {
