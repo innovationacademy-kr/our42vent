@@ -9,6 +9,7 @@ import passport from 'passport';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import initializePassport from './controllers/initializePassport.js';
+import { verifyUser } from './middlewares/verifyUser.js';
 import calendarRoute from './routes/calendar.js';
 import eventRoute from './routes/event.js';
 import indexRoute from './routes/index.js';
@@ -35,6 +36,7 @@ app.use(session({ resave: false, saveUninitialized: false, secret: '!Seoul' }));
 app.use(express.static(join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(/^\/(?!login|logout).*$/, verifyUser);
 
 // ejs 로 view engine 설정
 app.set('views', join(__dirname, 'views'));

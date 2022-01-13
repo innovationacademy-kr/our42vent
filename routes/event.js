@@ -5,6 +5,6 @@ import { verifyUser } from '../middlewares/verifyUser.js';
 export default function eventRouter(express) {
   const router = express.Router();
 
-  router.post('/new', verifyUser, formidable(), insertEventController);
+  router.post('/new', formidable(), insertEventController);
   return router;
 }
