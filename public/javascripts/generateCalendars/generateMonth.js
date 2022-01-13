@@ -1,3 +1,5 @@
+import createElementAddClass from '../utils/createElementAddClass.js';
+
 const monthWords = [
   'January',
   'February',
@@ -32,11 +34,8 @@ async function generateMonth() {
     const { dateInfo, noWeeks, year, month, monthIndex } = await getMonthData();
 
     if (noWeeks === 6) {
-      for (let i = 0; i < 7; i += 1) {
-        const newDiv = document.createElement('div');
-        newDiv.classList.add('month-date');
-        calendarMonth.appendChild(newDiv);
-      }
+      for (let i = 0; i < 7; i += 1)
+        calendarMonth.appendChild(createElementAddClass('div', ['month-date']));
       calendarMonth.style.gridTemplate = '20px repeat(6, 1fr) / repeat(7, 1fr)';
     } else if (noWeeks === 4) {
       for (let i = 0; i < 7; i += 1) {

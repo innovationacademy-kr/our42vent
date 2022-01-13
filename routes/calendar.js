@@ -1,8 +1,8 @@
-import calendarMonthController from '../controllers/calendarMonthController.js';
+import monthController from '../controllers/monthController.js';
 
 export default function calendarRoute(express) {
   const router = express.Router();
 
-  router.get('/month/:year/:month', calendarMonthController);
+  router.get('/month/:year/:month', monthController);
   return router;
 }

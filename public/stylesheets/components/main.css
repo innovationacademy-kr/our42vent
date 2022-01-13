@@ -8,6 +8,8 @@
 /* SECTION: 월단위 캘린더 */
 
 .calendar-month {
+  border-left: var(--calendar_border) solid 1px;
+  border-top: var(--calendar_border) solid 1px;
   display: grid;
   grid-template: 20px repeat(5, 1fr) / repeat(7, 1fr);
   height: 99%;
@@ -20,7 +22,12 @@
 
 .day-title,
 .month-date {
-  border: black dotted 1px;
+  border-right: var(--calendar_border) solid 1px;
+  border-bottom: var(--calendar_border) solid 1px;
+}
+
+.day-title {
+  border-bottom: var(--calendar_border_two) solid 1px;
 }
 
 /* SECTION: 주단위 캘린더 */
