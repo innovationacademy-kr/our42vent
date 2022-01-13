@@ -1,12 +1,14 @@
 const beginAt = document.getElementById('event-beginat');
 const endAt = document.getElementById('event-endat');
 
-beginAt.addEventListener('click', () => {
+function checkBeginAt() {
   beginAt.max = endAt.value;
-  return endAt.vaule;
-});
+}
 
-endAt.addEventListener('click', () => {
+function checkEndAt() {
   endAt.min = beginAt.value;
-  return beginAt.value;
-});
+}
+
+beginAt.addEventListener('click', checkBeginAt);
+
+endAt.addEventListener('click', checkEndAt);

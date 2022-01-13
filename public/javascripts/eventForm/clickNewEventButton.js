@@ -23,7 +23,7 @@ function checkByte(inputId, maxByte) {
   const bytesWritten = countByte(input);
   let ret = true;
 
-  if (input.value === '') {
+  if (inputId !== 'event-pic' && inputId !== 'event-details' && input.value === '') {
     input.setCustomValidity('비어있는 칸을 채워주세요');
     ret = false;
   } else if (bytesWritten > maxByte) {
@@ -45,7 +45,7 @@ function checkTime(inputId, str) {
   let ret = true;
 
   if (input.value === '') {
-    input.setCustomValidity(`${str}시간을 선택해주세요`);
+    input.setCustomValidity(`${str} 시간을 선택해주세요`);
     ret = false;
   } else {
     input.setCustomValidity('');
@@ -70,10 +70,7 @@ function clickNewEventButton() {
     // TODO: 이벤트 생성 성공 / 실패 시 사용자에게 알림
     axios
       .post('/event/new', formData)
-      .then(res => {
-        console.log('이벤트 생성이 완료되었습니다.');
-        window.location.replace('/');
-      })
+      .then(res => window.location.replace('/'))
       .catch(err => console.log(err.message));
   }
 }
