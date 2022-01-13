@@ -1,24 +1,26 @@
+// 입력되는 문자열 byte 계산하여 반환
 function countByte(obj) {
-  let str = obj.value;
-  let str_len = str.length;
+  const str = obj.value;
+  const strLen = str.length;
 
   let bytesWritten = 0;
-  let one_char = '';
+  let oneChar = '';
 
-  for (let i = 0; i < str_len; i++) {
-    one_char = str.charAt(i);
-    if (encodeURI(one_char).length > 4) {
+  for (let i = 0; i < strLen; i += 1) {
+    oneChar = str.charAt(i);
+    if (encodeURI(oneChar).length > 4) {
       bytesWritten += 3;
     } else {
-      bytesWritten++;
+      bytesWritten += 1;
     }
   }
   return bytesWritten;
 }
 
+// 빈칸이거나 제한바이트 초과할 경우, 해당 메세지를 띄우고 false 반환
 function checkByte(inputId, maxByte) {
   const input = document.getElementById(inputId);
-  let bytesWritten = countByte(input);
+  const bytesWritten = countByte(input);
   let ret = true;
 
   if (input.value === '') {
@@ -26,7 +28,7 @@ function checkByte(inputId, maxByte) {
     ret = false;
   } else if (bytesWritten > maxByte) {
     input.setCustomValidity(
-      '이 항목은 ' + maxByte + 'byte를 초과할 수 없습니다. 현재 ' + bytesWritten + 'bytes 썼습니다.'
+      `이 항목은 ${maxByte}byte를 초과할 수 없습니다. 현재 ${bytesWritten}bytes 썼습니다.`
     );
     ret = false;
   } else {
@@ -37,12 +39,13 @@ function checkByte(inputId, maxByte) {
   return ret;
 }
 
+// 이벤트 시작시간/종료시간 입력여부 확인 후 true/false 반환
 function checkTime(inputId, str) {
   const input = document.getElementById(inputId);
   let ret = true;
 
   if (input.value === '') {
-    input.setCustomValidity(str + '시간을 선택해주세요');
+    input.setCustomValidity(`${str}시간을 선택해주세요`);
     ret = false;
   } else {
     input.setCustomValidity('');
@@ -51,6 +54,7 @@ function checkTime(inputId, str) {
   return ret;
 }
 
+// 이벤트 생성 버튼 입력전, 모든 항목 입력 완료시 이벤트 생성 post 요청
 function clickNewEventButton() {
   const formData = new FormData(document.querySelector('.form'));
 
@@ -63,14 +67,14 @@ function clickNewEventButton() {
     checkByte('event-topic', 512) &&
     checkByte('event-details', 4096)
   ) {
+    // TODO: 이벤트 생성 성공 / 실패 시 사용자에게 알림
     axios
       .post('/event/new', formData)
       .then(res => {
-        alert('이벤트 등록이 완료되었습니다.');
+        console.log('이벤트 생성이 완료되었습니다.');
         window.location.replace('/');
-        //insertEventController.js안의 res.redirect('/')와 중복...?
       })
-      .catch(err => alert(err.response.data.message));
+      .catch(err => console.log(err.message));
   }
 }
 
