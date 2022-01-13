@@ -1,7 +1,10 @@
-import selectUser from '../models/selectUser.js';
+import { selectUser } from '../models/accessUserTable.js';
 
 export default async function indexController(req, res) {
-  const user = await selectUser(res.locals.userId);
+  let user = await selectUser(res.locals.userId);
+
+  if (!user) user = { name: 'anonymous', profileImage: '' };
+
   res.status(200).render('index', {
     layout: 'layouts/desktopLayout',
     title: '우리42벤트 | ALL EVENTS',

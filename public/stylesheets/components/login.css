@@ -1,21 +1,22 @@
 .login-logo {
-  margin: 40px 0 0px;
+  margin: 40px 0 80px;
   width: 320px;
 }
 
 .login-version {
   color: var(--white);
+  margin: 10px 0 0;
 }
 
 .login-button {
   background: var(--turq_btn);
   border: none;
   color: white;
-  margin: 80px 0 10px;
   height: 50px;
   width: 320px;
 }
 
 .login-button:hover {
   background: var(--turq_btn_hover);
+  cursor: pointer;
 }
