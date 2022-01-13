@@ -8,7 +8,7 @@ export default function insertEvent(userId, event) {
     'topic, details) ' +
     'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);';
 
-  consoleLogger.info('insertEvent : event details: ', event);
+  consoleLogger.info('insertEvent : event details : ', event);
 
   // 이벤트 insert 쿼리
   pool

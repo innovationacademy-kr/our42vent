@@ -30,9 +30,9 @@
   display: grid;
   grid-template-rows: 420px 80px;
   height: 500px;
-  width: 900px;
   padding: 50px;
   place-items: center;
+  width: 900px;
 }
 
 .form-content {
@@ -103,9 +103,9 @@
 /* SECTION: 양식 input field 별 레이아웃 */
 
 .form-content > div {
+  align-items: center;
   display: grid;
   grid-template-rows: 32px 1fr;
-  align-items: center;
 }
 
 .form-oneline {

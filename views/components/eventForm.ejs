@@ -1,6 +1,6 @@
 <button class="create-event-btn"><i class="create-event-icon material-icons">add</i></button>
 <section class="layout-form hidden">
-  <form class="form" action="/event/new" method="post">
+  <form class="form" autocomplete="off">
     <div class="form-content">
       <div class="form-title">
         <label class="form-label text-bold" for="event-title">제목</label>
@@ -18,11 +18,19 @@
           name="beginAt"
           required
           type="datetime-local"
+          max=""
         />
       </div>
       <div class="form-endat">
         <label class="form-label text-bold" for="event-endat">종료 시간</label>
-        <input class="form-oneline" id="event-endat" name="endAt" required type="datetime-local" />
+        <input
+          class="form-oneline"
+          id="event-endat"
+          name="endAt"
+          required
+          type="datetime-local"
+          min=""
+        />
       </div>
       <div class="form-location">
         <label class="form-label text-bold" for="event-location">장소</label>
@@ -52,7 +60,7 @@
       <button class="form-button-text text-bold" type="submit" formaction="/event_text">
         홍보글 미리보기
       </button>
-      <button class="form-button-new text-bold" type="submit">이벤트 생성</button>
+      <button class="form-button-new text-bold" type="button">이벤트 생성</button>
     </div>
   </form>
 </section>

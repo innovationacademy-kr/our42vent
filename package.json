@@ -17,6 +17,7 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "express-ejs-layouts": "^2.5.1",
+    "express-formidable": "^1.2.0",
     "express-session": "^1.17.2",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
