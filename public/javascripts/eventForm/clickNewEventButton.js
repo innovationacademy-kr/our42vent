@@ -55,13 +55,13 @@ function clickNewEventButton() {
   const formData = new FormData(document.querySelector('.form'));
 
   if (
-    checkByte('event-title', 6) &&
-    checkByte('event-pic', 6) &&
+    checkByte('event-title', 256) &&
+    checkByte('event-pic', 64) &&
     checkTime('event-beginat', '시작') &&
     checkTime('event-endat', '종료') &&
-    checkByte('event-location', 6) &&
-    checkByte('event-topic', 6) &&
-    checkByte('event-details', 6)
+    checkByte('event-location', 256) &&
+    checkByte('event-topic', 512) &&
+    checkByte('event-details', 4096)
   ) {
     axios
       .post('/event/new', formData)
