@@ -2,18 +2,19 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import express from 'express';
 import expressLayouts from 'express-ejs-layouts';
+import formidable from 'express-formidable';
 import session from 'express-session';
 import createError from 'http-errors';
 import logger from 'morgan';
 import passport from 'passport';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import initializePassport from './controllers/initializePassport.js';
 import calendarRoute from './routes/calendar.js';
 import eventRoute from './routes/event.js';
 import indexRoute from './routes/index.js';
-import initializePassport from './controllers/initializePassport.js';
 import loginRoute from './routes/login.js';
-import userRoute from './routes/user.js';
+import logoutRoute from './routes/logout.js';
 
 // dotenv 로드
 dotenv.config();
@@ -31,6 +32,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(formidable());
 app.use(session({ resave: false, saveUninitialized: false, secret: '!Seoul' }));
 app.use(express.static(join(__dirname, 'public')));
 app.use(passport.initialize());
@@ -43,9 +45,9 @@ app.use(expressLayouts);
 app.set('layout', 'layouts/desktopLayout');
 
 // router 연결
-app.use('/login', loginRoute(express, passport));
 app.use('/', indexRoute(express));
-app.use('/user', userRoute(express));
+app.use('/login', loginRoute(express, passport));
+app.use('/logout', logoutRoute(express));
 app.use('/event', eventRoute(express));
 app.use('/calendar', calendarRoute(express));
 

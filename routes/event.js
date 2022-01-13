@@ -1,7 +1,7 @@
 import insertEventController from '../controllers/insertEventController.js';
-import verifyUser from '../middlewares/userVerify.js';
+import { verifyUser } from '../middlewares/verifyUser.js';
 
-export default function postEventRouter(express) {
+export default function eventRouter(express) {
   const router = express.Router();
 
   router.post('/new', verifyUser, insertEventController);
