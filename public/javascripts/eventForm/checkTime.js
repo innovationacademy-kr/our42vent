@@ -1,13 +1,6 @@
-function checkBeginatTime() {
-  let beginAt = document.getElementById('event-beginat');
-  let endAt = document.getElementById('event-endat');
+const beginAt = document.getElementById('event-beginat');
+const endAt = document.getElementById('event-endat');
 
-  endAt.min = beginAt.value;
-}
+beginAt.addEventListener('click', () => (beginAt.max = endAt.value));
 
-function checkEndatTime() {
-  let beginAt = document.getElementById('event-beginat');
-  let endAt = document.getElementById('event-endat');
-
-  beginAt.max = endAt.value;
-}
+endAt.addEventListener('click', () => (endAt.min = beginAt.value));

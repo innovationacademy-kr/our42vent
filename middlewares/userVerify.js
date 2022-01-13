@@ -6,7 +6,7 @@ async function verifyUser(req, res, next) {
     const result = accessVerity(req.cookies.accessToken);
 
     if (result.verified === true) {
-      consoleLogger.info(result);
+      // consoleLogger.info(result);
       res.locals.userId = result.id;
       next();
     } else {

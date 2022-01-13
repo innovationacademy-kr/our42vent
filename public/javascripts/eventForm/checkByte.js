@@ -1,4 +1,4 @@
-function checkByte(obj, maxByte) {
+function cutByte(obj, maxByte) {
   let str = obj.value;
   let str_len = str.length;
 
@@ -19,9 +19,21 @@ function checkByte(obj, maxByte) {
     }
   }
   if (bytesWritten > maxByte) {
-    //alert('메세지는 최대 ' + maxByte + 'byte를 초과할 수 없습니다.');
     str2 = str.substr(0, charWritten); //문자열 자르기
     obj.value = str2;
-    checkByte(obj, maxByte);
   }
 }
+
+// function checkByte(inputId, maxByte) {
+// }
+
+const inputObject = document.getElementById('event-title');
+// inputObject.addEventListener('keyup', cutByte(inputObject, 6));
+console.log(inputObject);
+inputObject.addEventListener('click', () => cutByte(inputObject, 6));
+
+// checkByte('event-title', 6); //256
+// checkByte('event-pic', 6); //64
+// checkByte('event-location', 6); //256
+// checkByte('event-topic', 6); //512
+// checkByte('event-details', 6); //4096
