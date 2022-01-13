@@ -68,6 +68,7 @@ function clickNewEventButton() {
       .then(res => {
         alert('이벤트 등록이 완료되었습니다.');
         window.location.replace('/');
+        //insertEventController.js안의 res.redirect('/')와 중복...?
       })
       .catch(err => alert(err.response.data.message));
   }
