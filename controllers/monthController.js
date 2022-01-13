@@ -5,7 +5,7 @@ import {
   mapDayEvent,
 } from '../lib/calendar/monthUtils.js';
 import getHolidays from '../lib/calendar/holidaysUtils.js';
-import selectMonthEvents from '../models/selectMonthEvents.js';
+import { selectMonthEvents } from '../models/accessEventTable.js';
 
 // month 데이터 json 으로 가공 & client 에 전송
 export default async function monthController(req, res) {

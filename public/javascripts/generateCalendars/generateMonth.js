@@ -23,7 +23,6 @@ async function getMonthData() {
     console.log(res.data); // TODO: 지워야하는 로그
     return res.data;
   } catch (err) {
-    console.log(err.message); // TODO: 지워야하는 로그
     return err;
   }
 }
@@ -43,9 +42,9 @@ async function generateMonth() {
       }
       calendarMonth.style.gridTemplate = '20px repeat(4, 1fr) / repeat(7, 1fr)';
     }
-    return dateInfo;
   } catch (err) {
-    return err;
+    // TODO: 지워야하는 로그, 추후 적절한 에러 메시지 UI / 리다이렉션
+    console.log(err.message);
   }
 }
 
