@@ -1,4 +1,4 @@
-import pool from '../config/createPool.js';
+import pool from '../config/createMySQLPool.js';
 import consoleLogger from '../lib/consoleLogger.js';
 
 // 처음 & 마지막 날 범위 안에 시작하는 이벤트 select
