@@ -1,5 +1,5 @@
-import redis from 'redis';
 import dotenv from 'dotenv';
+import redis from 'redis';
 import consoleLogger from '../lib/consoleLogger.js';
 
 dotenv.config();
