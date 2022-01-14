@@ -27,6 +27,7 @@ export default async function monthController(req, res) {
       monthIndex: month,
     });
   } catch (err) {
-    return err;
+    // TODO: 적절한 error message & res.status 설정
+    return null;
   }
 }
