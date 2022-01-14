@@ -1,15 +1,16 @@
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
-import createError from 'http-errors';
 import express from 'express';
 import expressLayouts from 'express-ejs-layouts';
-import formidable from 'express-formidable';
 import session from 'express-session';
+import createError from 'http-errors';
 import logger from 'morgan';
 import passport from 'passport';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import initializePassport from './controllers/initializePassport.js';
+import { verifyUser } from './middlewares/verifyUser.js';
+import calendarRoute from './routes/calendar.js';
 import eventRoute from './routes/event.js';
 import indexRoute from './routes/index.js';
 import loginRoute from './routes/login.js';
@@ -31,11 +32,11 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(formidable());
 app.use(session({ resave: false, saveUninitialized: false, secret: '!Seoul' }));
 app.use(express.static(join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(/^\/(?!login|logout).*$/, verifyUser);
 
 // ejs 로 view engine 설정
 app.set('views', join(__dirname, 'views'));
@@ -48,6 +49,7 @@ app.use('/', indexRoute(express));
 app.use('/login', loginRoute(express, passport));
 app.use('/logout', logoutRoute(express));
 app.use('/event', eventRoute(express));
+app.use('/calendar', calendarRoute(express));
 
 // 404 발생 시 에러 핸들러로
 app.use((req, res, next) => next(createError(404)));

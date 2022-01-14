@@ -1,8 +1,8 @@
 .header {
   background: var(--header_bg);
   display: grid;
-  grid-template-columns: 200px 1fr 200px;
-  height: 80px;
+  grid-template-columns: minmax(120px, 10%) 1fr 220px;
+  height: 70px;
   place-items: center;
 }
 
@@ -10,6 +10,34 @@
 
 .header-logo-img {
   width: 84px;
+}
+
+/* SECTION: Calendar 타이틀 */
+
+.header-title {
+  align-items: center;
+  color: var(--white);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.header-title > .material-icons {
+  font-size: 2em;
+}
+
+.header-title > .material-icons:hover {
+  cursor: pointer;
+  color: var(--light_grey);
+}
+
+.title-calendar {
+  text-align: center;
+  width: 300px;
+}
+
+.title-calendar > * {
+  line-height: 1.2em;
 }
 
 /* SECTION: 사용자 dropdown */
@@ -23,21 +51,24 @@
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  height: 80px;
+  height: 70px;
   justify-content: right;
-  width: 200px;
+  width: 220px;
 }
 
 .user-username {
   color: var(--white);
   margin: 0 20px 0 0;
+  text-align: right;
+  width: 110px;
+  word-break: break-word;
 }
 
 .user-image-wrapper {
   border-radius: 50%;
   display: grid;
   height: 42px;
-  margin: 0 58px 0 10px;
+  margin: 0 2.5vw 0 10px;
   overflow: hidden;
   place-items: center;
   position: relative;
@@ -61,7 +92,7 @@
   position: absolute;
   right: 0;
   text-align: center;
-  width: 180px;
+  width: 200px;
   z-index: 1;
 }
 
