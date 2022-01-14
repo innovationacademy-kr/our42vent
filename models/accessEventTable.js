@@ -1,4 +1,4 @@
-import pool from '../config/createPool.js';
+import pool from '../config/createMySQLPool.js';
 import consoleLogger from '../lib/consoleLogger.js';
 
 export default function insertEvent(userId, event) {
