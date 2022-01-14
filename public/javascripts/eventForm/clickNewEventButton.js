@@ -1,6 +1,5 @@
 // 입력되는 문자열 byte 계산하여 반환
-function countByte(obj) {
-  const str = obj.value;
+function countByte(str) {
   const strLen = str.length;
 
   let bytesWritten = 0;
@@ -20,7 +19,7 @@ function countByte(obj) {
 // 빈칸이거나 제한바이트 초과할 경우, 해당 메세지를 띄우고 false 반환
 function checkByte(inputId, maxByte) {
   const input = document.getElementById(inputId);
-  const bytesWritten = countByte(input);
+  const bytesWritten = countByte(input.value);
   let ret = true;
 
   if (inputId !== 'event-pic' && inputId !== 'event-details' && input.value === '') {

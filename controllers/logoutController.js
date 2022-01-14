@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import consoleLogger from '../lib/consoleLogger.js';
 import { deleteToken } from '../models/accessTokenTable.js';
 
-export default async function logoutController(req, res, next) {
+export default async function logoutController(req, res) {
   try {
     res.clearCookie('accessToken');
 

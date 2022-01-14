@@ -11,6 +11,8 @@
   "license": "MIT",
   "author": "ghan, jiskim, sehhong, yongjule",
   "dependencies": {
+    "axios": "^0.24.0",
+    "calendar": "^0.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^10.0.0",
