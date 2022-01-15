@@ -1,31 +1,25 @@
-import {
-  checkYearMonthRange,
-  getMonthDates,
-  getMonthRange,
-  mapDayEvent,
-} from '../lib/calendar/monthUtils.js';
-import getHolidays from '../lib/calendar/holidaysUtils.js';
+import cacheMonthData from '../lib/calendar/cacheMonthData.js';
+import { mapDayEvent } from '../lib/calendar/monthUtils.js';
 import { selectMonthEvents } from '../models/accessEventTable.js';
-import consoleLogger from '../lib/consoleLogger.js';
 
 // month 데이터 json 으로 가공 & client 에 전송
 export default async function monthController(req, res) {
   try {
-    const yearParam = Number(req.params.year);
-    const monthParam = Number(req.params.month);
+    const cacheKey = `m_${req.params.year + req.params.month}`;
 
-    const { year, month } = checkYearMonthRange(yearParam, monthParam);
-    const { noWeeks, dates } = getMonthDates(year, month);
-    const { firstSQLDate, lastSQLDate } = getMonthRange(dates[0], dates.at(-1));
+    // 변경되지 않는 정보 cache 확인
+    const { dates, firstSQLDate, holidays, lastSQLDate, month, noWeeks, year } =
+      await cacheMonthData(cacheKey, Number(req.params.year), Number(req.params.month));
+
+    // 변경될 수 있는 정보
     const monthEvents = await selectMonthEvents(firstSQLDate, lastSQLDate);
-    const holidays = await getHolidays(dates, year, month);
     const dateEvents = mapDayEvent(dates, monthEvents, holidays);
 
     return res.json({
       dateEvents,
-      noWeeks,
-      year,
-      monthIndex: month,
+      year: Number(year),
+      monthIndex: Number(month),
+      noWeeks: Number(noWeeks),
     });
   } catch (err) {
     return res.status(500).end();
