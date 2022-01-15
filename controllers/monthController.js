@@ -6,6 +6,7 @@ import {
 } from '../lib/calendar/monthUtils.js';
 import getHolidays from '../lib/calendar/holidaysUtils.js';
 import { selectMonthEvents } from '../models/accessEventTable.js';
+import consoleLogger from '../lib/consoleLogger.js';
 
 // month 데이터 json 으로 가공 & client 에 전송
 export default async function monthController(req, res) {
@@ -27,7 +28,6 @@ export default async function monthController(req, res) {
       monthIndex: month,
     });
   } catch (err) {
-    // TODO: 적절한 error message & res.status 설정
-    return null;
+    return res.status(500).end();
   }
 }
