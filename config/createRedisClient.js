@@ -1,10 +1,10 @@
 import dotenv from 'dotenv';
-import { createClient } from 'redis';
+import redis from 'redis';
 import consoleLogger from '../lib/consoleLogger.js';
 
 dotenv.config();
 
-const client = createClient({
+const client = redis.createClient({
   host: process.env.REDIS_HOST,
   port: process.env.REDIS_PORT,
   password: process.env.REDIS_PASSWORD,
