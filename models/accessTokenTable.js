@@ -1,35 +1,34 @@
-import pool from '../config/createMySQLPool.js';
+import redisClient from '../config/createRedisClient.js';
 import consoleLogger from '../lib/consoleLogger.js';
 
-export function insertToken(id, token) {
-  const sql =
-    'INSERT INTO token (userId, content) VALUES (?, ?)' +
-    'ON DUPLICATE KEY UPDATE content=?, expireAt=DATE_ADD(NOW(), INTERVAL 2 WEEK)';
-
-  pool
-    .execute(sql, [id, token, token])
-    .then(rows => consoleLogger.info('insertToken : query success : ', rows))
-    .catch(err => consoleLogger.error('insertToken : query error : ', err));
+export async function insertToken(id, token) {
+  try {
+    const ret = await redisClient.setEx(id, 1.2096e6, token); // 2주 뒤 만료
+    if (ret.localeCompare('OK')) throw new Error(`Fail to insert Token for ${id}`);
+    consoleLogger.info(`insertToken : query success : refreshToken has issued for ${id}`);
+  } catch (err) {
+    consoleLogger.error('insertToken : query error : ', err.stack);
+  }
 }
 
-export function deleteToken(id) {
-  const sql = 'DELETE FROM token WHERE userId=?';
-
-  pool
-    .execute(sql, [id])
-    .then(rows => consoleLogger.info('deleteToken : query success : ', rows))
-    .catch(err => consoleLogger.error('deleteToken : query error : ', err));
+export async function deleteToken(id) {
+  try {
+    const ret = await redisClient.del(id);
+    if (ret !== 1) throw new Error(`Fail to delete Token for ${id}`);
+    consoleLogger.info(`deleteToken : query success : refreshToken has deleted for ${id}`);
+  } catch (err) {
+    consoleLogger.error('deleteToken : query error : ', err.stack);
+  }
 }
 
 export async function selectToken(id) {
-  const sql = 'SELECT content FROM token WHERE userId=?';
-
   try {
-    const [rows] = await pool.execute(sql, [id]);
-    consoleLogger.info('selectToken : query success : ', rows);
-    return rows[0];
+    const ret = await redisClient.get(id);
+    if (ret === null) throw new Error(`Fail to select Token for ${id}`);
+    consoleLogger.info(`selectToken : query success : refreshToken for ${id} is ${ret}`);
+    return ret;
   } catch (err) {
-    consoleLogger.error('selectToken: query error : ', err);
+    consoleLogger.error('selectToken : query error : ', err.stack);
     return null;
   }
 }
