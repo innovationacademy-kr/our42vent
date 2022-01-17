@@ -1,0 +1,88 @@
+.created {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  width: 70vh;
+  height: calc(100vh - 200px);
+}
+
+.created-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 0 40px 0;
+  width: 100%;
+}
+
+.info-date {
+  font-size: 1.125em;
+  font-weight: bold;
+}
+
+.today {
+  color: red !important;
+}
+
+.date-divider {
+  width: 100%;
+  border: 0px;
+  border-top: 1px solid var(--grey);
+}
+
+.created-event-list {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 5px 0;
+}
+
+.created-event-category {
+  height: 28px;
+  margin: 1px 3px;
+  width: 12px;
+}
+
+.created-event-title {
+  width: 60%;
+}
+
+.created-event-info {
+  width: 30%;
+}
+
+.created-event-edit {
+  width: 10%;
+}
+
+.created-event-edit i {
+  font-size: 1.25em;
+}
+
+.category-lecture {
+  background: var(--category_lecture);
+}
+
+.category-exam {
+  background: var(--category_exam);
+}
+
+.category-contest {
+  background: var(--category_contest);
+}
+
+.category-conference {
+  background: var(--category_conference);
+}
+
+.category-community {
+  background: var(--category_community);
+}
+
+.today {
+  color: var(--red);
+}
+
+.previous {
+  color: var(--gray);
+}

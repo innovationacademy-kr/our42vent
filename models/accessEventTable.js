@@ -16,6 +16,23 @@ export async function selectMonthEvents(firstDate, lastDate) {
   }
 }
 
+// 해당 사용자가 만든 이벤트를 현재시간 이후부터 10개 가져옴 - FIXME : 차후 모듈화
+export async function selectUserEvents(creatorId) {
+  try {
+    const sql =
+      'SELECT title, location, beginAt, endAt FROM event ' +
+      'WHERE creator=? ORDER BY beginAt ' +
+      'LIMIT 10';
+
+    const [rows] = await pool.execute(sql, [creatorId]);
+    consoleLogger.info('selectUserEvent : query success : ', rows);
+    return rows;
+  } catch (err) {
+    consoleLogger.error('selectUserEvent : query error : ', err);
+    return null;
+  }
+}
+
 // 이벤트 insert 쿼리
 export function insertEvent(userId, event) {
   consoleLogger.info('insertEvent : event details : ', event);
