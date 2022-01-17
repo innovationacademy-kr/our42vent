@@ -28,7 +28,7 @@ export default function initializePassport(passport) {
           await insertUser(user);
           cb(null, user);
         } catch (err) {
-          consoleLogger.error('FortyTwoStrategy : error :', err);
+          consoleLogger.error('FortyTwoStrategy : error :', err.stack);
           cb(err);
         }
       }
