@@ -2,7 +2,6 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import express from 'express';
 import expressLayouts from 'express-ejs-layouts';
-import session from 'express-session';
 import createError from 'http-errors';
 import logger from 'morgan';
 import passport from 'passport';
@@ -32,10 +31,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({ resave: false, saveUninitialized: false, secret: '!Seoul' }));
 app.use(express.static(join(__dirname, 'public')));
 app.use(passport.initialize());
-app.use(passport.session());
 app.use(/^\/(?!login|logout).*$/, verifyUser);
 
 // ejs 로 view engine 설정
