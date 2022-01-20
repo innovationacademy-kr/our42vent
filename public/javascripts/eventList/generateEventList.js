@@ -1,4 +1,5 @@
 import { createElementAddClass } from '../utils/domNodeUtils.js';
+import { getFullDate, getFullTime, getDateGap, isBtwnDates } from '../utils/eventListUtils.js';
 
 const monthWords = [
   'Jan',
@@ -15,54 +16,30 @@ const monthWords = [
   'Dec',
 ];
 
-const dayWords = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const dayWords = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+// 서버로부터 해당 유저의 event list를 받아옴
 async function getEventList() {
   try {
     const res = await axios.get('/event/list/creator', {
       headers: { 'Content-Type': 'application/json' },
     });
-    console.log(res.data);
     return res.data;
   } catch (err) {
     return null;
   }
 }
 
-function getToday() {
-  const now = new Date(new Date().getTime() + 3.24e7);
-  const [year, month, date] = [now.getFullYear(), now.getMonth(), now.getDate()];
-  return month < 10 ? `${year}-0${month + 1}-${date}` : `${year}-${month + 1}-${date}`;
-}
-
-function getFullDate(timestamp) {
-  const fullDay = new Date(timestamp);
-  const [year, month, date] = [fullDay.getFullYear(), fullDay.getMonth(), fullDay.getDate()];
-  return month < 10 ? `${year}-0${month + 1}-${date}` : `${year}-${month + 1}-${date}`;
-}
-
-function getFullTime(timestamp) {
-  const fullTime = new Date(timestamp);
-  let [hour, min] = [fullTime.getHours(), fullTime.getMinutes()];
-  if (hour < 10) hour = `0${hour}`;
-  if (min < 10) min = `0${min}`;
-
-  return `${hour}:${min}`;
-}
-
-function getDateGap(begin, end) {
-  return Math.floor((new Date(end).getTime() - new Date(begin).getTime()) / (1000 * 60 * 60 * 24));
-}
-
 // 날짜 블록을 생성해줌
 function createDateElement(date) {
-  const eventListBlock = document.querySelector('.eventlist');
-  const eventListInfoBlock = eventListBlock.appendChild(
+  const eventListDiv = document.querySelector('.eventlist');
+  const eventListInfoDiv = eventListDiv.appendChild(
     createElementAddClass('div', ['eventlist-info'])
   );
   const day = new Date(date).getDay();
   const [eventYear, eventMonth, eventDate] = date.split('-');
 
-  eventListInfoBlock.appendChild(
+  eventListInfoDiv.appendChild(
     createElementAddClass(
       'div',
       ['info-date'],
@@ -70,40 +47,47 @@ function createDateElement(date) {
     )
   );
 
-  eventListInfoBlock.appendChild(createElementAddClass('hr', ['date-divider']));
-  return eventListInfoBlock;
+  eventListInfoDiv.appendChild(createElementAddClass('hr', ['date-divider']));
+  return eventListInfoDiv;
 }
 
 // 특정 날짜의 이벤트 블록을 만들어줌
-function createEventListElement(eventListInfoBlock, item, isOutdated) {
+function createEventListElement(eventListInfoDiv, item, isOutdated) {
   const beginAt = `${getFullDate(item.beginAt).replaceAll('-', '/').slice(5)}  ${getFullTime(
     item.beginAt
   )}`;
   const endAt = `${getFullDate(item.endAt).replaceAll('-', '/').slice(5)}  ${getFullTime(
     item.endAt
   )}`;
-  const eventContentBlock = eventListInfoBlock.appendChild(
+
+  const eventContentDiv = eventListInfoDiv.appendChild(
     createElementAddClass(
       'div',
       isOutdated === true ? ['eventlist-list', 'date-outdated'] : ['eventlist-list']
     )
   );
-  eventContentBlock.appendChild(
+  eventContentDiv.appendChild(
     createElementAddClass('div', ['list-category', `category-${item.category}`])
   );
-  eventContentBlock.appendChild(
-    createElementAddClass('div', ['list-content-title'])
-  ).innerHTML = `<a href=#> ${item.title} </a>`;
-  const eventContentInfoBlock = eventContentBlock.appendChild(
+
+  const eventTitleAnchor = eventContentDiv.appendChild(
+    createElementAddClass('a', ['list-content-anchor'])
+  );
+  eventTitleAnchor.href = '#';
+  eventTitleAnchor.appendChild(createElementAddClass('div', ['list-content-title'], item.title));
+  const eventContentInfoDiv = eventContentDiv.appendChild(
     createElementAddClass('div', ['list-content-info'])
   );
-  eventContentInfoBlock.appendChild(
+
+  eventContentInfoDiv.appendChild(
     createElementAddClass('div', ['list-content-time'])
   ).innerHTML = `<i class=material-icons-outlined>schedule</i> ${beginAt} ~ ${endAt}`;
-  eventContentInfoBlock.appendChild(
+
+  eventContentInfoDiv.appendChild(
     createElementAddClass('div', ['list-content-location'])
   ).innerHTML = `<i class=material-icons-outlined>location_on</i>${item.location}`;
-  eventContentBlock.appendChild(createElementAddClass('div', ['list-content-icon'])).innerHTML =
+
+  eventContentDiv.appendChild(createElementAddClass('div', ['list-content-icon'])).innerHTML =
     '<a href=#><i class=material-icons-outlined> edit_note </i></a>' +
     '<a href=#><i class=material-icons-outlined> delete </i></a>';
 }
@@ -111,46 +95,48 @@ function createEventListElement(eventListInfoBlock, item, isOutdated) {
 async function generateEventList() {
   try {
     const events = await getEventList();
-
     if (!events) throw Error('generateEventList : error : Failed to get event list');
 
-    const today = getToday();
+    const today = getFullDate(new Date(Date.now()).getTime());
     const eventDates = [];
-    let eventListInfoBlock = null;
-    // 해당 date가 없으면 만들고 push, 있으면 해당 date 에 push
+    let eventListInfoDiv = null;
+
+    // 생성해야 하는 날짜들을 eventDates 배열에 push
     events.forEach(item => {
-      const date = getFullDate(new Date(item.beginAt).getTime() + 3.24e7);
+      const date = getFullDate(new Date(item.beginAt).getTime());
       const dateGap = getDateGap(item.beginAt, item.endAt);
 
-      //   FIXME : date의 range로 파악해야함
       for (let i = 0; i <= dateGap; i += 1) {
         const [beginYear, beginMonth, beginDate] = date.split('-');
         const curDate = getFullDate(new Date(beginYear, +beginMonth - 1, +beginDate + i));
-        // const isOutdated = curDate.localeCompare(today) < 0;
-        if (!eventDates.includes(curDate)) {
-          eventDates.push(curDate);
-          //   eventListInfoBlock = createDateElement(curDate);
-          //   createEventListElement(eventListInfoBlock, item, isOutdated);
-          // } else {
-          //   createEventListElement(eventListInfoBlock, item, isOutdated);
-        }
+        if (!eventDates.includes(curDate)) eventDates.push(curDate);
       }
     });
-    // const [beginYear, beginMonth, beginDate] = date.split('-');
-    // const curDate = getFullDate(new Date(beginYear, +beginMonth - 1, +beginDate + i));
-    // console.log(curDate, item.title);
-    // const isOutdated = curDate.localeCompare(today) < 0;
-    // if (!eventDates.includes(curDate)) {
-    //   eventDates.push(curDate);
-    //   eventListInfoBlock = createDateElement(curDate);
-    //   createEventListElement(eventListInfoBlock, item, isOutdated);
-    // } else {
-    //   createEventListElement(eventListInfoBlock, item, isOutdated);
-    // }
+
+    eventDates.forEach(curDate => {
+      eventListInfoDiv = createDateElement(curDate);
+      const isOutdated = curDate.localeCompare(today) < 0;
+
+      // event들을 돌면서 beginAt과 endAt 사이에 해당 날짜가 있으면 이벤트 목록을 생성
+      events.forEach(item => {
+        if (isBtwnDates(curDate, item.beginAt, item.endAt))
+          createEventListElement(eventListInfoDiv, item, isOutdated);
+      });
+    });
   } catch (err) {
-    console.error(err);
+    console.error(err.stack);
     throw err;
   }
 }
 
-generateEventList();
+function fixScrollToNextEvent() {
+  const eventListSection = document.querySelector('.eventlist');
+  const outdatedDiv = document.querySelectorAll('.date-outdated');
+  const lastOutdatedDivPosition =
+    outdatedDiv[outdatedDiv.length - 1].getBoundingClientRect().bottom -
+    eventListSection.getBoundingClientRect().top +
+    40;
+  eventListSection.scrollTo(0, lastOutdatedDivPosition);
+}
+
+generateEventList().then(() => fixScrollToNextEvent());

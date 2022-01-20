@@ -1,5 +1,4 @@
 import { selectUser } from '../models/accessUserTable.js';
-import { selectUserEvents } from '../models/accessEventTable.js';
 
 export default async function insertEventController(req, res) {
   const user = await selectUser(res.locals.userId);
