@@ -1,6 +1,7 @@
 .main {
   display: grid;
   height: calc(100vh - 120px);
+  overflow: hidden;
   place-items: center;
   position: relative;
 }
@@ -26,10 +27,81 @@
   border-bottom: var(--calendar_border) solid 1px;
 }
 
-.day-title {
-  border-bottom: var(--calendar_border_two) solid 1px;
+.month-date {
+  display: grid;
+  grid-template-rows: 20px calc(100% - 20px);
+  min-width: 80.45px;
+  position: relative;
+}
+
+.month-date-day {
+  margin: 3px;
+}
+
+.month-date-events {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.month-label-single,
+.month-label-multi {
+  border-radius: 5px;
+  height: 22px;
+  line-height: 24px;
+  margin: 1px;
+  overflow: hidden;
+  padding: 0 0 0 8px;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+
+.month-label-single {
+  z-index: 1;
+}
+
+.month-label-multi {
+  position: absolute;
+  z-index: 2;
+}
+
+.month-date-more {
+  background: var(--light_grey);
+  border-radius: 5px;
+  height: 20px;
+  line-height: 22px;
+  margin: 1px;
+  padding: 0 0 0 8px;
+  vertical-align: middle;
+}
+
+.sunday {
+  color: var(--sunday_red);
 }
 
 /* SECTION: 주단위 캘린더 */
 
 /* SECTION: 내가 만든 이벤트 리스트 */
+
+/* SECTION: 카테고리 색 */
+
+.lecture {
+  background: var(--category_lecture);
+}
+
+.exam {
+  background: var(--category_exam);
+}
+
+.contest {
+  background: var(--category_contest);
+}
+
+.conference {
+  background: var(--category_conference);
+}
+
+.community {
+  background: var(--category_community);
+}
