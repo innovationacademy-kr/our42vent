@@ -1,13 +1,13 @@
 import pool from '../config/createMySQLPool.js';
 import consoleLogger from '../lib/consoleLogger.js';
 
-// 처음 & 마지막 날 범위 안에 시작하는 이벤트 select
+// 해당 월 범위 안에 있는 이벤트 select
 export async function selectMonthEvents(firstDate, lastDate) {
   try {
     const sql =
-      'SELECT id, title, beginAt, endAt FROM event ' +
-      'WHERE beginAt >= ? AND beginAt < ? ORDER BY beginAt';
-    const [rows] = await pool.execute(sql, [firstDate, lastDate]);
+      'SELECT id, title, beginAt, endAt, category FROM event ' +
+      'WHERE beginAt >= ? AND beginAt < ? OR beginAt < ? AND endAt > ? ORDER BY beginAt';
+    const [rows] = await pool.execute(sql, [firstDate, lastDate, firstDate, firstDate]);
     consoleLogger.info('SELECT MONTH EVENT : query success : ', rows);
     return rows;
   } catch (err) {

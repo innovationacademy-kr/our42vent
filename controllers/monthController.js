@@ -1,5 +1,5 @@
 import cacheMonthData from '../lib/calendar/cacheMonthData.js';
-import { mapDayEvent } from '../lib/calendar/monthUtils.js';
+import { localizeEventTime, mapDayEvent } from '../lib/calendar/monthUtils.js';
 import { selectMonthEvents } from '../models/accessEventTable.js';
 
 // month 데이터 json 으로 가공 & client 에 전송
@@ -12,11 +12,12 @@ export default async function monthController(req, res) {
       await cacheMonthData(cacheKey, Number(req.params.year), Number(req.params.month));
 
     // 변경될 수 있는 정보
-    const monthEvents = await selectMonthEvents(firstSQLDate, lastSQLDate);
-    const dateEvents = mapDayEvent(dates, monthEvents, holidays);
+    const monthEventsArray = await selectMonthEvents(firstSQLDate, lastSQLDate);
+    localizeEventTime(monthEventsArray);
+    const dateEventArray = mapDayEvent(dates, monthEventsArray, holidays);
 
     return res.json({
-      dateEvents,
+      dateEventArray,
       year: Number(year),
       monthIndex: Number(month),
       noWeeks: Number(noWeeks),
