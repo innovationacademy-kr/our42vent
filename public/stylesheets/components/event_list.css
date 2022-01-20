@@ -1,13 +1,20 @@
-.created {
+.eventlist {
   align-items: center;
   display: flex;
   flex-direction: column;
-  overflow: auto;
-  width: 70vh;
   height: calc(100vh - 200px);
+  overflow: auto;
+  -ms-overflow-style: none; /* for IE and Edge */
+  scrollbar-width: none; /* for Firefox */
+  width: 60%;
 }
 
-.created-info {
+/* for Chrome, Safari and Opera */
+.eventlist::-webkit-scrollbar {
+  display: none;
+}
+
+.eventlist-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,47 +23,97 @@
 }
 
 .info-date {
-  font-size: 1.125em;
+  font-size: 1.25em;
   font-weight: bold;
 }
 
-.today {
-  color: red !important;
+.date-outdated {
+  color: var(--grey_outdated) !important;
 }
 
 .date-divider {
-  width: 100%;
   border: 0px;
   border-top: 1px solid var(--grey);
+  width: 100%;
 }
 
-.created-event-list {
+.eventlist-list {
   align-items: center;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 16px calc(60% - 66px) calc(40%) 50px;
+  grid-template-areas: 'a b c e';
   margin: 0 0 5px 0;
 }
 
-.created-event-category {
+@media screen and (max-width: 768px) {
+  .eventlist-list {
+    align-items: center;
+    display: grid;
+    grid-template-areas:
+      'a b e'
+      'a c e';
+    grid-template-columns: 16px calc(100% - 66px) 50px;
+    margin: 0 0 5px 0;
+  }
+}
+
+.list-category {
+  grid-area: a;
   height: 28px;
-  margin: 1px 3px;
+  margin: 1px 2px;
+  min-width: 12px;
   width: 12px;
 }
 
-.created-event-title {
-  width: 60%;
+.list-content-title {
+  grid-area: b;
+  overflow: hidden;
+  padding: 0 3px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.created-event-info {
-  width: 30%;
+.list-content-info {
+  align-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  grid-area: c;
 }
 
-.created-event-edit {
-  width: 10%;
+.list-content-time {
+  padding: 0 3px 0 0;
+  white-space: nowrap;
 }
 
-.created-event-edit i {
-  font-size: 1.25em;
+.list-content-time i {
+  font-size: 1em;
+  vertical-align: -2;
+}
+
+.list-content-location {
+  overflow: hidden;
+  padding: 0 6px 0 3px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-content-location i {
+  font-size: 1em;
+  vertical-align: -2;
+}
+
+.list-content-icon {
+  grid-area: e;
+  width: 50px;
+}
+
+.list-content-icon i {
+  font-size: 1em;
+}
+
+.list-content-icon :hover {
+  color: var(--turq_btn_hover) !important;
 }
 
 .category-lecture {
@@ -77,12 +134,4 @@
 
 .category-community {
   background: var(--category_community);
-}
-
-.today {
-  color: var(--red);
-}
-
-.previous {
-  color: var(--gray);
 }
