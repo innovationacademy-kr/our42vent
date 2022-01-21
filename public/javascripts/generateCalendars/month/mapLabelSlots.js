@@ -69,14 +69,14 @@ function setSlots(dateEventArray, dateIndex, curEvent, eventIndex) {
     for (let k = 0; k < length && dateIndex + k < newDateEventArray.length; k += 1) {
       const { eventArray } = newDateEventArray[dateIndex + k];
       const matchingIndex = eventArray.findIndex(e => e.id === id);
-      const key =
+      const slotIndex =
         curSlot[`${eventIndex}`] === eventIndex
           ? `${eventIndex}`
-          : `${findKey(newDateEventArray[dateIndex + k].slot)}`;
-      newDateEventArray[dateIndex + k].slot[key] = matchingIndex;
+          : `${findSlotIndex(newDateEventArray[dateIndex + k].slot)}`;
+      newDateEventArray[dateIndex + k].slot[slotIndex] = matchingIndex;
     }
   } else if (length === 1) {
-    curSlot[`${findKey(curSlot)}`] = eventIndex;
+    curSlot[`${findSlotIndex(curSlot)}`] = eventIndex;
   }
 }
 
@@ -97,7 +97,7 @@ function fillEmptySlots(dateEventArray, dateIndex) {
 }
 
 // slot index 설정
-function findKey(slot, isMulti = 0) {
+function findSlotIndex(slot, isMulti = 0) {
   const keyArray = Object.keys(slot).map(key => Number(key));
   const maxKey = Math.max(...keyArray);
 

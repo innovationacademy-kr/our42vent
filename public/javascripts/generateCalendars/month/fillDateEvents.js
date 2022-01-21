@@ -54,7 +54,7 @@ function fillEvents(curDateEvent, eventsDiv) {
 }
 
 // 띠지 HTML element 생성 & append, 하루 이상 이벤트 띠지 길이 & 위치 설정
-function createLabel(eventInfo, eventsDiv, eventArrayIndex) {
+function createLabel(eventInfo, eventsDiv, slotIndex) {
   const { category, id, length, title } = eventInfo;
   const boxWidth = document.querySelector('.month-date-events').offsetWidth;
 
@@ -73,6 +73,6 @@ function createLabel(eventInfo, eventsDiv, eventArrayIndex) {
       createElementAddClass('div', [`event-${id}`, 'month-label-multi', 'xsmall', category], title)
     );
     multiDayLabel.style.width = `${(boxWidth - 4) * 2 + boxWidth * (length - 2) - 1}`;
-    multiDayLabel.style.top = `${20 + 24 * eventArrayIndex}`;
+    multiDayLabel.style.top = `${20 + 24 * slotIndex}`;
   }
 }
