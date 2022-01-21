@@ -7,7 +7,7 @@ import {
 } from '../models/accessEventTable.js';
 
 export async function eventDeleteController(req, res) {
-  await deleteEvent(req.body.eventId);
+  await deleteEvent(req.body.eventId, res.locals.userId);
 
   res.end();
 }
@@ -37,6 +37,7 @@ export async function eventPreviewEditController(req, res) {
 
 export async function eventEditController(req, res) {
   const event = req.fields;
-  updateEvent(event, req.params.eventId);
+  await updateEvent(event, req.params.eventId, res.locals.userId);
+
   res.end();
 }

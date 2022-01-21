@@ -17,6 +17,6 @@ export default function eventRouter(express) {
   router.get('/list/creator', verifyUser, eventCreatorController);
   router.delete('/list/delete', verifyUser, eventDeleteController);
   router.get('/list/edit/:eventId', verifyUser, eventPreviewEditController);
-  router.put('/list/edit/:eventId', formidable(), eventEditController);
+  router.put('/list/edit/:eventId', verifyUser, formidable(), eventEditController);
   return router;
 }

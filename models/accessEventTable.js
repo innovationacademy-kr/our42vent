@@ -48,11 +48,11 @@ export async function selectEvent(eventId) {
   }
 }
 // eventId 기반으로 이벤트 삭제
-export async function deleteEvent(eventId) {
+export async function deleteEvent(eventId, userId) {
   try {
-    const sql = `DELETE FROM event WHERE id=?`;
+    const sql = `DELETE FROM event WHERE id=? AND creator=?`;
 
-    const [rows] = await pool.execute(sql, [eventId]);
+    const [rows] = await pool.execute(sql, [eventId, userId]);
     consoleLogger.info('deleteEvent : query success : ', rows);
   } catch (err) {
     consoleLogger.error('deleteEvent : query error : ', err);
@@ -84,12 +84,12 @@ export function insertEvent(userId, event) {
     .catch(err => consoleLogger.error('insertEvent : query error : ', err));
 }
 
-export function updateEvent(event, eventId) {
+export async function updateEvent(event, eventId, userId) {
   const sql =
     'UPDATE event ' +
     'SET title=?, personInCharge=?, beginAt=?, endAt=?, location=?, category=?, ' +
     'topic=?, details=? ' +
-    'WHERE id=?';
+    'WHERE id=? AND creator=?';
 
   pool
     .execute(sql, [
@@ -102,6 +102,7 @@ export function updateEvent(event, eventId) {
       event.topic,
       event.details,
       eventId,
+      userId,
     ])
     .then(rows => consoleLogger.info('updateEvent : query success : ', rows))
     .catch(err => consoleLogger.error('updateEvent : query error : ', err));
