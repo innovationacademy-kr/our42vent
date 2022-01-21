@@ -1,30 +1,5 @@
 <%- contentFor('content') %>
+<!-- TODO : content for script file 넣기 -->
+<script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script defer type="module" src="/javascripts/eventList/generateEventList.js"></script>
-<section class="eventlist">
-  <div class="eventlist-info">
-    <div class="info-date">Fri Dec 31, 2021(해당하는 날짜)</div>
-    <hr class="date-divider" />
-    <div class="eventlist-list date-outdated">
-      <div class="list-category category-lecture"></div>
-      <a href="#" class="list-content-title"> <div>제목</div></a>
-      <div class="list-content-info">
-        <div class="list-content-time">
-          <i class="material-icons-outlined">schedule</i> 시작일시 ~ 종료일시
-        </div>
-        <div class="list-content-location">
-          <i class="material-icons-outlined">location_on</i>장소
-        </div>
-      </div>
-      <div class="list-content-icon">
-        <label>
-          <input class="list-edit id" type="button" />
-          <i class="material-icons-outlined icon"> edit_note </i></label
-        >
-        <label>
-          <input class="list-delete id" type="button" />
-          <i class="material-icons-outlined icon"> delete </i></label
-        >
-      </div>
-    </div>
-  </div>
-</section>
+<section class="eventlist"></section>

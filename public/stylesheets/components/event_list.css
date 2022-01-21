@@ -4,14 +4,22 @@
   flex-direction: column;
   height: calc(100vh - 200px);
   overflow: auto;
-  -ms-overflow-style: none; /* for IE and Edge */
-  scrollbar-width: none; /* for Firefox */
+  -ms-overflow-style: none; /* for ie and edge */
+  scrollbar-width: none; /* for firefox */
   width: 60%;
+  min-width: 864px;
 }
 
 /* for Chrome, Safari and Opera */
 .eventlist::-webkit-scrollbar {
   display: none;
+}
+
+@media screen and (max-width: 1080px) {
+  .eventlist {
+    width: 80%;
+    min-width: 0px;
+  }
 }
 
 .eventlist-info {
@@ -40,9 +48,17 @@
 .eventlist-list {
   align-items: center;
   display: grid;
-  grid-template-columns: 16px calc(60% - 66px) 40% 50px;
+  grid-template-columns: 16px calc(55% - 66px) 45% 50px;
   grid-template-areas: 'a b c e';
   margin: 0 0 5px 0;
+}
+
+.list-category {
+  grid-area: a;
+  height: 28px;
+  margin: 1px 2px;
+  min-width: 12px;
+  width: 12px;
 }
 
 @media screen and (max-width: 768px) {
@@ -53,16 +69,16 @@
       'a b e'
       'a c e';
     grid-template-columns: 16px calc(100% - 66px) 50px;
-    margin: 0 0 5px 0;
+    margin: 0 0 12px 0;
   }
-}
 
-.list-category {
-  grid-area: a;
-  height: 28px;
-  margin: 1px 2px;
-  min-width: 12px;
-  width: 12px;
+  .list-category {
+    grid-area: a;
+    height: 42px;
+    margin: 1px 2px;
+    min-width: 12px;
+    width: 12px;
+  }
 }
 
 .list-content-anchor {
@@ -96,7 +112,7 @@
 
 .list-content-location {
   overflow: hidden;
-  padding: 0 6px 0 3px;
+  padding: 0 20px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

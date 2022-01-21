@@ -1,20 +1,6 @@
+import deleteEventListener from './deleteEventListener.js';
 import { createElementAddClass } from '../utils/domNodeUtils.js';
 import { getFullDate, getFullTime, getDateGap, isBtwnDates } from '../utils/eventListUtils.js';
-
-// const monthWords = [
-//   'Jan',
-//   'Feb',
-//   'Mar',
-//   'Apr',
-//   'May',
-//   'Jun',
-//   'Jul',
-//   'Aug',
-//   'Sep',
-//   'Oct',
-//   'Nov',
-//   'Dec',
-// ];
 
 const monthWords = [
   '1월',
@@ -32,7 +18,6 @@ const monthWords = [
 ];
 
 const dayWords = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
-// const dayWords = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 // 서버로부터 해당 유저의 event list를 받아옴
 async function getEventList() {
@@ -104,8 +89,10 @@ function createEventListElement(eventListInfoDiv, item, isOutdated) {
   ).innerHTML = `<i class=material-icons-outlined>location_on</i>${item.location}`;
 
   eventContentDiv.appendChild(createElementAddClass('div', ['list-content-icon'])).innerHTML =
-    '<a href=#><i class=material-icons-outlined> edit_note </i></a>' +
-    '<a href=/event/list/delete><i class=material-icons-outlined> delete </i></a>';
+    `<label> <input class='list-edit ${item.id}' type=button>` +
+    `<i class=material-icons-outlined> edit_note </i></label>` +
+    `<label> <input class='list-delete ${item.id}' type=button>` +
+    `<i class=material-icons-outlined> delete </i></label>`;
 }
 
 async function generateEventList() {
@@ -158,4 +145,5 @@ function fixScrollToNextEvent() {
 
 generateEventList().then(events => {
   fixScrollToNextEvent();
+  deleteEventListener();
 });
