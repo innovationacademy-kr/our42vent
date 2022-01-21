@@ -1,7 +1,6 @@
 :root {
   --black: #000;
   --calendar_border: #535662;
-  --calendar_border_two: #82b3c9;
   --white: #fff;
   --grey: #c4c4c4;
   --light_grey: #ebecf0;
@@ -12,6 +11,7 @@
   --red_cancel_btn: #e2667c;
   --red_cancel_btn_hover: #d9324f;
   --turq_btn_hover: #6d9fa1;
+  --sunday_red: #f00;
 
   /* 카테고리 색 */
   --category_lecture: #f26cd5;
