@@ -1,6 +1,24 @@
 import { selectUser } from '../models/accessUserTable.js';
+import {
+  selectEvent,
+  selectUserEvents,
+  deleteEvent,
+  updateEvent,
+} from '../models/accessEventTable.js';
 
-export default async function eventListController(req, res) {
+export async function eventDeleteController(req, res) {
+  await deleteEvent(req.body.eventId);
+
+  res.end();
+}
+
+export async function eventCreatorController(req, res) {
+  const eventList = await selectUserEvents(res.locals.userId);
+
+  res.json(eventList);
+}
+
+export async function eventListController(req, res) {
   const user = await selectUser(res.locals.userId);
 
   res.render('eventList', {
@@ -9,4 +27,16 @@ export default async function eventListController(req, res) {
     username: user.name,
     profileImage: user.profileImage,
   });
+}
+
+export async function eventPreviewEditController(req, res) {
+  const event = await selectEvent(req.params.eventId);
+
+  res.json(event);
+}
+
+export async function eventEditController(req, res) {
+  const event = req.fields;
+  updateEvent(event, req.params.eventId);
+  res.end();
 }

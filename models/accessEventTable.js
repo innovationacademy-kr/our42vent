@@ -7,6 +7,7 @@ export async function selectMonthEvents(firstDate, lastDate) {
     const sql =
       'SELECT id, title, beginAt, endAt FROM event ' +
       'WHERE beginAt >= ? AND beginAt < ? ORDER BY beginAt';
+
     const [rows] = await pool.execute(sql, [firstDate, lastDate]);
     consoleLogger.info('SELECT MONTH EVENT : query success : ', rows);
     return rows;
@@ -32,6 +33,20 @@ export async function selectUserEvents(creatorId) {
   }
 }
 
+export async function selectEvent(eventId) {
+  try {
+    const sql =
+      'SELECT title, personInCharge, beginAt, endAt, location, category, ' +
+      'topic, details, creator FROM event WHERE id=?';
+
+    const [[rows]] = await pool.execute(sql, [eventId]);
+    consoleLogger.info('selectEvent : query success : ', rows);
+    return rows;
+  } catch (err) {
+    consoleLogger.error('selectEvent : query error : ', err);
+    return null;
+  }
+}
 // eventId 기반으로 이벤트 삭제
 export async function deleteEvent(eventId) {
   try {
@@ -67,4 +82,27 @@ export function insertEvent(userId, event) {
     ])
     .then(rows => consoleLogger.info('insertEvent : query success : ', rows))
     .catch(err => consoleLogger.error('insertEvent : query error : ', err));
+}
+
+export function updateEvent(event, eventId) {
+  const sql =
+    'UPDATE event ' +
+    'SET title=?, personInCharge=?, beginAt=?, endAt=?, location=?, category=?, ' +
+    'topic=?, details=? ' +
+    'WHERE id=?';
+
+  pool
+    .execute(sql, [
+      event.title,
+      event.personInCharge,
+      event.beginAt,
+      event.endAt,
+      event.location,
+      event.category,
+      event.topic,
+      event.details,
+      eventId,
+    ])
+    .then(rows => consoleLogger.info('updateEvent : query success : ', rows))
+    .catch(err => consoleLogger.error('updateEvent : query error : ', err));
 }

@@ -1,23 +1,9 @@
 import deleteEventListener from './deleteEventListener.js';
 import { createElementAddClass } from '../utils/domNodeUtils.js';
 import { getFullDate, getFullTime, getDateGap, isBtwnDates } from '../utils/eventListUtils.js';
+import editEventListener from './editEventListener.js';
 
-const monthWords = [
-  '1월',
-  '2월',
-  '3월',
-  '4월',
-  '5월',
-  '6월',
-  '7월',
-  '8월',
-  '9월',
-  '10월',
-  '11월',
-  '12월',
-];
-
-const dayWords = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+const dayWords = ['일', '월', '화', '수', '목', '금', '토'];
 
 // 서버로부터 해당 유저의 event list를 받아옴
 async function getEventList() {
@@ -44,7 +30,7 @@ function createDateElement(date) {
     createElementAddClass(
       'div',
       ['info-date'],
-      `${dayWords[day]} ${monthWords[+eventMonth - 1]} ${eventDate}일, ${eventYear}`
+      ` ${eventMonth}월 ${eventDate}일 ${dayWords[day]}요일, ${eventYear}`
     )
   );
 
@@ -133,6 +119,7 @@ async function generateEventList() {
   }
 }
 
+// 스크롤을 오늘 이후 이벤트에 고정
 function fixScrollToNextEvent() {
   const eventListSection = document.querySelector('.eventlist');
   const outdatedDiv = document.querySelectorAll('.date-outdated');
@@ -146,4 +133,5 @@ function fixScrollToNextEvent() {
 generateEventList().then(events => {
   fixScrollToNextEvent();
   deleteEventListener();
+  editEventListener();
 });

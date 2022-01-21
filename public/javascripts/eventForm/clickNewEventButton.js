@@ -17,7 +17,7 @@ function countByte(str) {
 }
 
 // 빈칸이거나 제한바이트 초과할 경우, 해당 메세지를 띄우고 false 반환
-function checkByte(inputId, maxByte) {
+export function checkByte(inputId, maxByte) {
   const input = document.getElementById(inputId);
   const bytesWritten = countByte(input.value);
   let ret = true;
@@ -39,7 +39,7 @@ function checkByte(inputId, maxByte) {
 }
 
 // 이벤트 시작시간/종료시간 입력여부 확인 후 true/false 반환
-function checkTime(inputId, str) {
+export function checkTime(inputId, str) {
   const input = document.getElementById(inputId);
   let ret = true;
 
@@ -69,8 +69,8 @@ function clickNewEventButton() {
     // TODO: 이벤트 생성 성공 / 실패 시 사용자에게 알림
     axios
       .post('/event/new', formData)
-      .then(res => window.location.replace('/'))
-      .catch(err => console.log(err.message));
+      .then(() => window.location.replace(window.location.pathname))
+      .catch(err => console.log(err.stack));
   }
 }
 
