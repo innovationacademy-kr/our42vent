@@ -11,6 +11,7 @@
     "sourceType": "module"
   },
   "rules": {
+    "guard-for-in": 0,
     "import/extensions": 0,
     "import/no-import-module-exports": 0,
     "no-console": 0,
