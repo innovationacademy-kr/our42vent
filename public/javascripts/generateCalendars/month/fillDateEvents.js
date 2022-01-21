@@ -1,11 +1,10 @@
-import mapEventSlot from './mapEventSlot.js';
-import mapLabelLength from './mapLableLength.js';
+import mapLabelSlots from './mapLabelSlots.js';
 import { createElementAddClass } from '../../utils/domNodeUtils.js';
 
 // 날짜 & 띠지 렌더링 엔트리 함수
 export default function fillDateEvents(dateEventArray, firstDate) {
   const dateElemArray = document.querySelectorAll('.month-date');
-  let eventHash = {};
+  const durationHash = {};
   dateElemArray.forEach((dateDiv, dateIndex) => {
     const curDateEvent = dateEventArray[dateIndex];
 
@@ -13,16 +12,7 @@ export default function fillDateEvents(dateEventArray, firstDate) {
 
     const eventsDiv = dateDiv.appendChild(createElementAddClass('div', ['month-date-events']));
 
-    const { newEventArray, newEventHash } = mapLabelLength(
-      firstDate,
-      dateIndex,
-      curDateEvent.eventArray,
-      eventHash
-    );
-    eventHash = { ...newEventHash };
-    curDateEvent.eventArray = newEventArray;
-    mapEventSlot(dateEventArray, dateIndex, newEventArray);
-
+    mapLabelSlots(dateEventArray, dateIndex, durationHash, firstDate);
     fillEvents(curDateEvent, eventsDiv);
   });
 }
@@ -30,7 +20,7 @@ export default function fillDateEvents(dateEventArray, firstDate) {
 // 날짜 표시 & 공휴일 빨간색 표시
 function fillDay(dateDiv, curDateEvent) {
   let holidayClass = null;
-  if (curDateEvent.isHoliday === 1) holidayClass = 'sunday';
+  if (curDateEvent.isHoliday === true) holidayClass = 'sunday';
 
   dateDiv.appendChild(
     createElementAddClass('div', ['month-date-day', 'small', holidayClass], curDateEvent.date)
@@ -40,21 +30,23 @@ function fillDay(dateDiv, curDateEvent) {
 // 이벤트 띠지 표시, 공간이 있으면 띠지 없으면 n more 표시
 function fillEvents(curDateEvent, eventsDiv) {
   const boxHeight = document.querySelector('.month-date').offsetHeight - 20;
-
   const { eventArray, slot } = curDateEvent;
-  const slotKeyArray = Object.keys(slot);
 
-  for (let i = 0; i < slotKeyArray.length; i += 1) {
-    const eventArrayIndex = slot[`${slotKeyArray[i]}`];
+  for (const slotKey in slot) {
+    const eventArrayIndex = slot[`${slotKey}`];
 
     if (eventArrayIndex === -1) {
       eventsDiv.appendChild(createElementAddClass('div', ['month-label-single', 'xsmall']));
-    } else if (boxHeight - (i + 1) * 24 >= 22) {
+    } else if (boxHeight - (Number(slotKey) + 1) * 24 >= 22) {
       const eventInfo = eventArray[eventArrayIndex];
-      createLabel(eventInfo, eventsDiv, eventArrayIndex);
+      createLabel(eventInfo, eventsDiv, Number(slotKey));
     } else {
       eventsDiv.appendChild(
-        createElementAddClass('div', ['month-date-more', 'xsmall'], `${eventArray.length - i} more`)
+        createElementAddClass(
+          'div',
+          ['month-date-more', 'xsmall'],
+          `${eventArray.length - Number(slotKey)} more`
+        )
       );
       break;
     }

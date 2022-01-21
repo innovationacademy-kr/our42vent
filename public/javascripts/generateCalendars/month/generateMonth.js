@@ -1,4 +1,4 @@
-import fillDateEvents from './fillCalendarData.js';
+import fillDateEvents from './fillDateEvents.js';
 import { getParams, setYearMonth, adjustWeeks } from './monthPreset.js';
 import { removeNodeList } from '../../utils/domNodeUtils.js';
 

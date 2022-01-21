@@ -1,4 +1,4 @@
-import fillDateEvents from './fillCalendarData.js';
+import fillDateEvents from './fillDateEvents.js';
 import { renderInfo } from './generateMonth.js';
 import { removeNodeList } from '../../utils/domNodeUtils.js';
 
