@@ -58,24 +58,21 @@ function createLabel(eventInfo, eventsDiv, eventArrayIndex) {
   const { category, id, length, title } = eventInfo;
   const boxWidth = document.querySelector('.month-date-events').offsetWidth;
 
-  const singleDayLabel =
-    length === -1
-      ? eventsDiv.appendChild(
-          createElementAddClass('div', [`event-${id}`, 'month-label-single', 'xsmall'])
-        )
-      : eventsDiv.appendChild(
-          createElementAddClass(
-            'div',
-            [`event-${id}`, 'month-label-single', 'xsmall', category],
-            title
-          )
-        );
+  if (length === -1) {
+    eventsDiv.appendChild(
+      createElementAddClass('div', [`event-${id}`, 'month-label-single', 'xsmall'])
+    );
+  } else {
+    eventsDiv.appendChild(
+      createElementAddClass('div', [`event-${id}`, 'month-label-single', 'xsmall', category], title)
+    );
+  }
 
   if (length > 1) {
     const multiDayLabel = eventsDiv.appendChild(
       createElementAddClass('div', [`event-${id}`, 'month-label-multi', 'xsmall', category], title)
     );
-    multiDayLabel.style.width = `${singleDayLabel.offsetWidth + boxWidth * (length - 1) - 6}`;
+    multiDayLabel.style.width = `${(boxWidth - 4) * 2 + boxWidth * (length - 2) - 1}`;
     multiDayLabel.style.top = `${20 + 24 * eventArrayIndex}`;
   }
 }
