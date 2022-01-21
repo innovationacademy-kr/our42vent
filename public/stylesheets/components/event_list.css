@@ -111,12 +111,27 @@
   width: 50px;
 }
 
+.list-edit {
+  border: none;
+  display: inline;
+  background: none;
+  padding: 0;
+}
+
+.list-delete {
+  border: none;
+  display: inline;
+  background: none;
+  padding: 0;
+}
+
 .list-content-icon i {
   font-size: 1em;
 }
 
-.list-content-icon :hover {
+.list-content-icon label:hover {
   color: var(--turq_btn_hover) !important;
+  cursor: pointer;
 }
 
 .category-lecture {

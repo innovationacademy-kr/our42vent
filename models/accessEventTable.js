@@ -20,7 +20,7 @@ export async function selectMonthEvents(firstDate, lastDate) {
 export async function selectUserEvents(creatorId) {
   try {
     const sql =
-      'SELECT title, location, beginAt, endAt, category FROM event ' +
+      'SELECT title, location, beginAt, endAt, category, id FROM event ' +
       'WHERE creator=? ORDER BY beginAt ';
 
     const [rows] = await pool.execute(sql, [creatorId]);

@@ -1,22 +1,38 @@
 import { createElementAddClass } from '../utils/domNodeUtils.js';
 import { getFullDate, getFullTime, getDateGap, isBtwnDates } from '../utils/eventListUtils.js';
 
+// const monthWords = [
+//   'Jan',
+//   'Feb',
+//   'Mar',
+//   'Apr',
+//   'May',
+//   'Jun',
+//   'Jul',
+//   'Aug',
+//   'Sep',
+//   'Oct',
+//   'Nov',
+//   'Dec',
+// ];
+
 const monthWords = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
+  '1월',
+  '2월',
+  '3월',
+  '4월',
+  '5월',
+  '6월',
+  '7월',
+  '8월',
+  '9월',
+  '10월',
+  '11월',
+  '12월',
 ];
 
-const dayWords = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const dayWords = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+// const dayWords = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 // 서버로부터 해당 유저의 event list를 받아옴
 async function getEventList() {
@@ -43,7 +59,7 @@ function createDateElement(date) {
     createElementAddClass(
       'div',
       ['info-date'],
-      `${dayWords[day]} ${monthWords[+eventMonth - 1]} ${eventDate}, ${eventYear}`
+      `${dayWords[day]} ${monthWords[+eventMonth - 1]} ${eventDate}일, ${eventYear}`
     )
   );
 
@@ -89,7 +105,7 @@ function createEventListElement(eventListInfoDiv, item, isOutdated) {
 
   eventContentDiv.appendChild(createElementAddClass('div', ['list-content-icon'])).innerHTML =
     '<a href=#><i class=material-icons-outlined> edit_note </i></a>' +
-    '<a href=#><i class=material-icons-outlined> delete </i></a>';
+    '<a href=/event/list/delete><i class=material-icons-outlined> delete </i></a>';
 }
 
 async function generateEventList() {
@@ -123,6 +139,7 @@ async function generateEventList() {
           createEventListElement(eventListInfoDiv, item, isOutdated);
       });
     });
+    return events;
   } catch (err) {
     console.error(err.stack);
     throw err;
@@ -139,4 +156,6 @@ function fixScrollToNextEvent() {
   eventListSection.scrollTo(0, lastOutdatedDivPosition);
 }
 
-generateEventList().then(() => fixScrollToNextEvent());
+generateEventList().then(events => {
+  fixScrollToNextEvent();
+});
