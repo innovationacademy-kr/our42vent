@@ -1,7 +1,6 @@
 :root {
   --black: #000;
   --calendar_border: #535662;
-  --calendar_border_two: #82b3c9;
   --white: #fff;
   --grey: #c4c4c4;
   --light_grey: #ebecf0;
@@ -14,6 +13,7 @@
   --turq_btn_hover: #6d9fa1;
   --red_today: #f00;
   --grey_outdated: #848484;
+  --sunday_red: #f00;
 
   /* 카테고리 색 */
 
