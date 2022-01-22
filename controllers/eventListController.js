@@ -18,12 +18,12 @@ export async function eventListController(req, res) {
 }
 
 export async function eventDeleteController(req, res) {
-  await deleteEvent(req.body.eventId, res.locals.userId);
+  await deleteEvent(req.params.eventId, res.locals.userId);
 
   res.end();
 }
 
-export async function eventCreatorController(req, res) {
+export async function eventDataController(req, res) {
   const eventList = await selectUserEvents(res.locals.userId);
 
   res.json(eventList);

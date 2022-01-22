@@ -1,5 +1,6 @@
-import { getFullDate, getFullTime } from '../utils/eventListUtils.js';
 import { checkTime, checkByte } from '../eventForm/clickNewEventButton.js';
+import { getFullDate, getFullTime } from '../utils/eventListUtils.js';
+import { alertModal } from '../utils/sweetAlertMixin.js';
 
 // DB에서 가져온 이벤트의 내용을 팝업에 채워줌
 async function fillEventData(event) {
@@ -34,14 +35,14 @@ function putEditedEventData(eventId, formData) {
     checkByte('event-details', 4096)
   ) {
     axios
-      .put(`/event/list/edit/${eventId}`, formData)
+      .put(`/event/${eventId}`, formData)
       .then(() => {
-        Swal.fire('편집이 완료되었습니다.', '', 'success').then(() =>
-          window.location.replace('/event/list')
-        );
+        alertModal
+          .fire({ title: '편집이 완료되었습니다.', icon: 'success' })
+          .then(() => window.location.replace('/event/list'));
       })
       .catch(err => {
-        Swal.fire({ icon: 'error', title: '오류가 발생하였습니다.' });
+        alertModal.fire({ title: '오류가 발생하였습니다.', icon: 'error' });
         console.error(err.stack);
       });
   }
@@ -49,7 +50,7 @@ function putEditedEventData(eventId, formData) {
 
 async function editEventListener(event) {
   const eventId = event.target.classList[1]; // class의 이름으로 부터 eventid를 받아옴
-  const res = await axios.get(`/event/list/edit/${eventId}`, {
+  const res = await axios.get(`/event/${eventId}`, {
     headers: { 'Content-Type': 'application/json' },
   });
   await fillEventData(res.data);

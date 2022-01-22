@@ -1,3 +1,4 @@
+import { alertModal } from '../utils/sweetAlertMixin.js';
 // 입력되는 문자열 byte 계산하여 반환
 function countByte(str) {
   const strLen = str.length;
@@ -67,14 +68,14 @@ function clickNewEventButton() {
     checkByte('event-details', 4096)
   ) {
     axios
-      .post('/event/new', formData)
+      .post('/event', formData)
       .then(() => {
-        Swal.fire('이벤트가 생성되었습니다.', '', 'success').then(() =>
-          window.location.replace(window.location.pathname)
-        );
+        alertModal
+          .fire({ title: '이벤트가 생성되었습니다.', icon: 'success' })
+          .then(() => window.location.replace(window.location.pathname));
       })
       .catch(err => {
-        Swal.fire({ icon: 'error', title: '오류가 발생하였습니다.' });
+        alertModal.fire({ title: '오류가 발생하였습니다.', icon: 'error' });
         console.log(err.stack);
       });
   }

@@ -1,6 +1,6 @@
 import formidable from 'express-formidable';
 import {
-  eventCreatorController,
+  eventDataController,
   eventDeleteController,
   eventEditController,
   eventListController,
@@ -11,11 +11,11 @@ import insertEventController from '../controllers/insertEventController.js';
 export default function eventRouter(express) {
   const router = express.Router();
 
-  router.post('/new', formidable(), insertEventController);
+  router.post('/', formidable(), insertEventController);
   router.get('/list', eventListController);
-  router.get('/list/creator', eventCreatorController);
-  router.delete('/list/delete', eventDeleteController);
-  router.get('/list/edit/:eventId', eventPreviewEditController);
-  router.put('/list/edit/:eventId', formidable(), eventEditController);
+  router.get('/list/data', eventDataController);
+  router.delete('/:eventId', eventDeleteController);
+  router.get('/:eventId', eventPreviewEditController);
+  router.put('/:eventId', formidable(), eventEditController);
   return router;
 }

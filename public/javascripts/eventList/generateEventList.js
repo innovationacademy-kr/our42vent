@@ -8,7 +8,7 @@ const dayWords = ['일', '월', '화', '수', '목', '금', '토'];
 // 서버로부터 해당 유저의 event list를 받아옴
 async function getEventList() {
   try {
-    const res = await axios.get('/event/list/creator', {
+    const res = await axios.get('/event/list/data', {
       headers: { 'Content-Type': 'application/json' },
     });
     return res.data;
