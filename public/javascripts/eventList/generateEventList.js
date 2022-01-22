@@ -1,7 +1,7 @@
-import deleteEventListener from './deleteEventListener.js';
+import addDeleteEventListener from './deleteEventListener.js';
+import addEditEventListener from './editEventListener.js';
 import { createElementAddClass } from '../utils/domNodeUtils.js';
 import { getFullDate, getFullTime, getDateGap, isBtwnDates } from '../utils/eventListUtils.js';
-import editEventListener from './editEventListener.js';
 
 const dayWords = ['일', '월', '화', '수', '목', '금', '토'];
 
@@ -79,6 +79,17 @@ function createEventListElement(eventListInfoDiv, item, isOutdated) {
     `<i class=material-icons-outlined> delete </i></label>`;
 }
 
+function filleventDates(eventDates, event) {
+  const date = getFullDate(new Date(event.beginAt).getTime());
+  const dateGap = getDateGap(event.beginAt, event.endAt);
+
+  for (let i = 0; i <= dateGap; i += 1) {
+    const [beginYear, beginMonth, beginDate] = date.split('-');
+    const curDate = getFullDate(new Date(beginYear, +beginMonth - 1, +beginDate + i));
+    if (!eventDates.includes(curDate)) eventDates.push(curDate);
+  }
+}
+
 async function generateEventList() {
   try {
     const events = await getEventList();
@@ -90,27 +101,17 @@ async function generateEventList() {
 
     // 생성해야 하는 날짜들을 eventDates 배열에 push
     events.forEach(item => {
-      const date = getFullDate(new Date(item.beginAt).getTime());
-      const dateGap = getDateGap(item.beginAt, item.endAt);
-
-      for (let i = 0; i <= dateGap; i += 1) {
-        const [beginYear, beginMonth, beginDate] = date.split('-');
-        const curDate = getFullDate(new Date(beginYear, +beginMonth - 1, +beginDate + i));
-        if (!eventDates.includes(curDate)) eventDates.push(curDate);
-      }
+      filleventDates(eventDates, item);
     });
-
     eventDates.forEach(curDate => {
       eventListInfoDiv = createDateElement(curDate);
       const isOutdated = curDate.localeCompare(today) < 0;
-
       // event들을 돌면서 beginAt과 endAt 사이에 해당 날짜가 있으면 이벤트 목록을 생성
       events.forEach(item => {
         if (isBtwnDates(curDate, item.beginAt, item.endAt))
           createEventListElement(eventListInfoDiv, item, isOutdated);
       });
     });
-    return events;
   } catch (err) {
     console.error(err.stack);
     throw err;
@@ -128,8 +129,8 @@ function fixScrollToNextEvent() {
   eventListSection.scrollTo(0, lastOutdatedDivPosition);
 }
 
-generateEventList().then(events => {
+generateEventList().then(() => {
   fixScrollToNextEvent();
-  deleteEventListener();
-  editEventListener();
+  addDeleteEventListener();
+  addEditEventListener();
 });

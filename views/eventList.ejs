@@ -1,6 +1,6 @@
-<%- contentFor('content') %>
-<!-- TODO : content for script file 넣기 -->
+<%- contentFor('scriptFiles') %>
 <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script defer type="module" src="/javascripts/eventList/generateEventList.js"></script>
+<%- contentFor('content') %>
 <section class="eventlist"></section>
 <%- contentFor('eventForm') %> <%- include('components/eventForm') %>

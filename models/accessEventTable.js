@@ -24,7 +24,10 @@ export async function selectUserEvents(creatorId) {
       'WHERE creator=? ORDER BY beginAt ';
 
     const [rows] = await pool.execute(sql, [creatorId]);
-    consoleLogger.info('selectUserEvent : query success : ', rows);
+    consoleLogger.info(
+      'selectUserEvent : query success : ',
+      `creator ${creatorId} has ${rows.length} events`
+    );
     return rows;
   } catch (err) {
     consoleLogger.error('selectUserEvent : query error : ', err);
@@ -52,7 +55,7 @@ export async function deleteEvent(eventId, userId) {
     const sql = `DELETE FROM event WHERE id=? AND creator=?`;
 
     const [rows] = await pool.execute(sql, [eventId, userId]);
-    consoleLogger.info('deleteEvent : query success : ', rows);
+    consoleLogger.info('deleteEvent : query success : ', rows.length);
   } catch (err) {
     consoleLogger.error('deleteEvent : query error : ', err);
   }

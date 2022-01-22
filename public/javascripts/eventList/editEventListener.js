@@ -22,7 +22,7 @@ async function fillEventData(event) {
   document.querySelector('.layout-form').style.display = 'grid';
 }
 
-// 수정한 이벤트 팝업을 DB에 업데이트
+// 수정한 이벤트를 DB에 업데이트
 function putEditedEventData(eventId, formData) {
   if (
     checkByte('event-title', 256) &&
@@ -43,22 +43,25 @@ function putEditedEventData(eventId, formData) {
   }
 }
 
-//  수정 아이콘을 위한 이벤트 리스너 생성
-export default function editEventListener() {
-  const editElementArray = document.querySelectorAll('.list-edit');
-  editElementArray.forEach(eventElement =>
-    eventElement.addEventListener('click', async event => {
-      const eventId = event.target.classList[1]; // class의 이름으로 부터 eventid를 받아옴
-      const res = await axios.get(`/event/list/edit/${eventId}`, {
-        headers: { 'Content-Type': 'application/json' },
-      });
-      await fillEventData(res.data);
+async function editEventListener(event) {
+  const eventId = event.target.classList[1]; // class의 이름으로 부터 eventid를 받아옴
+  const res = await axios.get(`/event/list/edit/${eventId}`, {
+    headers: { 'Content-Type': 'application/json' },
+  });
+  await fillEventData(res.data);
 
-      const editButton = document.querySelector('.form-button-edit');
-      editButton.addEventListener('click', async () => {
-        const formData = new FormData(document.querySelector('.form'));
-        putEditedEventData(eventId, formData);
-      });
-    })
+  const editButton = document.querySelector('.form-button-edit');
+  editButton.addEventListener('click', async () => {
+    const formData = new FormData(document.querySelector('.form'));
+    putEditedEventData(eventId, formData);
+  });
+}
+
+//  수정 아이콘을 위한 이벤트 리스너 생성
+export default function AddEditEventListener() {
+  const editEventElementArray = document.querySelectorAll('.list-edit');
+
+  editEventElementArray.forEach(eventElement =>
+    eventElement.addEventListener('click', editEventListener)
   );
 }
