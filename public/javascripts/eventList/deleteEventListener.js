@@ -1,7 +1,7 @@
 import { alertModal, confirmModal } from '../utils/sweetAlertMixin.js';
 
 function deleteEventListener(event) {
-  const eventId = event.target.classList[1]; // class의 이름으로 부터 eventId를 받아옴
+  const eventId = event.target.classList[0]; // class의 이름으로 부터 eventId를 받아옴
   confirmModal.fire({ title: '삭제 하시겠습니까?', icon: 'warning' }).then(result => {
     if (result.isConfirmed) {
       axios

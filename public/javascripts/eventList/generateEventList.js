@@ -73,9 +73,9 @@ function createEventListElement(eventListInfoDiv, item, isOutdated) {
   ).innerHTML = `<i class=material-icons-outlined>location_on</i>${item.location}`;
 
   eventContentDiv.appendChild(createElementAddClass('div', ['list-content-icon'])).innerHTML =
-    `<label> <input class='list-edit ${item.id}' type=button>` +
+    `<label> <input class='${item.id} list-edit' type=button>` +
     `<i class=material-icons-outlined> edit_note </i></label>` +
-    `<label> <input class='list-delete ${item.id}' type=button>` +
+    `<label> <input class='${item.id} list-delete' type=button>` +
     `<i class=material-icons-outlined> delete </i></label>`;
 }
 

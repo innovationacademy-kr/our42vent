@@ -29,8 +29,7 @@
     "node-color-log": "^7.0.0",
     "passport": "^0.5.2",
     "passport-42": "^1.2.6",
-    "redis": "^4.0.2",
-    "sweetalert2": "^11.3.6"
+    "redis": "^4.0.2"
   },
   "devDependencies": {
     "eslint": "^8.6.0",

@@ -1,8 +1,8 @@
 import { selectUser } from '../models/accessUserTable.js';
 import {
+  deleteEvent,
   selectEvent,
   selectUserEvents,
-  deleteEvent,
   updateEvent,
 } from '../models/accessEventTable.js';
 

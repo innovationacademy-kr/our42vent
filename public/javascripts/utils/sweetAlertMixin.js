@@ -3,6 +3,7 @@ export const alertModal = Swal.mixin({
   showConfirmButton: true,
   showCancelButton: false,
 });
+
 export const confirmModal = Swal.mixin({
   showCancelButton: true,
   confirmButtonColor: '#58b7ba',

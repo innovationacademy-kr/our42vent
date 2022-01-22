@@ -49,7 +49,7 @@ function putEditedEventData(eventId, formData) {
 }
 
 async function editEventListener(event) {
-  const eventId = event.target.classList[1]; // class의 이름으로 부터 eventid를 받아옴
+  const eventId = event.target.classList[0]; // class의 이름으로 부터 eventid를 받아옴
   const res = await axios.get(`/event/${eventId}`, {
     headers: { 'Content-Type': 'application/json' },
   });
