@@ -66,11 +66,17 @@ function clickNewEventButton() {
     checkByte('event-topic', 512) &&
     checkByte('event-details', 4096)
   ) {
-    // TODO: 이벤트 생성 성공 / 실패 시 사용자에게 알림
     axios
       .post('/event/new', formData)
-      .then(() => window.location.replace(window.location.pathname))
-      .catch(err => console.log(err.stack));
+      .then(() => {
+        Swal.fire('이벤트가 생성되었습니다.', '', 'success').then(() =>
+          window.location.replace(window.location.pathname)
+        );
+      })
+      .catch(err => {
+        Swal.fire({ icon: 'error', title: '오류가 발생하였습니다.' });
+        console.log(err.stack);
+      });
   }
 }
 

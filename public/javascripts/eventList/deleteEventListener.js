@@ -17,11 +17,15 @@ function deleteEventListener(event) {
             window.location.replace('/event/list/')
           );
         })
-        .catch(err => console.error(err.stack));
+        .catch(err => {
+          Swal.fire({ icon: 'error', title: '오류가 발생하였습니다.' });
+          console.error(err.stack);
+        });
     }
   });
 }
 
+// 삭제 아이콘에 이벤트 할당
 export default function addDeleteEventListener() {
   const deleteEventElementArray = document.querySelectorAll('.list-delete');
   deleteEventElementArray.forEach(eventElement =>

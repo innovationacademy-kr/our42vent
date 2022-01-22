@@ -33,13 +33,17 @@ function putEditedEventData(eventId, formData) {
     checkByte('event-topic', 512) &&
     checkByte('event-details', 4096)
   ) {
-    // TODO: 이벤트 생성 성공 / 실패 시 사용자에게 알림
     axios
       .put(`/event/list/edit/${eventId}`, formData)
       .then(() => {
-        window.location.replace('/event/list');
+        Swal.fire('편집이 완료되었습니다.', '', 'success').then(() =>
+          window.location.replace('/event/list')
+        );
       })
-      .catch(err => console.error(err.stack));
+      .catch(err => {
+        Swal.fire({ icon: 'error', title: '오류가 발생하였습니다.' });
+        console.error(err.stack);
+      });
   }
 }
 
@@ -57,8 +61,8 @@ async function editEventListener(event) {
   });
 }
 
-//  수정 아이콘을 위한 이벤트 리스너 생성
-export default function AddEditEventListener() {
+//  수정 아이콘에 이벤트 할당
+export default function addEditEventListener() {
   const editEventElementArray = document.querySelectorAll('.list-edit');
 
   editEventElementArray.forEach(eventElement =>

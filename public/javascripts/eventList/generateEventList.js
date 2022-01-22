@@ -17,7 +17,7 @@ async function getEventList() {
   }
 }
 
-// 날짜 블록을 생성해줌
+// 날짜 블록을 생성
 function createDateElement(date) {
   const eventListDiv = document.querySelector('.eventlist');
   const eventListInfoDiv = eventListDiv.appendChild(
@@ -30,7 +30,7 @@ function createDateElement(date) {
     createElementAddClass(
       'div',
       ['info-date'],
-      ` ${eventMonth}월 ${eventDate}일 ${dayWords[day]}요일, ${eventYear}`
+      ` ${+eventMonth}월 ${+eventDate}일 ${dayWords[day]}요일, ${eventYear}`
     )
   );
 
@@ -38,7 +38,7 @@ function createDateElement(date) {
   return eventListInfoDiv;
 }
 
-// 특정 날짜의 이벤트 블록을 만들어줌
+// 특정 날짜의 이벤트 리스트 생성
 function createEventListElement(eventListInfoDiv, item, isOutdated) {
   const beginAt = `${getFullDate(item.beginAt).replaceAll('-', '/').slice(5)}  ${getFullTime(
     item.beginAt
@@ -79,7 +79,7 @@ function createEventListElement(eventListInfoDiv, item, isOutdated) {
     `<i class=material-icons-outlined> delete </i></label>`;
 }
 
-function filleventDates(eventDates, event) {
+function fillEventDates(eventDates, event) {
   const date = getFullDate(new Date(event.beginAt).getTime());
   const dateGap = getDateGap(event.beginAt, event.endAt);
 
@@ -90,6 +90,7 @@ function filleventDates(eventDates, event) {
   }
 }
 
+// 이벤트들을 받아와서 파싱 후 DOM element 생성
 async function generateEventList() {
   try {
     const events = await getEventList();
@@ -101,7 +102,7 @@ async function generateEventList() {
 
     // 생성해야 하는 날짜들을 eventDates 배열에 push
     events.forEach(item => {
-      filleventDates(eventDates, item);
+      fillEventDates(eventDates, item);
     });
     eventDates.forEach(curDate => {
       eventListInfoDiv = createDateElement(curDate);
