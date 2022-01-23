@@ -1,3 +1,4 @@
+import consoleLogger from '../lib/consoleLogger.js';
 import {
   deleteEvent,
   selectCreatedEvents,
@@ -5,7 +6,6 @@ import {
   updateEvent,
 } from '../models/accessEventTable.js';
 import { selectUser } from '../models/accessUserTable.js';
-import consoleLogger from '../lib/consoleLogger.js';
 
 export async function eventListController(req, res) {
   try {

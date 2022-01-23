@@ -39,6 +39,7 @@ export async function selectEvent(eventId) {
   consoleLogger.info('selectEvent : query success : ', rows);
   return rows;
 }
+
 // eventId 기반으로 이벤트 삭제
 export async function deleteEvent(eventId, userId) {
   const sql = `DELETE FROM event WHERE id=? AND creator=?`;
@@ -46,6 +47,7 @@ export async function deleteEvent(eventId, userId) {
   const [rows] = await pool.execute(sql, [eventId, userId]);
   consoleLogger.info('deleteEvent : query success : ', rows.length);
 }
+
 // 이벤트 insert 쿼리
 export function insertEvent(userId, event) {
   const { title, personInCharge, beginAt, endAt, location, category, topic, details } = event;
