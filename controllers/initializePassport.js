@@ -19,7 +19,7 @@ export default function initializePassport(passport) {
       {
         clientID: process.env.FORTYTWO_APP_ID,
         clientSecret: process.env.FORTYTWO_APP_SECRET,
-        callbackURL: 'http://localhost:3000/login/42/return',
+        callbackURL: process.env.RETURN_URL
       },
       async (accessToken, refreshToken, profile, cb) => {
         try {
