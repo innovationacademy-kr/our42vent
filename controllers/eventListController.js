@@ -1,43 +1,69 @@
-import { selectUser } from '../models/accessUserTable.js';
 import {
   deleteEvent,
+  selectCreatedEvents,
   selectEvent,
-  selectUserEvents,
   updateEvent,
 } from '../models/accessEventTable.js';
+import { selectUser } from '../models/accessUserTable.js';
+import consoleLogger from '../lib/consoleLogger.js';
 
 export async function eventListController(req, res) {
-  const user = await selectUser(res.locals.userId);
+  try {
+    const user = await selectUser(res.locals.userId);
 
-  res.render('eventList', {
-    layout: 'layouts/desktopLayout',
-    title: '우리42벤트 | EVENT LIST',
-    username: user.name,
-    profileImage: user.profileImage,
-  });
+    res.render('eventList', {
+      layout: 'layouts/desktopLayout',
+      title: '우리42벤트 | EVENT LIST',
+      username: user.name,
+      profileImage: user.profileImage,
+    });
+  } catch (err) {
+    consoleLogger.error(err.stack);
+    res.status(500).end();
+  }
 }
 
 export async function eventDeleteController(req, res) {
-  await deleteEvent(req.params.eventId, res.locals.userId);
+  try {
+    await deleteEvent(req.params.eventId, res.locals.userId);
 
-  res.end();
+    res.end();
+  } catch (err) {
+    consoleLogger.error(err.stack);
+    res.status(500).end();
+  }
 }
 
 export async function eventDataController(req, res) {
-  const eventList = await selectUserEvents(res.locals.userId);
+  try {
+    const eventList = await selectCreatedEvents(res.locals.userId);
 
-  res.json(eventList);
+    res.json(eventList);
+  } catch (err) {
+    consoleLogger.error(err.stack);
+    res.status(500).end();
+  }
 }
 
 export async function eventPreviewEditController(req, res) {
-  const event = await selectEvent(req.params.eventId);
+  try {
+    const event = await selectEvent(req.params.eventId);
 
-  res.json(event);
+    res.json(event);
+  } catch (err) {
+    consoleLogger.error(err.stack);
+    res.status(500).end();
+  }
 }
 
 export async function eventEditController(req, res) {
-  const event = req.fields;
-  await updateEvent(event, req.params.eventId, res.locals.userId);
+  try {
+    const event = req.fields;
+    await updateEvent(event, req.params.eventId, res.locals.userId);
 
-  res.end();
+    res.end();
+  } catch (err) {
+    consoleLogger.error(err.stack);
+    res.status(500).end();
+  }
 }

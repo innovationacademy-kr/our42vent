@@ -1,4 +1,5 @@
 import { alertModal } from '../utils/sweetAlertMixin.js';
+
 // 입력되는 문자열 byte 계산하여 반환
 function countByte(str) {
   const strLen = str.length;

@@ -1,24 +1,23 @@
-import addDeleteEventListener from './deleteEventListener.js';
-import addEditEventListener from './editEventListener.js';
+import addClickListenerForDelete from './addClickListenerForDelete.js';
+import addClickListenerForEdit from './addClickListenerForEdit.js';
 import { createElementAddClass } from '../utils/domNodeUtils.js';
 import { getFullDate, getFullTime, getDateGap, isBtwnDates } from '../utils/eventListUtils.js';
-
-const dayWords = ['일', '월', '화', '수', '목', '금', '토'];
 
 // 서버로부터 해당 유저의 event list를 받아옴
 async function getEventList() {
   try {
-    const res = await axios.get('/event/list/data', {
-      headers: { 'Content-Type': 'application/json' },
-    });
+    const res = await axios.get('/event/list/data');
+
     return res.data;
   } catch (err) {
-    return null;
+    // TODO : 적절하게 에러 핸들링 해줘야함
+    throw new Error(err.message);
   }
 }
 
 // 날짜 블록을 생성
 function createDateElement(date) {
+  const dayWords = ['일', '월', '화', '수', '목', '금', '토'];
   const eventListDiv = document.querySelector('.eventlist');
   const eventListInfoDiv = eventListDiv.appendChild(
     createElementAddClass('div', ['eventlist-info'])
@@ -29,8 +28,8 @@ function createDateElement(date) {
   eventListInfoDiv.appendChild(
     createElementAddClass(
       'div',
-      ['info-date'],
-      ` ${+eventMonth}월 ${+eventDate}일 ${dayWords[day]}요일, ${eventYear}`
+      ['info-date', 'large', 'text-bold'],
+      ` ${Number(eventMonth)}월 ${Number(eventDate)}일 ${dayWords[day]}요일, ${eventYear}`
     )
   );
 
@@ -85,38 +84,32 @@ function fillEventDates(eventDates, event) {
 
   for (let i = 0; i <= dateGap; i += 1) {
     const [beginYear, beginMonth, beginDate] = date.split('-');
-    const curDate = getFullDate(new Date(beginYear, +beginMonth - 1, +beginDate + i));
+    const curDate = getFullDate(new Date(beginYear, Number(beginMonth) - 1, Number(beginDate) + i));
     if (!eventDates.includes(curDate)) eventDates.push(curDate);
   }
 }
 
 // 이벤트들을 받아와서 파싱 후 DOM element 생성
 async function generateEventList() {
-  try {
-    const events = await getEventList();
-    if (!events) throw Error('generateEventList : error : Failed to get event list');
+  const events = await getEventList();
 
-    const today = getFullDate(new Date(Date.now()).getTime());
-    const eventDates = [];
-    let eventListInfoDiv = null;
+  const today = getFullDate(new Date(Date.now()).getTime());
+  const eventDates = [];
+  let eventListInfoDiv = null;
 
-    // 생성해야 하는 날짜들을 eventDates 배열에 push
+  // 생성해야 하는 날짜들을 eventDates 배열에 push
+  events.forEach(item => {
+    fillEventDates(eventDates, item);
+  });
+  eventDates.forEach(curDate => {
+    eventListInfoDiv = createDateElement(curDate);
+    const isOutdated = curDate.localeCompare(today) < 0;
+    // event들을 돌면서 beginAt과 endAt 사이에 해당 날짜가 있으면 이벤트 목록을 생성
     events.forEach(item => {
-      fillEventDates(eventDates, item);
+      if (isBtwnDates(curDate, item.beginAt, item.endAt))
+        createEventListElement(eventListInfoDiv, item, isOutdated);
     });
-    eventDates.forEach(curDate => {
-      eventListInfoDiv = createDateElement(curDate);
-      const isOutdated = curDate.localeCompare(today) < 0;
-      // event들을 돌면서 beginAt과 endAt 사이에 해당 날짜가 있으면 이벤트 목록을 생성
-      events.forEach(item => {
-        if (isBtwnDates(curDate, item.beginAt, item.endAt))
-          createEventListElement(eventListInfoDiv, item, isOutdated);
-      });
-    });
-  } catch (err) {
-    console.error(err.stack);
-    throw err;
-  }
+  });
 }
 
 // 스크롤을 오늘 이후 이벤트에 고정
@@ -130,8 +123,15 @@ function fixScrollToNextEvent() {
   eventListSection.scrollTo(0, lastOutdatedDivPosition);
 }
 
-generateEventList().then(() => {
-  fixScrollToNextEvent();
-  addDeleteEventListener();
-  addEditEventListener();
-});
+// TODO : 적절하게 에러 핸들링을 해줘야함
+generateEventList()
+  .then(() => {
+    fixScrollToNextEvent();
+    addClickListenerForDelete();
+    addClickListenerForEdit();
+  })
+  .catch(err => {
+    //   NOTE : 개발 단계에선 console.error가 필요
+    console.error(err.stack);
+    window.location.replace('/');
+  });

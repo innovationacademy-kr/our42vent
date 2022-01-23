@@ -4,20 +4,22 @@ import { alertModal } from '../utils/sweetAlertMixin.js';
 
 // DB에서 가져온 이벤트의 내용을 팝업에 채워줌
 async function fillEventData(event) {
+  const { title, personInCharge, location, category, topic, details } = event;
   const beginAt = `${getFullDate(new Date(event.beginAt).getTime())}T${getFullTime(
     new Date(event.beginAt).getTime()
   )}`;
   const endAt = `${getFullDate(new Date(event.endAt).getTime())}T${getFullTime(
     new Date(event.endAt).getTime()
   )}`;
-  document.getElementById('event-title').value = event.title;
-  document.getElementById('event-pic').value = event.personInCharge;
+
+  document.getElementById('event-title').value = title;
+  document.getElementById('event-pic').value = personInCharge;
   document.getElementById('event-beginat').value = beginAt;
   document.getElementById('event-endat').value = endAt;
-  document.getElementById('event-location').value = event.location;
-  document.getElementById('event-category').value = event.category;
-  document.getElementById('event-topic').value = event.topic;
-  document.getElementById('event-details').value = event.details;
+  document.getElementById('event-location').value = location;
+  document.getElementById('event-category').value = category;
+  document.getElementById('event-topic').value = topic;
+  document.getElementById('event-details').value = details;
   document.querySelector('.form-button-new').style.display = 'none';
   document.querySelector('.form-button-edit').style.display = 'block';
   document.querySelector('.layout-form').style.display = 'grid';
@@ -41,19 +43,23 @@ function putEditedEventData(eventId, formData) {
           .fire({ title: '편집이 완료되었습니다.', icon: 'success' })
           .then(() => window.location.replace('/event/list'));
       })
-      .catch(err => {
+      .catch(() => {
         alertModal.fire({ title: '오류가 발생하였습니다.', icon: 'error' });
-        console.error(err.stack);
+        // TODO : 적절하게 에러 핸들링 해줘야함
+        window.location.replace('/event/list');
       });
   }
 }
 
 async function editEventListener(event) {
   const eventId = event.target.classList[0]; // class의 이름으로 부터 eventid를 받아옴
-  const res = await axios.get(`/event/${eventId}`, {
-    headers: { 'Content-Type': 'application/json' },
-  });
-  await fillEventData(res.data);
+  try {
+    const res = await axios.get(`/event/${eventId}`);
+    await fillEventData(res.data);
+  } catch (err) {
+    //   TODO : 적절하게 에러 핸들링 해줘야함
+    window.location.replace('/event/list');
+  }
 
   const editButton = document.querySelector('.form-button-edit');
   editButton.addEventListener('click', async () => {
@@ -63,7 +69,7 @@ async function editEventListener(event) {
 }
 
 //  수정 아이콘에 이벤트 할당
-export default function addEditEventListener() {
+export default function addClickListenerForEdit() {
   const editEventElementArray = document.querySelectorAll('.list-edit');
 
   editEventElementArray.forEach(eventElement =>
