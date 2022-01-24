@@ -1,0 +1,151 @@
+.eventlist {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 200px);
+  min-width: 864px;
+  overflow: auto;
+  -ms-overflow-style: none; /* for ie and edge */
+  scrollbar-width: none; /* for firefox */
+  width: 60%;
+}
+
+/* for Chrome, Safari and Opera */
+.eventlist::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (max-width: 1080px) {
+  .eventlist {
+    min-width: 0px;
+    width: 80%;
+  }
+}
+
+.eventlist-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 0 40px 0;
+  width: 100%;
+}
+
+.info-date {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.date-outdated {
+  color: var(--grey_outdated) !important;
+}
+
+.date-divider {
+  border: 0px;
+  border-top: 1px solid var(--grey);
+  width: 100%;
+}
+
+.eventlist-list {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 16px calc(55% - 66px) 45% 50px;
+  grid-template-areas: 'a b c e';
+  margin: 0 0 5px 0;
+}
+
+.list-category {
+  grid-area: a;
+  height: 28px;
+  margin: 1px 2px;
+  min-width: 12px;
+  width: 12px;
+}
+
+@media screen and (max-width: 768px) {
+  .eventlist-list {
+    align-items: center;
+    display: grid;
+    grid-template-areas:
+      'a b e'
+      'a c e';
+    grid-template-columns: 16px calc(100% - 66px) 50px;
+    margin: 0 0 12px 0;
+  }
+
+  .list-category {
+    grid-area: a;
+    height: 42px;
+    margin: 1px 2px;
+    min-width: 12px;
+    width: 12px;
+  }
+}
+
+.list-content-anchor {
+  grid-area: b;
+  padding: 0 3px;
+}
+
+.list-content-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-content-info {
+  align-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  grid-area: c;
+}
+
+.list-content-time {
+  padding: 0 3px 0 0;
+  white-space: nowrap;
+}
+
+.list-content-time i {
+  font-size: 1em;
+  vertical-align: -2;
+}
+
+.list-content-location {
+  overflow: hidden;
+  padding: 0 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-content-location i {
+  font-size: 1em;
+  vertical-align: -2;
+}
+
+.list-content-icon {
+  grid-area: e;
+  width: 50px;
+}
+
+.list-edit {
+  background: none;
+  border: none;
+  display: inline;
+  padding: 0;
+}
+
+.list-delete {
+  background: none;
+  border: none;
+  display: inline;
+  padding: 0;
+}
+
+.list-content-icon i {
+  font-size: 1em;
+}
+
+.list-content-icon label:hover {
+  color: var(--turq_btn_hover) !important;
+  cursor: pointer;
+}

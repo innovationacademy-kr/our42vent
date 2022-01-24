@@ -1,4 +1,4 @@
-export function createElementAddClass(elemName, classArray, text = null) {
+export function createElementAddClass(elemName, classArray = [], text = null) {
   const newElem = document.createElement(elemName);
   classArray.forEach(className => {
     if (className) newElem.classList.add(className);
