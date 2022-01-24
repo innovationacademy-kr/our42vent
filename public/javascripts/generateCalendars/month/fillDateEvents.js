@@ -14,7 +14,7 @@ export default function fillDateEvents(dateEventArray, firstDate, year) {
     const eventsDiv = dateDiv.appendChild(createElementAddClass('div', ['month-date-events']));
 
     mapLabelSlots(dateEventArray, dateIndex, durationHash, firstDate);
-    fillEvents(dateEventArray, dateIndex, eventsDiv, durationHash);
+    fillEvents(dateEventArray, dateIndex, eventsDiv);
   });
 }
 
@@ -34,7 +34,7 @@ function fillDay(dateDiv, curDateEvent, year, today) {
 }
 
 // 이벤트 띠지 표시, 공간이 있으면 띠지 없으면 n more 표시
-function fillEvents(dateEventArray, dateIndex, eventsDiv, durationHash) {
+function fillEvents(dateEventArray, dateIndex, eventsDiv) {
   const curDateEvent = dateEventArray[dateIndex];
   const boxHeight = document.querySelector('.month-date').offsetHeight - 20;
   const { date, eventArray, slot } = curDateEvent;
@@ -46,7 +46,7 @@ function fillEvents(dateEventArray, dateIndex, eventsDiv, durationHash) {
       eventsDiv.appendChild(createElementAddClass('div', ['month-label-empty']));
     } else if (boxHeight - (Number(slotIndex) + 1) * 24 >= 22) {
       const eventInfo = eventArray[eventIndex];
-      createLabel(eventInfo, eventsDiv, Number(slotIndex), durationHash);
+      createLabel(eventInfo, eventsDiv, Number(slotIndex));
     } else {
       const moreButton = eventsDiv.appendChild(
         createElementAddClass(
@@ -60,7 +60,6 @@ function fillEvents(dateEventArray, dateIndex, eventsDiv, durationHash) {
       fillMoreEventContent({
         date,
         dateIndex,
-        durationHash,
         eventArray,
         moreEventDiv,
         isHoliday: curDateEvent.isHoliday,

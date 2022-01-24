@@ -1,7 +1,7 @@
 import { createElementAddClass } from '../../utils/domNodeUtils.js';
 
 // 띠지 HTML element 생성 & append, 하루 이상 이벤트 띠지 길이 & 위치 설정
-export function createLabel(eventInfo, eventsDiv, slotIndex, durationHash) {
+export function createLabel(eventInfo, eventsDiv, slotIndex) {
   const { category, id, isMulti, length, title } = eventInfo;
   const boxWidth = document.querySelector('.month-date-events').offsetWidth;
 
@@ -24,8 +24,7 @@ export function createLabel(eventInfo, eventsDiv, slotIndex, durationHash) {
 
 // more 버튼 클릭하면 뜨는 박스 생성 & 이벤트 띠지 표시
 export function fillMoreEventContent(moreEventContentInfo) {
-  const { date, dateIndex, durationHash, eventArray, moreEventDiv, isHoliday, noDays } =
-    moreEventContentInfo;
+  const { date, dateIndex, eventArray, moreEventDiv, isHoliday, noDays } = moreEventContentInfo;
 
   let rows = ' 1fr';
   for (let i = 1; moreEventDiv.style.gridTemplateRows !== '' && i < eventArray.length; i += 1)

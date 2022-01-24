@@ -2,7 +2,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 200px);
+  height: calc(100% - 80px);
   min-width: 864px;
   overflow: auto;
   -ms-overflow-style: none; /* for ie and edge */
@@ -148,4 +148,26 @@
 .list-content-icon label:hover {
   color: var(--turq_btn_hover) !important;
   cursor: pointer;
+}
+
+/* SECTION: 카테고리 색 적용 */
+
+.category-lecture {
+  background: var(--category_lecture);
+}
+
+.category-exam {
+  background: var(--category_exam);
+}
+
+.category-contest {
+  background: var(--category_contest);
+}
+
+.category-conference {
+  background: var(--category_conference);
+}
+
+.category-community {
+  background: var(--category_community);
 }
