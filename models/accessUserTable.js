@@ -21,12 +21,7 @@ export async function insertUser(user) {
 export async function selectUser(id) {
   const sql = 'SELECT id, name, profileImage FROM USER WHERE id=?';
 
-  try {
-    const [rows] = await pool.execute(sql, [id]);
-    consoleLogger.info('selectUser : query success : ', rows);
-    return rows[0];
-  } catch (err) {
-    consoleLogger.error('selectUser : query error : ', err);
-    return null;
-  }
+  const [rows] = await pool.execute(sql, [id]);
+  consoleLogger.info('selectUser : query success : ', rows);
+  return rows[0];
 }
