@@ -7,17 +7,17 @@ const titleMonth = document.querySelector('.title-calendar-month');
 const nextMonthButton = document.querySelector('.title-next');
 
 nextMonthButton.addEventListener('click', () => {
-  let yearParam = Number(titleYear.id.substring(5));
-  let monthParam = Number(titleMonth.id.substring(6));
+  const prevYearMonth = sessionStorage.getItem('yearMonth');
+  let yearParam = Number(prevYearMonth.slice(0, 4));
+  let monthParam = Number(prevYearMonth.substring(4));
 
   if (monthParam === 11) {
     yearParam += 1;
-    titleYear.id = `year-${yearParam}`;
     monthParam = 0;
   } else {
     monthParam += 1;
   }
-  titleMonth.id = `month-${monthParam}`;
+  sessionStorage.setItem('yearMonth', `${yearParam}${monthParam}`);
   renderInfo[0] = generateMonth();
 });
 
@@ -25,16 +25,16 @@ nextMonthButton.addEventListener('click', () => {
 const prevMonthButton = document.querySelector('.title-prev');
 
 prevMonthButton.addEventListener('click', () => {
-  let yearParam = Number(titleYear.id.substring(5));
-  let monthParam = Number(titleMonth.id.substring(6));
+  const prevYearMonth = sessionStorage.getItem('yearMonth');
+  let yearParam = Number(prevYearMonth.slice(0, 4));
+  let monthParam = Number(prevYearMonth.substring(4));
 
   if (monthParam === 0) {
     yearParam -= 1;
-    titleYear.id = `year-${yearParam}`;
     monthParam = 11;
   } else {
     monthParam -= 1;
   }
-  titleMonth.id = `month-${monthParam}`;
+  sessionStorage.setItem('yearMonth', `${yearParam}${monthParam}`);
   renderInfo[0] = generateMonth();
 });
