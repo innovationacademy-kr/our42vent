@@ -35,23 +35,9 @@ if [ $? -eq 0 ]; then
 else
 	echo "my_event table이 이미 존재하는지 확인해주세요"
 fi
-mysql -u$user -p$passwd $DATABASE < create_table_token.sql
+mysql -u$user -p$passwd $DATABASE < insert_intra.sql
 if [ $? -eq 0 ]; then
-	echo "token table을 만드는데 성공하였습니다"
+	echo "인트라 id 데이터를 넣는데  성공하였습니다"
 else
-	echo "token table이 이미 존재하는지 확인해주세요"
-fi
-mysql -u$user -p$passwd $DATABASE < start_event.sql
-if [ $? -eq 0 ]; then
-	echo "event_scheduler를 실행합니다"
-else
-	echo "event_scheduler 실행에 실패하였습니다. 권한이 필요합니다.
-	 권한이 있는 유저로 $(cat start_event.sql) 을 실행해주세요"
-fi
-mysql -u$user -p$passwd $DATABASE < set_token_event.sql
-if [ $? -eq 0 ]; then
-	echo "token expire 이벤트를 실행합니다"
-else
-	echo "token expire event 실행에 실패하였습니다. 권한이 필요합니다.
-권한이 있는 유저로 mysql에 접속하여 \"$(cat set_token_event.sql)\" 을 실행해주세요"
+	echo "인트라 id 데이터가 이미 존재하는지 확인해주세요"
 fi
