@@ -14,9 +14,9 @@
   --sunday_red: #f00;
 
   /* 카테고리 색 */
-  --category_lecture: #f26cd5;
-  --category_exam: #e2667c;
-  --category_contest: #79a0eb;
-  --category_conference: #edf06b;
-  --category_community: #68f0a0;
+  --category_lecture: #cfbaf0;
+  --category_exam: #ffcfd2;
+  --category_contest: #fbf8cc;
+  --category_conference: #8eecf5;
+  --category_community: #b9fbc0;
 }
