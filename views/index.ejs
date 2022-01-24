@@ -1,6 +1,15 @@
+<%- contentFor('scriptFiles') %>
+<script defer type="module" src="/javascripts/generateCalendars/month/generateMonth.js"></script>
+<script defer type="module" src="/javascripts/generateCalendars/month/changeMonth.js"></script>
+<script defer type="module" src="/javascripts/generateCalendars/month/resizeHandler.js"></script>
+<script defer type="module" src="/javascripts/eventForm/checkTime.js"></script>
+<script defer type="module" src="/javascripts/eventForm/clickNewEventButton.js"></script>
+<script defer type="module" src="/javascripts/eventForm/eventFormDisplay.js"></script>
+<script defer type="module" src="/javascripts/eventDetail/clickEventDetails.js"></script>
+<script defer type="module" src="/javascripts/eventDetail/clickExitButton.js"></script>
+<script defer type="module" src="javascripts/eventDetail/clickMyEventButton.js"></script>
 <%- contentFor('content') %>
 <section class="calendar-month">
-  <%# TODO: calendar grid 만들면서 날짜 넣어주는 .js 만들기 %>
   <div class="day-title">SUN</div>
   <div class="day-title">MON</div>
   <div class="day-title">TUE</div>
@@ -8,40 +17,6 @@
   <div class="day-title">THU</div>
   <div class="day-title">FRI</div>
   <div class="day-title">SAT</div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
-  <div class="month-date"></div>
 </section>
-<%- contentFor('eventForm') %> <%- include('components/eventForm') %>
+<%- contentFor('eventForm') %> <%- include('components/eventForm') %> <%- contentFor('eventDetails')
+%> <%- include('components/eventDetails') %>

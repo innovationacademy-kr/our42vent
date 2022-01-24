@@ -12,7 +12,9 @@
 @import 'components/footer.css';
 @import 'components/nav.css';
 @import 'components/login.css';
+@import 'components/event_details.css';
 @import 'components/event_form.css';
+@import 'components/month_calendar.css';
 
 /* SECTION: 폰트 적용 */
 *:not(.material-icons) {

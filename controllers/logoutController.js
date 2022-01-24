@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import consoleLogger from '../lib/consoleLogger.js';
-import { deleteToken } from '../models/accessTokenTable.js';
+import { deleteToken } from '../models/accessTokenRedis.js';
 
 export default async function logoutController(req, res) {
   try {

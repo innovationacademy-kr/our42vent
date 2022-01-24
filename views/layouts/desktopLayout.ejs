@@ -15,11 +15,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script defer type="module" src="/javascripts/headerUser/adjustNameSize.js"></script>
     <script defer type="module" src="/javascripts/headerUser/userDropDown.js"></script>
-    <script defer type="module" src="/javascripts/eventForm/checkTime.js"></script>
-    <script defer type="module" src="/javascripts/eventForm/clickNewEventButton.js"></script>
-    <script defer type="module" src="/javascripts/eventForm/eventFormDisplay.js"></script>
-    <script defer type="module" src="/javascripts/utils/createElementAddClass.js"></script>
-    <script defer type="module" src="/javascripts/generateCalendars/generateMonth.js"></script>
+    <%- defineContent('scriptFiles') %>
   </head>
   <body>
     <div class="layout">
@@ -33,12 +29,12 @@
           /></a>
         </div>
         <div class="header-title">
-          <i class="material-icons">arrow_back_ios</i>
+          <i class="material-icons title-prev">arrow_back_ios_new</i>
           <div class="title-calendar">
-            <h2 class="xlarge">January</h2>
-            <h3>2022</h3>
+            <h2 class="title-calendar-month xlarge"></h2>
+            <h3 class="title-calendar-year"></h3>
           </div>
-          <i class="material-icons">arrow_forward_ios</i>
+          <i class="material-icons title-next">arrow_forward_ios</i>
         </div>
         <div class="header-user">
           <div class="user-drop-button">
@@ -54,7 +50,9 @@
         </div>
       </header>
       <nav class="navbar">nav</nav>
-      <main class="main"><%- content %><%- defineContent('eventForm') %></main>
+      <main class="main">
+        <%- content %><%- defineContent('eventForm') %><%- defineContent('eventDetails') %>
+      </main>
       <footer class="footer">
         <p class="footer-developers small">
           <a href="https://github.com/42ghan" target="_blank">ghan</a> &nbsp|&nbsp
