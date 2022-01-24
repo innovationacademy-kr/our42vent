@@ -31,14 +31,6 @@
               alt="42 logo"
           /></a>
         </div>
-        <div class="header-title">
-          <i class="material-icons title-prev">arrow_back_ios_new</i>
-          <div class="title-calendar">
-            <h2 class="title-calendar-month xlarge"></h2>
-            <h3 class="title-calendar-year"></h3>
-          </div>
-          <i class="material-icons title-next">arrow_forward_ios</i>
-        </div>
         <div class="header-user">
           <div class="user-drop-button">
             <span class="user-username large text-bold"><%= username %></span>
@@ -46,22 +38,23 @@
               <img class="user-imageurl" src="<%= profileImage %>" alt="user profile image" />
             </div>
           </div>
-          <ul class="user-drop-content hidden">
+          <ul class="user-drop-content hidden text-center">
             <a href="#"><li class="text-bold">내가 생성한 이벤트</li></a
             ><a href="/logout"><li class="text-bold">로그아웃</li></a>
           </ul>
         </div>
+        <%- defineContent('headerTitle') %>
       </header>
       <nav class="navbar">nav</nav>
       <main class="main"><%- content %><%- defineContent('eventForm') %></main>
       <footer class="footer">
-        <p class="footer-developers small">
+        <p class="footer-developers small text-center">
           <a href="https://github.com/42ghan" target="_blank">ghan</a> &nbsp|&nbsp
           <a href="https://github.com/jis-kim" target="_blank">jiskim</a> &nbsp|&nbsp
           <a href="https://github.com/sehhong3317" target="_blank">sehhong</a> &nbsp|&nbsp
           <a href="https://github.com/yongjulejule" target="_blank">yongjule</a>
         </p>
-        <p class="footer-copyright small">© 2021 42 Seoul, Innovation Academy</p>
+        <p class="footer-copyright small text-center">© 2021 42 Seoul, Innovation Academy</p>
       </footer>
     </div>
   </body>

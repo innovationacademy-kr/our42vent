@@ -4,27 +4,26 @@ export default function mapLabelSlots(dateEventArray, dateIndex, durationHash, f
   const boxHeight = document.querySelector('.month-date').offsetHeight - 20;
   const curEventArray = dateEventArray[dateIndex].eventArray;
 
-  const newEventArray = curEventArray.map((event, eventIndex) => {
+  curEventArray.forEach((event, eventIndex) => {
     const curEvent = event;
     const { id, beginAt, endAt } = curEvent;
 
     if (!(id in durationHash))
       newDurationHash[`${id}`] = initDurationHash(beginAt, endAt, firstDate);
+    curEvent.isMulti = newDurationHash[`${id}`].remainingDays > 1;
     curEvent.length = getLabelLength(boxHeight, dateIndex, eventIndex, newDurationHash[`${id}`]);
     if (!Object.values(dateEventArray[dateIndex].slot).includes(eventIndex))
       setSlots(dateEventArray, dateIndex, curEvent, eventIndex);
-    return curEvent;
   });
   fillEmptySlots(dateEventArray, dateIndex);
 }
 
 // durationHash 에 없으면 해당 이벤트 초기값 설정
 function initDurationHash(beginAt, endAt, firstDate) {
-  let remainingDays =
-    Math.floor((new Date(endAt).getTime() - new Date(beginAt).getTime()) / 86400000) + 1;
-  if (firstDate > new Date(beginAt).getTime()) {
-    remainingDays = Math.ceil((new Date(endAt).getTime() - firstDate) / 86400000);
-  }
+  const remainingDays =
+    firstDate > new Date(beginAt).getTime()
+      ? Math.floor((new Date(endAt).getTime() - firstDate) / 86400000) + 1
+      : Math.floor((new Date(endAt).getTime() - new Date(beginAt).getTime()) / 86400000) + 1;
   return { remainingDays, isNextRow: false };
 }
 
@@ -36,7 +35,7 @@ function initDurationHash(beginAt, endAt, firstDate) {
 function getLabelLength(boxHeight, dateIndex, eventIndex, curDurationInfo) {
   const newDurationInfo = curDurationInfo;
 
-  let length = 1;
+  let length = newDurationInfo.remainingDays >= 1 ? 1 : -1;
   if (boxHeight - (eventIndex + 1) * 24 < 22) {
     newDurationInfo.remainingDays -= 1;
   } else if (newDurationInfo.remainingDays > 1) {
@@ -69,10 +68,9 @@ function setSlots(dateEventArray, dateIndex, curEvent, eventIndex) {
     for (let k = 0; k < length && dateIndex + k < newDateEventArray.length; k += 1) {
       const { eventArray } = newDateEventArray[dateIndex + k];
       const matchingIndex = eventArray.findIndex(e => e.id === id);
-      const slotIndex =
-        curSlot[`${eventIndex}`] === eventIndex
-          ? `${eventIndex}`
-          : `${findSlotIndex(newDateEventArray[dateIndex + k].slot)}`;
+      const slotIndex = curSlot[`${eventIndex}`]
+        ? `${eventIndex}`
+        : `${findSlotIndex(newDateEventArray[dateIndex + k].slot)}`;
       newDateEventArray[dateIndex + k].slot[slotIndex] = matchingIndex;
     }
   } else if (length === 1) {
@@ -84,27 +82,25 @@ function setSlots(dateEventArray, dateIndex, curEvent, eventIndex) {
 function fillEmptySlots(dateEventArray, dateIndex) {
   const newDateEvent = dateEventArray[dateIndex];
   const keyArray = Object.keys(newDateEvent.slot).map(key => Number(key));
-  const maxKey = Math.max(...keyArray);
+  const maxSlotIndex = Math.max(...keyArray);
 
-  let key = 0;
-  while (key < maxKey) {
-    while (keyArray.includes(key)) {
-      key += 1;
+  let slotIndex = 0;
+  while (slotIndex + 1 < maxSlotIndex) {
+    while (keyArray.includes(slotIndex)) {
+      slotIndex += 1;
     }
-    newDateEvent.slot[`${key}`] = -1;
-    key += 1;
+    newDateEvent.slot[`${slotIndex}`] = -1;
+    slotIndex += 1;
   }
 }
 
 // slot index 설정
-function findSlotIndex(slot, isMulti = 0) {
+function findSlotIndex(slot) {
   const keyArray = Object.keys(slot).map(key => Number(key));
-  const maxKey = Math.max(...keyArray);
 
-  if (isMulti) return maxKey + 1;
-  let key = 0;
-  while (keyArray.includes(key)) {
-    key += 1;
+  let slotIndex = 0;
+  while (keyArray.includes(slotIndex)) {
+    slotIndex += 1;
   }
-  return key;
+  return slotIndex;
 }

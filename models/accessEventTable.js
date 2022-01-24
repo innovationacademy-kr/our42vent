@@ -6,7 +6,7 @@ export async function selectMonthEvents(firstDate, lastDate) {
   try {
     const sql =
       'SELECT id, title, beginAt, endAt, category FROM event ' +
-      'WHERE beginAt >= ? AND beginAt < ? OR beginAt < ? AND endAt > ? ORDER BY beginAt';
+      'WHERE (beginAt >= ? AND beginAt < ?) OR (beginAt < ? AND endAt > ?) ORDER BY beginAt';
     const [rows] = await pool.execute(sql, [firstDate, lastDate, firstDate, firstDate]);
     consoleLogger.info('SELECT MONTH EVENT : query success : ', rows);
     return rows;

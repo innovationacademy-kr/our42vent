@@ -1,78 +1,72 @@
+import { createLabel, fillMoreEventContent } from './fillEventsUtils.js';
 import mapLabelSlots from './mapLabelSlots.js';
 import { createElementAddClass } from '../../utils/domNodeUtils.js';
 
 // 날짜 & 띠지 렌더링 엔트리 함수
-export default function fillDateEvents(dateEventArray, firstDate) {
+export default function fillDateEvents(dateEventArray, firstDate, year) {
   const dateElemArray = document.querySelectorAll('.month-date');
   const durationHash = {};
+
   dateElemArray.forEach((dateDiv, dateIndex) => {
     const curDateEvent = dateEventArray[dateIndex];
-
-    fillDay(dateDiv, curDateEvent);
+    fillDay(dateDiv, curDateEvent, year, new Date());
 
     const eventsDiv = dateDiv.appendChild(createElementAddClass('div', ['month-date-events']));
 
     mapLabelSlots(dateEventArray, dateIndex, durationHash, firstDate);
-    fillEvents(curDateEvent, eventsDiv);
+    fillEvents(dateEventArray, dateIndex, eventsDiv, durationHash);
   });
 }
 
 // 날짜 표시 & 공휴일 빨간색 표시
-function fillDay(dateDiv, curDateEvent) {
-  let holidayClass = null;
-  if (curDateEvent.isHoliday === true) holidayClass = 'sunday';
+function fillDay(dateDiv, curDateEvent, year, today) {
+  const { date, month } = curDateEvent;
+  const holidayClass = curDateEvent.isHoliday ? 'sunday' : null;
+  const todayClass =
+    date !== today.getDate() || month !== today.getMonth() || year !== today.getFullYear()
+      ? ''
+      : 'today-circle';
 
-  dateDiv.appendChild(
-    createElementAddClass('div', ['month-date-day', 'small', holidayClass], curDateEvent.date)
+  const daySlot = dateDiv.appendChild(
+    createElementAddClass('div', ['month-date-day', 'small', holidayClass])
   );
+  daySlot.innerHTML = `<span class="month-day-circle ${todayClass} text-center">${date}</span>`;
 }
 
 // 이벤트 띠지 표시, 공간이 있으면 띠지 없으면 n more 표시
-function fillEvents(curDateEvent, eventsDiv) {
+function fillEvents(dateEventArray, dateIndex, eventsDiv, durationHash) {
+  const curDateEvent = dateEventArray[dateIndex];
   const boxHeight = document.querySelector('.month-date').offsetHeight - 20;
-  const { eventArray, slot } = curDateEvent;
+  const { date, eventArray, slot } = curDateEvent;
 
-  for (const slotKey in slot) {
-    const eventArrayIndex = slot[`${slotKey}`];
+  for (const slotIndex in slot) {
+    const eventIndex = slot[`${slotIndex}`];
 
-    if (eventArrayIndex === -1) {
-      eventsDiv.appendChild(createElementAddClass('div', ['month-label-single', 'xsmall']));
-    } else if (boxHeight - (Number(slotKey) + 1) * 24 >= 22) {
-      const eventInfo = eventArray[eventArrayIndex];
-      createLabel(eventInfo, eventsDiv, Number(slotKey));
+    if (eventIndex === -1) {
+      eventsDiv.appendChild(createElementAddClass('div', ['month-label-empty']));
+    } else if (boxHeight - (Number(slotIndex) + 1) * 24 >= 22) {
+      const eventInfo = eventArray[eventIndex];
+      createLabel(eventInfo, eventsDiv, Number(slotIndex), durationHash);
     } else {
-      eventsDiv.appendChild(
+      const moreButton = eventsDiv.appendChild(
         createElementAddClass(
-          'div',
-          ['month-date-more', 'xsmall'],
-          `${eventArray.length - Number(slotKey)} more`
+          'button',
+          ['month-more-button', 'xsmall', 'text-left'],
+          `${eventArray.length - Number(slotIndex)} more`
         )
       );
+      moreButton.type = 'button';
+      const moreEventDiv = eventsDiv.appendChild(createElementAddClass('div', ['month-more']));
+      fillMoreEventContent({
+        date,
+        dateIndex,
+        durationHash,
+        eventArray,
+        moreEventDiv,
+        isHoliday: curDateEvent.isHoliday,
+        noDays: dateEventArray.length,
+      });
       break;
     }
-  }
-}
-
-// 띠지 HTML element 생성 & append, 하루 이상 이벤트 띠지 길이 & 위치 설정
-function createLabel(eventInfo, eventsDiv, slotIndex) {
-  const { category, id, length, title } = eventInfo;
-  const boxWidth = document.querySelector('.month-date-events').offsetWidth;
-
-  if (length === -1) {
-    eventsDiv.appendChild(
-      createElementAddClass('div', [`event-${id}`, 'month-label-single', 'xsmall'])
-    );
-  } else {
-    eventsDiv.appendChild(
-      createElementAddClass('div', [`event-${id}`, 'month-label-single', 'xsmall', category], title)
-    );
-  }
-
-  if (length > 1) {
-    const multiDayLabel = eventsDiv.appendChild(
-      createElementAddClass('div', [`event-${id}`, 'month-label-multi', 'xsmall', category], title)
-    );
-    multiDayLabel.style.width = `${(boxWidth - 4) * 2 + boxWidth * (length - 2) - 1}`;
-    multiDayLabel.style.top = `${20 + 24 * slotIndex}`;
   }
 }

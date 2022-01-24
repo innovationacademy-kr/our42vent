@@ -1,16 +1,10 @@
 /* SECTION: 월단위 캘린더 */
 
 .calendar-month {
-  border-left: var(--calendar_border) solid 1px;
-  border-top: var(--calendar_border) solid 1px;
   display: grid;
   grid-template: 20px repeat(5, 1fr) / repeat(7, 1fr);
   height: 99%;
   width: 80%;
-}
-
-.day-title {
-  text-align: center;
 }
 
 .day-title,
@@ -22,13 +16,31 @@
 .month-date {
   display: grid;
   grid-template-rows: 20px calc(100% - 20px);
-  min-width: 80.45px;
   position: relative;
 }
 
-.month-date-day {
-  margin: 3px;
+/* SECTION: 날짜 표시 */
+
+.month-day-circle {
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  display: inline-block;
+  height: 1em;
+  margin: 1px 3px;
+  width: 1em;
 }
+
+.today-circle {
+  background: var(--header_bg);
+  border: 2px solid var(--header_bg);
+  color: var(--white);
+}
+
+.sunday {
+  color: var(--sunday_red);
+}
+
+/* SECTION: 이벤트 띠지 표시 */
 
 .month-date-events {
   display: flex;
@@ -38,19 +50,31 @@
 }
 
 .month-label-single,
-.month-label-multi {
+.month-label-multi,
+.month-label-end,
+.month-label-empty {
   border-radius: 5px;
   height: 22px;
   line-height: 24px;
   margin: 1px;
   overflow: hidden;
-  padding: 0 0 0 8px;
   text-overflow: ellipsis;
   vertical-align: middle;
+  white-space: nowrap;
+}
+
+.month-label-single,
+.month-label-end {
+  z-index: 1;
+}
+
+.month-label-multi,
+.month-label-end {
+  padding: 0 0 0 8px;
 }
 
 .month-label-single {
-  z-index: 1;
+  padding: 0 0 0 3px;
 }
 
 .month-label-multi {
@@ -58,9 +82,10 @@
   z-index: 2;
 }
 
-.month-date-more {
+.month-more-button {
   background: var(--light_grey);
   border-radius: 5px;
+  border: none;
   height: 20px;
   line-height: 22px;
   margin: 1px;
@@ -68,6 +93,79 @@
   vertical-align: middle;
 }
 
-.sunday {
-  color: var(--sunday_red);
+.month-label-single,
+.month-label-multi,
+.month-label-end,
+.month-more-button {
+  cursor: pointer;
+}
+
+.month-label-single:hover,
+.month-more-button:hover {
+  box-shadow: 1px 1px 1px var(--dark_grey);
+}
+
+.month-label-single:hover {
+  background: rgba(235, 236, 240, 0.3);
+}
+
+.single-category {
+  border-radius: 2px;
+  display: inline-block;
+  height: 8px;
+  margin: 0 3px 0 0;
+  width: 8px;
+}
+
+.month-more {
+  padding: 0.87em;
+  background: var(--more_bg);
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px var(--grey), -2px -2px 5px var(--grey), 2px -2px 5px var(--grey),
+    -2px 2px 5px var(--grey);
+  display: none;
+  position: absolute;
+  width: 90%;
+  z-index: 3;
+}
+
+.month-more-date {
+  line-height: 30px;
+}
+
+.beginat-svg {
+  position: fixed;
+  z-index: 3;
+}
+
+/* SECTION: 카테고리 색 */
+
+.month-label-multi.lecture,
+.month-label-end.lecture,
+.lecture .single-category {
+  background: var(--category_lecture);
+}
+
+.month-label-multi.exam,
+.month-label-end.exam,
+.exam .single-category {
+  background: var(--category_exam);
+}
+
+.month-label-multi.contest,
+.month-label-end.contest,
+.contest .single-category {
+  background: var(--category_contest);
+}
+
+.month-label-multi.conference,
+.month-label-end.conference,
+.conference .single-category {
+  background: var(--category_conference);
+}
+
+.month-label-multi.community,
+.month-label-end.community,
+.community .single-category {
+  background: var(--category_community);
 }
