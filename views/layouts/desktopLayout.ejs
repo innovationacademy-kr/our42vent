@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script defer type="module" src="/javascripts/headerUser/adjustNameSize.js"></script>
     <script defer type="module" src="/javascripts/headerUser/userDropDown.js"></script>
     <script defer type="module" src="/javascripts/eventForm/checkTime.js"></script>
@@ -38,8 +39,13 @@
               <img class="user-imageurl" src="<%= profileImage %>" alt="user profile image" />
             </div>
           </div>
+<<<<<<< HEAD
           <ul class="user-drop-content hidden text-center">
             <a href="#"><li class="text-bold">내가 생성한 이벤트</li></a
+=======
+          <ul class="user-drop-content hidden">
+            <a href="/event/list"><li class="text-bold">내가 생성한 이벤트</li></a
+>>>>>>> dc5f6a769ba82868dadfd0816c857fccf50f1699
             ><a href="/logout"><li class="text-bold">로그아웃</li></a>
           </ul>
         </div>

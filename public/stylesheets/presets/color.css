@@ -13,12 +13,22 @@
   --red_cancel_btn: #e2667c;
   --red_cancel_btn_hover: #d9324f;
   --turq_btn_hover: #6d9fa1;
+  --grey_outdated: #848484;
   --sunday_red: #f00;
 
   /* 카테고리 색 */
+<<<<<<< HEAD
   --category_lecture: #cfbaf0;
   --category_exam: #ffcfd2;
   --category_contest: #fbf8cc;
   --category_conference: #8eecf5;
   --category_community: #b9fbc0;
+=======
+
+  --category_lecture: #f26cd5;
+  --category_exam: #e2667c;
+  --category_contest: #79a0eb;
+  --category_conference: #edf06b;
+  --category_community: #68f0a0;
+>>>>>>> dc5f6a769ba82868dadfd0816c857fccf50f1699
 }

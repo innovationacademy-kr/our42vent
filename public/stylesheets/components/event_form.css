@@ -152,6 +152,7 @@
   background: var(--red_cancel_btn_hover);
 }
 
+.form-button-edit,
 .form-button-new {
   margin: 0 0 0 12px;
 }
@@ -160,6 +161,7 @@
   margin: 0 12px 0 0;
 }
 
+.form-button-edit,
 .form-button-new,
 .form-button-text {
   background: var(--turq_btn);
@@ -170,6 +172,7 @@
   width: 180px;
 }
 
+.form-button-edit:hover,
 .form-button-new:hover,
 .form-button-text:hover {
   background: var(--turq_btn_hover);

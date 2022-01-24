@@ -1,3 +1,5 @@
+import { alertModal } from '../utils/sweetAlertMixin.js';
+
 // 입력되는 문자열 byte 계산하여 반환
 function countByte(str) {
   const strLen = str.length;
@@ -17,7 +19,7 @@ function countByte(str) {
 }
 
 // 빈칸이거나 제한바이트 초과할 경우, 해당 메세지를 띄우고 false 반환
-function checkByte(inputId, maxByte) {
+export function checkByte(inputId, maxByte) {
   const input = document.getElementById(inputId);
   const bytesWritten = countByte(input.value);
   let ret = true;
@@ -39,7 +41,7 @@ function checkByte(inputId, maxByte) {
 }
 
 // 이벤트 시작시간/종료시간 입력여부 확인 후 true/false 반환
-function checkTime(inputId, str) {
+export function checkTime(inputId, str) {
   const input = document.getElementById(inputId);
   let ret = true;
 
@@ -66,11 +68,17 @@ function clickNewEventButton() {
     checkByte('event-topic', 512) &&
     checkByte('event-details', 4096)
   ) {
-    // TODO: 이벤트 생성 성공 / 실패 시 사용자에게 알림
     axios
-      .post('/event/new', formData)
-      .then(res => window.location.replace('/'))
-      .catch(err => console.log(err.message));
+      .post('/event', formData)
+      .then(() => {
+        alertModal
+          .fire({ title: '이벤트가 생성되었습니다.', icon: 'success' })
+          .then(() => window.location.replace(window.location.pathname));
+      })
+      .catch(err => {
+        alertModal.fire({ title: '오류가 발생하였습니다.', icon: 'error' });
+        console.log(err.stack);
+      });
   }
 }
 
