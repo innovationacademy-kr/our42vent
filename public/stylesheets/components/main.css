@@ -8,28 +8,4 @@
 
 /* SECTION: 주단위 캘린더 */
 
-<<<<<<< HEAD
 /* SECTION: 내가 만든 이벤트 리스트 */
-=======
-/* SECTION: 카테고리 색 */
-
-.lecture {
-  background: var(--category_lecture);
-}
-
-.exam {
-  background: var(--category_exam);
-}
-
-.contest {
-  background: var(--category_contest);
-}
-
-.conference {
-  background: var(--category_conference);
-}
-
-.community {
-  background: var(--category_community);
-}
->>>>>>> dc5f6a769ba82868dadfd0816c857fccf50f1699
