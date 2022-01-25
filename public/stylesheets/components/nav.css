@@ -12,35 +12,35 @@ nav {
   width: 80%;
 }
 
-.navbar-events {
+.navbar-tab {
   display: flex;
   grid-area: tab;
   height: 24px;
   line-height: 30px;
 }
 
-.navbar-event-active {
+.navbar-tab-active {
   fill: var(--white);
   z-index: 3;
 }
 
-.navbar-event-inactive {
+.navbar-tab-inactive {
   fill: var(--tab_inactive);
   filter: contrast(1);
   transition: filter 0.2s ease-in;
   z-index: 2;
 }
 
-.navbar-event-inactive:hover {
+.navbar-tab-inactive:hover {
   filter: contrast(1.05);
   transition: filter 0.2s ease-in;
 }
 
-.navbar-event-all {
+.navbar-tab-all {
   cursor: pointer;
 }
 
-.navbar-event-my {
+.navbar-tab-my {
   cursor: pointer;
   transform: translateX(-20%);
 }
@@ -79,8 +79,8 @@ nav {
   margin: 10px 0 10px 20px;
   max-width: 200px;
   min-width: 130px;
-  width: 20%;
   transition: filter 0.3s ease-in-out;
+  width: 20%;
 }
 
 .category-item:hover {
