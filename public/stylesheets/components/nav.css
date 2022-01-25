@@ -6,7 +6,7 @@ nav {
 .navbar {
   align-items: center;
   display: grid;
-  grid-template-areas: 'a b';
+  grid-template-areas: 'tab category';
   grid-template-columns: 400px calc(100% - 400px);
   margin: auto;
   width: 80%;
@@ -14,7 +14,7 @@ nav {
 
 .navbar-events {
   display: flex;
-  grid-area: a;
+  grid-area: tab;
   height: 24px;
   line-height: 30px;
 }
@@ -47,7 +47,7 @@ nav {
 
 .navbar-category {
   display: flex;
-  grid-area: b;
+  grid-area: category;
   overflow: auto;
   -ms-overflow-style: none; /* for ie and edge */
   scrollbar-width: none; /* for firefox */

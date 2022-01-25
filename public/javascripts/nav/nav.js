@@ -1,7 +1,7 @@
 const categories = ['특강', '시험', '해커톤 / 공모전', '세미나 / 컨퍼런스', '커뮤니티'];
-const checkboxes = document.querySelectorAll('input[type=checkbox]');
+const checkboxArray = document.querySelectorAll('input[type=checkbox]');
 
-checkboxes.forEach((item, index) => {
+checkboxArray.forEach((item, index) => {
   const checkbox = item;
 
   checkbox.addEventListener('change', () => {
