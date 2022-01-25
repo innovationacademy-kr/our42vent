@@ -1,7 +1,7 @@
 import axios from 'axios';
 import mysql from 'mysql2/promise';
-import getFtAccessToken from './getFtAccessToken.js';
 import redisClient from '../../config/createRedisClient.js';
+import getFtAccessToken from './getFtAccessToken.js';
 import consoleLogger from '../../lib/consoleLogger.js';
 import parseEventData from '../../lib/parseEventData.js';
 
@@ -9,7 +9,7 @@ import parseEventData from '../../lib/parseEventData.js';
 async function getUpdatedIntraEvent(latestDate) {
   try {
     const token = await getFtAccessToken(redisClient);
-    if (!token) throw new Error('token is not exist');
+    if (!token) throw new Error('token does not exist');
     latestDate.setMilliseconds(999);
     const latestDateStr = JSON.stringify(latestDate);
     const curDateStr = JSON.stringify(new Date());
@@ -31,7 +31,7 @@ async function getUpdatedIntraEvent(latestDate) {
 async function getUpdatedIntraExam(latestDate) {
   try {
     const token = await getFtAccessToken(redisClient);
-    if (!token) throw new Error('token is not exist');
+    if (!token) throw new Error('token does not exist');
     latestDate.setMilliseconds(999);
     const latestDateStr = JSON.stringify(latestDate);
     const curDateStr = JSON.stringify(new Date());
@@ -60,7 +60,7 @@ async function selectLatestEvent(connection) {
 
 async function selectLatestExam(connection) {
   const sql =
-    'select modifiedAt FROM event WHERE modifiedAt=(SELECT Max(modifiedAt) FROM event ' +
+    'SELECT modifiedAt FROM event WHERE modifiedAt=(SELECT Max(modifiedAt) FROM event ' +
     'WHERE intraId IS NOT NULL AND category="exam");';
   const [rows] = await connection.query(sql);
   consoleLogger.info('selectLatestExam : query success : ', rows);
@@ -68,8 +68,6 @@ async function selectLatestExam(connection) {
 }
 
 async function insertUpdatedEventList(connection, eventList) {
-  if (eventList == null) return;
-  if (eventList.length === 0) return;
   const sql =
     'INSERT INTO event ' +
     '(creator, title, personInCharge, beginAt, endAt, location, category, ' +
@@ -96,7 +94,7 @@ async function updateEventData() {
     const eventList = await getUpdatedIntraEvent(latestEventDate);
     const examList = await getUpdatedIntraExam(latestExamDate);
     eventList.push(...examList);
-    if (examList.length === 0) {
+    if (!eventList.length) {
       consoleLogger.info('updateEventData : no event to update', new Date());
       return;
     }
@@ -110,4 +108,5 @@ async function updateEventData() {
     connection.end();
   }
 }
+
 updateEventData();

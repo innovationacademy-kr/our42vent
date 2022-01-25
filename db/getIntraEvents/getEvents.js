@@ -1,7 +1,7 @@
 import axios from 'axios';
 import mysql from 'mysql2/promise';
-import getFtAccessToken from './getFtAccessToken.js';
 import redisClient from '../../config/createRedisClient.js';
+import getFtAccessToken from './getFtAccessToken.js';
 import consoleLogger from '../../lib/consoleLogger.js';
 import parseEventData from '../../lib/parseEventData.js';
 
@@ -9,7 +9,7 @@ import parseEventData from '../../lib/parseEventData.js';
 async function getIntraEvent() {
   try {
     const token = await getFtAccessToken(redisClient);
-    if (!token) throw new Error('token is not exist');
+    if (!token) throw new Error('token does not exist');
     const res = await axios.get('https://api.intra.42.fr/v2/campus/29/events?page[size]=100', {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -26,7 +26,7 @@ async function getIntraExam() {
   try {
     // token 만료 방지를 위해 getFtAccessToken 한 번 더 호출.
     const token = await getFtAccessToken(redisClient);
-    if (!token) throw new Error('token is not exist');
+    if (!token) throw new Error('token does not exist');
     const res = await axios.get('https://api.intra.42.fr/v2/campus/29/exams?page[size]=100', {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -39,7 +39,6 @@ async function getIntraExam() {
 }
 
 async function insertEventList(eventList) {
-  if (eventList == null) return;
   const connection = await mysql.createConnection({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
@@ -65,6 +64,10 @@ async function initEventData() {
     const eventList = await getIntraEvent();
     const examList = await getIntraExam();
     eventList.push(...examList);
+    if (!eventList.length) {
+      consoleLogger.info('initEventData : no event to initialize', new Date());
+      return;
+    }
     const parsedEvents = await parseEventData(eventList);
     await insertEventList(parsedEvents);
   } catch (err) {
@@ -73,4 +76,5 @@ async function initEventData() {
     redisClient.quit();
   }
 }
+
 initEventData();
