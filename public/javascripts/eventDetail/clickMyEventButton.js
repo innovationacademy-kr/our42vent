@@ -10,7 +10,7 @@ myEventButton.addEventListener('click', () => {
   const eventId = detailsElement.id.substring(6);
 
   axios
-    .post('/event/myevent', { eventId, notification })
+    .post(`/event/myevent/${eventId}`, { notification })
     .then(res => {
       detailsElement.style.display = 'none';
     })
