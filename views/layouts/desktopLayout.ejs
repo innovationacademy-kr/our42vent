@@ -54,10 +54,10 @@
           </ul>
         </div>
       </header>
-      <nav class="navbar">
-        <div class="navbar-events small">
-          <div class="navbar-event-all navbar-event-active">
-            <a href="#all">
+      <nav>
+        <div class="navbar">
+          <div class="navbar-events small">
+            <div class="navbar-event-all navbar-event-active">
               <svg
                 width="200"
                 height="38"
@@ -71,10 +71,8 @@
                 />
                 <text x="65" y="24" fill="black">모든 이벤트</text>
               </svg>
-            </a>
-          </div>
-          <div class="navbar-event-my navbar-event-inactive">
-            <a href="#my">
+            </div>
+            <div class="navbar-event-my navbar-event-inactive">
               <svg
                 width="200"
                 height="38"
@@ -88,37 +86,36 @@
                 />
                 <text x="50" y="24" fill="black">내가 선택한 이벤트</text>
               </svg>
-            </a>
+            </div>
+          </div>
+          <div class="navbar-category small">
+            <input type="checkbox" id="category-lecture" checked />
+            <input type="checkbox" id="category-exam" checked />
+            <input type="checkbox" id="category-contest" checked />
+            <input type="checkbox" id="category-conference" checked />
+            <input type="checkbox" id="category-community" checked />
+            <label for="category-lecture" name="lecture" class="lecture category-item">
+              <i class="material-icons-outlined"> done </i>
+              <div>특강</div>
+            </label>
+            <label for="category-exam" class="exam category-item">
+              <i class="material-icons-outlined"> done </i>
+              <div>시험</div>
+            </label>
+            <label for="category-contest" class="contest category-item">
+              <i class="material-icons-outlined"> done </i>
+              <div>해커톤 / 공모전</div>
+            </label>
+            <label for="category-conference" class="conference category-item">
+              <i class="material-icons-outlined"> done </i>
+              <div>세미나 / 컨퍼런스</div></label
+            >
+            <label for="category-community" class="community category-item">
+              <i class="material-icons-outlined"> done </i>
+              <div>커뮤니티</div></label
+            >
           </div>
         </div>
-        <div class="navbar-category small">
-          <input type="checkbox" id="category-lecture" checked />
-          <input type="checkbox" id="category-exam" checked />
-          <input type="checkbox" id="category-contest" checked />
-          <input type="checkbox" id="category-conference" checked />
-          <input type="checkbox" id="category-community" checked />
-          <label for="category-lecture" name="lecture" class="lecture category-item">
-            <span class="material-icons-outlined gg"> done </span>
-            특강
-          </label>
-          <label for="category-exam" class="exam category-item">
-            <span class="material-icons-outlined gg"> done </span>
-            시험</label
-          >
-          <label for="category-contest" class="contest category-item">
-            <span class="material-icons-outlined gg"> done </span>
-            해커톤 / 공모전</label
-          >
-          <label for="category-conference" class="conference category-item">
-            <span class="material-icons-outlined gg"> done </span>
-            세미나 / 컨퍼런스</label
-          >
-          <label for="category-community" class="community category-item">
-            <span class="material-icons-outlined gg"> done </span>
-            커뮤니티</label
-          >
-        </div>
-        <div class="navbar-today">today</div>
       </nav>
       <main class="main"><%- content %><%- defineContent('eventForm') %></main>
       <footer class="footer">

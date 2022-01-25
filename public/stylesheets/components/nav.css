@@ -1,115 +1,105 @@
-.navbar {
-  display: flex;
+nav {
   align-items: center;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  justify-self: center;
-  justify-items: space-around;
-  width: 100%;
   background: var(--grey);
+}
+
+.navbar {
+  align-items: center;
+  display: grid;
+  grid-template-areas: 'a b';
+  grid-template-columns: 400px calc(100% - 400px);
+  margin: auto;
+  width: 80%;
 }
 
 .navbar-events {
   display: flex;
-  line-height: 30px;
-  text-align: center;
-  width: 360px;
+  grid-area: a;
   height: 24px;
-  padding: 0 0 0 20px;
-}
-
-.svg-active {
-  fill: white;
-}
-
-.svg-inactive {
-  fill: pink;
+  line-height: 30px;
 }
 
 .navbar-event-active {
+  fill: var(--white);
   z-index: 3;
-  fill: white;
 }
 
 .navbar-event-inactive {
+  fill: var(--tab_inactive);
+  filter: contrast(1);
+  transition: filter 0.2s ease-in;
   z-index: 2;
-  fill: pink;
+}
+
+.navbar-event-inactive:hover {
+  filter: contrast(1.05);
+  transition: filter 0.2s ease-in;
+}
+
+.navbar-event-all {
+  cursor: pointer;
 }
 
 .navbar-event-my {
+  cursor: pointer;
   transform: translateX(-20%);
 }
 
 .navbar-category {
   display: flex;
-  width: calc(100% - 460px);
-  align-items: center;
-  justify-items: center;
-  text-align: center;
+  grid-area: b;
   overflow: auto;
+  -ms-overflow-style: none; /* for ie and edge */
+  scrollbar-width: none; /* for firefox */
+  text-align: center;
+  width: 100%;
 }
 
-.category-item {
-  width: 120px;
-  height: 30px;
-  line-height: 30px;
-  border-radius: 10%;
-  box-shadow: 2px 2px darkgray;
-  margin: 10px;
-}
-
-.navbar-today {
-  display: block;
-  width: 100px;
-}
-
-input {
+/* for Chrome, Safari and Opera */
+.navbar-category::-webkit-scrollbar {
   display: none;
 }
-/* .navbar-category > input {
-  width: 0;
-  height: 0;
-} */
+
+.navbar-category > input {
+  display: none;
+}
 
 .navbar-category > label {
   cursor: pointer;
 }
 
-#category-lecture:checked,
-.material-icons-outlined.gg {
-  padding-right: 2px;
+.category-item {
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 2px 2px darkgray;
+  display: flex;
+  filter: contrast(1);
+  height: 30px;
+  line-height: 30px;
+  margin: 10px 0 10px 20px;
+  max-width: 200px;
+  min-width: 130px;
+  width: 20%;
+  transition: filter 0.3s ease-in-out;
+}
+
+.category-item:hover {
+  filter: contrast(1.2);
+  transition: filter 0.3s ease-in-out;
+}
+
+.category-item > div {
+  font-size: 0.87em;
+  padding: 0 0 0 10px;
+  text-align: left;
+  width: 70%;
+}
+
+.category-item > i {
+  background: var(--white);
+  display: block;
   font-size: 1em;
-  display: inline-block;
-}
-
-/* #category-lecture:not(:checked),
-.material-icons-outlined.gg {
-  opacity: 0.7;
-  transform: scale(0.98);
-  transition: pink 250ms cubic-bezier(0.4, 0, 0.23, 1);
-} */
-
-#category-exam:not(:checked) ~ .exam {
-  opacity: 0.7;
-  /* transform: scale(0.98); */
-  box-shadow: none;
-}
-#category-contest:not(:checked) ~ .contest {
-  opacity: 0.7;
-  /* transform: scale(0.98); */
-
-  box-shadow: none;
-}
-#category-conference:not(:checked) ~ .conference {
-  opacity: 0.7;
-  /* transform: scale(0.98); */
-
-  box-shadow: none;
-}
-#category-community:not(:checked) ~ .community {
-  opacity: 0.7;
-  /* transform: scale(0.98); */
-
-  box-shadow: none;
+  height: 14.44px;
+  margin: 0 0 0 10px;
+  width: 16px;
 }
