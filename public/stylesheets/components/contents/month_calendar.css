@@ -137,35 +137,3 @@
   position: fixed;
   z-index: 3;
 }
-
-/* SECTION: 카테고리 색 */
-
-.month-label-multi.lecture,
-.month-label-end.lecture,
-.lecture .single-category {
-  background: var(--category_lecture);
-}
-
-.month-label-multi.exam,
-.month-label-end.exam,
-.exam .single-category {
-  background: var(--category_exam);
-}
-
-.month-label-multi.contest,
-.month-label-end.contest,
-.contest .single-category {
-  background: var(--category_contest);
-}
-
-.month-label-multi.conference,
-.month-label-end.conference,
-.conference .single-category {
-  background: var(--category_conference);
-}
-
-.month-label-multi.community,
-.month-label-end.community,
-.community .single-category {
-  background: var(--category_community);
-}

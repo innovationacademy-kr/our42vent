@@ -99,7 +99,7 @@ async function generateEventList() {
   const eventDates = [];
   let eventListInfoDiv = null;
 
-  document.querySelector('.navbar').classList.add('hidden');
+  document.querySelector('nav').classList.add('hidden');
   document.querySelector('.layout').style.gridTemplateRows = '70px 1fr 60px';
   document.querySelector('.main').style.height = 'calc(100vh - 70px)';
 

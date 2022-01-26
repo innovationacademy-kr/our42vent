@@ -23,7 +23,7 @@ function setDurationTime(beginAt, endAt) {
 }
 
 export default function setDuration(beginAt, endAt) {
-  const beginAtInObj = new Date(beginAt);
+  const beginAtInObj = new Date(new Date(beginAt).setSeconds(0));
   const endAtInObj = new Date(endAt);
   const modifiedEndAt = new Date(
     endAtInObj.getFullYear(),
