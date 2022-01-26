@@ -1,17 +1,11 @@
-import setCategoryName from './utils/setCategoryName.js';
 import setBeginAt from './utils/setBeginAt.js';
+import setCategoryName from './utils/setCategoryName.js';
 import setDuration from './utils/setDuration.js';
 
 // 띠지 클릭시, 해당 이벤트 상세 정보 select
 async function getEventDetails(eventId) {
-  try {
-    const res = await axios.get(`/event/${eventId}`, {
-      headers: { 'Content-Type': 'application/json' },
-    });
-    return res.data;
-  } catch (err) {
-    return err;
-  }
+  const res = await axios.get(`/event/${eventId}`);
+  return res.data;
 }
 
 // 불러온 이벤트 상세정보를 각 항목에 입력
@@ -65,6 +59,7 @@ async function setEventDetails(eventId) {
     // 알림 설정시, 다음 이벤트 상세보기에서 default로 원상복귀
     document.getElementById('details-notification').value = 'none';
   } catch (err) {
+    // TODO 에러페이지 표시
     console.log(err.message);
   }
 }
@@ -81,9 +76,9 @@ export default async function clickEventDetails() {
     event.addEventListener('click', () => {
       setEventDetails(eventId);
 
-      // 상세보기에 event-(id)를 id로 넣어줌
-      // (나중에 my_event post할때 event id 필요)
-      detailElement.id = event.classList[0];
+      /**  상세보기에 event-(id)를 id로 넣어줌
+      (나중에 my_event post할때 event id 필요) */
+      [detailElement.id] = event.classList;
       detailElement.style.display = 'grid';
     });
   });

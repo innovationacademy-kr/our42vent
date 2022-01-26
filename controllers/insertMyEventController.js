@@ -1,7 +1,13 @@
 import insertMyEvent from '../models/accessMyEventTable.js';
 
 export default function insertMyEventController(req, res) {
-  insertMyEvent(res.locals.userId, req.params.eventId, req.body.notification);
+  const notiOption = req.body.notification;
+  const notification = notiOption === 'none' ? null : Number(notiOption);
 
-  res.end();
+  try {
+    insertMyEvent(res.locals.userId, req.params.eventId, notification);
+    res.end();
+  } catch (err) {
+    res.status(500).end();
+  }
 }

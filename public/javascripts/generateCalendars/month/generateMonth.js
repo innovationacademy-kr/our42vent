@@ -1,7 +1,7 @@
 import fillDateEvents from './fillDateEvents.js';
 import { getParams, setYearMonth, adjustWeeks } from './monthPreset.js';
-import { removeNodeList } from '../../utils/domNodeUtils.js';
 import clickEventDetails from '../../eventDetail/clickEventDetails.js';
+import { removeNodeList } from '../../utils/domNodeUtils.js';
 
 // cli 렌더링에 필요한 날짜 & 이벤트 데이터 비동기 요청
 async function getMonthData(year, month) {

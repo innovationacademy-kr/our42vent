@@ -9,7 +9,6 @@ export default function setBeginAt(beginAt) {
   const hour = beginAtInObj.getHours();
   const minute = beginAtInObj.getMinutes().toString();
   const modifiedMinute = minute.length > 1 ? minute : `0${minute}`;
-  const beginAtInStr = `${year}년 ${month}월 ${date}일 (${day}) ${hour}:${modifiedMinute}`;
 
-  return beginAtInStr;
+  return `${year}년 ${month}월 ${date}일 (${day}) ${hour}:${modifiedMinute}`;
 }

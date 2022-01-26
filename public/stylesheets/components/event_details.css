@@ -67,7 +67,7 @@
 }
 
 .details-category {
-  color: #d3d3d3;
+  color: var(--white);
   line-height: 30px;
   padding: 5px 0;
   width: 100%;
@@ -126,11 +126,15 @@
 
 .details-topic-content {
   max-height: 100px;
-  -ms-overflow-style: none; /* for ie and edge */
   overflow: auto;
+  -ms-overflow-style: none; /* for ie and edge */
   scrollbar-width: none; /* for firefox */
   width: 100%;
   word-break: break-word;
+}
+
+.details-topic-content::-webkit-scrollbar {
+  display: none;
 }
 
 .details-details {

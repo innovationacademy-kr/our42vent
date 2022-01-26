@@ -2,7 +2,7 @@ export default function setCategoryName(category) {
   let finalCategory;
   switch (category) {
     case 'lecture':
-      finalCategory = '멘토특강';
+      finalCategory = '특강';
       break;
     case 'exam':
       finalCategory = '시험';
@@ -13,11 +13,8 @@ export default function setCategoryName(category) {
     case 'conference':
       finalCategory = '세미나/컨퍼런스';
       break;
-    case 'community':
-      finalCategory = '커뮤니티';
-      break;
     default:
-      finalCategory = null;
+      finalCategory = '커뮤니티';
   }
   return finalCategory;
 }
