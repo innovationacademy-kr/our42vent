@@ -1,5 +1,5 @@
-import fillDateEvents from './fillDateEvents.js';
 import addListenersAfterRender from './addListenersAfterRender.js';
+import fillDateEvents from './fillDateEvents.js';
 import { fillDateTitles, getParams, setYearMonth, adjustWeeks } from './monthPreset.js';
 import { removeNodeList } from '../../utils/domNodeUtils.js';
 

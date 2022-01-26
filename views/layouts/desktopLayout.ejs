@@ -16,9 +16,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script defer type="module" src="/javascripts/headerUser/adjustNameSize.js"></script>
     <script defer type="module" src="/javascripts/headerUser/userDropDown.js"></script>
-    <script defer type="module" src="/javascripts/eventForm/checkTime.js"></script>
-    <script defer type="module" src="/javascripts/eventForm/clickNewEventButton.js"></script>
-    <script defer type="module" src="/javascripts/eventForm/eventFormDisplay.js"></script>
     <%- defineContent('scriptFiles') %>
   </head>
   <body>
@@ -46,8 +43,72 @@
         </div>
         <%- defineContent('headerTitle') %>
       </header>
-      <nav class="navbar">nav</nav>
-      <main class="main"><%- content %><%- defineContent('eventForm') %></main>
+      <nav>
+        <div class="navbar">
+          <div class="navbar-tab small">
+            <div class="navbar-tab-all navbar-tab-active">
+              <svg
+                width="200"
+                height="38"
+                viewBox="0 0 200 38"
+                class="navbar-tab-active"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18.8806 27.5716C16.0471 33.5 9.52797 37 0 37L200 36.9995C190.472 36.9995 183.953 33.4996 181.119 27.5711C178.286 21.6426 178.286 15.6432 176.105 8.57133C173.923 1.4995 169.41 0.999508 163.48 1L36.5198 1.00049C30.5898 0.999996 26.0766 1.49999 23.8954 8.57182C21.7142 15.6436 21.7142 21.6431 18.8806 27.5716Z"
+                  stroke="none"
+                />
+                <text x="65" y="24" fill="black">모든 이벤트</text>
+              </svg>
+            </div>
+            <div class="navbar-tab-my navbar-tab-inactive">
+              <svg
+                width="200"
+                height="38"
+                viewBox="0 0 200 38"
+                class="navbar-tab-inactive"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18.8806 27.5716C16.0471 33.5 9.52797 37 0 37L200 36.9995C190.472 36.9995 183.953 33.4996 181.119 27.5711C178.286 21.6426 178.286 15.6432 176.105 8.57133C173.923 1.4995 169.41 0.999508 163.48 1L36.5198 1.00049C30.5898 0.999996 26.0766 1.49999 23.8954 8.57182C21.7142 15.6436 21.7142 21.6431 18.8806 27.5716Z"
+                  stroke="none"
+                />
+                <text x="50" y="24" fill="black">내가 선택한 이벤트</text>
+              </svg>
+            </div>
+          </div>
+          <div class="navbar-category small">
+            <input type="checkbox" id="category-lecture" checked />
+            <input type="checkbox" id="category-exam" checked />
+            <input type="checkbox" id="category-contest" checked />
+            <input type="checkbox" id="category-conference" checked />
+            <input type="checkbox" id="category-community" checked />
+            <label for="category-lecture" name="lecture" class="lecture category-item">
+              <i class="material-icons-outlined"> done </i>
+              <div>특강</div>
+            </label>
+            <label for="category-exam" class="exam category-item">
+              <i class="material-icons-outlined"> done </i>
+              <div>시험</div>
+            </label>
+            <label for="category-contest" class="contest category-item">
+              <i class="material-icons-outlined"> done </i>
+              <div>해커톤 / 공모전</div>
+            </label>
+            <label for="category-conference" class="conference category-item">
+              <i class="material-icons-outlined"> done </i>
+              <div>세미나 / 컨퍼런스</div></label
+            >
+            <label for="category-community" class="community category-item">
+              <i class="material-icons-outlined"> done </i>
+              <div>커뮤니티</div></label
+            >
+          </div>
+        </div>
+      </nav>
+      <main class="main">
+        <%- content %><%- defineContent('eventForm') %><%- defineContent('eventDetails') %>
+      </main>
       <footer class="footer">
         <p class="footer-developers small text-center">
           <a href="https://github.com/42ghan" target="_blank">ghan</a> &nbsp|&nbsp
