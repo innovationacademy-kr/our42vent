@@ -7,9 +7,9 @@ checkboxArray.forEach((item, index) => {
   checkbox.addEventListener('change', () => {
     const selectedBox = document.querySelector(`.${checkbox.id.substring(9)}.category-item`);
     if (checkbox.checked) {
-      selectedBox.innerHTML = `<i class="material-icons-outlined">done</i><div>${categories[index]}</div>`;
+      selectedBox.innerHTML = `<i class="material-icons-outlined">done</i><div class="text-left">${categories[index]}</div>`;
     } else {
-      selectedBox.innerHTML = `<i></i><div>${categories[index]}</div>`;
+      selectedBox.innerHTML = `<i></i><div class="text-left">${categories[index]}</div>`;
     }
   });
 });

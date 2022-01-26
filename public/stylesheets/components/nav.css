@@ -71,7 +71,6 @@ nav {
   overflow-x: auto;
   -ms-overflow-style: none; /* for IE and edge*/
   scrollbar-width: 0px; /* for firefox*/
-  text-align: center;
   width: 100%;
 }
 
@@ -111,7 +110,6 @@ nav {
 .category-item > div {
   font-size: 0.87em;
   padding: 0 0 0 10px;
-  text-align: left;
   width: 70%;
 }
 
