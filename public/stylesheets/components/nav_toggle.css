@@ -1,0 +1,135 @@
+/* SECTION : 데스크톱에서만 필요한 요소 비활성화 */
+
+.navbar-tab > div > svg {
+  display: none;
+}
+
+/* SECTION : 네비바 토글 아이콘 생성 */
+
+.toggle-icon {
+  position: fixed;
+  cursor: pointer;
+}
+
+.bar-top,
+.bar-middle,
+.bar-bottom {
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  border-radius: 10px;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.change .bar-top {
+  transform: rotate(-45deg) translate(-9px, 6px);
+  transition: 0.4s;
+}
+
+.change .bar-middle {
+  transition: 0.4s;
+  opacity: 0;
+}
+
+.change .bar-bottom {
+  transition: 0.4s;
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+
+nav.change {
+  transform: translateX(203px);
+  transition: transform 0.4s;
+}
+
+.toggle-user {
+  margin: 10px 23px;
+}
+
+.toggle-divider {
+  border: 0px;
+  border-top: 1px solid darkgray;
+  width: 80%;
+}
+/* SECTION : 네비바 사이드 메뉴 생성 */
+
+nav {
+  position: absolute;
+  top: 70px;
+  left: -203px;
+  width: 203px;
+  height: calc(100vh - 70px);
+  z-index: 10;
+  background: var(--grey);
+  transform: translateX(0px);
+  transition: transform 0.4s;
+  color: var(--header_bg);
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0 0 0;
+  position: sticky;
+}
+
+.navbar-tab-active > .category-item {
+  background: var(--white);
+  cursor: pointer;
+  z-index: 3;
+}
+
+.navbar-tab-inactive > .category-item {
+  background: var(--header_bg);
+  cursor: pointer;
+  color: var(--white);
+  filter: contrast(1);
+  transition: filter 0.2s ease-in;
+  z-index: 2;
+}
+
+.navbar-tab-inactive:hover {
+  filter: contrast(1.05);
+  transition: filter 0.2s ease-in;
+}
+
+.navbar-category > input {
+  display: none;
+}
+
+.navbar-category > label {
+  cursor: pointer;
+}
+
+.category-item {
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 2px 2px darkgray;
+  display: flex;
+  filter: contrast(1);
+  height: 30px;
+  margin: 15px 0 15px 20px;
+  width: 150px;
+  transition: filter 0.3s ease-in-out;
+}
+
+.category-item:hover {
+  filter: contrast(1.2);
+  transition: filter 0.3s ease-in-out;
+}
+
+.category-item > div {
+  font-size: 0.87em;
+  padding: 0 0 0 10px;
+  text-align: left;
+  width: 70%;
+}
+
+.category-item > i {
+  background: var(--white);
+  display: block;
+  font-size: 1em;
+  height: 14.44px;
+  margin: 0 0 0 10px;
+  width: 16px;
+}

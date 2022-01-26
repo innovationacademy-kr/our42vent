@@ -1,3 +1,23 @@
+/* SECTION : 모바일에서만 필요한 요소 비활성화 */
+
+.toggle-divider {
+  display: none;
+}
+
+.navbar-toggle-all.category-item {
+  display: none;
+}
+
+.navbar-toggle-my.category-item {
+  display: none;
+}
+
+.toggle-user {
+  display: none;
+}
+
+/* SECTION : 네비바 생성 */
+
 nav {
   align-items: center;
   background: var(--grey);

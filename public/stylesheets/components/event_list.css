@@ -15,12 +15,12 @@
   display: none;
 }
 
-@media screen and (max-width: 1080px) {
+/* @media screen and (max-width: 1080px) {
   .eventlist {
     min-width: 0px;
     width: 80%;
   }
-}
+} */
 
 .eventlist-info {
   display: flex;
@@ -59,26 +59,6 @@
   margin: 1px 2px;
   min-width: 12px;
   width: 12px;
-}
-
-@media screen and (max-width: 768px) {
-  .eventlist-list {
-    align-items: center;
-    display: grid;
-    grid-template-areas:
-      'a b e'
-      'a c e';
-    grid-template-columns: 16px calc(100% - 66px) 50px;
-    margin: 0 0 12px 0;
-  }
-
-  .list-category {
-    grid-area: a;
-    height: 42px;
-    margin: 1px 2px;
-    min-width: 12px;
-    width: 12px;
-  }
 }
 
 .list-content-anchor {

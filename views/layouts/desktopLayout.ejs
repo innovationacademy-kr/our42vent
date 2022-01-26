@@ -6,10 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="/assets/favicons/our42vent.ico" rel="short icon" type="image/x-icon" />
     <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/style_desktop.css" />
+    <link
+      rel="stylesheet"
+      media="screen and (max-width: 1080px) "
+      href="/stylesheets/style_mobile.css"
+    />
+    <link
+      rel="stylesheet"
+      media="screen and (min-width: 1081px) "
+      href="/stylesheets/style_desktop.css"
+    />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+    />
+    <link
+      rel="stylesheet"
+      media="screen"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -20,11 +34,17 @@
     <script defer type="module" src="/javascripts/eventForm/clickNewEventButton.js"></script>
     <script defer type="module" src="/javascripts/eventForm/eventFormDisplay.js"></script>
     <script defer type="module" src="/javascripts/nav/nav.js"></script>
+    <script defer type="module" src="/javascripts/nav/toggleNav.js"></script>
     <%- defineContent('scriptFiles') %>
   </head>
   <body>
     <div class="layout">
       <header class="header">
+        <div class="toggle-icon">
+          <div class="bar-top"></div>
+          <div class="bar-middle"></div>
+          <div class="bar-bottom"></div>
+        </div>
         <div class="header-logo">
           <a href="/"
             ><img
@@ -54,10 +74,11 @@
           </ul>
         </div>
       </header>
-      <nav>
+      <nav class="">
         <div class="navbar">
           <div class="navbar-tab small">
             <div class="navbar-tab-all navbar-tab-active">
+              <div class="navbar-toggle-all category-item"><div>모든 이벤트</div></div>
               <svg
                 width="200"
                 height="38"
@@ -73,6 +94,7 @@
               </svg>
             </div>
             <div class="navbar-tab-my navbar-tab-inactive">
+              <div class="navbar-toggle-my category-item"><div>내가 선택한 이벤트</div></div>
               <svg
                 width="200"
                 height="38"
@@ -88,6 +110,7 @@
               </svg>
             </div>
           </div>
+          <hr class="toggle-divider" />
           <div class="navbar-category small">
             <input type="checkbox" id="category-lecture" checked />
             <input type="checkbox" id="category-exam" checked />
@@ -115,6 +138,9 @@
               <div>커뮤니티</div></label
             >
           </div>
+          <hr class="toggle-divider" />
+          <div class="toggle-user small"><a href="/event/list">내가 만든 이벤트</a></div>
+          <div class="toggle-user small"><a href="/logout">로그아웃</a></div>
         </div>
       </nav>
       <main class="main"><%- content %><%- defineContent('eventForm') %></main>
