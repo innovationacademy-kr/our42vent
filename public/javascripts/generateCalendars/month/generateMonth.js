@@ -5,12 +5,8 @@ import { removeNodeList } from '../../utils/domNodeUtils.js';
 
 // cli 렌더링에 필요한 날짜 & 이벤트 데이터 비동기 요청
 async function getMonthData(year, month) {
-  try {
-    const res = await axios.get(`/calendar/month/${year}/${month}`);
-    return res.data;
-  } catch (err) {
-    return err;
-  }
+  const res = await axios.get(`/calendar/month/${year}/${month}`);
+  return res.data;
 }
 
 // 월단위 캘린더 데이터 요청 및 cli 렌더링
