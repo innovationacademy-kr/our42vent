@@ -10,6 +10,10 @@ userDropButton.addEventListener('click', () => {
   userDropContent.classList.toggle('hidden');
 });
 
+userDropContent.addEventListener('click', () => {
+  sessionStorage.removeItem('yearMonth');
+});
+
 window.addEventListener('click', event => {
   if (!event.target.matches('.user-drop-button, .user-username, .user-imageurl')) {
     if (!userDropContent.classList.contains('hidden')) {

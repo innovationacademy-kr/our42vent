@@ -11,6 +11,7 @@
   position: absolute;
   right: 0;
   width: 80px;
+  z-index: 3;
 }
 
 .create-event-btn:hover {

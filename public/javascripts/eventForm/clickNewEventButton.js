@@ -1,35 +1,18 @@
 import { alertModal } from '../utils/sweetAlertMixin.js';
 
-// 입력되는 문자열 byte 계산하여 반환
-function countByte(str) {
-  const strLen = str.length;
-
-  let bytesWritten = 0;
-  let oneChar = '';
-
-  for (let i = 0; i < strLen; i += 1) {
-    oneChar = str.charAt(i);
-    if (encodeURI(oneChar).length > 4) {
-      bytesWritten += 3;
-    } else {
-      bytesWritten += 1;
-    }
-  }
-  return bytesWritten;
-}
-
 // 빈칸이거나 제한바이트 초과할 경우, 해당 메세지를 띄우고 false 반환
 export function checkByte(inputId, maxByte) {
   const input = document.getElementById(inputId);
-  const bytesWritten = countByte(input.value);
+  const newLineCnt = input.value.match(/\n/g) ? input.value.match(/\n/g).length : 0;
+  const bytesCnt = new TextEncoder().encode(input.value).length + newLineCnt;
   let ret = true;
 
   if (inputId !== 'event-pic' && inputId !== 'event-details' && input.value === '') {
     input.setCustomValidity('비어있는 칸을 채워주세요');
     ret = false;
-  } else if (bytesWritten > maxByte) {
+  } else if (bytesCnt > maxByte) {
     input.setCustomValidity(
-      `이 항목은 ${maxByte}byte를 초과할 수 없습니다. 현재 ${bytesWritten}bytes 썼습니다.`
+      `이 항목은 ${maxByte}byte를 초과할 수 없습니다. 현재 ${bytesCnt}bytes 썼습니다.`
     );
     ret = false;
   } else {
@@ -60,13 +43,13 @@ function clickNewEventButton() {
   const formData = new FormData(document.querySelector('.form'));
 
   if (
-    checkByte('event-title', 256) &&
-    checkByte('event-pic', 64) &&
+    checkByte('event-title', 224) &&
+    checkByte('event-pic', 56) &&
     checkTime('event-beginat', '시작') &&
     checkTime('event-endat', '종료') &&
-    checkByte('event-location', 256) &&
-    checkByte('event-topic', 512) &&
-    checkByte('event-details', 4096)
+    checkByte('event-location', 224) &&
+    checkByte('event-topic', 480) &&
+    checkByte('event-details', 4064)
   ) {
     axios
       .post('/event', formData)

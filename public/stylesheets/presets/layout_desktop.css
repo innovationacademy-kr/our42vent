@@ -32,7 +32,7 @@ body {
   position: fixed;
   top: 0;
   width: 100vw;
-  z-index: 2;
+  z-index: 3;
 }
 
 /* SECTION: display 형태 공통 적용 class */

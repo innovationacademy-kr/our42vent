@@ -7,7 +7,7 @@
   position: fixed;
   top: 0;
   width: 100vw;
-  z-index: 2;
+  z-index: 3;
 }
 
 .details-content {
@@ -45,7 +45,7 @@
 
 .details-location {
   line-height: 20px;
-  padding: 10px 10% 10px 10%;
+  padding: 10px 10%;
 }
 
 .details-exit-button {
@@ -54,7 +54,6 @@
   position: absolute;
   right: 0px;
   top: 0px;
-  text-align: center;
   vertical-align: -1;
 }
 
@@ -63,7 +62,6 @@
 .details-beginat {
   background: var(--turq_btn);
   color: var(--white);
-  text-align: center;
 }
 
 .details-category {
@@ -83,7 +81,7 @@
 }
 
 .details-exit-button:hover {
-  color: #d3d3d3;
+  color: var(--details_exit_grey);
 }
 
 .details-title {
@@ -97,15 +95,15 @@
 }
 
 .pic-topic-details {
-  align-items: center;
   background: var(--white);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   min-height: 80px;
   padding: 10px 0;
   place-items: center;
+  white-space: pre-wrap;
   width: 100%;
+  word-break: break-word;
 }
 
 .details-pic,
@@ -137,19 +135,12 @@
   display: none;
 }
 
-.details-details {
-  display: none;
-  max-height: 300px;
-  overflow: auto;
-}
-
 .details-details-content {
-  max-height: 200px;
-  -ms-overflow-style: none; /* for ie and edge */
+  max-height: 280px;
   overflow: auto;
+  -ms-overflow-style: none; /* for ie and edge */
   scrollbar-width: none; /* for firefox */
   width: 100%;
-  word-break: break-word;
 }
 
 .details-details-content::-webkit-scrollbar {
@@ -157,9 +148,12 @@
 }
 
 .notification-button {
-  height: 60px;
-
-  padding: 20px 50px;
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 50px;
+  padding: 10px 50px 30px;
 }
 
 .details-myevent-button {

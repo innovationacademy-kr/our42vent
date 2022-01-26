@@ -29,14 +29,6 @@
               alt="42 logo"
           /></a>
         </div>
-        <div class="header-title">
-          <i class="material-icons title-prev">arrow_back_ios_new</i>
-          <div class="title-calendar">
-            <h2 class="title-calendar-month xlarge"></h2>
-            <h3 class="title-calendar-year"></h3>
-          </div>
-          <i class="material-icons title-next">arrow_forward_ios</i>
-        </div>
         <div class="header-user">
           <div class="user-drop-button">
             <span class="user-username large text-bold"><%= username %></span>
@@ -44,11 +36,12 @@
               <img class="user-imageurl" src="<%= profileImage %>" alt="user profile image" />
             </div>
           </div>
-          <ul class="user-drop-content hidden">
+          <ul class="user-drop-content hidden text-center">
             <a href="/event/list"><li class="text-bold">내가 생성한 이벤트</li></a
             ><a href="/logout"><li class="text-bold">로그아웃</li></a>
           </ul>
         </div>
+        <%- defineContent('headerTitle') %>
       </header>
       <nav>
         <div class="navbar">
@@ -84,7 +77,7 @@
               </svg>
             </div>
           </div>
-          <div class="navbar-category small">
+          <div class="navbar-category text-center small">
             <input type="checkbox" id="category-lecture" checked />
             <input type="checkbox" id="category-exam" checked />
             <input type="checkbox" id="category-contest" checked />
@@ -92,23 +85,23 @@
             <input type="checkbox" id="category-community" checked />
             <label for="category-lecture" name="lecture" class="lecture category-item">
               <i class="material-icons-outlined"> done </i>
-              <div>특강</div>
+              <div class="text-left">특강</div>
             </label>
             <label for="category-exam" class="exam category-item">
               <i class="material-icons-outlined"> done </i>
-              <div>시험</div>
+              <div class="text-left">시험</div>
             </label>
             <label for="category-contest" class="contest category-item">
               <i class="material-icons-outlined"> done </i>
-              <div>해커톤 / 공모전</div>
+              <div class="text-left">해커톤 / 공모전</div>
             </label>
             <label for="category-conference" class="conference category-item">
               <i class="material-icons-outlined"> done </i>
-              <div>세미나 / 컨퍼런스</div></label
+              <div class="text-left">세미나 / 컨퍼런스</div></label
             >
             <label for="category-community" class="community category-item">
               <i class="material-icons-outlined"> done </i>
-              <div>커뮤니티</div></label
+              <div class="text-left">커뮤니티</div></label
             >
           </div>
         </div>
@@ -117,13 +110,13 @@
         <%- content %><%- defineContent('eventForm') %><%- defineContent('eventDetails') %>
       </main>
       <footer class="footer">
-        <p class="footer-developers small">
+        <p class="footer-developers small text-center">
           <a href="https://github.com/42ghan" target="_blank">ghan</a> &nbsp|&nbsp
           <a href="https://github.com/jis-kim" target="_blank">jiskim</a> &nbsp|&nbsp
           <a href="https://github.com/sehhong3317" target="_blank">sehhong</a> &nbsp|&nbsp
           <a href="https://github.com/yongjulejule" target="_blank">yongjule</a>
         </p>
-        <p class="footer-copyright small">© 2021 42 Seoul, Innovation Academy</p>
+        <p class="footer-copyright small text-center">© 2021 42 Seoul, Innovation Academy</p>
       </footer>
     </div>
   </body>

@@ -52,7 +52,9 @@ function createEventListElement(eventListInfoDiv, item, isOutdated) {
       isOutdated === true ? ['eventlist-list', 'date-outdated'] : ['eventlist-list']
     )
   );
-  eventContentDiv.appendChild(createElementAddClass('div', ['list-category', `${item.category}`]));
+  eventContentDiv.appendChild(
+    createElementAddClass('div', ['list-category', `category-${item.category}`])
+  );
 
   const eventTitleAnchor = eventContentDiv.appendChild(
     createElementAddClass('a', ['list-content-anchor'])
@@ -96,6 +98,10 @@ async function generateEventList() {
   const today = getFullDate(new Date(Date.now()).getTime());
   const eventDates = [];
   let eventListInfoDiv = null;
+
+  document.querySelector('nav').classList.add('hidden');
+  document.querySelector('.layout').style.gridTemplateRows = '70px 1fr 60px';
+  document.querySelector('.main').style.height = 'calc(100vh - 70px)';
 
   // 생성해야 하는 날짜들을 eventDates 배열에 push
   events.forEach(item => {

@@ -42,14 +42,16 @@ async function setEventDetails(eventId) {
       picElement.style.display = 'none';
     }
 
-    document.querySelector(
-      '.details-topic'
-    ).innerHTML = `<div class="details-topic-label text-bold">주제</div>${topic}`;
+    document.querySelector('.details-topic').innerHTML =
+      '<div class="details-topic-label text-bold">주제</div>' +
+      `<div class="details-topic-content">${topic}</div>`;
 
     // details 내용이 있냐 없냐에 따라 div 추가 / 제거
     const detailsElement = document.querySelector('.details-details');
     if (details !== '' && details !== null) {
-      detailsElement.innerHTML = `<div class="details-details-label text-bold">상세정보</div>${details}`;
+      detailsElement.innerHTML =
+        '<div class="details-details-label text-bold">상세정보</div>' +
+        `<div class="details-details-content">${details}</div>`;
       detailsElement.style.display = 'grid';
     } else {
       detailsElement.innerHTML = '';
@@ -77,7 +79,8 @@ export default async function clickEventDetails() {
       setEventDetails(eventId);
 
       /**  상세보기에 event-(id)를 id로 넣어줌
-      (나중에 my_event post할때 event id 필요) */
+       * (나중에 my_event post할때 event id 필요)
+       */
       [detailElement.id] = event.classList;
       detailElement.style.display = 'grid';
     });

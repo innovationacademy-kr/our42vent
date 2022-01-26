@@ -1,9 +1,11 @@
 .header {
   background: var(--header_bg);
   display: grid;
-  grid-template-columns: minmax(120px, 10%) 1fr 220px;
+  grid-template-columns: 168px 220px;
   height: 70px;
+  justify-content: space-between;
   place-items: center;
+  position: relative;
 }
 
 /* SECTION: 로고 */
@@ -19,7 +21,11 @@
   color: var(--white);
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 0%);
+  width: 300px;
 }
 
 .header-title > .material-icons {
@@ -27,13 +33,8 @@
 }
 
 .header-title > .material-icons:hover {
-  cursor: pointer;
   color: var(--light_grey);
-}
-
-.title-calendar {
-  text-align: center;
-  width: 300px;
+  cursor: pointer;
 }
 
 .title-calendar > * {
@@ -68,7 +69,7 @@
   border-radius: 50%;
   display: grid;
   height: 42px;
-  margin: 0 2.5vw 0 10px;
+  margin: 0 42px 0 10px;
   overflow: hidden;
   place-items: center;
   position: relative;
@@ -91,9 +92,8 @@
   color: var(--header_bg);
   position: absolute;
   right: 0;
-  text-align: center;
   width: 200px;
-  z-index: 1;
+  z-index: 3;
 }
 
 .user-drop-content li {

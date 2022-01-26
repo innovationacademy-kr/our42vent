@@ -51,7 +51,6 @@ nav {
   overflow: auto;
   -ms-overflow-style: none; /* for ie and edge */
   scrollbar-width: none; /* for firefox */
-  text-align: center;
   width: 100%;
 }
 
@@ -91,7 +90,6 @@ nav {
 .category-item > div {
   font-size: 0.87em;
   padding: 0 0 0 10px;
-  text-align: left;
   width: 70%;
 }
 
