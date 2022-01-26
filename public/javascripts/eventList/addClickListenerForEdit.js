@@ -28,13 +28,13 @@ async function fillEventData(event) {
 // 수정한 이벤트를 DB에 업데이트
 function putEditedEventData(eventId, formData) {
   if (
-    checkByte('event-title', 256) &&
-    checkByte('event-pic', 64) &&
+    checkByte('event-title', 224) &&
+    checkByte('event-pic', 56) &&
     checkTime('event-beginat', '시작') &&
     checkTime('event-endat', '종료') &&
-    checkByte('event-location', 256) &&
-    checkByte('event-topic', 512) &&
-    checkByte('event-details', 4096)
+    checkByte('event-location', 224) &&
+    checkByte('event-topic', 480) &&
+    checkByte('event-details', 4064)
   ) {
     axios
       .put(`/event/${eventId}`, formData)
