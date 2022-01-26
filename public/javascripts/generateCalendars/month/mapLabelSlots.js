@@ -20,7 +20,6 @@ export default function mapLabelSlots(dateEventArray, dateIndex, durationHash, f
 
 // durationHash 에 없으면 해당 이벤트 초기값 설정
 function initDurationHash(beginAt, endAt, firstDate) {
-  console.log(new Date(endAt));
   const remainingDays =
     firstDate > new Date(beginAt).getTime()
       ? Math.floor((new Date(endAt).getTime() - firstDate) / 86400000) + 1
