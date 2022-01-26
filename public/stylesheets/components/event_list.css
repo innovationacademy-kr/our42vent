@@ -15,13 +15,6 @@
   display: none;
 }
 
-/* @media screen and (max-width: 1080px) {
-  .eventlist {
-    min-width: 0px;
-    width: 80%;
-  }
-} */
-
 .eventlist-info {
   display: flex;
   flex-direction: column;

@@ -4,22 +4,26 @@
   display: none;
 }
 
+.material-icons-outlined.category-scroll {
+  display: none;
+}
+
 /* SECTION : 네비바 토글 아이콘 생성 */
 
 .toggle-icon {
-  position: fixed;
   cursor: pointer;
+  position: fixed;
 }
 
 .bar-top,
 .bar-middle,
 .bar-bottom {
-  width: 35px;
-  height: 5px;
   background-color: white;
   border-radius: 10px;
+  height: 5px;
   margin: 6px 0;
   transition: 0.4s;
+  width: 35px;
 }
 
 .change .bar-top {
@@ -28,13 +32,13 @@
 }
 
 .change .bar-middle {
-  transition: 0.4s;
   opacity: 0;
+  transition: 0.4s;
 }
 
 .change .bar-bottom {
-  transition: 0.4s;
   transform: rotate(45deg) translate(-8px, -8px);
+  transition: 0.4s;
 }
 
 nav.change {
@@ -48,22 +52,23 @@ nav.change {
 
 .toggle-divider {
   border: 0px;
-  border-top: 1px solid darkgray;
+  border-top: 1px solid var(--nav_box_shadow);
   width: 80%;
 }
+
 /* SECTION : 네비바 사이드 메뉴 생성 */
 
 nav {
+  background: var(--grey);
+  color: var(--header_bg);
+  height: calc(100vh - 70px);
+  left: -203px;
   position: absolute;
   top: 70px;
-  left: -203px;
-  width: 203px;
-  height: calc(100vh - 70px);
-  z-index: 10;
-  background: var(--grey);
   transform: translateX(0px);
   transition: transform 0.4s;
-  color: var(--header_bg);
+  width: 203px;
+  z-index: 4;
 }
 
 .navbar {
@@ -81,8 +86,8 @@ nav {
 
 .navbar-tab-inactive > .category-item {
   background: var(--header_bg);
-  cursor: pointer;
   color: var(--white);
+  cursor: pointer;
   filter: contrast(1);
   transition: filter 0.2s ease-in;
   z-index: 2;
@@ -104,13 +109,13 @@ nav {
 .category-item {
   align-items: center;
   border-radius: 5px;
-  box-shadow: 2px 2px darkgray;
+  box-shadow: 2px 2px var(--nav_box_shadow);
   display: flex;
   filter: contrast(1);
   height: 30px;
   margin: 15px 0 15px 20px;
-  width: 150px;
   transition: filter 0.3s ease-in-out;
+  width: 150px;
 }
 
 .category-item:hover {

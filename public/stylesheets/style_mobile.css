@@ -11,8 +11,9 @@
 @import 'components/main.css';
 @import 'components/footer.css';
 @import 'components/login.css';
-@import 'components/event_form.css';
+@import 'components/event_form_mobile.css';
 @import 'components/event_list.css';
+@import 'components/event_details.css';
 @import 'components/month_calendar.css';
 @import 'components/nav_toggle.css';
 @import 'presets/mobile_spec.css';

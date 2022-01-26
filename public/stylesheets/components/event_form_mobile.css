@@ -1,0 +1,132 @@
+/* SECTION: 새 이벤트 생성 버튼 */
+
+/* TODO : 헤더에 심어야함 */
+.create-event-btn {
+  height: 20px;
+  margin: 0 2.5% 4em 0;
+  position: absolute;
+  width: 20px;
+}
+
+.create-event-btn:hover {
+  background: var(--turq_btn_hover);
+  cursor: pointer;
+}
+
+.create-event-icon.material-icons {
+  font-size: 20px;
+}
+
+/* SECTION: 양식 레이아웃 */
+
+.layout-form {
+  left: 0;
+  top: 0;
+}
+
+.form {
+  background: var(--grey);
+  display: grid;
+  grid-template-rows: calc(90vh - 100px) 100px;
+  height: 90vh;
+  justify-items: center;
+  width: 80%;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  height: calc(90vh - 180px);
+  margin: 40px 0 0 0;
+  overflow: auto;
+  -ms-overflow-style: none; /* for ie and edge */
+  row-gap: 10px;
+  scrollbar-width: none; /* for firefox */
+  width: 80%;
+}
+
+/* for Chrome, Safari and Opera */
+.form-content::-webkit-scrollbar {
+  display: none;
+}
+
+.form-label {
+  display: block;
+}
+
+/* SECTION: 양식 input field 별 레이아웃 */
+
+.form-content > div {
+  align-items: center;
+  display: grid;
+  grid-template-rows: 28px 1fr;
+}
+
+.form-oneline {
+  border: none;
+  height: 36px;
+}
+
+#event-topic {
+  height: 126px;
+}
+
+#event-details {
+  height: 210px;
+}
+
+#event-topic,
+#event-details {
+  border: none;
+  resize: none;
+}
+
+/* SECTION: 버튼 레이아웃 & style */
+
+.form-button {
+  align-items: center;
+  background: var(--grey);
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  width: 80%;
+}
+
+.form-button-exit {
+  background: var(--red_cancel_btn);
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  height: 50px;
+  max-width: 140px;
+}
+
+.form-button-exit:hover {
+  background: var(--red_cancel_btn_hover);
+}
+
+.form-button-edit,
+.form-button-new {
+  justify-self: right;
+}
+
+.form-button-text {
+  justify-self: right;
+  margin: 0 3px;
+}
+
+.form-button-edit,
+.form-button-new,
+.form-button-text {
+  background: var(--turq_btn);
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  height: 50px;
+  width: 140px;
+}
+
+.form-button-edit:hover,
+.form-button-new:hover,
+.form-button-text:hover {
+  background: var(--turq_btn_hover);
+}

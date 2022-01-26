@@ -114,6 +114,8 @@
   line-height: normal;
   padding: 10px 0px;
   width: 80%;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .details-pic,
