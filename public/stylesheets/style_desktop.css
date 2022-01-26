@@ -11,6 +11,7 @@
 @import 'components/main.css';
 @import 'components/footer.css';
 @import 'components/login.css';
+@import 'components/event_details.css';
 @import 'components/event_form.css';
 @import 'components/event_list.css';
 @import 'components/month_calendar.css';

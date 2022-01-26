@@ -1,5 +1,6 @@
 import fillDateEvents from './fillDateEvents.js';
 import { getParams, setYearMonth, adjustWeeks } from './monthPreset.js';
+import clickEventDetails from '../../eventDetail/clickEventDetails.js';
 import { removeNodeList } from '../../utils/domNodeUtils.js';
 
 // cli 렌더링에 필요한 날짜 & 이벤트 데이터 비동기 요청
@@ -32,6 +33,7 @@ export async function generateMonth() {
         ? new Date(year, monthIndex - 1, dateEventArray[0].date)
         : new Date(year, monthIndex, dateEventArray[0].date);
     fillDateEvents(dateEventArray, firstDate.getTime());
+    clickEventDetails();
     return [dateEventArray, firstDate.getTime()];
   } catch (err) {
     // TODO: 지워야하는 로그, 추후 적절한 에러 메시지 UI / 리다이렉션

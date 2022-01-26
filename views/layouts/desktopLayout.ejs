@@ -30,11 +30,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script defer type="module" src="/javascripts/headerUser/adjustNameSize.js"></script>
     <script defer type="module" src="/javascripts/headerUser/userDropDown.js"></script>
-    <script defer type="module" src="/javascripts/eventForm/checkTime.js"></script>
-    <script defer type="module" src="/javascripts/eventForm/clickNewEventButton.js"></script>
-    <script defer type="module" src="/javascripts/eventForm/eventFormDisplay.js"></script>
-    <script defer type="module" src="/javascripts/nav/nav.js"></script>
-    <script defer type="module" src="/javascripts/nav/toggleNav.js"></script>
     <%- defineContent('scriptFiles') %>
   </head>
   <body>
@@ -143,7 +138,9 @@
           <div class="toggle-user small"><a href="/logout">로그아웃</a></div>
         </div>
       </nav>
-      <main class="main"><%- content %><%- defineContent('eventForm') %></main>
+      <main class="main">
+        <%- content %><%- defineContent('eventForm') %><%- defineContent('eventDetails') %>
+      </main>
       <footer class="footer">
         <p class="footer-developers small">
           <a href="https://github.com/42ghan" target="_blank">ghan</a> &nbsp|&nbsp
