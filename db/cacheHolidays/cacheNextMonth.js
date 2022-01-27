@@ -1,6 +1,6 @@
 import redisClient from '../../config/createRedisClient.js';
+import getHolidays from './holidaysUtils.js';
 import localizeDateTime from '../../lib/calendar/dateTimeUtils.js';
-import getHolidays from '../../lib/calendar/holidaysUtils.js';
 import { getMonthDates } from '../../lib/calendar/monthUtils.js';
 import consoleLogger from '../../lib/consoleLogger.js';
 
