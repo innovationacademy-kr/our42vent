@@ -5,7 +5,7 @@ checkboxArray.forEach((item, index) => {
   const checkbox = item;
 
   checkbox.addEventListener('change', () => {
-    const selectedBox = document.querySelector(`.${checkbox.id.substring(9)}.category-item`);
+    const selectedBox = document.querySelector(`.${checkbox.id.substring(9)}.box-wrapper`);
     if (checkbox.checked) {
       selectedBox.innerHTML = `<i class="material-icons-outlined">done</i><div class="text-left">${categories[index]}</div>`;
     } else {
@@ -18,7 +18,6 @@ const navScrollIcon = document.querySelector('.material-icons-outlined.category-
 const navCategoryDiv = document.querySelector('.navbar-category');
 
 navScrollIcon.addEventListener('click', () => {
-  console.log(navCategoryDiv.scrollLeft);
   if (navScrollIcon.classList.toggle('flip-icon'))
     navCategoryDiv.scrollTo({
       left: navCategoryDiv.getBoundingClientRect().right,

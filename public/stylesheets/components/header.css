@@ -49,6 +49,20 @@
   line-height: 1.2em;
 }
 
+/* SECTION: Today 아이콘 */
+
+.material-icons-outlined.header-today {
+  color: var(--white);
+  cursor: pointer;
+  line-height: 70px;
+  position: absolute;
+  right: 220px;
+}
+
+.material-icons-outlined.header-today:hover {
+  color: var(--turq_btn_hover);
+}
+
 /* SECTION: 사용자 dropdown */
 
 .header-user {

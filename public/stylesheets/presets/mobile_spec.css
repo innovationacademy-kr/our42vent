@@ -1,3 +1,4 @@
+/* SECTION: 레이아웃 */
 body {
   font-size: 14px;
 }
@@ -15,7 +16,52 @@ body {
   width: 80%;
 }
 
-/* TODO : width 80% 99% 테스트 해보기 */
+/* SECTION: 헤더 */
+
+.header {
+  grid-template-columns: minmax(280px, 1fr);
+}
+
+.toggle-icon {
+  display: block;
+}
+
+.header-logo-img,
+.header-user {
+  display: none;
+}
+
+.header-title {
+  max-width: 300px;
+  width: 40%;
+}
+
+.material-icons-outlined.header-today,
+.material-icons-outlined.header-new {
+  display: block;
+  color: white;
+  font-size: 30px;
+  line-height: 70px;
+}
+
+.material-icons-outlined.header-today {
+  position: absolute;
+  right: 60px;
+}
+
+.create-event-btn {
+  position: absolute;
+  border: none;
+  background: none;
+  right: 10px;
+}
+
+.header-today:hover,
+.header-new:hover {
+  color: var(--turq_btn_hover);
+  cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
   .eventlist-list {
     align-items: center;
@@ -33,5 +79,17 @@ body {
     margin: 1px 2px;
     min-width: 12px;
     width: 12px;
+  }
+
+  .form-button {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .form-button > button {
+    min-width: 60px;
+  }
+
+  .details-content {
+    width: 95%;
   }
 }

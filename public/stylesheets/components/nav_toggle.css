@@ -13,7 +13,8 @@
 .toggle-icon {
   cursor: pointer;
   display: block;
-  position: fixed;
+  left: 20px;
+  position: absolute;
   z-index: 2;
 }
 
@@ -77,16 +78,16 @@ nav {
   display: flex;
   flex-direction: column;
   padding: 20px 0 0 0;
-  position: sticky;
+  position: absolute;
 }
 
-.navbar-tab-active > .category-item {
+.navbar-tab-active > .box-wrapper {
   background: var(--white);
   cursor: pointer;
   z-index: 3;
 }
 
-.navbar-tab-inactive > .category-item {
+.navbar-tab-inactive > .box-wrapper {
   background: var(--header_bg);
   color: var(--white);
   cursor: pointer;
@@ -108,7 +109,7 @@ nav {
   cursor: pointer;
 }
 
-.category-item {
+.box-wrapper {
   align-items: center;
   border-radius: 5px;
   box-shadow: 2px 2px var(--nav_box_shadow);
@@ -120,19 +121,17 @@ nav {
   width: 150px;
 }
 
-.category-item:hover {
+.box-wrapper:hover {
   filter: contrast(1.2);
   transition: filter 0.3s ease-in-out;
 }
 
-.category-item > div {
-  font-size: 0.87em;
+.toggle-all-event,
+.toggle-my-event {
   padding: 0 0 0 10px;
-  text-align: left;
-  width: 70%;
 }
 
-.category-item > i {
+.box-wrapper > i {
   background: var(--white);
   display: block;
   font-size: 1em;

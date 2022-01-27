@@ -13,7 +13,7 @@
 @import 'components/login.css';
 
 @import 'components/popups/event_form_mobile.css';
-@import 'components/popups/event_details.css';
+@import 'components/popups/event_details_mobile.css';
 @import 'components/contents/main.css';
 @import 'components/contents/event_list.css';
 @import 'components/contents/month_calendar.css';

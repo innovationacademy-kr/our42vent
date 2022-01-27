@@ -1,20 +1,7 @@
-/* SECTION: 새 이벤트 생성 버튼 */
+/* SECTION: 새 이벤트 생성 버튼 (헤더에 위치)*/
 
-/* TODO : 헤더에 심어야함 */
-.create-event-btn {
-  height: 20px;
-  margin: 0 2.5% 4em 0;
-  position: absolute;
-  width: 20px;
-}
-
-.create-event-btn:hover {
-  background: var(--turq_btn_hover);
-  cursor: pointer;
-}
-
-.create-event-icon.material-icons {
-  font-size: 20px;
+.main > .create-event-btn {
+  display: none;
 }
 
 /* SECTION: 양식 레이아웃 */
@@ -27,7 +14,7 @@
 .form {
   background: var(--grey);
   display: grid;
-  grid-template-rows: calc(90vh - 100px) 100px;
+  grid-template-rows: auto minmax(70px, 10vh);
   height: 90vh;
   justify-items: center;
   width: 80%;
@@ -36,8 +23,8 @@
 .form-content {
   display: flex;
   flex-direction: column;
-  height: calc(90vh - 180px);
-  margin: 40px 0 0 0;
+  height: calc(100% - 10vh);
+  margin: 30px 0 10px 0;
   overflow: auto;
   -ms-overflow-style: none; /* for ie and edge */
   row-gap: 10px;
@@ -86,9 +73,12 @@
 .form-button {
   align-items: center;
   background: var(--grey);
+  column-gap: 1em;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
+  margin: 0 0 20px 0;
   width: 80%;
+  word-break: keep-all;
 }
 
 .form-button-exit {
@@ -97,7 +87,7 @@
   color: var(--white);
   cursor: pointer;
   height: 50px;
-  max-width: 140px;
+  max-width: 120px;
 }
 
 .form-button-exit:hover {
@@ -106,12 +96,13 @@
 
 .form-button-edit,
 .form-button-new {
-  justify-self: right;
+  max-width: 150px;
+  min-width: 120px;
 }
 
 .form-button-text {
-  justify-self: right;
-  margin: 0 3px;
+  max-width: 150px;
+  min-width: 120px;
 }
 
 .form-button-edit,
@@ -122,7 +113,6 @@
   color: var(--white);
   cursor: pointer;
   height: 50px;
-  width: 140px;
 }
 
 .form-button-edit:hover,

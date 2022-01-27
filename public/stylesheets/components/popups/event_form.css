@@ -1,4 +1,7 @@
 /* SECTION: 새 이벤트 생성 버튼 */
+.header > .create-event-btn {
+  display: none;
+}
 
 .create-event-btn {
   background: var(--turq_btn);

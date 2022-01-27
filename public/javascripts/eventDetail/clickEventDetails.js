@@ -52,7 +52,7 @@ async function setEventDetails(eventId) {
       detailsElement.innerHTML =
         '<div class="details-details-label text-bold">상세정보</div>' +
         `<div class="details-details-content">${details}</div>`;
-      detailsElement.style.display = 'grid';
+      detailsElement.style.display = 'flex';
     } else {
       detailsElement.innerHTML = '';
       detailsElement.style.display = 'none';
