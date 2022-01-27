@@ -1,8 +1,11 @@
 import dotenv from 'dotenv';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { createClient } from 'redis';
 import consoleLogger from '../lib/consoleLogger.js';
 
-dotenv.config({ path: '/Users/danielgyoungminhan/dev/our42vent/.env' });
+const path = dirname(fileURLToPath(import.meta.url)).replace('config', '.env');
+dotenv.config({ path });
 
 const client = createClient({
   host: process.env.REDIS_HOST,
