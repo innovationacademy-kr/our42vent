@@ -1,6 +1,7 @@
 const toggleDiv = document.querySelector('.toggle-icon');
 const navTag = document.querySelector('nav');
 const mainTag = document.querySelector('main');
+console.log(toggleDiv, navTag, mainTag);
 
 toggleDiv.addEventListener('click', () => {
   toggleDiv.classList.toggle('change');
