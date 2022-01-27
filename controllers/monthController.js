@@ -1,10 +1,5 @@
 import cacheMonthData from '../lib/calendar/cacheMonthData.js';
-import {
-  checkYearMonthRange,
-  getMonthDates,
-  localizeEventTime,
-  mapDayEvent,
-} from '../lib/calendar/monthUtils.js';
+import { checkYearMonthRange, getMonthDates, mapDayEvent } from '../lib/calendar/monthUtils.js';
 import consoleLogger from '../lib/consoleLogger.js';
 import { selectMonthEvents } from '../models/accessEventTable.js';
 
@@ -22,7 +17,6 @@ export default async function monthController(req, res) {
       cacheMonthData(cacheKey, year, month, dates),
       selectMonthEvents(dates[0].toISOString(), dates.at(-1).toISOString()),
     ]);
-    localizeEventTime(monthEventsArray);
     const dateEventArray = mapDayEvent(dates, monthEventsArray, holidays);
 
     return res.json({

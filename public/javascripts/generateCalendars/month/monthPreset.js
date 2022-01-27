@@ -1,9 +1,8 @@
 import { createElementAddClass } from '../../utils/domNodeUtils.js';
 
 // 주 수에 따라 달력 row 생성
-export function adjustWeeks(noWeeks) {
-  const calendarMonth = document.querySelector('.calendar-month');
-
+export function adjustWeeks(noWeeks, calendarSection) {
+  const calendarMonth = calendarSection;
   if (noWeeks === 5) {
     calendarMonth.style.gridTemplate =
       '20px repeat(5, calc(calc(100% - 20px) / 5)) / repeat(7, calc(100% / 7))';
@@ -19,20 +18,34 @@ export function adjustWeeks(noWeeks) {
     const dateDiv = createElementAddClass('div', ['month-date'], null);
     calendarMonth.appendChild(dateDiv);
   }
+  calendarMonth.style.borderLeft = 'var(--calendar_border) solid 1px';
+  calendarMonth.style.borderTop = 'var(--calendar_border) solid 1px';
+}
+
+// 요일 표시
+export function fillDateTitles(calendarSection) {
+  const calendarMonth = calendarSection;
+  calendarMonth.innerHTML =
+    '<div class="day-title text-center">일</div><div class="day-title text-center">월</div>' +
+    '<div class="day-title text-center">화</div><div class="day-title text-center">수</div>' +
+    '<div class="day-title text-center">목</div><div class="day-title text-center">금</div>' +
+    '<div class="day-title text-center">토</div>';
 }
 
 // server 에 요청할 year & month 파싱
 export function getParams(titleYear, titleMonth) {
   let yearParam = null;
   let monthParam = null;
+  const yearMonth = sessionStorage.getItem('yearMonth');
 
-  if (titleMonth.id === '' || titleYear.id === '') {
+  if (!yearMonth) {
     const now = new Date();
     yearParam = now.getFullYear();
     monthParam = now.getMonth();
+    sessionStorage.setItem('yearMonth', `${yearParam}${monthParam}`);
   } else {
-    yearParam = titleYear.id.substring(5);
-    monthParam = titleMonth.id.substring(6);
+    yearParam = yearMonth.slice(0, 4);
+    monthParam = yearMonth.substring(4);
   }
   return { yearParam, monthParam };
 }
@@ -42,24 +55,6 @@ export function setYearMonth(year, monthIndex) {
   const titleYear = document.querySelector('.title-calendar-year');
   const titleMonth = document.querySelector('.title-calendar-month');
 
-  const monthWords = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-
-  titleMonth.textContent = monthWords[monthIndex];
-  titleMonth.id = `month-${monthIndex}`;
-
+  titleMonth.textContent = `${monthIndex + 1}월`;
   titleYear.textContent = year;
-  titleYear.id = `year-${year}`;
 }

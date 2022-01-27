@@ -1,15 +1,24 @@
 <%- contentFor('scriptFiles') %>
+<script defer type="module" src="/javascripts/nav/nav.js"></script>
 <script defer type="module" src="/javascripts/generateCalendars/month/generateMonth.js"></script>
 <script defer type="module" src="/javascripts/generateCalendars/month/changeMonth.js"></script>
 <script defer type="module" src="/javascripts/generateCalendars/month/resizeHandler.js"></script>
+<script defer type="module" src="/javascripts/eventDetail/clickEventDetails.js"></script>
+<script defer type="module" src="/javascripts/eventDetail/clickExitButton.js"></script>
+<script defer type="module" src="javascripts/eventDetail/clickMyEventButton.js"></script>
+<script defer type="module" src="/javascripts/eventForm/checkTime.js"></script>
+<script defer type="module" src="/javascripts/eventForm/clickNewEventButton.js"></script>
+<script defer type="module" src="/javascripts/eventForm/eventFormDisplay.js"></script>
+<%- contentFor('headerTitle') %>
+<div class="header-title">
+  <i class="material-icons title-prev">arrow_back_ios_new</i>
+  <div class="title-calendar text-center">
+    <h2 class="title-calendar-month xlarge"></h2>
+    <h3 class="title-calendar-year"></h3>
+  </div>
+  <i class="material-icons title-next">arrow_forward_ios</i>
+</div>
 <%- contentFor('content') %>
-<section class="calendar-month">
-  <div class="day-title">SUN</div>
-  <div class="day-title">MON</div>
-  <div class="day-title">TUE</div>
-  <div class="day-title">WED</div>
-  <div class="day-title">THU</div>
-  <div class="day-title">FRI</div>
-  <div class="day-title">SAT</div>
-</section>
-<%- contentFor('eventForm') %> <%- include('components/eventForm') %>
+<section class="calendar-month"></section>
+<%- contentFor('eventForm') %> <%- include('components/eventForm') %> <%- contentFor('eventDetails')
+%> <%- include('components/eventDetails') %>

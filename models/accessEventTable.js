@@ -6,11 +6,12 @@ export async function selectMonthEvents(firstDate, lastDate) {
   try {
     const sql =
       'SELECT id, title, beginAt, endAt, category FROM event ' +
-      'WHERE beginAt >= ? AND beginAt < ? OR beginAt < ? AND endAt > ? ORDER BY beginAt';
+      'WHERE (beginAt >= ? AND beginAt < ?) OR (beginAt < ? AND endAt > ?) ORDER BY beginAt';
     const [rows] = await pool.execute(sql, [firstDate, lastDate, firstDate, firstDate]);
-    consoleLogger.info('SELECT MONTH EVENT : query success : ', rows);
+    consoleLogger.info('SELECT MONTH EVENT : query success');
     return rows;
   } catch (err) {
+    // NOTE : error handling 이상하게 된 거 알고 있습니다. caching 브랜치에서 수정해둬서 다음 PR 에 수정해서 적용하겠습니다
     consoleLogger.error(`SELECT MONTH EVENT : query error : ${err}`);
     return err;
   }

@@ -2,7 +2,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 200px);
+  height: calc(100% - 80px);
   min-width: 864px;
   overflow: auto;
   -ms-overflow-style: none; /* for ie and edge */
