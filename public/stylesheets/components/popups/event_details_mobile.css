@@ -15,8 +15,8 @@
   background: var(--white);
   display: grid;
   max-height: 98%;
-  width: 60%;
   max-width: 432px;
+  width: 60%;
 }
 
 .category-button {
@@ -40,10 +40,10 @@
 
 .details-title {
   line-height: 1.25em;
-  padding: 1% 2.5em;
   max-height: 3.75em;
   overflow: auto;
   -ms-overflow-style: none;
+  padding: 1% 2.5em;
   scrollbar-width: none;
 }
 
@@ -105,8 +105,8 @@
   background: var(--white);
   display: flex;
   flex-direction: column;
-  min-height: 80px;
   height: 80%;
+  min-height: 80px;
   padding: 10px 0;
   place-items: center;
   white-space: pre-wrap;
@@ -165,9 +165,9 @@
 .notification-button {
   align-items: flex-start;
   display: flex;
+  height: 50px;
   justify-content: space-between;
   justify-self: center;
-  height: 50px;
   width: 80%;
   margin-bottom: 20px;
 }

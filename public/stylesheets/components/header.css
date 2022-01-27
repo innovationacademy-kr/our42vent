@@ -1,4 +1,4 @@
-/* SECTION: 데스크톱에서 필요 없는 요소 삭제   */
+/* SECTION: 모바일에서만 필요한 요소 비활성화 */
 
 .toggle-icon {
   display: none;
