@@ -13,8 +13,12 @@ function tabListener() {
   }
   activeInactive[0].classList.replace('navbar-tab-inactive', 'navbar-tab-active');
   activeInactive[1].classList.replace('navbar-tab-active', 'navbar-tab-inactive');
-  activeInactive[0].firstElementChild.classList.replace('navbar-tab-inactive', 'navbar-tab-active');
-  activeInactive[1].firstElementChild.classList.replace('navbar-tab-active', 'navbar-tab-inactive');
+  activeInactive[0]
+    .querySelector('svg')
+    .classList.replace('navbar-tab-inactive', 'navbar-tab-active');
+  activeInactive[1]
+    .querySelector('svg')
+    .classList.replace('navbar-tab-active', 'navbar-tab-inactive');
   renderInfo[0] = generateMonth();
 }
 

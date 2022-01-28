@@ -26,7 +26,7 @@ function initCheckboxes() {
   checkboxArray.forEach((item, index) => {
     const checkbox = item;
     const { checked, name } = checkbox;
-    const selectedBox = checkbox.parentElement.querySelector(`.${name}.category-item`);
+    const selectedBox = checkbox.parentElement.querySelector(`.${name}.box-wrapper`);
     if (!checked)
       selectedBox.innerHTML = `<i></i><div class="text-left">${categories[index]}</div>`;
   });

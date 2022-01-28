@@ -6,9 +6,10 @@ const checkboxArray = document.querySelectorAll('input[type=checkbox]');
 checkboxArray.forEach((item, index) => {
   const checkbox = item;
   const { name } = checkbox;
-  const selectedBox = checkbox.parentElement.querySelector(`.${name}.category-item`);
+  const selectedBox = checkbox.parentElement.querySelector(`.${name}.box-wrapper`);
 
   checkbox.addEventListener('change', () => {
+    const selectedBox = document.querySelector(`.${checkbox.id.substring(9)}.box-wrapper`);
     if (checkbox.checked) {
       const curCategories = sessionStorage.getItem('categories');
       sessionStorage.setItem('categories', `${curCategories}-${name}`);
@@ -20,4 +21,21 @@ checkboxArray.forEach((item, index) => {
     }
     drawMonth();
   });
+});
+
+const navScrollIcon = document.querySelector('.material-icons-outlined.category-scroll');
+const navCategoryDiv = document.querySelector('.navbar-category');
+
+navScrollIcon.addEventListener('click', () => {
+  if (navScrollIcon.classList.toggle('flip-icon'))
+    navCategoryDiv.scrollTo({
+      left: navCategoryDiv.getBoundingClientRect().right,
+      behavior: 'smooth',
+    });
+  else {
+    navCategoryDiv.scrollTo({
+      left: 0,
+      behavior: 'smooth',
+    });
+  }
 });
