@@ -103,7 +103,7 @@ nav {
 .navbar {
   display: flex;
   flex-direction: column;
-  padding: 20px 0 0 0;
+  padding: 20px 0 0;
   position: absolute;
 }
 
@@ -168,7 +168,6 @@ nav {
 }
 
 .box-wrapper > div {
-  font-size: 0.87em;
   padding: 0 0 0 10px;
   width: 70%;
 }

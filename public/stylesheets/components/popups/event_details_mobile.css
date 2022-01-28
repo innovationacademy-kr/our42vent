@@ -53,7 +53,7 @@
 
 .duration-location {
   align-items: center;
-  background: #01a2a4;
+  background: var(--turq_detail_title);
   color: var(--white);
   display: flex;
   flex-wrap: wrap;
@@ -74,7 +74,7 @@
 
 .details-location {
   line-height: 18px;
-  padding: 0 10% 0 10%;
+  padding: 0 10%;
 }
 
 .details-exit-button {
@@ -120,7 +120,7 @@
 .details-topic,
 .details-details {
   line-height: normal;
-  padding: 5 0 10px 0px;
+  padding: 5px 0 10px 0px;
   width: 80%;
   white-space: pre-wrap;
   word-break: break-word;
@@ -170,8 +170,8 @@
   height: 50px;
   justify-content: space-between;
   justify-self: center;
+  margin: 0 0 20px;
   width: 80%;
-  margin-bottom: 20px;
 }
 
 .details-myevent-button {

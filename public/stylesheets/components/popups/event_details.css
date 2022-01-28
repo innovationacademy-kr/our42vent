@@ -24,7 +24,7 @@
 
 .duration-location {
   align-items: center;
-  background: #01a2a4;
+  background: var(--turq_detail_title);
   color: var(--white);
   display: flex;
   flex-wrap: wrap;
@@ -44,7 +44,7 @@
 }
 
 .details-location {
-  padding: 10px 10% 0 10%;
+  padding: 10px 10%;
 }
 
 .details-exit-button {

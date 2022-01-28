@@ -17,7 +17,9 @@
   --grey_outdated: #848484;
   --sunday_red: #f00;
   --tab_inactive: #f5dadb;
-  --nav_box_shadow: darkgray;
+  --nav_box_shadow: #a9a9a9;
+  --gray_nav_scroll: #808080;
+  --turq_detail_title: #01a2a4;
 
   /* 카테고리 색 */
   --category_lecture: #cfbaf0;

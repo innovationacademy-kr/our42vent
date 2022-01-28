@@ -124,7 +124,7 @@ nav {
 }
 
 .material-icons-outlined.category-scroll {
-  color: gray;
+  color: var(--gray_nav_scroll);
   cursor: pointer;
   position: absolute;
   right: 10%;
