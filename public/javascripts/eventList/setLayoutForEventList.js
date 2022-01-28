@@ -6,6 +6,9 @@ import generateEventList from './generateEventList.js';
 function fixScrollToNextEvent() {
   const eventListSection = document.querySelector('.eventlist');
   const outdatedDiv = document.querySelectorAll('.date-outdated');
+
+  if (outdatedDiv.length === 0) return;
+
   const lastOutdatedDivPosition =
     outdatedDiv[outdatedDiv.length - 1].getBoundingClientRect().bottom -
     eventListSection.getBoundingClientRect().top +
