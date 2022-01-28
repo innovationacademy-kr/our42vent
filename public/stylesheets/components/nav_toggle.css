@@ -1,9 +1,6 @@
 /* SECTION : 데스크톱에서만 필요한 요소 비활성화 */
 
-.navbar-tab > div > svg {
-  display: none;
-}
-
+.navbar-tab > div > svg,
 .material-icons-outlined.category-scroll {
   display: none;
 }
