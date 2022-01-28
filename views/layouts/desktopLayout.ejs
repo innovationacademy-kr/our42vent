@@ -74,7 +74,11 @@
           <div class="navbar-tab small">
             <div class="navbar-tab-all navbar-tab-active">
               <div class="navbar-toggle-all box-wrapper small">
+                <% if (referrer === '/event/list') { %>
                 <a href="/"> <div class="toggle-all-event text-left">모든 이벤트</div></a>
+                <% } else if (referrer === '/') {%>
+                <div class="toggle-all-event text-left">모든 이벤트</div>
+                <%}%>
               </div>
               <svg
                 width="200"
