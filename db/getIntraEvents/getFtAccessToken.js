@@ -1,8 +1,5 @@
 import axios from 'axios';
-import dotenv from 'dotenv';
 import consoleLogger from '../../lib/consoleLogger.js';
-
-dotenv.config({ path: 'project경로/.env' });
 
 export default async function getFtAccessToken(redisClient) {
   try {
