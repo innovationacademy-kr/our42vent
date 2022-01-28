@@ -6,21 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="/assets/favicons/our42vent.ico" rel="short icon" type="image/x-icon" />
     <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/style_desktop.css" />
+    <link
+      rel="stylesheet"
+      media="screen and (max-width: 1080px) "
+      href="/stylesheets/style_mobile.css"
+    />
+    <link
+      rel="stylesheet"
+      media="screen and (min-width: 1081px) "
+      href="/stylesheets/style_desktop.css"
+    />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+    />
+    <link
+      rel="stylesheet"
+      media="screen"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script defer type="module" src="/javascripts/headerUser/adjustNameSize.js"></script>
     <script defer type="module" src="/javascripts/headerUser/userDropDown.js"></script>
+    <script defer type="module" src="/javascripts/nav/navToggle.js"></script>
     <%- defineContent('scriptFiles') %>
   </head>
   <body>
     <div class="layout">
       <header class="header">
+        <div class="toggle-icon">
+          <div class="bar-top"></div>
+          <div class="bar-middle"></div>
+          <div class="bar-bottom"></div>
+          <div class="bar-cancel-top"></div>
+          <div class="bar-cancel-bottom"></div>
+        </div>
         <div class="header-logo">
           <a href="/"
             ><img
@@ -29,6 +51,10 @@
               alt="42 logo"
           /></a>
         </div>
+        <i class="material-icons-outlined header-today"> today </i>
+        <button class="create-event-btn">
+          <i class="material-icons-outlined header-new">add</i>
+        </button>
         <div class="header-user">
           <div class="user-drop-button">
             <span class="user-username large text-bold"><%= username %></span>
@@ -43,10 +69,13 @@
         </div>
         <%- defineContent('headerTitle') %>
       </header>
-      <nav>
+      <nav class="">
         <div class="navbar">
           <div class="navbar-tab small">
             <div class="navbar-tab-all navbar-tab-active">
+              <div class="navbar-toggle-all box-wrapper small">
+                <a href="/"> <div class="toggle-all-event text-left">모든 이벤트</div></a>
+              </div>
               <svg
                 width="200"
                 height="38"
@@ -62,6 +91,9 @@
               </svg>
             </div>
             <div class="navbar-tab-my navbar-tab-inactive">
+              <div class="navbar-toggle-my box-wrapper small">
+                <div class="toggle-my-event text-left">내가 등록한 이벤트</div>
+              </div>
               <svg
                 width="200"
                 height="38"
@@ -73,37 +105,42 @@
                   d="M18.8806 27.5716C16.0471 33.5 9.52797 37 0 37L200 36.9995C190.472 36.9995 183.953 33.4996 181.119 27.5711C178.286 21.6426 178.286 15.6432 176.105 8.57133C173.923 1.4995 169.41 0.999508 163.48 1L36.5198 1.00049C30.5898 0.999996 26.0766 1.49999 23.8954 8.57182C21.7142 15.6436 21.7142 21.6431 18.8806 27.5716Z"
                   stroke="none"
                 />
-                <text x="50" y="24" fill="black">내가 선택한 이벤트</text>
+                <text x="50" y="24" fill="black">내가 등록한 이벤트</text>
               </svg>
             </div>
           </div>
+          <hr class="toggle-divider" />
           <div class="navbar-category text-center small">
             <input type="checkbox" id="category-lecture" checked />
             <input type="checkbox" id="category-exam" checked />
             <input type="checkbox" id="category-contest" checked />
             <input type="checkbox" id="category-conference" checked />
             <input type="checkbox" id="category-community" checked />
-            <label for="category-lecture" name="lecture" class="lecture category-item">
+            <label for="category-lecture" name="lecture" class="lecture box-wrapper small">
               <i class="material-icons-outlined"> done </i>
               <div class="text-left">특강</div>
             </label>
-            <label for="category-exam" class="exam category-item">
+            <label for="category-exam" class="exam box-wrapper small">
               <i class="material-icons-outlined"> done </i>
               <div class="text-left">시험</div>
             </label>
-            <label for="category-contest" class="contest category-item">
+            <label for="category-contest" class="contest box-wrapper small">
               <i class="material-icons-outlined"> done </i>
               <div class="text-left">해커톤 / 공모전</div>
             </label>
-            <label for="category-conference" class="conference category-item">
+            <label for="category-conference" class="conference box-wrapper small">
               <i class="material-icons-outlined"> done </i>
               <div class="text-left">세미나 / 컨퍼런스</div></label
             >
-            <label for="category-community" class="community category-item">
+            <label for="category-community" class="community box-wrapper small">
               <i class="material-icons-outlined"> done </i>
               <div class="text-left">커뮤니티</div></label
             >
+            <i class="material-icons-outlined category-scroll"> keyboard_double_arrow_right </i>
           </div>
+          <hr class="toggle-divider" />
+          <div class="toggle-user small"><a href="/event/list">내가 생성한 이벤트</a></div>
+          <div class="toggle-user small"><a href="/logout">로그아웃</a></div>
         </div>
       </nav>
       <main class="main">

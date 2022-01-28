@@ -1,5 +1,3 @@
-import addClickListenerForDelete from './addClickListenerForDelete.js';
-import addClickListenerForEdit from './addClickListenerForEdit.js';
 import { createElementAddClass } from '../utils/domNodeUtils.js';
 import { getFullDate, getFullTime, getDateGap, isBtwnDates } from '../utils/eventListUtils.js';
 
@@ -61,15 +59,12 @@ function createEventListElement(eventListInfoDiv, item, isOutdated) {
   );
   eventTitleAnchor.href = '#';
   eventTitleAnchor.appendChild(createElementAddClass('div', ['list-content-title'], item.title));
-  const eventContentInfoDiv = eventContentDiv.appendChild(
-    createElementAddClass('div', ['list-content-info'])
-  );
 
-  eventContentInfoDiv.appendChild(
+  eventContentDiv.appendChild(
     createElementAddClass('div', ['list-content-time'])
   ).innerHTML = `<i class=material-icons-outlined>schedule</i> ${beginAt} ~ ${endAt}`;
 
-  eventContentInfoDiv.appendChild(
+  eventContentDiv.appendChild(
     createElementAddClass('div', ['list-content-location'])
   ).innerHTML = `<i class=material-icons-outlined>location_on</i>${item.location}`;
 
@@ -92,16 +87,12 @@ function fillEventDates(eventDates, event) {
 }
 
 // 이벤트들을 받아와서 파싱 후 DOM element 생성
-async function generateEventList() {
+export default async function generateEventList() {
   const events = await getEventList();
 
   const today = getFullDate(new Date(Date.now()).getTime());
   const eventDates = [];
   let eventListInfoDiv = null;
-
-  document.querySelector('nav').classList.add('hidden');
-  document.querySelector('.layout').style.gridTemplateRows = '70px 1fr 60px';
-  document.querySelector('.main').style.height = 'calc(100vh - 70px)';
 
   // 생성해야 하는 날짜들을 eventDates 배열에 push
   events.forEach(item => {
@@ -117,27 +108,3 @@ async function generateEventList() {
     });
   });
 }
-
-// 스크롤을 오늘 이후 이벤트에 고정
-function fixScrollToNextEvent() {
-  const eventListSection = document.querySelector('.eventlist');
-  const outdatedDiv = document.querySelectorAll('.date-outdated');
-  const lastOutdatedDivPosition =
-    outdatedDiv[outdatedDiv.length - 1].getBoundingClientRect().bottom -
-    eventListSection.getBoundingClientRect().top +
-    40;
-  eventListSection.scrollTo(0, lastOutdatedDivPosition);
-}
-
-// TODO : 적절하게 에러 핸들링을 해줘야함
-generateEventList()
-  .then(() => {
-    fixScrollToNextEvent();
-    addClickListenerForDelete();
-    addClickListenerForEdit();
-  })
-  .catch(err => {
-    //   NOTE : 개발 단계에선 console.error가 필요
-    console.error(err.stack);
-    window.location.replace('/');
-  });

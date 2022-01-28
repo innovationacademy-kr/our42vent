@@ -15,13 +15,6 @@
   display: none;
 }
 
-@media screen and (max-width: 1080px) {
-  .eventlist {
-    min-width: 0px;
-    width: 80%;
-  }
-}
-
 .eventlist-info {
   display: flex;
   flex-direction: column;
@@ -48,41 +41,21 @@
 .eventlist-list {
   align-items: center;
   display: grid;
-  grid-template-columns: 16px calc(55% - 66px) 45% 50px;
-  grid-template-areas: 'a b c e';
+  grid-template-areas: 'category title time location icon';
+  grid-template-columns: 16px calc(55% - 66px) 22.5% 22.5% 50px;
   margin: 0 0 5px 0;
 }
 
 .list-category {
-  grid-area: a;
+  grid-area: category;
   height: 28px;
   margin: 1px 2px;
   min-width: 12px;
   width: 12px;
 }
 
-@media screen and (max-width: 768px) {
-  .eventlist-list {
-    align-items: center;
-    display: grid;
-    grid-template-areas:
-      'a b e'
-      'a c e';
-    grid-template-columns: 16px calc(100% - 66px) 50px;
-    margin: 0 0 12px 0;
-  }
-
-  .list-category {
-    grid-area: a;
-    height: 42px;
-    margin: 1px 2px;
-    min-width: 12px;
-    width: 12px;
-  }
-}
-
 .list-content-anchor {
-  grid-area: b;
+  grid-area: title;
   padding: 0 3px;
 }
 
@@ -92,15 +65,8 @@
   white-space: nowrap;
 }
 
-.list-content-info {
-  align-content: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  grid-area: c;
-}
-
 .list-content-time {
+  grid-area: time;
   padding: 0 3px 0 0;
   white-space: nowrap;
 }
@@ -111,6 +77,7 @@
 }
 
 .list-content-location {
+  grid-area: location;
   overflow: hidden;
   padding: 0 20px;
   text-overflow: ellipsis;
@@ -123,7 +90,7 @@
 }
 
 .list-content-icon {
-  grid-area: e;
+  grid-area: icon;
   width: 50px;
 }
 
