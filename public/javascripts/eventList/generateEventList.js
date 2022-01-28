@@ -97,7 +97,7 @@ function showNoEventMessage() {
 export default async function generateEventList() {
   const events = await getEventList();
 
-  if (events.length === 0) showNoEventMessage();
+  if (!events.length) showNoEventMessage();
   else {
     const today = getFullDate(new Date(Date.now()).getTime());
     const eventDates = [];
