@@ -26,13 +26,13 @@ export async function selectMyEvents(userId, firstDate, lastDate) {
   return rows;
 }
 
-export async function selectExistsMyEvent(userId, eventId) {
-  const sql = 'SELECT EXISTS (SELECT id FROM my_event WHERE userId=? AND eventId=?)';
-  const [[rows]] = await pool.execute(sql, [userId, eventId]);
+export async function selectNotificationMyEvent(userId, eventId) {
+  const sql = 'SELECT notification FROM my_event WHERE userId=? AND eventId=?';
+  const [rows] = await pool.execute(sql, [userId, eventId]);
   consoleLogger.info(
     `selectExistsMyEvent : query success : isMyEvent checked for userId=${userId}, eventId=${eventId}`
   );
-  return Object.values(rows)[0];
+  return rows;
 }
 
 export async function deleteMyEvent(userId, eventId) {

@@ -176,3 +176,7 @@
 .details-cancel-button:hover {
   background: var(--red_cancel_btn_hover);
 }
+
+.details-notification-info {
+  color: var(--dark_grey);
+}
