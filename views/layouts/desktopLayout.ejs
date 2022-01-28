@@ -32,6 +32,16 @@
     <script defer type="module" src="/javascripts/headerUser/userDropDown.js"></script>
     <script defer type="module" src="/javascripts/nav/navToggle.js"></script>
     <%- defineContent('scriptFiles') %>
+    <script defer type="module" src="/javascripts/eventDetail/clickEventDetails.js"></script>
+    <script defer type="module" src="/javascripts/eventDetail/clickExitButton.js"></script>
+    <script
+      defer
+      type="module"
+      src="javascripts/eventDetail/clickMyEventOrCancelButton.js"
+    ></script>
+    <script defer type="module" src="/javascripts/eventForm/checkTime.js"></script>
+    <script defer type="module" src="/javascripts/eventForm/clickNewEventButton.js"></script>
+    <script defer type="module" src="/javascripts/eventForm/eventFormDisplay.js"></script>
   </head>
   <body>
     <div class="layout">
@@ -74,7 +84,11 @@
           <div class="navbar-tab small">
             <div class="navbar-tab-all navbar-tab-active">
               <div class="navbar-toggle-all box-wrapper small">
+                <% if (referrer === '/event/list') { %>
                 <a href="/"> <div class="toggle-all-event text-left">모든 이벤트</div></a>
+                <% } else if (referrer === '/') {%>
+                <div class="toggle-all-event text-left">모든 이벤트</div>
+                <%}%>
               </div>
               <svg
                 width="200"
@@ -111,12 +125,12 @@
           </div>
           <hr class="toggle-divider" />
           <div class="navbar-category text-center small">
-            <input type="checkbox" id="category-lecture" checked />
-            <input type="checkbox" id="category-exam" checked />
-            <input type="checkbox" id="category-contest" checked />
-            <input type="checkbox" id="category-conference" checked />
-            <input type="checkbox" id="category-community" checked />
-            <label for="category-lecture" name="lecture" class="lecture box-wrapper small">
+            <input type="checkbox" name="lecture" id="category-lecture" />
+            <input type="checkbox" name="exam" id="category-exam" />
+            <input type="checkbox" name="contest" id="category-contest" />
+            <input type="checkbox" name="conference" id="category-conference" />
+            <input type="checkbox" name="community" id="category-community" />
+            <label for="category-lecture" class="lecture box-wrapper small">
               <i class="material-icons-outlined"> done </i>
               <div class="text-left">특강</div>
             </label>

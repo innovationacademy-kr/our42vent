@@ -2,15 +2,28 @@ import pool from '../config/createMySQLPool.js';
 import consoleLogger from '../lib/consoleLogger.js';
 
 // my event insert
-export function insertMyEvent(userId, eventId, notification) {
-  consoleLogger.info(`insertMyEvent : eventId=${eventId}, notification=${notification} `);
+export async function insertMyEvent(userId, eventId, notification) {
+  consoleLogger.info(
+    `insertMyEvent : try inserting eventId=${eventId}, notification=${notification} `
+  );
 
   const sql = 'INSERT INTO my_event (eventId, userId, notification) VALUES (?, ?, ?);';
 
-  pool
-    .execute(sql, [eventId, userId, notification])
-    .then(rows => consoleLogger.info('insertMyEvent : query success : ', rows))
-    .catch(err => consoleLogger.error('insertMyEvent : qeury error : ', err));
+  const rows = await pool.execute(sql, [eventId, userId, notification]);
+  consoleLogger.info('insertMyEvent : query success : ', rows);
+}
+
+export async function selectMyEvents(userId, firstDate, lastDate) {
+  console.log(userId);
+  const sql =
+    'SELECT event.id, title, beginAt, endAt, category FROM event ' +
+    'INNER JOIN my_event ON my_event.eventId=event.id WHERE my_event.userId=? AND ' +
+    '((event.beginAt >= ? AND event.beginAt < ?) OR (event.beginAt < ? AND event.endAt > ?)) ' +
+    'ORDER BY beginAt';
+
+  const [rows] = await pool.execute(sql, [userId, firstDate, lastDate, firstDate, firstDate]);
+  consoleLogger.info('selectMyEvents : query success');
+  return rows;
 }
 
 export async function selectExistsMyEvent(userId, eventId) {
