@@ -136,8 +136,8 @@
 .form-button {
   align-items: center;
   background: var(--grey);
-  display: grid;
-  grid-template-columns: 416px 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
   height: 80px;
   width: 800px;
 }
@@ -148,7 +148,7 @@
   color: var(--white);
   cursor: pointer;
   height: 50px;
-  width: 120px;
+  width: 150px;
 }
 
 .form-button-exit:hover {
@@ -157,26 +157,15 @@
 
 .form-button-edit,
 .form-button-new {
-  margin: 0 0 0 12px;
-}
-
-.form-button-text {
-  margin: 0 12px 0 0;
-}
-
-.form-button-edit,
-.form-button-new,
-.form-button-text {
   background: var(--turq_btn);
   border: none;
   color: var(--white);
   cursor: pointer;
   height: 50px;
-  width: 180px;
+  width: 160px;
 }
 
 .form-button-edit:hover,
-.form-button-new:hover,
-.form-button-text:hover {
+.form-button-new:hover {
   background: var(--turq_btn_hover);
 }

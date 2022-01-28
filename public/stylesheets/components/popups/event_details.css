@@ -115,6 +115,11 @@
   word-break: break-word;
 }
 
+.details-details {
+  display: flex;
+  flex-direction: column;
+}
+
 .details-pic,
 .details-pic-label,
 .details-topic-label,

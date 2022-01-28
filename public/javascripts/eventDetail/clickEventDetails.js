@@ -35,7 +35,7 @@ async function setEventDetails(eventId) {
     if (personInCharge !== '' && personInCharge !== null) {
       picElement.innerHTML =
         `<span class="details-pic-label text-bold">` +
-        ` 발표자 / 담당자&nbsp;&nbsp;:</span>&nbsp;&nbsp;${personInCharge}`;
+        `발표자 / 담당자&nbsp;&nbsp;:</span>&nbsp;&nbsp;${personInCharge}`;
       picElement.style.display = 'flex';
     } else {
       picElement.innerHTML = '';

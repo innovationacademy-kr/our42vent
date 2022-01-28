@@ -12,22 +12,23 @@
 }
 
 .form {
+  align-items: center;
   background: var(--grey);
-  display: grid;
-  grid-template-rows: auto minmax(70px, 10vh);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 25px 0 20px 0;
   height: 90vh;
-  justify-items: center;
-  width: 80%;
+  width: 70%;
 }
 
 .form-content {
   display: flex;
   flex-direction: column;
-  height: calc(100% - 10vh);
-  margin: 30px 0 10px 0;
+  height: 100%;
   overflow: auto;
   -ms-overflow-style: none; /* for ie and edge */
-  row-gap: 10px;
+  row-gap: 1em;
   scrollbar-width: none; /* for firefox */
   width: 80%;
 }
@@ -44,22 +45,28 @@
 /* SECTION: 양식 input field 별 레이아웃 */
 
 .form-content > div {
-  align-items: center;
-  display: grid;
-  grid-template-rows: 28px 1fr;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  row-gap: 1em;
+  width: 100%;
 }
 
 .form-oneline {
   border: none;
-  height: 36px;
+  height: 2.5em;
+  width: 100%;
 }
 
 #event-topic {
-  height: 126px;
+  height: 5em;
+  width: 100%;
 }
 
 #event-details {
-  height: 210px;
+  height: 10em;
+  width: 100%;
 }
 
 #event-topic,
@@ -73,12 +80,11 @@
 .form-button {
   align-items: center;
   background: var(--grey);
-  column-gap: 1em;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  margin: 0 0 20px 0;
+  display: flex;
+  height: 10%;
+  justify-content: space-between;
+  margin: 1em 0 0 0;
   width: 80%;
-  word-break: keep-all;
 }
 
 .form-button-exit {
@@ -86,8 +92,9 @@
   border: none;
   color: var(--white);
   cursor: pointer;
-  height: 50px;
-  max-width: 120px;
+  max-height: 50px;
+  min-height: 40px;
+  width: 120px;
 }
 
 .form-button-exit:hover {
@@ -96,27 +103,16 @@
 
 .form-button-edit,
 .form-button-new {
-  max-width: 150px;
-  min-width: 120px;
-}
-
-.form-button-text {
-  max-width: 150px;
-  min-width: 120px;
-}
-
-.form-button-edit,
-.form-button-new,
-.form-button-text {
   background: var(--turq_btn);
   border: none;
   color: var(--white);
   cursor: pointer;
-  height: 50px;
+  max-height: 50px;
+  min-height: 40px;
+  width: 130px;
 }
 
 .form-button-edit:hover,
-.form-button-new:hover,
-.form-button-text:hover {
+.form-button-new:hover {
   background: var(--turq_btn_hover);
 }

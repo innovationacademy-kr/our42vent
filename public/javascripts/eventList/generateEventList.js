@@ -59,15 +59,12 @@ function createEventListElement(eventListInfoDiv, item, isOutdated) {
   );
   eventTitleAnchor.href = '#';
   eventTitleAnchor.appendChild(createElementAddClass('div', ['list-content-title'], item.title));
-  const eventContentInfoDiv = eventContentDiv.appendChild(
-    createElementAddClass('div', ['list-content-info'])
-  );
 
-  eventContentInfoDiv.appendChild(
+  eventContentDiv.appendChild(
     createElementAddClass('div', ['list-content-time'])
   ).innerHTML = `<i class=material-icons-outlined>schedule</i> ${beginAt} ~ ${endAt}`;
 
-  eventContentInfoDiv.appendChild(
+  eventContentDiv.appendChild(
     createElementAddClass('div', ['list-content-location'])
   ).innerHTML = `<i class=material-icons-outlined>location_on</i>${item.location}`;
 

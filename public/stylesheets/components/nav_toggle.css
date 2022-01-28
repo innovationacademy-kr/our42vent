@@ -11,8 +11,8 @@
 /* SECTION : 네비바 토글 아이콘 생성 */
 
 .toggle-icon {
+  align-items: center;
   cursor: pointer;
-  display: block;
   left: 20px;
   position: absolute;
   z-index: 2;
@@ -20,28 +20,53 @@
 
 .bar-top,
 .bar-middle,
-.bar-bottom {
+.bar-bottom,
+.bar-cancel-top,
+.bar-cancel-bottom {
   background-color: white;
   border-radius: 10px;
-  height: 5px;
+  height: 3px;
   margin: 6px 0;
   transition: 0.4s;
-  width: 35px;
+  width: 30px;
+}
+
+.bar-cancel-top,
+.bar-cancel-bottom {
+  opacity: 0;
+  position: absolute;
+  top: 9;
+}
+
+.change .bar-cancel-top {
+  opacity: 1;
+  transform: rotate(45deg);
+  transition: 0.2s;
+  transition-delay: 0.2s;
+}
+
+.change .bar-cancel-bottom {
+  opacity: 1;
+  transform: rotate(-45deg);
+  transition: 0.2s;
+  transition-delay: 0.2s;
 }
 
 .change .bar-top {
-  transform: rotate(-45deg) translate(-9px, 6px);
-  transition: 0.4s;
+  opacity: 0;
+  transform: translateY(9px);
+  transition: 0.2s;
 }
 
 .change .bar-middle {
   opacity: 0;
-  transition: 0.4s;
+  transition: 0.1s;
 }
 
 .change .bar-bottom {
-  transform: rotate(45deg) translate(-8px, -8px);
-  transition: 0.4s;
+  opacity: 0;
+  transform: translateY(-9px);
+  transition: 0.2s;
 }
 
 nav.change {
@@ -56,7 +81,8 @@ nav.change {
 .toggle-divider {
   border: 0px;
   border-top: 1px solid var(--nav_box_shadow);
-  width: 80%;
+  transform: translateX(12px);
+  width: 130px;
 }
 
 /* SECTION : 네비바 사이드 메뉴 생성 */
@@ -118,7 +144,8 @@ nav {
   height: 30px;
   margin: 15px 0 15px 20px;
   transition: filter 0.3s ease-in-out;
-  width: 150px;
+  user-select: none;
+  width: 130px;
 }
 
 .box-wrapper:hover {
@@ -138,4 +165,10 @@ nav {
   height: 14.44px;
   margin: 0 0 0 10px;
   width: 16px;
+}
+
+.box-wrapper > div {
+  font-size: 0.87em;
+  padding: 0 0 0 10px;
+  width: 70%;
 }

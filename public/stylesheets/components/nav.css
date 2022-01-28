@@ -99,6 +99,7 @@ nav {
   max-width: 200px;
   min-width: 130px;
   transition: filter 0.3s ease-in-out;
+  user-select: none;
   width: 20%;
 }
 

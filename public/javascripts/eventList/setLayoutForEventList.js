@@ -30,6 +30,7 @@ function setLayoutForEventList() {
   const navbarCategoryDiv = document.querySelector('.navbar-category');
   const toggleDivider = document.querySelector('.toggle-divider');
   const myEventListDiv = document.querySelector('.navbar-tab-my');
+  document.querySelector('.toggle-all-event').textContent = '달력으로 돌아가기';
   myEventListDiv.parentElement.removeChild(myEventListDiv);
 
   toggleDivider.style.display = 'none';

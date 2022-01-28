@@ -54,7 +54,7 @@
 .material-icons-outlined.header-today {
   color: var(--white);
   cursor: pointer;
-  line-height: 70px;
+  font-size: 30px;
   position: absolute;
   right: 220px;
 }
