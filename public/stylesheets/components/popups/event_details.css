@@ -86,7 +86,7 @@
 .details-title {
   line-height: 1.25em;
   padding: 1% 2.5em;
-  word-break: keep-all;
+  word-break: break-word;
 }
 
 .details-beginat {
