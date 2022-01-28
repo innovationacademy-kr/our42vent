@@ -32,7 +32,19 @@ body {
   position: fixed;
   top: 0;
   width: 100vw;
-  z-index: 3;
+  z-index: 4;
+}
+
+.layout-details {
+  background: rgba(248, 248, 248, 0.9);
+  display: none;
+  height: 100vh;
+  left: 0;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 4;
 }
 
 /* SECTION: display 형태 공통 적용 class */

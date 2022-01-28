@@ -33,7 +33,7 @@ export function fillDateTitles(calendarSection) {
 }
 
 // server 에 요청할 year & month 파싱
-export function getParams(titleYear, titleMonth) {
+export function getParams() {
   let yearParam = null;
   let monthParam = null;
   const yearMonth = sessionStorage.getItem('yearMonth');
