@@ -5,6 +5,7 @@ import {
   selectEvent,
   updateEvent,
 } from '../models/accessEventTable.js';
+import { selectExistsMyEvent } from '../models/accessMyEventTable.js';
 import { selectUser } from '../models/accessUserTable.js';
 
 export async function eventListController(req, res) {
@@ -45,10 +46,11 @@ export async function eventDataController(req, res) {
   }
 }
 
-export async function eventPreviewEditController(req, res) {
+export async function eventDetailController(req, res) {
   try {
-    const event = await selectEvent(req.params.eventId);
-
+    const { eventId } = req.params;
+    const event = await selectEvent(eventId);
+    event.isMyEvent = await selectExistsMyEvent(res.locals.userId, eventId);
     res.json(event);
   } catch (err) {
     consoleLogger.error(err.stack);

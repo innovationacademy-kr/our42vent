@@ -4,10 +4,11 @@ import {
   eventDeleteController,
   eventEditController,
   eventListController,
-  eventPreviewEditController,
+  eventDetailController,
 } from '../controllers/eventListController.js';
 import insertEventController from '../controllers/insertEventController.js';
 import insertMyEventController from '../controllers/insertMyEventController.js';
+import myEventDeleteController from '../controllers/myEventDeleteController.js';
 
 export default function eventRouter(express) {
   const router = express.Router();
@@ -19,10 +20,11 @@ export default function eventRouter(express) {
   router.delete('/:eventId', eventDeleteController);
 
   // 해당 id 이벤트 정보 불러오기
-  router.get('/:eventId', eventPreviewEditController);
+  router.get('/:eventId', eventDetailController);
   router.put('/:eventId', formidable(), eventEditController);
 
   // 내 이벤트(My event)로 등록하기
   router.post('/myevent/:eventId', insertMyEventController);
+  router.delete('/myevent/:eventId', myEventDeleteController);
   return router;
 }

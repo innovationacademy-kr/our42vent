@@ -1,4 +1,4 @@
-import insertMyEvent from '../models/accessMyEventTable.js';
+import { insertMyEvent } from '../models/accessMyEventTable.js';
 
 export default function insertMyEventController(req, res) {
   const notiOption = req.body.notification;

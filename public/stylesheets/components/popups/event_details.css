@@ -156,8 +156,8 @@
   padding: 10px 50px 30px;
 }
 
-.details-myevent-button {
-  background: var(--turq_btn);
+.details-myevent-button,
+.details-cancel-button {
   border: none;
   color: var(--white);
   cursor: pointer;
@@ -167,6 +167,18 @@
   width: 120px;
 }
 
+.details-myevent-button {
+  background: var(--turq_btn);
+}
+
 .details-myevent-button:hover {
   background: var(--turq_btn_hover);
+}
+
+.details-cancel-button {
+  background: var(--red_cancel_btn);
+}
+
+.details-cancel-button:hover {
+  background: var(--red_cancel_btn_hover);
 }

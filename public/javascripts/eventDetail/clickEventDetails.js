@@ -4,14 +4,14 @@ import setDuration from './utils/setDuration.js';
 
 // 띠지 클릭시, 해당 이벤트 상세 정보 select
 async function getEventDetails(eventId) {
-  const res = await axios.get(`/event/${eventId}`);
-  return res.data;
+  const { data } = await axios.get(`/event/${eventId}`);
+  return data;
 }
 
 // 불러온 이벤트 상세정보를 각 항목에 입력
 async function setEventDetails(eventId) {
   try {
-    const { title, personInCharge, beginAt, endAt, location, category, topic, details } =
+    const { title, personInCharge, beginAt, endAt, location, category, topic, details, isMyEvent } =
       await getEventDetails(eventId);
 
     document.querySelector('.details-category').textContent = setCategoryName(category);
@@ -57,6 +57,12 @@ async function setEventDetails(eventId) {
       detailsElement.innerHTML = '';
       detailsElement.style.display = 'none';
     }
+
+    const buttonClass = isMyEvent
+      ? ['.details-myevent-button', '.details-cancel-button']
+      : ['.details-cancel-button', '.details-myevent-button'];
+    document.querySelector(buttonClass[0]).style.display = 'none';
+    document.querySelector(buttonClass[1]).style.display = 'block';
 
     // 알림 설정시, 다음 이벤트 상세보기에서 default로 원상복귀
     document.getElementById('details-notification').value = 'none';
