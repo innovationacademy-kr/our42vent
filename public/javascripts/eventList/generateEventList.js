@@ -86,25 +86,35 @@ function fillEventDates(eventDates, event) {
   }
 }
 
+function showNoEventMessage() {
+  const eventListSection = document.querySelector('.eventlist');
+  eventListSection.appendChild(
+    createElementAddClass('div', ['eventlist-no-content', 'xxlarge'], '생성한 이벤트가 없습니다.')
+  );
+}
+
 // 이벤트들을 받아와서 파싱 후 DOM element 생성
 export default async function generateEventList() {
   const events = await getEventList();
 
-  const today = getFullDate(new Date(Date.now()).getTime());
-  const eventDates = [];
-  let eventListInfoDiv = null;
+  if (events.length === 0) showNoEventMessage();
+  else {
+    const today = getFullDate(new Date(Date.now()).getTime());
+    const eventDates = [];
+    let eventListInfoDiv = null;
 
-  // 생성해야 하는 날짜들을 eventDates 배열에 push
-  events.forEach(item => {
-    fillEventDates(eventDates, item);
-  });
-  eventDates.forEach(curDate => {
-    eventListInfoDiv = createDateElement(curDate);
-    const isOutdated = curDate.localeCompare(today) < 0;
-    // event들을 돌면서 beginAt과 endAt 사이에 해당 날짜가 있으면 이벤트 목록을 생성
+    // 생성해야 하는 날짜들을 eventDates 배열에 push
     events.forEach(item => {
-      if (isBtwnDates(curDate, item.beginAt, item.endAt))
-        createEventListElement(eventListInfoDiv, item, isOutdated);
+      fillEventDates(eventDates, item);
     });
-  });
+    eventDates.forEach(curDate => {
+      eventListInfoDiv = createDateElement(curDate);
+      const isOutdated = curDate.localeCompare(today) < 0;
+      // event들을 돌면서 beginAt과 endAt 사이에 해당 날짜가 있으면 이벤트 목록을 생성
+      events.forEach(item => {
+        if (isBtwnDates(curDate, item.beginAt, item.endAt))
+          createEventListElement(eventListInfoDiv, item, isOutdated);
+      });
+    });
+  }
 }

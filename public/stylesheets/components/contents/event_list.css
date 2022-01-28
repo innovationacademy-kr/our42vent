@@ -15,6 +15,14 @@
   display: none;
 }
 
+.eventlist-no-content {
+  color: var(--dark_grey);
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
 .eventlist-info {
   display: flex;
   flex-direction: column;
