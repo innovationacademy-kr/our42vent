@@ -3,13 +3,13 @@ import drawMonth from '../calendar/month/drawMonth.js';
 const categories = ['특강', '시험', '해커톤 / 공모전', '세미나 / 컨퍼런스', '커뮤니티'];
 const checkboxArray = document.querySelectorAll('input[type=checkbox]');
 
+// 카테고리 checkbox 표시 & 반영 이벤트 핸들러
 checkboxArray.forEach((item, index) => {
   const checkbox = item;
   const { name } = checkbox;
   const selectedBox = checkbox.parentElement.querySelector(`.${name}.box-wrapper`);
 
   checkbox.addEventListener('change', () => {
-    const selectedBox = document.querySelector(`.${checkbox.id.substring(9)}.box-wrapper`);
     if (checkbox.checked) {
       const curCategories = sessionStorage.getItem('categories');
       sessionStorage.setItem('categories', `${curCategories}-${name}`);
@@ -23,6 +23,7 @@ checkboxArray.forEach((item, index) => {
   });
 });
 
+// 카테고리 overflow hide 되는 시점에서 좌우 이동 버튼 이벤트 리스너
 const navScrollIcon = document.querySelector('.material-icons-outlined.category-scroll');
 const navCategoryDiv = document.querySelector('.navbar-category');
 

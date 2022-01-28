@@ -4,6 +4,7 @@ import filterByCategories from './filterByCategories.js';
 import { renderInfo } from './generateMonth.js';
 import { removeNodeList } from '../../utils/domNodeUtils.js';
 
+// resize 및 카테고리 적용 변할 때 달력 다시그려주기
 export default function redrawMonth() {
   removeNodeList(document.querySelectorAll('.month-date-day'));
   removeNodeList(document.querySelectorAll('.month-date-events'));

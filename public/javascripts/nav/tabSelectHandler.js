@@ -3,6 +3,7 @@ import { generateMonth, renderInfo } from '../calendar/month/generateMonth.js';
 const allEventsTab = document.querySelector('.navbar-tab-all');
 const myEventsTab = document.querySelector('.navbar-tab-my');
 
+// tab 클릭 시 혹은 sessionStorage 에 저장된 이전 tab 정보에 따라 탭 활성화 표시
 function drawTabSelection(activeInactive) {
   activeInactive[0].classList.replace('navbar-tab-inactive', 'navbar-tab-active');
   activeInactive[1].classList.replace('navbar-tab-active', 'navbar-tab-inactive');
@@ -14,6 +15,7 @@ function drawTabSelection(activeInactive) {
     .classList.replace('navbar-tab-active', 'navbar-tab-inactive');
 }
 
+// 모든 이벤트 탭 클릭 핸들러
 allEventsTab.addEventListener('click', () => {
   if (sessionStorage.getItem('isMyEvent')) {
     sessionStorage.removeItem('isMyEvent');
@@ -22,6 +24,7 @@ allEventsTab.addEventListener('click', () => {
   }
 });
 
+// 내가 등록한 이벤트 탭 클릭 핸들러
 myEventsTab.addEventListener('click', () => {
   if (!sessionStorage.getItem('isMyEvent')) {
     sessionStorage.setItem('isMyEvent', '1');
@@ -30,6 +33,7 @@ myEventsTab.addEventListener('click', () => {
   }
 });
 
+// 새로고침 / 내가 생성한 이벤트에서 달력으로 돌아올 때 이전에 보던 탭 정보 반영해서 표시ㄴ
 const initialTab = sessionStorage.getItem('isMyEvent')
   ? [myEventsTab, allEventsTab]
   : [allEventsTab, myEventsTab];

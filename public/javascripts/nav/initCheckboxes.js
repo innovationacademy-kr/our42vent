@@ -1,6 +1,10 @@
-// 체크된 카테고리 확인
-function setSelectedCategories() {
+/**
+ * 새로고침 및 페이지 전환 시 sessionStorage 에서 이전에 check 돼있던 카테고리들 확인
+ * 이전에 check 돼있던 카테고리 checkbox 들 checked 로 전환 및 표시
+ */
+function initCheckboxes() {
   const checkboxArray = document.querySelectorAll('input[type=checkbox]');
+  const categories = ['특강', '시험', '해커톤 / 공모전', '세미나 / 컨퍼런스', '커뮤니티'];
   let checkedCategoriesArray = [];
 
   if (!sessionStorage.getItem('categories')) {
@@ -17,11 +21,6 @@ function setSelectedCategories() {
       if (checkedCategoriesArray.includes(category.name)) category.checked = true;
     });
   }
-}
-
-function initCheckboxes() {
-  const categories = ['특강', '시험', '해커톤 / 공모전', '세미나 / 컨퍼런스', '커뮤니티'];
-  const checkboxArray = document.querySelectorAll('input[type=checkbox]');
 
   checkboxArray.forEach((item, index) => {
     const checkbox = item;
@@ -32,5 +31,4 @@ function initCheckboxes() {
   });
 }
 
-setSelectedCategories();
 initCheckboxes();
