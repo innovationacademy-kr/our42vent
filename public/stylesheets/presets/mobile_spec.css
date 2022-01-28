@@ -1,0 +1,128 @@
+/* SECTION: 레이아웃 */
+body {
+  font-size: 14px;
+}
+
+.layout {
+  grid-template-rows: 70px 1fr 60px;
+}
+
+.main {
+  height: calc(100vh - 70px);
+}
+
+.calendar-month {
+  width: 99%;
+}
+
+.eventlist {
+  min-width: 0px;
+  width: 80%;
+}
+
+/* SECTION: 헤더 */
+
+.header {
+  grid-template-columns: minmax(280px, 1fr);
+}
+
+.toggle-icon {
+  display: block;
+}
+
+.header-logo-img,
+.header-user {
+  display: none;
+}
+
+.header-title {
+  max-width: 300px;
+  width: 40%;
+}
+
+.material-icons-outlined.header-today,
+.material-icons-outlined.header-new {
+  color: white;
+  display: block;
+  font-size: 26px;
+  line-height: 70px;
+}
+
+.material-icons-outlined.header-today {
+  position: absolute;
+  right: 42px;
+}
+
+.material-icons-outlined.header-new {
+  font-weight: 900;
+}
+
+.create-event-btn {
+  border: none;
+  background: none;
+  position: absolute;
+  right: 10px;
+  padding: 0;
+}
+
+.header-today:hover,
+.header-new:hover {
+  color: var(--turq_btn_hover);
+  cursor: pointer;
+}
+
+/* SECTION: 뷰포트가 768px 이하일 때  */
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 12px;
+  }
+
+  .month-more {
+    max-width: 130px;
+    width: 160%;
+  }
+
+  .eventlist-list {
+    align-items: center;
+    display: grid;
+    grid-template-areas:
+      'category title title icon'
+      'category time location location';
+    grid-template-columns: 16px 144px calc(100% - 210px) 50px;
+    margin: 0 0 12px 0;
+  }
+
+  .list-category {
+    grid-area: category;
+    height: 42px;
+    margin: 1px 2px;
+    min-width: 12px;
+    width: 12px;
+  }
+
+  .list-content-icon {
+    justify-self: end;
+  }
+
+  .list-content-location {
+    justify-self: end;
+    max-width: calc(100% - 24px);
+  }
+
+  .form-button {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .form-button > button {
+    min-width: 60px;
+  }
+
+  .details-content {
+    width: 95%;
+  }
+
+  .form {
+    width: 90%;
+  }
+}

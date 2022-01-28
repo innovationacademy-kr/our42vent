@@ -1,3 +1,11 @@
+/* SECTION: 모바일에서만 필요한 요소 비활성화 */
+
+.toggle-icon {
+  display: none;
+}
+
+/* SECTION: 헤더 */
+
 .header {
   background: var(--header_bg);
   display: grid;
@@ -39,6 +47,20 @@
 
 .title-calendar > * {
   line-height: 1.2em;
+}
+
+/* SECTION: Today 아이콘 */
+
+.material-icons-outlined.header-today {
+  color: var(--white);
+  cursor: pointer;
+  font-size: 30px;
+  position: absolute;
+  right: 220px;
+}
+
+.material-icons-outlined.header-today:hover {
+  color: var(--turq_btn_hover);
 }
 
 /* SECTION: 사용자 dropdown */

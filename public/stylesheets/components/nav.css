@@ -1,3 +1,13 @@
+/* SECTION : 모바일에서만 필요한 요소 비활성화 */
+
+.toggle-divider,
+.toggle-user .navbar-toggle-all.box-wrapper,
+.navbar-toggle-my.box-wrapper {
+  display: none;
+}
+
+/* SECTION : 네비바 생성 */
+
 nav {
   align-items: center;
   background: var(--grey);
@@ -7,7 +17,7 @@ nav {
   align-items: center;
   display: grid;
   grid-template-areas: 'tab category';
-  grid-template-columns: 400px calc(100% - 400px);
+  grid-template-columns: 380px calc(100% - 410px);
   margin: auto;
   width: 80%;
 }
@@ -48,13 +58,13 @@ nav {
 .navbar-category {
   display: flex;
   grid-area: category;
-  overflow: auto;
-  -ms-overflow-style: none; /* for ie and edge */
-  scrollbar-width: none; /* for firefox */
+  overflow-x: auto;
+  -ms-overflow-style: none; /* for IE and edge*/
+  scrollbar-width: 0px; /* for firefox*/
   width: 100%;
 }
 
-/* for Chrome, Safari and Opera */
+/* for chrome, safari and opera */
 .navbar-category::-webkit-scrollbar {
   display: none;
 }
@@ -67,10 +77,10 @@ nav {
   cursor: pointer;
 }
 
-.category-item {
+.box-wrapper {
   align-items: center;
   border-radius: 5px;
-  box-shadow: 2px 2px darkgray;
+  box-shadow: 2px 2px var(--nav_box_shadow);
   display: flex;
   filter: contrast(1);
   height: 30px;
@@ -79,25 +89,50 @@ nav {
   max-width: 200px;
   min-width: 130px;
   transition: filter 0.3s ease-in-out;
+  user-select: none;
   width: 20%;
 }
 
-.category-item:hover {
+.box-wrapper:hover {
   filter: contrast(1.2);
   transition: filter 0.3s ease-in-out;
 }
 
-.category-item > div {
+.box-wrapper > div {
   font-size: 0.87em;
   padding: 0 0 0 10px;
   width: 70%;
 }
 
-.category-item > i {
+.box-wrapper > i {
   background: var(--white);
   display: block;
   font-size: 1em;
   height: 14.44px;
   margin: 0 0 0 10px;
   width: 16px;
+}
+
+.material-icons-outlined.category-scroll {
+  color: var(--gray_nav_scroll);
+  cursor: pointer;
+  position: absolute;
+  right: 10%;
+  top: calc(95px - 0.5em);
+  transition: 0.3s;
+}
+
+.material-icons-outlined.category-scroll:hover {
+  color: var(--white);
+}
+
+.flip-icon {
+  transform: rotateY(180deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+@media screen and (min-width: 1485px) {
+  .material-icons-outlined.category-scroll {
+    display: none;
+  }
 }

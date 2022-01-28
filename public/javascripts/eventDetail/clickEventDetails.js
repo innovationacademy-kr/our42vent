@@ -35,7 +35,7 @@ async function setEventDetails(eventId) {
     if (personInCharge !== '' && personInCharge !== null) {
       picElement.innerHTML =
         `<span class="details-pic-label text-bold">` +
-        ` 발표자 / 담당자&nbsp;&nbsp;:</span>&nbsp;&nbsp;${personInCharge}`;
+        `발표자 / 담당자&nbsp;&nbsp;:</span>&nbsp;&nbsp;${personInCharge}`;
       picElement.style.display = 'flex';
     } else {
       picElement.innerHTML = '';
@@ -52,7 +52,7 @@ async function setEventDetails(eventId) {
       detailsElement.innerHTML =
         '<div class="details-details-label text-bold">상세정보</div>' +
         `<div class="details-details-content">${details}</div>`;
-      detailsElement.style.display = 'grid';
+      detailsElement.style.display = 'flex';
     } else {
       detailsElement.innerHTML = '';
       detailsElement.style.display = 'none';

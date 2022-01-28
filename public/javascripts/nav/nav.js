@@ -5,11 +5,28 @@ checkboxArray.forEach((item, index) => {
   const checkbox = item;
 
   checkbox.addEventListener('change', () => {
-    const selectedBox = document.querySelector(`.${checkbox.id.substring(9)}.category-item`);
+    const selectedBox = document.querySelector(`.${checkbox.id.substring(9)}.box-wrapper`);
     if (checkbox.checked) {
       selectedBox.innerHTML = `<i class="material-icons-outlined">done</i><div class="text-left">${categories[index]}</div>`;
     } else {
       selectedBox.innerHTML = `<i></i><div class="text-left">${categories[index]}</div>`;
     }
   });
+});
+
+const navScrollIcon = document.querySelector('.material-icons-outlined.category-scroll');
+const navCategoryDiv = document.querySelector('.navbar-category');
+
+navScrollIcon.addEventListener('click', () => {
+  if (navScrollIcon.classList.toggle('flip-icon'))
+    navCategoryDiv.scrollTo({
+      left: navCategoryDiv.getBoundingClientRect().right,
+      behavior: 'smooth',
+    });
+  else {
+    navCategoryDiv.scrollTo({
+      left: 0,
+      behavior: 'smooth',
+    });
+  }
 });
