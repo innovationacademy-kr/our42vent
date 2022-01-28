@@ -1,7 +1,8 @@
 /* SECTION : 모바일에서만 필요한 요소 비활성화 */
 
 .toggle-divider,
-.toggle-user .navbar-toggle-all.box-wrapper,
+.toggle-user,
+.navbar-toggle-all.box-wrapper,
 .navbar-toggle-my.box-wrapper {
   display: none;
 }

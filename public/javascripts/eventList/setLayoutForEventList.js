@@ -6,6 +6,10 @@ import generateEventList from './generateEventList.js';
 function fixScrollToNextEvent() {
   const eventListSection = document.querySelector('.eventlist');
   const outdatedDiv = document.querySelectorAll('.date-outdated');
+
+  //   TODO : 생성한 이벤트가 없다는 내용을 띄워줘야 함
+  if (outdatedDiv.length < 1) return;
+
   const lastOutdatedDivPosition =
     outdatedDiv[outdatedDiv.length - 1].getBoundingClientRect().bottom -
     eventListSection.getBoundingClientRect().top +

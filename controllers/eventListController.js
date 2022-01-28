@@ -9,7 +9,9 @@ import { selectUser } from '../models/accessUserTable.js';
 
 export async function eventListController(req, res) {
   try {
-    const user = await selectUser(res.locals.userId);
+    let user = await selectUser(res.locals.userId);
+
+    if (!user) user = { name: 'anonymous', profileImage: '' };
 
     res.render('eventList', {
       layout: 'layouts/desktopLayout',
