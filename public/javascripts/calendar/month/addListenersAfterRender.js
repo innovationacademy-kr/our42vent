@@ -5,7 +5,7 @@ import { createElementAddClass } from '../../utils/domNodeUtils.js';
 export default function addListenersAfterRender(allEvents) {
   loadMore();
   highlightHoveredMultiLabel();
-  showBeginAt(allEvents);
+  if (navigator.maxTouchPoints === 0) showBeginAt(allEvents);
   clickEventDetails();
 }
 
@@ -51,6 +51,7 @@ function showBeginAt(allEvents) {
 
   labelsNodeList.forEach(label => {
     label.addEventListener('mousemove', e => {
+      console.log('test');
       const prevSVGWrapper = document.querySelector('.beginat-svg');
       if (prevSVGWrapper) prevSVGWrapper.remove();
 
