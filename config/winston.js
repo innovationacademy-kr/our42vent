@@ -1,23 +1,21 @@
-import winston from 'winston';
+import { createLogger, transports, format } from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
-import moment from 'moment';
 
 const logDir = 'logs';
-const { printf, colorize } = winston.format;
-
-const now = moment();
+const { printf, colorize } = format;
 const colorizer = colorize();
 
-const logFormat = printf(msg =>
-  colorizer.colorize(
-    msg.level,
-    `${now.format('HH:mm:ss')} ${msg.level.toUpperCase()}: ${msg.message}`
-  )
-);
+//  console에 찍는 log format
+const logFormat = printf(msg => {
+  // 라인 전체에 로그 레벨을 기반으로 색깔을 입혀줌
+  const timeString = new Date().toTimeString().split(' ')[0];
 
-const logger = winston.createLogger({
+  return colorizer.colorize(msg.level, `${timeString} ${msg.level.toUpperCase()}: ${msg.message}`);
+});
+
+const logger = createLogger({
   transports: [
-    new winston.transports.Console({
+    new transports.Console({
       level: 'http',
       format: logFormat,
     }),
@@ -25,7 +23,7 @@ const logger = winston.createLogger({
     new DailyRotateFile({
       datePattern: 'YYYY-MM-DD',
       filename: `${logDir}/http/%DATE%.log`,
-      format: winston.format.json(),
+      format: format.json(),
       level: 'http',
       maxFiles: 30,
       zippedArchive: true,
@@ -34,7 +32,7 @@ const logger = winston.createLogger({
     new DailyRotateFile({
       datePattern: 'YYYY-MM-DD',
       filename: `${logDir}/info/%DATE%.log`,
-      format: winston.format.json(),
+      format: format.json(),
       level: 'info',
       maxFiles: 30,
       zippedArchive: true,
@@ -43,7 +41,7 @@ const logger = winston.createLogger({
     new DailyRotateFile({
       datePattern: 'YYYY-MM-DD',
       filename: `${logDir}/warn/%DATE%.log`,
-      format: winston.format.json(),
+      format: format.json(),
       level: 'warning',
       maxFiles: 30,
       zippedArchive: true,
@@ -52,7 +50,7 @@ const logger = winston.createLogger({
     new DailyRotateFile({
       datePattern: 'YYYY-MM-DD',
       filename: `${logDir}/error/%DATE%.log`,
-      format: winston.format.json(),
+      format: format.json(),
       level: 'error',
       maxFiles: 30,
       zippedArchive: true,
@@ -60,8 +58,8 @@ const logger = winston.createLogger({
   ],
 
   exceptionHandlers: [
-    new winston.transports.Console(),
-    new winston.transports.File({ filename: `${logDir}/exceptions.log` }),
+    new transports.Console(),
+    new transports.File({ filename: `${logDir}/exceptions.log` }),
   ],
 });
 
