@@ -16,10 +16,11 @@
   display: grid;
   max-height: 98%;
   max-width: 432px;
+  overflow: auto;
   width: 60%;
 }
 
-.category-button {
+.category-exit {
   display: flex;
   position: relative;
 }
@@ -33,7 +34,7 @@
 
 .details-category,
 .details-title,
-.details-beginat {
+.details-range {
   background: var(--turq_btn);
   color: var(--white);
 }
@@ -57,7 +58,6 @@
   color: var(--white);
   display: flex;
   flex-wrap: wrap;
-  min-height: 40px;
   padding: 3% 0;
 }
 
@@ -99,7 +99,7 @@
   color: var(--details_exit_grey);
 }
 
-.details-beginat {
+.details-range {
   line-height: 35px;
 }
 

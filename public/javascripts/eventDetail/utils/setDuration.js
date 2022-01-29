@@ -42,5 +42,5 @@ export default function setDuration(beginAt, endAt) {
   } else {
     duration = setDurationTime(beginAtInObj, endAtInObj);
   }
-  return duration;
+  return { duration, diffInDays };
 }

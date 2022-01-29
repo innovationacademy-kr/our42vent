@@ -1,5 +1,4 @@
-import { createElementAddClass } from '../utils/domNodeUtils.js';
-import setBeginAt from './utils/setBeginAt.js';
+import setRange from './utils/setRange.js';
 import setCategoryName from './utils/setCategoryName.js';
 import setDuration from './utils/setDuration.js';
 
@@ -43,15 +42,28 @@ function fillPICTopicDetails(personInCharge, topic, details) {
 }
 
 // 등록 여부에 따라 알림 & 버튼 설정
-function fillButtonNotification(isMyEvent, notification) {
-  const notificationInfo = document.querySelector('.details-notification-info');
+function fillButtonNotification(beginAt, endAt, isMyEvent, notification) {
+  const [now, beginAtObj, endAtObj] = [new Date(), new Date(beginAt), new Date(endAt)];
 
+  if (!isMyEvent && now > endAtObj) {
+    document.querySelectorAll('.notification-button > *').forEach(child => {
+      const childElem = child;
+      childElem.style.display = 'none';
+    });
+    document.querySelector('.notification-button').style.height = '0px';
+    return;
+  }
+
+  const notificationInfo = document.querySelector('.details-notification-info');
   let buttonClass = [];
   let notificationClass = [];
+
+  document.querySelector('.notification-button').style.height = '';
+
   if (isMyEvent) {
     buttonClass = ['.details-myevent-button', '.details-cancel-button'];
     notificationClass = ['#details-notification', '.details-notification-info'];
-    if (notification === null) {
+    if (now > beginAtObj || notification === null) {
       notificationInfo.textContent = '';
     } else if (notification === 0) {
       notificationInfo.textContent = '이벤트 시작 시간 알림';
@@ -87,20 +99,18 @@ async function setEventDetails(eventId) {
 
     document.querySelector('.details-category').textContent = setCategoryName(category);
     document.querySelector('.details-title').textContent = title;
-    document.querySelector('.details-beginat').textContent = setBeginAt(beginAt);
 
+    const { duration, diffInDays } = setDuration(beginAt, endAt);
+    document.querySelector('.details-range').textContent = setRange(beginAt, endAt, diffInDays);
     document.querySelector(
       '.details-duration'
-    ).innerHTML = `<i class="material-icons"> schedule</i>&nbsp;&nbsp;${setDuration(
-      beginAt,
-      endAt
-    )}`;
+    ).innerHTML = `<i class="material-icons"> schedule</i>&nbsp;&nbsp;${duration}`;
 
     document.querySelector(
       '.details-location'
     ).innerHTML = `<i class="material-icons">room</i>&nbsp;${location}`;
     fillPICTopicDetails(personInCharge, topic, details);
-    fillButtonNotification(isMyEvent, notification);
+    fillButtonNotification(beginAt, endAt, isMyEvent, notification);
 
     // 알림 설정시, 다음 이벤트 상세보기에서 default로 원상복귀
     document.getElementById('details-notification').value = 'none';

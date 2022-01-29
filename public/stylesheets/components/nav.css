@@ -28,6 +28,7 @@ nav {
   grid-area: tab;
   height: 24px;
   line-height: 30px;
+  user-select: none;
 }
 
 .navbar-tab-active {
