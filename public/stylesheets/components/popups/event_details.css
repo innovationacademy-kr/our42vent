@@ -1,15 +1,3 @@
-.layout-details {
-  background: rgba(248, 248, 248, 0.9);
-  display: none;
-  height: 100vh;
-  left: 0;
-  place-items: center;
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  z-index: 3;
-}
-
 .details-content {
   background: var(--white);
   display: grid;

@@ -10,5 +10,6 @@ export default async function indexController(req, res) {
     title: '우리42벤트 | ALL EVENTS',
     username: user.name,
     profileImage: user.profileImage,
+    referrer: '/',
   });
 }

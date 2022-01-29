@@ -18,6 +18,7 @@ export async function eventListController(req, res) {
       title: '우리42벤트 | EVENT LIST',
       username: user.name,
       profileImage: user.profileImage,
+      referrer: '/event/list',
     });
   } catch (err) {
     consoleLogger.error(err.stack);
