@@ -78,6 +78,11 @@
   color: var(--turq_btn_hover);
 }
 
+.today-svg {
+  position: fixed;
+  z-index: 3;
+}
+
 /* SECTION: 사용자 dropdown */
 
 .header-user {
