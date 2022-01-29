@@ -16,13 +16,13 @@ export default function eventRouter(express) {
   router.post('/', formidable(), insertEventController);
   router.get('/list', eventListController);
   router.get('/list/data', eventDataController);
-  router.delete('/:eventId', eventDeleteController);
+  router.delete('/:eventId(\\d+)', eventDeleteController);
 
   // 해당 id 이벤트 정보 불러오기
-  router.get('/:eventId', eventPreviewEditController);
-  router.put('/:eventId', formidable(), eventEditController);
+  router.get('/:eventId(\\d+)', eventPreviewEditController);
+  router.put('/:eventId(\\d+)', formidable(), eventEditController);
 
   // 내 이벤트(My event)로 등록하기
-  router.post('/myevent/:eventId', insertMyEventController);
+  router.post('/myevent/:eventId(\\d+)', insertMyEventController);
   return router;
 }
