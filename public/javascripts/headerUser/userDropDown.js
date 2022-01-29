@@ -1,5 +1,6 @@
 const userDropButton = document.querySelector('.user-drop-button');
 const userDropContent = document.querySelector('.user-drop-content');
+const userDropLogout = userDropContent.lastElementChild.firstElementChild;
 
 userDropButton.addEventListener('click', () => {
   if (userDropContent.classList.contains('hidden')) {
@@ -10,9 +11,7 @@ userDropButton.addEventListener('click', () => {
   userDropContent.classList.toggle('hidden');
 });
 
-userDropContent.addEventListener('click', () => {
-  sessionStorage.removeItem('yearMonth');
-});
+userDropLogout.addEventListener('click', () => sessionStorage.clear());
 
 window.addEventListener('click', event => {
   if (!event.target.matches('.user-drop-button, .user-username, .user-imageurl')) {
