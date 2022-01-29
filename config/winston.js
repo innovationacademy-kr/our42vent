@@ -22,15 +22,6 @@ const logger = createLogger({
 
     new DailyRotateFile({
       datePattern: 'YYYY-MM-DD',
-      filename: `${logDir}/http/%DATE%.log`,
-      format: format.json(),
-      level: 'http',
-      maxFiles: 30,
-      zippedArchive: true,
-    }),
-
-    new DailyRotateFile({
-      datePattern: 'YYYY-MM-DD',
       filename: `${logDir}/info/%DATE%.log`,
       format: format.json(),
       level: 'info',
@@ -68,16 +59,10 @@ logger.warn('warn');
 logger.error('error');
 logger.http('http');
 
-const httpLogStream = {
-  write: message => {
-    logger.http(message);
-  },
-};
-
 const httpErrorStream = {
   write: message => {
     logger.error(message);
   },
 };
 
-export { logger, httpLogStream, httpErrorStream };
+export { logger, httpErrorStream };
