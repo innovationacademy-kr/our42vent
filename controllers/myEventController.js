@@ -16,7 +16,7 @@ export async function subscribeEventController(req, res) {
 }
 
 // 등록 취소 컨트롤러
-export async function unsubscribeController(req, res) {
+export async function unsubscribeEventController(req, res) {
   try {
     deleteMyEvent(res.locals.userId, req.params.eventId);
     res.end();

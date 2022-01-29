@@ -9,7 +9,7 @@ import {
 import insertEventController from '../controllers/insertEventController.js';
 import {
   subscribeEventController,
-  unsubscribeController,
+  unsubscribeEventController,
 } from '../controllers/myEventController.js';
 
 export default function eventRouter(express) {
@@ -27,6 +27,6 @@ export default function eventRouter(express) {
 
   // 내 이벤트(My event)로 등록하기
   router.post('/myevent/:eventId', subscribeEventController);
-  router.delete('/myevent/:eventId', unsubscribeController);
+  router.delete('/myevent/:eventId', unsubscribeEventController);
   return router;
 }

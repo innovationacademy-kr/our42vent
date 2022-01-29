@@ -1,6 +1,6 @@
-import setRange from './utils/setRange.js';
 import setCategoryName from './utils/setCategoryName.js';
 import setDuration from './utils/setDuration.js';
+import setRange from './utils/setRange.js';
 
 // 띠지 클릭시, 해당 이벤트 상세 정보 select
 async function getEventDetails(eventId) {
