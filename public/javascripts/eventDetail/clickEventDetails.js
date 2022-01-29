@@ -59,7 +59,6 @@ function fillButtonNotification(beginAt, endAt, isMyEvent, notification) {
   let notificationClass = [];
 
   document.querySelector('.notification-button').style.height = '';
-
   if (isMyEvent) {
     buttonClass = ['.details-myevent-button', '.details-cancel-button'];
     notificationClass = ['#details-notification', '.details-notification-info'];
@@ -132,9 +131,7 @@ export default async function clickEventDetails() {
     event.addEventListener('click', () => {
       setEventDetails(eventId);
 
-      /**  상세보기에 event-(id)를 id로 넣어줌
-       * (나중에 my_event post할때 event id 필요)
-       */
+      //  상세보기에 event-(id)를 id로 넣어줌 (나중에 my_event post할때 event id 필요)
       [detailElement.id] = event.classList;
       detailElement.style.display = 'grid';
     });

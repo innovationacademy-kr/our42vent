@@ -22,6 +22,7 @@ function setDurationTime(beginAt, endAt) {
   return `for ${hours} ${mins}`;
 }
 
+// 소요시간 계산
 export default function setDuration(beginAt, endAt) {
   const beginAtInObj = new Date(new Date(beginAt).setSeconds(0));
   const endAtInObj = new Date(endAt);

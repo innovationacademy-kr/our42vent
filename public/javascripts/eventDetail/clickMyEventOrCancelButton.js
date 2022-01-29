@@ -1,4 +1,4 @@
-// '내 이벤트로 등록' 클릭시, my_event insert
+// '내 이벤트로 등록' 클릭 시, my_event insert
 const myEventButton = document.querySelector('.details-myevent-button');
 
 myEventButton.addEventListener('click', () => {
@@ -18,6 +18,7 @@ myEventButton.addEventListener('click', () => {
     });
 });
 
+// '등록 취소' 클릭 시, my_event delete
 const cancelButton = document.querySelector('.details-cancel-button');
 
 cancelButton.addEventListener('click', () => {

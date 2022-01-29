@@ -1,7 +1,7 @@
 import pool from '../config/createMySQLPool.js';
 import consoleLogger from '../lib/consoleLogger.js';
 
-// my event insert
+// my_event 테이블에 INSERT
 export async function insertMyEvent(userId, eventId, notification) {
   consoleLogger.info(
     `insertMyEvent : try inserting eventId=${eventId}, notification=${notification} `
@@ -13,8 +13,8 @@ export async function insertMyEvent(userId, eventId, notification) {
   consoleLogger.info('insertMyEvent : query success : ', rows);
 }
 
+// 내가 등록한 이벤트 SELECT
 export async function selectMyEvents(userId, firstDate, lastDate) {
-  console.log(userId);
   const sql =
     'SELECT event.id, title, beginAt, endAt, category FROM event ' +
     'INNER JOIN my_event ON my_event.eventId=event.id WHERE my_event.userId=? AND ' +
@@ -26,6 +26,7 @@ export async function selectMyEvents(userId, firstDate, lastDate) {
   return rows;
 }
 
+// 내 이벤트에 등록돼 있으면 알림 정보 SELECT
 export async function selectNotificationMyEvent(userId, eventId) {
   const sql = 'SELECT notification FROM my_event WHERE userId=? AND eventId=?';
   const [rows] = await pool.execute(sql, [userId, eventId]);
@@ -35,6 +36,7 @@ export async function selectNotificationMyEvent(userId, eventId) {
   return rows;
 }
 
+// my_event 테이블에서 entry delete
 export async function deleteMyEvent(userId, eventId) {
   const sql = 'DELETE FROM my_event WHERE (userID=? AND eventID=?)';
   await pool.execute(sql, [userId, eventId]);

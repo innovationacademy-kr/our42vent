@@ -1,3 +1,4 @@
+// 시작일 ~ 종료일
 export default function setRange(beginAt, endAt, diffInDays) {
   const dayWords = ['일', '월', '화', '수', '목', '금', '토'];
 
