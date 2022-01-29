@@ -66,6 +66,7 @@ export async function insertEvent(userId, event) {
     details,
   ]);
   consoleLogger.info('insertEvent : query success : ', rows);
+  return rows[0].insertId; // db에 insert된 data의 pk
 }
 
 export async function updateEvent(event, eventId, userId) {

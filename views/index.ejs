@@ -9,6 +9,7 @@
 <script defer type="module" src="/javascripts/eventForm/checkTime.js"></script>
 <script defer type="module" src="/javascripts/eventForm/clickNewEventButton.js"></script>
 <script defer type="module" src="/javascripts/eventForm/eventFormDisplay.js"></script>
+<script defer type="module" src="/javascripts/eventPromotion/promotionDisplay.js"></script>
 
 <%- contentFor('headerTitle') %>
 <div class="header-title">
@@ -22,4 +23,5 @@
 <%- contentFor('content') %>
 <section class="calendar-month"></section>
 <%- contentFor('eventForm') %> <%- include('components/eventForm') %> <%- contentFor('eventDetails')
-%> <%- include('components/eventDetails') %>
+%> <%- include('components/eventDetails') %> <%- contentFor('eventPromotion') %> <%-
+include('components/eventPromotion') %>

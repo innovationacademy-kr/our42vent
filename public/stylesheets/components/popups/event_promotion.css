@@ -1,0 +1,8 @@
+.promotion {
+  background: var(--light_grey);
+  display: flex;
+  height: 500px;
+  padding: 50px;
+  place-items: center;
+  width: 900px;
+}

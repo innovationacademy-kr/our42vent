@@ -1,4 +1,5 @@
-import { alertModal } from '../utils/sweetAlertMixin.js';
+import { alertModal, confirmModal } from '../utils/sweetAlertMixin.js';
+import generatePromotion from '../eventPromotion/generatePromotion.js';
 
 // 빈칸이거나 제한바이트 초과할 경우, 해당 메세지를 띄우고 false 반환
 export function checkByte(inputId, maxByte) {
@@ -53,10 +54,22 @@ function clickNewEventButton() {
   ) {
     axios
       .post('/event', formData)
-      .then(() => {
-        alertModal
-          .fire({ title: '이벤트가 생성되었습니다.', icon: 'success' })
-          .then(() => window.location.replace(window.location.pathname));
+      .then(res => {
+        confirmModal
+          .fire({
+            title: '이벤트가 생성되었습니다.',
+            icon: 'success',
+            confirmButtonText: '홍보글 생성',
+            cancelButtonText: '닫기',
+          })
+          .then(result => {
+            if (result.isConfirmed) {
+              generatePromotion(res.data);
+              console.log(res.data);
+            } else {
+              window.location.replace(window.location.pathname);
+            }
+          });
       })
       .catch(err => {
         alertModal.fire({ title: '오류가 발생하였습니다.', icon: 'error' });

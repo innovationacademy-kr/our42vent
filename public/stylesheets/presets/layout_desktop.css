@@ -24,7 +24,8 @@ body {
   width: 480px;
 }
 
-.layout-form {
+.layout-form,
+.layout-promotion {
   background: rgba(255, 255, 255, 0.9);
   display: grid;
   height: 100vh;

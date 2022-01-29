@@ -6,7 +6,8 @@
 
 /* SECTION: 양식 레이아웃 */
 
-.layout-form {
+.layout-form,
+.layout-promotion {
   left: 0;
   top: 0;
 }

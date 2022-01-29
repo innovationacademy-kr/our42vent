@@ -45,7 +45,7 @@ export async function eventDataController(req, res) {
   }
 }
 
-export async function eventPreviewEditController(req, res) {
+export async function eventDetailController(req, res) {
   try {
     const event = await selectEvent(req.params.eventId);
 
