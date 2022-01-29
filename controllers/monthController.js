@@ -17,7 +17,6 @@ export default async function monthController(req, res) {
 
     const holidays = await getHolidayCache(cacheKey);
 
-    // 변경될 수 있는 정보
     const monthEventsArray = req.path.includes('myEvent')
       ? await selectMyEvents(res.locals.userId, firstDate, lastDate)
       : await selectMonthEvents(firstDate, lastDate);

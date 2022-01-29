@@ -33,7 +33,7 @@ myEventsTab.addEventListener('click', () => {
   }
 });
 
-// 새로고침 / 내가 생성한 이벤트에서 달력으로 돌아올 때 이전에 보던 탭 정보 반영해서 표시ㄴ
+// 새로고침 / 내가 생성한 이벤트에서 달력으로 돌아올 때 이전에 보던 탭 정보 반영해서 표시
 const initialTab = sessionStorage.getItem('isMyEvent')
   ? [myEventsTab, allEventsTab]
   : [allEventsTab, myEventsTab];

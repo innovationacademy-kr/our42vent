@@ -7,17 +7,17 @@ const checkboxArray = document.querySelectorAll('input[type=checkbox]');
 checkboxArray.forEach((item, index) => {
   const checkbox = item;
   const { name } = checkbox;
-  const selectedBox = checkbox.parentElement.querySelector(`.${name}.box-wrapper`);
+  const doneIcon = checkbox.parentElement.querySelector(`.${name}.box-wrapper > i`);
 
   checkbox.addEventListener('change', () => {
     if (checkbox.checked) {
       const curCategories = sessionStorage.getItem('categories');
       sessionStorage.setItem('categories', `${curCategories}-${name}`);
-      selectedBox.innerHTML = `<i class="material-icons-outlined">done</i><div class="text-left">${categories[index]}</div>`;
+      doneIcon.textContent = 'done';
     } else {
       const curCategories = sessionStorage.getItem('categories');
       sessionStorage.setItem('categories', curCategories.replace(`-${name}`, ''));
-      selectedBox.innerHTML = `<i></i><div class="text-left">${categories[index]}</div>`;
+      doneIcon.textContent = '';
     }
     drawMonth();
   });
