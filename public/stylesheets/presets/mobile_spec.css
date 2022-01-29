@@ -40,29 +40,30 @@ body {
   width: 40%;
 }
 
-.material-icons-outlined.header-today,
-.material-icons-outlined.header-new {
-  color: white;
-  display: block;
-  font-size: 26px;
-  line-height: 70px;
-}
-
-.material-icons-outlined.header-today {
+.header-today-button {
   position: absolute;
+  top: 0px;
   right: 42px;
 }
 
-.material-icons-outlined.header-new {
-  font-weight: 900;
-}
-
-.create-event-btn {
+.create-event-button {
   border: none;
   background: none;
   position: absolute;
   right: 10px;
   padding: 0;
+}
+
+.material-icons-outlined.header-today,
+.material-icons-outlined.header-new {
+  color: var(--white);
+  display: block;
+  font-size: 26px;
+  line-height: 70px;
+}
+
+.material-icons-outlined.header-new {
+  font-weight: 900;
 }
 
 .header-today:hover,

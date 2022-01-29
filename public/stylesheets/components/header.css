@@ -9,7 +9,7 @@
 .header {
   background: var(--header_bg);
   display: grid;
-  grid-template-columns: 168px 220px;
+  grid-template-columns: 168px minmax(200px, 300px);
   height: 70px;
   justify-content: space-between;
   place-items: center;
@@ -49,14 +49,28 @@
   line-height: 1.2em;
 }
 
+/* SECTION: Today 아이콘 & user dropdown 레이아웃 */
+
+.header-right {
+  column-gap: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-self: right;
+}
+
 /* SECTION: Today 아이콘 */
+
+.header-today-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 
 .material-icons-outlined.header-today {
   color: var(--white);
-  cursor: pointer;
-  font-size: 30px;
-  position: absolute;
-  right: 220px;
+  font-size: 2em;
+  height: 70px;
+  line-height: 70px;
 }
 
 .material-icons-outlined.header-today:hover {
@@ -76,14 +90,13 @@
   flex-direction: row;
   height: 70px;
   justify-content: right;
-  width: 220px;
 }
 
 .user-username {
   color: var(--white);
-  margin: 0 20px 0 0;
+  margin: 0 20px 0 10px;
   text-align: right;
-  width: 110px;
+  vertical-align: middle;
   word-break: break-word;
 }
 
