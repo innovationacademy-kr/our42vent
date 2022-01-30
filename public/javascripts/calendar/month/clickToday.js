@@ -4,6 +4,7 @@ import { createElementAddClass } from '../../utils/domNodeUtils.js';
 const todayButton = document.querySelector('.header-today-button');
 const today = new Date();
 
+// today 버튼 클릭하면 현재 월 view 표시
 todayButton.addEventListener('click', () => {
   const thisMonth = `${today.getFullYear()}${today.getMonth()}`;
 
@@ -13,7 +14,11 @@ todayButton.addEventListener('click', () => {
   }
 });
 
-// TODO: 터치 가능한 랩탑에서 어떻게 되는지 확인 필요 & 모바일 기기 인삭 정확도 개선
+/**
+ * TODAY 버튼 호버하면 오늘 날짜 표시
+ * TODO: navigator.maxTouchPoints === 0 로 touch screen 을 걸러주는데
+ * 터치 스크린 랩탑도 걸러져서 개선이 필요합니다.
+ */
 if (navigator.maxTouchPoints === 0) {
   todayButton.addEventListener('mousemove', e => {
     const prevSVGWrapper = document.querySelector('.today-svg');

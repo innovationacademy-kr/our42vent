@@ -5,6 +5,10 @@ import { createElementAddClass } from '../../utils/domNodeUtils.js';
 export default function addListenersAfterRender(allEvents) {
   loadMore();
   highlightHoveredMultiLabel();
+  /**
+   * TODO: navigator.maxTouchPoints === 0 로 touch screen 을 걸러주는데
+   * 터치 스크린 랩탑도 걸러져서 개선이 필요합니다.
+   */
   if (navigator.maxTouchPoints === 0) showBeginAt(allEvents);
   clickEventDetails();
 }
@@ -18,7 +22,7 @@ function loadMore() {
       moreContentDiv.style.display = 'grid';
     });
 
-    document.body.addEventListener('click', e => {
+    document.addEventListener('click', e => {
       if (moreButton !== document.activeElement && !moreContentDiv.contains(e.target))
         moreContentDiv.style.display = 'none';
     });
@@ -51,7 +55,6 @@ function showBeginAt(allEvents) {
 
   labelsNodeList.forEach(label => {
     label.addEventListener('mousemove', e => {
-      console.log('test');
       const prevSVGWrapper = document.querySelector('.beginat-svg');
       if (prevSVGWrapper) prevSVGWrapper.remove();
 
