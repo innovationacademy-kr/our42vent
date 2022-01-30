@@ -1,9 +1,13 @@
-const createEventButton = document.querySelector('.create-event-btn');
+const createEventButtonArray = document.querySelectorAll('.create-event-btn');
 
-createEventButton.addEventListener('click', () => {
-  document.querySelector('.layout-form').style.display = 'grid';
-  document.querySelector('.form-button-new').style.display = 'block';
-  document.querySelector('.form-button-edit').style.display = 'none';
+createEventButtonArray.forEach(item => {
+  const createEventButton = item;
+
+  createEventButton.addEventListener('click', () => {
+    document.querySelector('.layout-form').style.display = 'grid';
+    document.querySelector('.form-button-new').style.display = 'block';
+    document.querySelector('.form-button-edit').style.display = 'none';
+  });
 });
 
 const exitEventButton = document.querySelector('.form-button-exit');

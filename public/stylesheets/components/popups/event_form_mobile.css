@@ -1,0 +1,118 @@
+/* SECTION: 새 이벤트 생성 버튼 (헤더에 위치)*/
+
+.main > .create-event-btn {
+  display: none;
+}
+
+/* SECTION: 양식 레이아웃 */
+
+.layout-form {
+  left: 0;
+  top: 0;
+}
+
+.form {
+  align-items: center;
+  background: var(--grey);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 25px 0 20px;
+  height: 90vh;
+  width: 70%;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  -ms-overflow-style: none; /* for ie and edge */
+  row-gap: 1em;
+  scrollbar-width: none; /* for firefox */
+  width: 80%;
+}
+
+/* for Chrome, Safari and Opera */
+.form-content::-webkit-scrollbar {
+  display: none;
+}
+
+.form-label {
+  display: block;
+}
+
+/* SECTION: 양식 input field 별 레이아웃 */
+
+.form-content > div {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  row-gap: 1em;
+  width: 100%;
+}
+
+.form-oneline {
+  border: none;
+  height: 2.5em;
+  width: 100%;
+}
+
+#event-topic {
+  height: 5em;
+  width: 100%;
+}
+
+#event-details {
+  height: 10em;
+  width: 100%;
+}
+
+#event-topic,
+#event-details {
+  border: none;
+  resize: none;
+}
+
+/* SECTION: 버튼 레이아웃 & style */
+
+.form-button {
+  align-items: center;
+  background: var(--grey);
+  display: flex;
+  height: 10%;
+  justify-content: space-between;
+  margin: 1em 0 0 0;
+  width: 80%;
+}
+
+.form-button-exit {
+  background: var(--red_cancel_btn);
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  max-height: 50px;
+  min-height: 40px;
+  width: 120px;
+}
+
+.form-button-exit:hover {
+  background: var(--red_cancel_btn_hover);
+}
+
+.form-button-edit,
+.form-button-new {
+  background: var(--turq_btn);
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  max-height: 50px;
+  min-height: 40px;
+  width: 130px;
+}
+
+.form-button-edit:hover,
+.form-button-new:hover {
+  background: var(--turq_btn_hover);
+}
