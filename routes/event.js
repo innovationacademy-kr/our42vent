@@ -5,7 +5,7 @@ import {
   eventEditController,
   eventListController,
   eventDetailController,
-} from '../controllers/eventListController.js';
+} from '../controllers/eventController.js';
 import insertEventController from '../controllers/insertEventController.js';
 import insertMyEventController from '../controllers/insertMyEventController.js';
 

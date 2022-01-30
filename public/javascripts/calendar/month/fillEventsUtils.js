@@ -15,7 +15,11 @@ export function createLabel(eventInfo, eventsDiv, slotIndex) {
 
   if (length > 1) {
     const multiDayLabel = eventsDiv.appendChild(
-      createElementAddClass('div', [`event-${id}`, 'month-label-multi', 'xsmall', category], title)
+      createElementAddClass(
+        'div',
+        [`_eventId-${id}`, 'month-label-multi', 'xsmall', category],
+        title
+      )
     );
     multiDayLabel.style.width = `${(boxWidth - 4) * 2 + boxWidth * (length - 2) - 1}`;
     multiDayLabel.style.top = `${20 + 24 * slotIndex}`;
@@ -50,7 +54,7 @@ export function fillMoreEventContent(moreEventContentInfo) {
 // 단일 이벤트 띠지 생성
 function createAppendSingleDayLabel(parentNode, id, category, title) {
   const singleDayLabel = parentNode.appendChild(
-    createElementAddClass('div', [`event-${id}`, 'month-label-single', 'xsmall', category])
+    createElementAddClass('div', [`_eventId-${id}`, 'month-label-single', 'xsmall', category])
   );
   singleDayLabel.innerHTML = `<span class=single-category></span>${title}`;
 }
@@ -59,7 +63,7 @@ function createAppendSingleDayLabel(parentNode, id, category, title) {
 function createMultiEndLabel(id, category, title) {
   return createElementAddClass(
     'div',
-    [`event-${id}`, 'month-label-end', 'xsmall', category],
+    [`_eventId-${id}`, 'month-label-end', 'xsmall', category],
     title
   );
 }

@@ -1,15 +1,16 @@
-<style>
-  #event-promotion-text {
-    border: none;
-    resize: none;
-    height: 90%;
-  }
-</style>
-
-<section class="layout-promotion">
+<section class="layout-promotion hidden">
   <div class="promotion" autocomplete="off">
-    <i class="material-icons"> content_copy </i>
-    <textarea class="event-promotion-text" type="text"></textarea>
-    <button class="form-button-exit text-bold" id="promotion-exit" type="button">닫기</button>
+    <div class="icons-wrapper">
+      <i class="promotion-exit-button material-icons"> clear </i>
+    </div>
+    <div class="promotion-container">
+      <div class="promotion-content">
+        <i class="promotion-copy-button material-icons"> content_copy </i>
+        <textarea class="promotion-text" type="text"></textarea>
+      </div>
+      <div class="promotion-url">
+        <div class="promotion-url-text"></div>
+      </div>
+    </div>
   </div>
 </section>

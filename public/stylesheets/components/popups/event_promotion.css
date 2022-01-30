@@ -1,8 +1,75 @@
 .promotion {
   background: var(--light_grey);
+  max-height: 80vh;
+  width: 40vw;
+}
+
+.promotion-container {
+  align-items: center;
   display: flex;
-  height: 500px;
-  padding: 50px;
-  place-items: center;
-  width: 900px;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-height: 80vh;
+  min-height: 30vh;
+  row-gap: 10px;
+}
+
+.promotion-content {
+  background-color: var(--white);
+  border-radius: 3px;
+  margin: 10px 0;
+  max-height: 80%;
+  position: relative;
+  width: 90%;
+}
+
+.promotion-text {
+  border: none;
+  border-radius: 3px;
+  font-size: 1em;
+  height: 100%;
+  line-height: 130%;
+  padding: 30px;
+  resize: none;
+  width: 100%;
+}
+
+.promotion-url {
+  background-color: var(--white);
+  height: 2em;
+  margin: 0 0 20px 0;
+  width: 90%;
+}
+
+.promotion-url-text {
+  overflow-x: auto;
+  padding: 0.5em;
+  white-space: nowrap;
+}
+
+.promotion-url-text::-webkit-scrollbar {
+  display: none;
+}
+
+.promotion-copy-button {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  padding: 6px 8px 8px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.promotion-copy-button:hover {
+  color: #8eecf5;
+  cursor: pointer;
+}
+
+.promotion-exit-button:hover {
+  cursor: pointer;
+}
+
+.icons-wrapper {
+  margin: 10px 5px 0 0;
+  text-align: right;
 }

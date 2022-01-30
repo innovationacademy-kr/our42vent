@@ -41,7 +41,8 @@ export function checkTime(inputId, str) {
 
 // 이벤트 생성 버튼 입력전, 모든 항목 입력 완료시 이벤트 생성 post 요청
 function clickNewEventButton() {
-  const formData = new FormData(document.querySelector('.form'));
+  const form = document.querySelector('.form');
+  const formData = new FormData(form);
 
   if (
     checkByte('event-title', 224) &&
@@ -64,8 +65,9 @@ function clickNewEventButton() {
           })
           .then(result => {
             if (result.isConfirmed) {
+              form.reset();
+              form.parentNode.style.display = 'none';
               generatePromotion(res.data);
-              console.log(res.data);
             } else {
               window.location.replace(window.location.pathname);
             }
