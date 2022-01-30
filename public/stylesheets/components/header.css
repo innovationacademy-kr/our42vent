@@ -38,6 +38,7 @@
 
 .header-title > .material-icons {
   font-size: 2em;
+  user-select: none;
 }
 
 .header-title > .material-icons:hover {
@@ -57,6 +58,7 @@
   font-size: 30px;
   position: absolute;
   right: 220px;
+  user-select: none;
 }
 
 .material-icons-outlined.header-today:hover {
