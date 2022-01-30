@@ -1,3 +1,5 @@
+import { renderInfo, generateMonth } from '../calendar/month/generateMonth.js';
+
 // '내 이벤트로 등록' 클릭 시, my_event insert
 const myEventButton = document.querySelector('.details-myevent-button');
 
@@ -30,6 +32,7 @@ cancelButton.addEventListener('click', () => {
     .then(res => {
       // TODO : 이벤트 등록 취소 알림 모달 창
       detailsElement.style.display = 'none';
+      renderInfo[0] = generateMonth();
     })
     .catch(err => {
       // TODO : client side 에러핸들링
