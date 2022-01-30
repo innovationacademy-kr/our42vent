@@ -29,7 +29,9 @@
     "node-color-log": "^7.0.0",
     "passport": "^0.5.2",
     "passport-42": "^1.2.6",
-    "redis": "^4.0.2"
+    "redis": "^4.0.2",
+    "winston": "^3.5.0",
+    "winston-daily-rotate-file": "^4.6.0"
   },
   "devDependencies": {
     "eslint": "^8.6.0",

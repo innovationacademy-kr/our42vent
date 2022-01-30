@@ -46,6 +46,7 @@ body {
   display: block;
   font-size: 26px;
   line-height: 70px;
+  user-select: none;
 }
 
 .material-icons-outlined.header-today {
