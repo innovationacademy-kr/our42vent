@@ -50,7 +50,7 @@ export async function deleteEvent(eventId, userId) {
 }
 
 // 이벤트 insert 쿼리
-export function insertEvent(userId, event) {
+export async function insertEvent(userId, event) {
   const { title, personInCharge, beginAt, endAt, location, category, topic, details } = event;
   consoleLogger.info('insertEvent : event details : ', event);
 
