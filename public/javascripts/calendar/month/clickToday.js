@@ -35,7 +35,7 @@ if (navigator.maxTouchPoints === 0) {
       `y="14" fill="#fff" width="${boxWidth}" height="26" font-family="sans-serif" font-size="11">` +
       `오늘 ${today.getFullYear()}년 ${today.getMonth() + 1}월  ${today.getDate()}일</text></svg>`;
     SVGWrapper.style.left = `${e.clientX - boxWidth + 2}`;
-    SVGWrapper.style.top = `${e.clientY + 12}`;
+    SVGWrapper.style.top = `${e.clientY + 12 + window.scrollY}`;
   });
 
   todayButton.addEventListener('mouseleave', () => {

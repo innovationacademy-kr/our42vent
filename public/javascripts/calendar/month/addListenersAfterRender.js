@@ -75,7 +75,7 @@ function showBeginAt(allEvents) {
         `y="14" fill="#fff" width="${boxWidth}" height="26" font-family="sans-serif" font-size="11">` +
         `${startTime}</text></svg>`;
       SVGWrapper.style.left = `${e.clientX - boxWidth + 2}`;
-      SVGWrapper.style.top = `${e.clientY + 12}`;
+      SVGWrapper.style.top = `${e.clientY + 12 + window.scrollY}`;
     });
 
     label.addEventListener('mouseleave', () => {

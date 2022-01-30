@@ -79,7 +79,7 @@
 }
 
 .today-svg {
-  position: fixed;
+  position: absolute;
   z-index: 3;
 }
 
