@@ -1,6 +1,6 @@
 import countByte from './countByte.js';
 
-// 빈칸이거나 제한바이트 초과할 경우, 해당 메세지를 띄우고 false 반환
+// 빈칸이거나 제한바이트 초과할 경우, 해당 에러 메세지를 띄우고 false 반환
 function checkByte(inputId, maxByte) {
   const input = document.getElementById(inputId);
   const bytesCount = countByte(input);
@@ -21,7 +21,7 @@ function checkByte(inputId, maxByte) {
   return ret;
 }
 
-// 이벤트 시작시간/종료시간 입력여부 확인 후 true/false 반환
+// 이벤트 시작(종료)시간 입력여부 확인 후 true/false 반환
 function checkTime(inputId, str) {
   const input = document.getElementById(inputId);
   const dateMin = new Date('1970-01-01T00:00');
@@ -74,7 +74,7 @@ function checkCategory() {
   return ret;
 }
 
-export default function isValidateEventForm() {
+export default function isValidEventForm() {
   return (
     checkByte('event-title', 224) &&
     checkByte('event-pic', 56) &&

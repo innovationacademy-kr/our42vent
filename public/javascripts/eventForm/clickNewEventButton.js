@@ -1,9 +1,9 @@
 import { alertModal } from '../utils/sweetAlertMixin.js';
-import isValidateEventForm from '../utils/isValidateEventForm.js';
+import isValidEventForm from '../utils/isValidEventForm.js';
 
 // 이벤트 생성 버튼 입력전, 모든 항목 입력 완료시 이벤트 생성 post 요청
 function clickNewEventButton() {
-  if (isValidateEventForm()) {
+  if (isValidEventForm()) {
     const formData = new FormData(document.querySelector('.form'));
 
     axios
