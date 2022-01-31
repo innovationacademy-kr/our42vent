@@ -30,23 +30,21 @@ export function createLabel(eventInfo, eventsDiv, slotIndex) {
 export function fillMoreEventContent(moreEventContentInfo) {
   const { date, dateIndex, eventArray, moreEventDiv, isHoliday, noDays } = moreEventContentInfo;
 
-  let rows = ' 1fr';
-  for (let i = 1; moreEventDiv.style.gridTemplateRows !== '' && i < eventArray.length; i += 1)
-    rows += rows;
-  moreEventDiv.style.gridTemplateRows = `40px${rows}`;
   if (noDays - dateIndex - 1 <= 7) moreEventDiv.style.bottom = 0;
+  if (dateIndex % 7 === 6) moreEventDiv.style.right = 0;
 
   const holidayClass = isHoliday ? 'sunday' : null;
   moreEventDiv.appendChild(
     createElementAddClass('div', ['month-more-date', 'large', 'text-center', holidayClass], date)
   );
 
+  const eventSlot = moreEventDiv.appendChild(createElementAddClass('div', ['month-more-event']));
   eventArray.forEach(event => {
     const { category, id, isMulti, length, title } = event;
     if (length === -1 || isMulti) {
-      moreEventDiv.appendChild(createMultiEndLabel(id, category, title));
+      eventSlot.appendChild(createMultiEndLabel(id, category, title));
     } else {
-      createAppendSingleDayLabel(moreEventDiv, id, category, title);
+      createAppendSingleDayLabel(eventSlot, id, category, title);
     }
   });
 }
