@@ -66,7 +66,7 @@ function clickNewEventButton() {
           .then(result => {
             if (result.isConfirmed) {
               form.reset();
-              form.parentNode.style.display = 'none';
+              form.parentNode.style.display = 'none'; // 이벤트 생성 폼 삭제
               generatePromotion(res.data);
             } else {
               window.location.replace(window.location.pathname);

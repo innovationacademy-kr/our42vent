@@ -5,6 +5,7 @@ import {
   eventEditController,
   eventListController,
   eventDetailController,
+  eventInfoController,
 } from '../controllers/eventController.js';
 import insertEventController from '../controllers/insertEventController.js';
 import {
@@ -23,6 +24,8 @@ export default function eventRouter(express) {
   router.delete('/:eventId(\\d+)', eventDeleteController);
   router.get('/:eventId(\\d+)', eventDetailController);
   router.put('/:eventId(\\d+)', formidable(), eventEditController);
+
+  router.get('/info/:eventId(\\d+)', eventInfoController);
 
   // 내 이벤트(My event)로 등록하기
   router.post('/myevent/:eventId(\\d+)', subscribeEventController);

@@ -1,6 +1,7 @@
 .promotion {
   background: var(--light_grey);
-  max-height: 80vh;
+  max-height: 84vh;
+  max-width: 600px;
   width: 40vw;
 }
 
@@ -8,19 +9,31 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   max-height: 80vh;
-  min-height: 30vh;
-  row-gap: 10px;
+  position: relative;
+}
+
+.promotion-exit-button.material-icons {
+  right: 1%;
+  top: 5px;
+  position: absolute;
+}
+
+.promotion-content-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 60px);
+  margin: 30px 0;
+  overflow: auto;
+  width: 90%;
 }
 
 .promotion-content {
   background-color: var(--white);
-  border-radius: 3px;
-  margin: 10px 0;
-  max-height: 80%;
-  position: relative;
-  width: 90%;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  width: 100%;
 }
 
 .promotion-text {
@@ -29,26 +42,23 @@
   font-size: 1em;
   height: 100%;
   line-height: 130%;
-  padding: 30px;
+  outline: none;
+  overflow: hidden;
+  padding: 30px 30px 10px;
   resize: none;
   width: 100%;
 }
 
 .promotion-url {
   background-color: var(--white);
-  height: 2em;
-  margin: 0 0 20px 0;
-  width: 90%;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  width: 100%;
 }
 
 .promotion-url-text {
-  overflow-x: auto;
-  padding: 0.5em;
-  white-space: nowrap;
-}
-
-.promotion-url-text::-webkit-scrollbar {
-  display: none;
+  padding: 15px 30px 30px;
+  word-break: break-word;
 }
 
 .promotion-copy-button {
@@ -56,20 +66,13 @@
   border-radius: 6px;
   padding: 6px 8px 8px;
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: 6%;
+  top: 34px;
+  user-select: none;
 }
 
+.promotion-exit-button:hover,
 .promotion-copy-button:hover {
-  color: #8eecf5;
+  color: var(--white);
   cursor: pointer;
-}
-
-.promotion-exit-button:hover {
-  cursor: pointer;
-}
-
-.icons-wrapper {
-  margin: 10px 5px 0 0;
-  text-align: right;
 }

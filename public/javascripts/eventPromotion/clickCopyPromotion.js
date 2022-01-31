@@ -9,7 +9,7 @@ promotionCopy.addEventListener('click', () => {
   promotionTextBox.textContent = `${promotiontext}\n\n${urlText}`;
 
   promotionTextBox.select();
-  document.execCommand('copy');
+  document.execCommand('copy'); // 클립보드에 복사
   promotionTextBox.textContent = promotiontext;
   alertModal.fire({ title: '복사되었습니다.', icon: 'success' });
 });

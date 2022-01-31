@@ -2,17 +2,19 @@ function resize(element) {
   const textarea = element;
 
   textarea.style.height = '1px';
-  const vh = window.innerHeight / 100;
-  if (textarea.scrollHeight > vh * 64) textarea.style.height = `64vh`;
-  else textarea.style.height = `${textarea.scrollHeight + 12}px`;
+  textarea.style.height = `${textarea.scrollHeight}px`;
 }
 
 export default function generatePromotion(event) {
   const { id, title, personInCharge, beginAt, endAt, location, topic, details } = event;
-  const promotion =
-    `${title}\n\n주제: ${topic}\n일시: ${beginAt.replace('T', ' ')} ~ ${endAt.replace('T', ' ')}` +
-    `\n장소: ${location}\n발표자/담당자: ${personInCharge}\n\n${details}`;
-  const url = `우리42벤트에서 확인하기 -> ${window.location.origin}/event/detail/${id}`;
+  let promotion =
+    `${title}\n\n주제: ${topic}\n일시: ${beginAt.replace('T', ' ').substring(0, 16)}` +
+    ` ~ ${endAt.replace('T', ' ').substring(0, 16)}\n장소: ${location}`;
+
+  if (personInCharge) promotion += `\n발표자/담당자: ${personInCharge}`;
+  if (details) promotion += `\n\n${details}`;
+
+  const url = `우리42벤트에서 확인하기 -> ${window.location.origin}/event/info/${id}`;
 
   const promotionLayout = document.querySelector('.layout-promotion');
   promotionLayout.style.display = 'grid';

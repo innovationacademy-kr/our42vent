@@ -9,12 +9,30 @@
 }
 
 .details-exit-button {
-  line-height: 30px;
+  color: var(--white);
+  cursor: pointer;
   padding: 5px 0;
   position: absolute;
-  right: 0px;
+  right: 5px;
   top: 0px;
   vertical-align: -1;
+}
+
+.details-share-button.material-icons {
+  color: var(--white);
+  cursor: pointer;
+  padding: 5px 0;
+  position: absolute;
+  right: 35px;
+  top: 2px;
+  font-size: 19px;
+  vertical-align: -1;
+  user-select: none;
+}
+
+.details-exit-button:hover,
+.details-share-button:hover {
+  color: var(--details_exit_grey);
 }
 
 .details-category,
@@ -34,19 +52,6 @@
   line-height: 30px;
   padding: 5px 0;
   width: 100%;
-}
-
-.details-exit-button {
-  background: var(--turq_btn);
-  border: none;
-  color: var(--white);
-  cursor: pointer;
-  height: 30px;
-  width: 30px;
-}
-
-.details-exit-button:hover {
-  color: var(--details_exit_grey);
 }
 
 .details-title {
