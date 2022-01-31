@@ -9,7 +9,6 @@ export default async function insertEventController(req, res) {
 
     // 새 이벤트 등록전, 서버에서 이벤트폼 Input 유효성 검증
     validateBeforeInsertOrEdit(event);
-    // validateEventFormInServerSide
     await insertEvent(res.locals.userId, event);
     res.end();
   } catch (err) {

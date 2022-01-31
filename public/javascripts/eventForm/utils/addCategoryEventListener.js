@@ -11,6 +11,7 @@ function checkCategoryAndcolorizeBorder(element) {
 export default function addCategoryEventListener() {
   const category = document.getElementById('event-category');
 
+  // 카테고리 변경시 2초동안 테두리색 변경
   category.addEventListener('change', () => {
     checkCategoryAndcolorizeBorder(category);
     setTimeout(() => {
@@ -18,10 +19,12 @@ export default function addCategoryEventListener() {
     }, 2000);
   });
 
+  // 이벤트 생성 버튼 클릭시, 카테고리 테두리색 변경
   category.addEventListener('invalid', () => {
     checkCategoryAndcolorizeBorder(category);
   });
 
+  // 카테고리에 포커스가 사라지면, 1초동안 테두리색 변경
   category.addEventListener('blur', () => {
     if (category.style.border === '2px solid red')
       setTimeout(() => {

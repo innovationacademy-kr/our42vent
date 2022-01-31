@@ -42,7 +42,7 @@ export default function addTimeEventListener() {
   const beginat = document.getElementById('event-beginat');
   const endat = document.getElementById('event-endat');
 
-  //  date변경시, input의 유효성에 따라 테두리 색 변경 후, 2초후 원상복귀
+  //  date변경시, input의 유효성에 따라 테두리 색 변경
   beginat.addEventListener('change', () => {
     checkBeginatAndColorizeBorder(beginat);
     setTimeout(() => {
@@ -57,7 +57,7 @@ export default function addTimeEventListener() {
     }, 2000);
   });
 
-  // 이벤트 생성 버튼 입력했을 때, input이 유효하지 않으면, 테두리 색 변경
+  // 이벤트 생성 버튼 클릭시, 테두리 색 변경
   beginat.addEventListener('invalid', () => {
     colorizeBorder(false, beginat);
   });
@@ -66,7 +66,7 @@ export default function addTimeEventListener() {
     colorizeBorder(false, endat);
   });
 
-  // input에 포커스가 없어지면, 1초후 테두리 원상복귀
+  // input에 포커스가 없어지면, 1초동안 테두리색 변경
   beginat.addEventListener('blur', () => {
     if (beginat.style.border === '2px solid red')
       setTimeout(() => {

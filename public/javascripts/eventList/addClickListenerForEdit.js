@@ -1,6 +1,6 @@
 import { getFullDate, getFullTime } from '../utils/eventListUtils.js';
 import { alertModal } from '../utils/sweetAlertMixin.js';
-import isValidateEventForm from '../utils/isValidEventForm.js';
+import isValidEventForm from '../utils/isValidEventForm.js';
 
 // DB에서 가져온 이벤트의 내용을 팝업에 채워줌
 function fillEventData(event) {
@@ -27,7 +27,7 @@ function fillEventData(event) {
 
 // 수정한 이벤트를 DB에 업데이트
 function putEditedEventData(eventId, formData) {
-  if (isValidateEventForm()) {
+  if (isValidEventForm()) {
     axios
       .put(`/event/${eventId}`, formData)
       .then(() => {
