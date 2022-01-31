@@ -13,7 +13,10 @@ export default async function monthController(req, res) {
 
     const { year, month } = checkYearMonthRange(yearParam, monthParam);
     const { noWeeks, dates } = getMonthDates(year, month);
-    const [firstDate, lastDate] = [dates[0].toISOString(), dates.at(-1).toISOString()];
+    const [firstDate, lastDate] = [
+      dates[0].toISOString(),
+      `${dates.at(-1).toISOString().slice(0, 10)}T23:59`,
+    ];
 
     const holidays = await getHolidayCache(cacheKey);
 
