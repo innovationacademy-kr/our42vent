@@ -1,15 +1,15 @@
 import addCategoryEventListener from './utils/addCategoryEventListener.js';
-import addStrEventListener from './utils/addStrEventListener.js';
+import addTextEventListener from './utils/addTextEventListener.js';
 import addTimeEventListener from './utils/addTimeEventListener.js';
 
 function addListenersForBorderColor() {
-  // addStrEventListener(inputId, maxByte, isRequired, isTextarea)
+  // addTextEventListener(inputId, maxByte, isRequired, isTextarea)
 
-  addStrEventListener('event-title', 224, true, false);
-  addStrEventListener('event-pic', 56, false, false);
-  addStrEventListener('event-location', 224, true, false);
-  addStrEventListener('event-topic', 480, true, true);
-  addStrEventListener('event-details', 4064, false, true);
+  addTextEventListener('event-title', 224, true, false);
+  addTextEventListener('event-pic', 56, false, false);
+  addTextEventListener('event-location', 224, true, false);
+  addTextEventListener('event-topic', 480, true, true);
+  addTextEventListener('event-details', 4064, false, true);
   addTimeEventListener();
   addCategoryEventListener();
 }

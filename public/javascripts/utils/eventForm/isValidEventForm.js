@@ -4,6 +4,7 @@ import countByte from './countByte.js';
 function checkByte(inputId, maxByte) {
   const input = document.getElementById(inputId);
   const bytesCount = countByte(input);
+
   let ret = true;
 
   if (inputId !== 'event-pic' && inputId !== 'event-details' && input.value === '') {

@@ -1,7 +1,7 @@
 import { colorizeBorderForStr } from './colorizeBorder.js';
-import countByte from '../../utils/countByte.js';
+import countByte from '../../utils/eventForm/countByte.js';
 
-function countByteAndcolorizeBorder(element, maxByte, isRequired, isTextarea) {
+function colorizeTextBorder(element, maxByte, isRequired, isTextarea) {
   const byteCount = countByte(element);
 
   // 필수가 아닌데 아무것도 입력된게 없을때
@@ -18,9 +18,9 @@ export default function addStrEventListener(inputId, maxByte, isRequired, isText
   const inputElement = document.getElementById(inputId);
 
   inputElement.addEventListener('focusin', () => {
-    countByteAndcolorizeBorder(inputElement, maxByte, isRequired, isTextarea);
+    colorizeTextBorder(inputElement, maxByte, isRequired, isTextarea);
     inputElement.addEventListener('keyup', () => {
-      countByteAndcolorizeBorder(inputElement, maxByte, isRequired, isTextarea);
+      colorizeTextBorder(inputElement, maxByte, isRequired, isTextarea);
     });
   });
 

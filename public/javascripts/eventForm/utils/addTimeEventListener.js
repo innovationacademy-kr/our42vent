@@ -12,72 +12,72 @@ function checkMinMaxTime(time) {
   return false;
 }
 
-function checkTimeOrder(beginat, endat) {
-  if (endat === '' || beginat === '') return false;
+function checkTimeOrder(beginAt, endAt) {
+  if (endAt === '' || beginAt === '') return false;
 
-  const beginatTime = new Date(beginat);
-  const endatTime = new Date(endat);
-  if (beginatTime <= endatTime) {
+  const beginAtTime = new Date(beginAt);
+  const endAtTime = new Date(endAt);
+  if (beginAtTime <= endAtTime) {
     return true;
   }
   return false;
 }
 
-function checkBeginatAndColorizeBorder(beginat) {
-  if (beginat.value === '' || !checkMinMaxTime(beginat.value)) colorizeBorder(false, beginat);
-  else colorizeBorder(true, beginat);
+function checkBeginAtAndColorizeBorder(beginAt) {
+  if (beginAt.value === '' || !checkMinMaxTime(beginAt.value)) colorizeBorder(false, beginAt);
+  else colorizeBorder(true, beginAt);
 }
 
-function checkEndatAndColorizeBorder(beginat, endat) {
+function checkEndAtAndColorizeBorder(beginAt, endAt) {
   if (
-    endat.value === '' ||
-    !checkMinMaxTime(endat.value) ||
-    !checkTimeOrder(beginat.value, endat.value)
+    endAt.value === '' ||
+    !checkMinMaxTime(endAt.value) ||
+    !checkTimeOrder(beginAt.value, endAt.value)
   )
-    colorizeBorder(false, endat);
-  else colorizeBorder(true, endat);
+    colorizeBorder(false, endAt);
+  else colorizeBorder(true, endAt);
 }
 
 export default function addTimeEventListener() {
-  const beginat = document.getElementById('event-beginat');
-  const endat = document.getElementById('event-endat');
+  const beginAt = document.getElementById('event-beginat');
+  const endAt = document.getElementById('event-endat');
 
   //  date변경시, input의 유효성에 따라 테두리 색 변경
-  beginat.addEventListener('change', () => {
-    checkBeginatAndColorizeBorder(beginat);
+  beginAt.addEventListener('change', () => {
+    checkBeginAtAndColorizeBorder(beginAt);
     setTimeout(() => {
-      beginat.style.border = 'none';
+      beginAt.style.border = 'none';
     }, 2000);
   });
 
-  endat.addEventListener('change', () => {
-    checkEndatAndColorizeBorder(beginat, endat);
+  endAt.addEventListener('change', () => {
+    checkEndAtAndColorizeBorder(beginAt, endAt);
     setTimeout(() => {
-      endat.style.border = 'none';
+      endAt.style.border = 'none';
     }, 2000);
   });
 
   // 이벤트 생성 버튼 클릭시, 테두리 색 변경
-  beginat.addEventListener('invalid', () => {
-    colorizeBorder(false, beginat);
+  beginAt.addEventListener('invalid', () => {
+    colorizeBorder(false, beginAt);
   });
 
-  endat.addEventListener('invalid', () => {
-    colorizeBorder(false, endat);
+  endAt.addEventListener('invalid', () => {
+    colorizeBorder(false, endAt);
   });
 
   // input에 포커스가 없어지면, 1초동안 테두리색 변경
-  beginat.addEventListener('blur', () => {
-    if (beginat.style.border === '2px solid red')
+  beginAt.addEventListener('blur', () => {
+    if (beginAt.style.border === '2px solid red')
       setTimeout(() => {
-        beginat.style.border = 'none';
+        beginAt.style.border = 'none';
       }, 1000);
   });
 
-  endat.addEventListener('blur', () => {
-    if (endat.style.border === '2px solid red')
+  endAt.addEventListener('blur', () => {
+    if (endAt.style.border === '2px solid red')
       setTimeout(() => {
-        endat.style.border = 'none';
+        endAt.style.border = 'none';
       }, 1000);
   });
 }

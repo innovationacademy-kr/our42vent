@@ -1,5 +1,5 @@
 import { alertModal } from '../utils/sweetAlertMixin.js';
-import isValidEventForm from '../utils/isValidEventForm.js';
+import isValidEventForm from '../utils/eventForm/isValidEventForm.js';
 
 // 이벤트 생성 버튼 입력전, 모든 항목 입력 완료시 이벤트 생성 post 요청
 function clickNewEventButton() {

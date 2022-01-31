@@ -1,5 +1,5 @@
 import consoleLogger from '../lib/consoleLogger.js';
-import validateBeforeInsertOrEdit from '../lib/validateBeforeInsertOrEdit.js';
+import validateEventData from '../lib/validateEventData.js';
 import { insertEvent } from '../models/accessEventTable.js';
 
 export default async function insertEventController(req, res) {
@@ -8,7 +8,7 @@ export default async function insertEventController(req, res) {
     const event = req.fields;
 
     // 새 이벤트 등록전, 서버에서 이벤트폼 Input 유효성 검증
-    validateBeforeInsertOrEdit(event);
+    validateEventData(event);
     await insertEvent(res.locals.userId, event);
     res.end();
   } catch (err) {

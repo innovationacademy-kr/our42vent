@@ -1,8 +1,7 @@
 export function colorizeBorder(isValid, inputElement) {
   const element = inputElement;
 
-  if (isValid) element.style.border = '2px solid green';
-  else element.style.border = '2px solid red';
+  element.style.border = isValid ? '2px solid green' : '2px solid red';
 }
 
 export function colorizeBorderForStr(isValid, inputElement, isTextarea) {

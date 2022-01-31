@@ -1,5 +1,5 @@
 import consoleLogger from '../lib/consoleLogger.js';
-import validateBeforeInsertOrEdit from '../lib/validateBeforeInsertOrEdit.js';
+import validateEventData from '../lib/validateEventData.js';
 import {
   deleteEvent,
   selectCreatedEvents,
@@ -74,7 +74,7 @@ export async function eventEditController(req, res) {
   try {
     const event = req.fields;
 
-    validateBeforeInsertOrEdit(event);
+    validateEventData(event);
     await updateEvent(event, req.params.eventId, res.locals.userId);
     res.end();
   } catch (err) {

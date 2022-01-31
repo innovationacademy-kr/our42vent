@@ -1,6 +1,6 @@
+import isValidEventForm from '../utils/eventForm/isValidEventForm.js';
 import { getFullDate, getFullTime } from '../utils/eventListUtils.js';
 import { alertModal } from '../utils/sweetAlertMixin.js';
-import isValidEventForm from '../utils/isValidEventForm.js';
 
 // DB에서 가져온 이벤트의 내용을 팝업에 채워줌
 function fillEventData(event) {
