@@ -1,3 +1,4 @@
+import addCategoryEventListener from './utils/addCategoryEventListener.js';
 import addStrEventListener from './utils/addStrEventListener.js';
 import addTimeEventListener from './utils/addTimeEventListener.js';
 
@@ -10,6 +11,7 @@ function addListenersForBorderColor() {
   addStrEventListener('event-topic', 480, true, true);
   addStrEventListener('event-details', 4064, false, true);
   addTimeEventListener();
+  addCategoryEventListener();
 }
 
 addListenersForBorderColor();
