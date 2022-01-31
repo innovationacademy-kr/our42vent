@@ -20,8 +20,9 @@ body {
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 320px;
-  width: 480px;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
 }
 
 .layout-form {
