@@ -18,12 +18,12 @@ function loadMore() {
   const moreButtonList = document.querySelectorAll('.month-more-button');
   moreButtonList.forEach(moreButton => {
     const moreContentDiv = moreButton.parentElement.querySelector('.month-more');
-    moreButton.addEventListener('focus', () => {
+    moreButton.addEventListener('click', () => {
       moreContentDiv.style.display = 'grid';
     });
 
     document.addEventListener('click', e => {
-      if (moreButton !== document.activeElement && !moreContentDiv.contains(e.target))
+      if (e.target !== moreButton && !moreContentDiv.contains(e.target))
         moreContentDiv.style.display = 'none';
     });
   });
