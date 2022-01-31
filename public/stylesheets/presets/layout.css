@@ -3,6 +3,16 @@ body {
   height: 100vh;
 }
 
+@media screen and (min-width: 1920px) {
+  body {
+    font-size: 18px;
+  }
+
+  .navbar-tab-my text {
+    transform: translateX(-3%);
+  }
+}
+
 .layout {
   display: grid;
   grid-template-rows: 70px 50px 1fr 60px;
