@@ -90,7 +90,7 @@ body {
     grid-template-areas:
       'category title title icon'
       'category time location location';
-    grid-template-columns: 16px 144px calc(100% - 210px) 50px;
+    grid-template-columns: 16px 144px calc(100% - 160px - 2.5em) 2.5em;
     margin: 0 0 12px 0;
   }
 

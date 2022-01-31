@@ -6,7 +6,7 @@ const myEventButton = document.querySelector('.details-myevent-button');
 myEventButton.addEventListener('click', () => {
   const notification = document.getElementById('details-notification').value;
   const detailsElement = document.querySelector('.layout-details');
-  const eventId = detailsElement.id.substring(6);
+  const eventId = detailsElement.id.substring(9);
 
   axios
     .post(`/event/myevent/${eventId}`, { notification })
@@ -25,7 +25,7 @@ const cancelButton = document.querySelector('.details-cancel-button');
 
 cancelButton.addEventListener('click', () => {
   const detailsElement = document.querySelector('.layout-details');
-  const eventId = detailsElement.id.substring(6);
+  const eventId = detailsElement.id.substring(9);
 
   axios
     .delete(`/event/myevent/${eventId}`)

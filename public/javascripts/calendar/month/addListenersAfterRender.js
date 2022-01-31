@@ -55,7 +55,7 @@ function showBeginAt(allEvents) {
       if (prevSVGWrapper) prevSVGWrapper.remove();
 
       const { beginAt, isMulti } = allEvents.find(
-        event => event.id === Number(label.classList[0].substring(6))
+        event => event.id === Number(label.classList[0].substring(9))
       );
 
       const beginAtKST = new Date(new Date(beginAt).getTime() + 3.24e7).toISOString();
