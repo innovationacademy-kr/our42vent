@@ -5,7 +5,11 @@ import { createElementAddClass } from '../../utils/domNodeUtils.js';
 export default function addListenersAfterRender(allEvents) {
   loadMore();
   highlightHoveredMultiLabel();
-  showBeginAt(allEvents);
+  /**
+   * TODO: navigator.maxTouchPoints === 0 로 touch screen 을 걸러주는데
+   * 터치 스크린 랩탑도 걸러져서 개선이 필요합니다.
+   */
+  if (navigator.maxTouchPoints === 0) showBeginAt(allEvents);
   clickEventDetails();
 }
 
@@ -18,7 +22,7 @@ function loadMore() {
       moreContentDiv.style.display = 'grid';
     });
 
-    document.body.addEventListener('click', e => {
+    document.addEventListener('click', e => {
       if (moreButton !== document.activeElement && !moreContentDiv.contains(e.target))
         moreContentDiv.style.display = 'none';
     });
@@ -55,7 +59,7 @@ function showBeginAt(allEvents) {
       if (prevSVGWrapper) prevSVGWrapper.remove();
 
       const { beginAt, isMulti } = allEvents.find(
-        event => event.id === Number(label.classList[0].substring(6))
+        event => event.id === Number(label.classList[0].substring(9))
       );
 
       const beginAtKST = new Date(new Date(beginAt).getTime() + 3.24e7).toISOString();
@@ -71,7 +75,7 @@ function showBeginAt(allEvents) {
         `y="14" fill="#fff" width="${boxWidth}" height="26" font-family="sans-serif" font-size="11">` +
         `${startTime}</text></svg>`;
       SVGWrapper.style.left = `${e.clientX - boxWidth + 2}`;
-      SVGWrapper.style.top = `${e.clientY + 12}`;
+      SVGWrapper.style.top = `${e.clientY + 12 + window.scrollY}`;
     });
 
     label.addEventListener('mouseleave', () => {

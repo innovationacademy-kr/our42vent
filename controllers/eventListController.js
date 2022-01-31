@@ -6,6 +6,7 @@ import {
   selectEvent,
   updateEvent,
 } from '../models/accessEventTable.js';
+import { selectNotificationMyEvent } from '../models/accessMyEventTable.js';
 import { selectUser } from '../models/accessUserTable.js';
 
 export async function eventListController(req, res) {
@@ -49,9 +50,18 @@ export async function eventDataController(req, res) {
   }
 }
 
-export async function eventPreviewEditController(req, res) {
+export async function eventDetailController(req, res) {
   try {
-    const event = await selectEvent(req.params.eventId);
+    const { eventId } = req.params;
+    const event = await selectEvent(eventId);
+    const myEventNotification = await selectNotificationMyEvent(res.locals.userId, eventId);
+
+    if (!myEventNotification.length) {
+      event.isMyEvent = false;
+    } else {
+      event.isMyEvent = true;
+      event.notification = myEventNotification[0].notification;
+    }
 
     res.json(event);
   } catch (err) {

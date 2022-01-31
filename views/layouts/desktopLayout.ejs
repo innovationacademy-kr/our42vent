@@ -32,6 +32,13 @@
     <script defer type="module" src="/javascripts/headerUser/userDropDown.js"></script>
     <script defer type="module" src="/javascripts/nav/navToggle.js"></script>
     <%- defineContent('scriptFiles') %>
+    <script defer type="module" src="/javascripts/eventDetail/clickEventDetails.js"></script>
+    <script defer type="module" src="/javascripts/eventDetail/clickExitButton.js"></script>
+    <script
+      defer
+      type="module"
+      src="/javascripts/eventDetail/clickMyEventOrCancelButton.js"
+    ></script>
     <script defer type="module" src="/javascripts/eventForm/checkTime.js"></script>
     <script defer type="module" src="/javascripts/eventForm/clickNewEventButton.js"></script>
     <script defer type="module" src="/javascripts/eventForm/eventFormDisplay.js"></script>
@@ -55,22 +62,26 @@
               alt="42 logo"
           /></a>
         </div>
-        <i class="material-icons-outlined header-today"> today </i>
-        <button class="create-event-btn">
+        <div class="header-right">
+          <button class="header-today-button" type="button">
+            <i class="material-icons-outlined header-today">today</i>
+          </button>
+          <div class="header-user">
+            <div class="user-drop-button">
+              <span class="user-username large text-bold"><%= username %></span>
+              <div class="user-image-wrapper">
+                <img class="user-imageurl" src="<%= profileImage %>" alt="user profile image" />
+              </div>
+            </div>
+            <ul class="user-drop-content hidden text-center">
+              <a href="/event/list"><li class="text-bold">내가 생성한 이벤트</li></a
+              ><a href="/logout"><li class="text-bold">로그아웃</li></a>
+            </ul>
+          </div>
+        </div>
+        <button class="create-event-button">
           <i class="material-icons-outlined header-new">add</i>
         </button>
-        <div class="header-user">
-          <div class="user-drop-button">
-            <span class="user-username large text-bold"><%= username %></span>
-            <div class="user-image-wrapper">
-              <img class="user-imageurl" src="<%= profileImage %>" alt="user profile image" />
-            </div>
-          </div>
-          <ul class="user-drop-content hidden text-center">
-            <a href="/event/list"><li class="text-bold">내가 생성한 이벤트</li></a
-            ><a href="/logout"><li class="text-bold">로그아웃</li></a>
-          </ul>
-        </div>
         <%- defineContent('headerTitle') %>
       </header>
       <nav class="">

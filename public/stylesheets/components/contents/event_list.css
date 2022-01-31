@@ -50,7 +50,7 @@
   align-items: center;
   display: grid;
   grid-template-areas: 'category title time location icon';
-  grid-template-columns: 16px calc(55% - 66px) 22.5% 22.5% 50px;
+  grid-template-columns: 16px calc(55% - 16px - 2.5em) 22.5% 22.5% 2.5em;
   margin: 0 0 5px 0;
 }
 
@@ -62,13 +62,11 @@
   width: 12px;
 }
 
-.list-content-anchor {
-  grid-area: title;
-  padding: 0 3px;
-}
-
 .list-content-title {
+  cursor: pointer;
+  grid-area: title;
   overflow: hidden;
+  padding: 0 3px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -87,7 +85,7 @@
 .list-content-location {
   grid-area: location;
   overflow: hidden;
-  padding: 0 20px;
+  padding: 0 0 0 20px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -99,7 +97,6 @@
 
 .list-content-icon {
   grid-area: icon;
-  width: 50px;
 }
 
 .list-edit {

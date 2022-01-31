@@ -6,14 +6,14 @@ export async function verifyUser(req, res, next) {
   try {
     const accessResult = verifyAccess(req.cookies.accessToken);
 
-    if (accessResult.verified === true) {
+    if (accessResult.verified) {
       res.locals.userId = accessResult.id;
       next();
     } else {
       const refreshResult = await verifyRefresh(req.cookies.refreshToken);
 
-      res.locals.userId = refreshResult.id;
-      if (refreshResult.verified === true) {
+      if (refreshResult.verified) {
+        res.locals.userId = refreshResult.id;
         const accessToken = accessSign(refreshResult.id);
 
         consoleLogger.info('verifyUser : accessToken reissued : ', accessToken);
@@ -39,14 +39,14 @@ export async function verifyLoginUser(req, res, next) {
   try {
     const accessResult = verifyAccess(req.cookies.accessToken);
 
-    if (accessResult.verified === true) {
+    if (accessResult.verified) {
       res.locals.userId = accessResult.id;
       res.redirect('/');
     } else {
       const refreshResult = await verifyRefresh(req.cookies.refreshToken);
 
       res.locals.userId = refreshResult.id;
-      if (refreshResult.verified === true) {
+      if (refreshResult.verified) {
         const accessToken = accessSign(refreshResult.id);
 
         consoleLogger.info('verifyLoginUser : accessToken reissued : ', accessToken);
