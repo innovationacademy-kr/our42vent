@@ -4,7 +4,6 @@
  */
 function initCheckboxes() {
   const checkboxArray = document.querySelectorAll('input[type=checkbox]');
-  const categories = ['특강', '시험', '해커톤 / 공모전', '세미나 / 컨퍼런스', '커뮤니티'];
   let checkedCategoriesArray = [];
 
   if (!sessionStorage.getItem('categories')) {
@@ -22,7 +21,7 @@ function initCheckboxes() {
     });
   }
 
-  checkboxArray.forEach((item, index) => {
+  checkboxArray.forEach(item => {
     const checkbox = item;
     const { checked, name } = checkbox;
     const doneIcon = checkbox.parentElement.querySelector(`.${name}.box-wrapper > i`);
