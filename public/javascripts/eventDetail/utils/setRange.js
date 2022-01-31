@@ -23,7 +23,7 @@ export default function setRange(beginAt, endAt, diffInDays) {
   ];
 
   const beginModifiedHour = beginHour > 9 ? beginHour : `0${beginHour}`;
-  const beginModifiedMinute = beginMinute > 9 > 1 ? beginMinute : `0${beginMinute}`;
+  const beginModifiedMinute = beginMinute > 9 ? beginMinute : `0${beginMinute}`;
   const endModifiedHour = endHour > 9 ? endHour : `0${endHour}`;
   const endModifiedMinute = endMinute > 9 ? endMinute : `0${endMinute}`;
 

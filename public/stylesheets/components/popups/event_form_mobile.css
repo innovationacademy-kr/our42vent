@@ -1,6 +1,6 @@
 /* SECTION: 새 이벤트 생성 버튼 (헤더에 위치)*/
 
-.main > .create-event-btn {
+.main > .create-event-button {
   display: none;
 }
 

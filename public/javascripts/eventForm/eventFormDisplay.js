@@ -1,4 +1,4 @@
-const createEventButtonArray = document.querySelectorAll('.create-event-btn');
+const createEventButtonArray = document.querySelectorAll('.create-event-button');
 
 createEventButtonArray.forEach(item => {
   const createEventButton = item;

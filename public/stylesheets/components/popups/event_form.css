@@ -1,9 +1,9 @@
 /* SECTION: 새 이벤트 생성 버튼 */
-.header > .create-event-btn {
+.header > .create-event-button {
   display: none;
 }
 
-.create-event-btn {
+.create-event-button {
   background: var(--turq_btn);
   border: none;
   border-radius: 50%;
@@ -17,7 +17,7 @@
   z-index: 3;
 }
 
-.create-event-btn:hover {
+.create-event-button:hover {
   background: var(--turq_btn_hover);
   cursor: pointer;
 }

@@ -5,6 +5,10 @@ const myEventsTab = document.querySelector('.navbar-tab-my');
 
 // tab 클릭 시 혹은 sessionStorage 에 저장된 이전 tab 정보에 따라 탭 활성화 표시
 function drawTabSelection(activeInactive) {
+  const title = sessionStorage.getItem('isMyEvent')
+    ? '우리42벤트 | MY EVENTS'
+    : '우리42벤트 | ALL EVENTS';
+  document.title = title;
   activeInactive[0].classList.replace('navbar-tab-inactive', 'navbar-tab-active');
   activeInactive[1].classList.replace('navbar-tab-active', 'navbar-tab-inactive');
   activeInactive[0]
