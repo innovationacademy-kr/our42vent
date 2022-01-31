@@ -22,5 +22,5 @@
 
 /* SECTION: 폰트 적용 */
 *:not(.material-icons) {
-  font-family: 'Source Sans Pro';
+  font-family: 'Source Sans Pro', 'Apple SD Gothic Neo';
 }

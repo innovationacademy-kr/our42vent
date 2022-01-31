@@ -3,10 +3,11 @@ import dotenv from 'dotenv';
 import express from 'express';
 import expressLayouts from 'express-ejs-layouts';
 import createError from 'http-errors';
-import logger from 'morgan';
+import morgan from 'morgan';
 import passport from 'passport';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import { httpErrorStream } from './config/winston.js';
 import initializePassport from './controllers/initializePassport.js';
 import { verifyUser } from './middlewares/verifyUser.js';
 import calendarRoute from './routes/calendar.js';
@@ -27,7 +28,8 @@ initializePassport(passport);
 // express 세팅
 const app = express();
 
-app.use(logger('dev'));
+app.use(morgan('dev', { skip: (req, res) => res.statusCode >= 400 }));
+app.use(morgan('dev', { skip: (req, res) => res.statusCode < 400, stream: httpErrorStream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

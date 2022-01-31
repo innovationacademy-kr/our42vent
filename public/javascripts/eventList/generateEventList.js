@@ -54,11 +54,9 @@ function createEventListElement(eventListInfoDiv, item, isOutdated) {
     createElementAddClass('div', ['list-category', `category-${item.category}`])
   );
 
-  const eventTitleAnchor = eventContentDiv.appendChild(
-    createElementAddClass('a', ['list-content-anchor'])
+  eventContentDiv.appendChild(
+    createElementAddClass('div', [`_eventId-${item.id}`, 'list-content-title'], item.title)
   );
-  eventTitleAnchor.href = '#';
-  eventTitleAnchor.appendChild(createElementAddClass('div', ['list-content-title'], item.title));
 
   eventContentDiv.appendChild(
     createElementAddClass('div', ['list-content-time'])

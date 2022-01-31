@@ -1,5 +1,6 @@
 import addClickListenerForDelete from './addClickListenerForDelete.js';
 import addClickListenerForEdit from './addClickListenerForEdit.js';
+import clickEventDetails from '../eventDetail/clickEventDetails.js';
 import generateEventList from './generateEventList.js';
 
 // 스크롤을 오늘 이후 이벤트에 고정
@@ -51,6 +52,7 @@ generateEventList()
     fixScrollToNextEvent();
     addClickListenerForDelete();
     addClickListenerForEdit();
+    clickEventDetails();
   })
   .catch(err => {
     //   NOTE : 개발 단계에선 console.error가 필요

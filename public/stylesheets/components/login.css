@@ -11,7 +11,7 @@
 .login-button {
   background: var(--turq_btn);
   border: none;
-  color: white;
+  color: var(--white);
   height: 50px;
   width: 320px;
 }
@@ -19,4 +19,13 @@
 .login-button:hover {
   background: var(--turq_btn_hover);
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .layout-login,
+  .login-logo,
+  .login-button {
+    max-width: 320px;
+    width: 80vw;
+  }
 }

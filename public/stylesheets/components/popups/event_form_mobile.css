@@ -1,6 +1,6 @@
 /* SECTION: 새 이벤트 생성 버튼 (헤더에 위치)*/
 
-.main > .create-event-btn {
+.main > .create-event-button {
   display: none;
 }
 
@@ -17,9 +17,10 @@
   background: var(--grey);
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  padding: 25px 0 20px;
   height: 90vh;
+  justify-content: space-around;
+  max-height: 800px;
+  padding: 25px 0 20px;
   width: 70%;
 }
 
@@ -28,15 +29,9 @@
   flex-direction: column;
   height: 100%;
   overflow: auto;
-  -ms-overflow-style: none; /* for ie and edge */
   row-gap: 1em;
-  scrollbar-width: none; /* for firefox */
+  scrollbar-width: thin; /* for firefox */
   width: 80%;
-}
-
-/* for Chrome, Safari and Opera */
-.form-content::-webkit-scrollbar {
-  display: none;
 }
 
 .form-label {
@@ -66,7 +61,7 @@
 }
 
 #event-details {
-  height: 10em;
+  height: 12em;
   width: 100%;
 }
 
@@ -93,8 +88,7 @@
   border: none;
   color: var(--white);
   cursor: pointer;
-  max-height: 50px;
-  min-height: 40px;
+  height: 40px;
   width: 120px;
 }
 
@@ -108,8 +102,7 @@
   border: none;
   color: var(--white);
   cursor: pointer;
-  max-height: 50px;
-  min-height: 40px;
+  height: 40px;
   width: 130px;
 }
 
