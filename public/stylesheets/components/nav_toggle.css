@@ -141,7 +141,6 @@ nav {
   height: 30px;
   margin: 15px 0 15px 20px;
   transition: filter 0.3s ease-in-out;
-  user-select: none;
   width: 130px;
 }
 

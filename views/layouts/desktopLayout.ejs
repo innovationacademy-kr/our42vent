@@ -67,7 +67,7 @@
           </button>
           <div class="header-user">
             <div class="user-drop-button">
-              <span class="user-username large text-bold"><%= username %></span>
+              <span class="user-username large text-bold select-none"><%= username %></span>
               <div class="user-image-wrapper">
                 <img class="user-imageurl" src="<%= profileImage %>" alt="user profile image" />
               </div>
@@ -85,9 +85,9 @@
       </header>
       <nav class="">
         <div class="navbar">
-          <div class="navbar-tab small">
+          <div class="navbar-tab small select-none">
             <div class="navbar-tab-all navbar-tab-active">
-              <div class="navbar-toggle-all box-wrapper small">
+              <div class="navbar-toggle-all box-wrapper select-none small">
                 <% if (referrer === '/event/list') { %>
                 <a href="/"> <div class="toggle-all-event text-left">모든 이벤트</div></a>
                 <% } else {%>
@@ -109,7 +109,7 @@
               </svg>
             </div>
             <div class="navbar-tab-my navbar-tab-inactive">
-              <div class="navbar-toggle-my box-wrapper small">
+              <div class="navbar-toggle-my box-wrapper select-none small">
                 <div class="toggle-my-event text-left">내가 등록한 이벤트</div>
               </div>
               <svg
@@ -134,23 +134,23 @@
             <input type="checkbox" name="contest" id="category-contest" />
             <input type="checkbox" name="conference" id="category-conference" />
             <input type="checkbox" name="community" id="category-community" />
-            <label for="category-lecture" class="lecture box-wrapper">
+            <label for="category-lecture" class="lecture box-wrapper select-none">
               <i class="material-icons-outlined"> done </i>
               <div class="text-left">특강</div>
             </label>
-            <label for="category-exam" class="exam box-wrapper">
+            <label for="category-exam" class="exam box-wrapper select-none">
               <i class="material-icons-outlined"> done </i>
               <div class="text-left">시험</div>
             </label>
-            <label for="category-contest" class="contest box-wrapper">
+            <label for="category-contest" class="contest box-wrapper select-none">
               <i class="material-icons-outlined"> done </i>
               <div class="text-left">해커톤 / 공모전</div>
             </label>
-            <label for="category-conference" class="conference box-wrapper">
+            <label for="category-conference" class="conference box-wrapper select-none">
               <i class="material-icons-outlined"> done </i>
               <div class="text-left">세미나 / 컨퍼런스</div></label
             >
-            <label for="category-community" class="community box-wrapper">
+            <label for="category-community" class="community box-wrapper select-none">
               <i class="material-icons-outlined"> done </i>
               <div class="text-left">커뮤니티</div></label
             >

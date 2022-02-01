@@ -38,7 +38,6 @@
 
 .header-title > .material-icons {
   font-size: 2em;
-  user-select: none;
 }
 
 .header-title > .material-icons:hover {
