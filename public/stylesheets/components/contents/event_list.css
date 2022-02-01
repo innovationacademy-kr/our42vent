@@ -116,8 +116,3 @@
 .list-content-icon i {
   font-size: 1em;
 }
-
-.list-content-icon label:hover {
-  color: var(--turq_btn_hover) !important;
-  cursor: pointer;
-}

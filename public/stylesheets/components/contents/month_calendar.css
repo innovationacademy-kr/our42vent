@@ -100,15 +100,6 @@
   cursor: pointer;
 }
 
-.month-label-single:hover,
-.month-more-button:hover {
-  box-shadow: 1px 1px 1px var(--dark_grey);
-}
-
-.month-label-single:hover {
-  background: rgba(235, 236, 240, 0.3);
-}
-
 .single-category {
   border-radius: 2px;
   display: inline-block;

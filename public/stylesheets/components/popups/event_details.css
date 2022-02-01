@@ -45,10 +45,6 @@
   width: 30px;
 }
 
-.details-exit-button:hover {
-  color: var(--details_exit_grey);
-}
-
 .details-title {
   line-height: 1.25em;
   padding: 1% 2.5em;
@@ -137,16 +133,8 @@
   background: var(--turq_btn);
 }
 
-.details-myevent-button:hover {
-  background: var(--turq_btn_hover);
-}
-
 .details-cancel-button {
   background: var(--red_cancel_btn);
-}
-
-.details-cancel-button:hover {
-  background: var(--red_cancel_btn_hover);
 }
 
 .details-notification-info {

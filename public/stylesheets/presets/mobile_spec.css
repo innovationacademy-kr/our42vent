@@ -66,12 +66,6 @@ body {
   font-weight: 900;
 }
 
-.header-today:hover,
-.header-new:hover {
-  color: var(--turq_btn_hover);
-  cursor: pointer;
-}
-
 /* SECTION: 뷰포트가 768px 이하일 때  */
 
 @media screen and (max-width: 768px) {

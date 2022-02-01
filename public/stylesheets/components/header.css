@@ -40,11 +40,6 @@
   font-size: 2em;
 }
 
-.header-title > .material-icons:hover {
-  color: var(--light_grey);
-  cursor: pointer;
-}
-
 .title-calendar > * {
   line-height: 1.2em;
 }
@@ -71,10 +66,6 @@
   font-size: 2em;
   height: 70px;
   line-height: 70px;
-}
-
-.material-icons-outlined.header-today:hover {
-  color: var(--turq_btn_hover);
 }
 
 .today-svg {
@@ -121,10 +112,6 @@
   width: 56px;
 }
 
-.user-drop-button:hover > .user-username {
-  color: var(--light_mint);
-}
-
 .user-drop-content {
   background: var(--white);
   border: 1px solid var(--header_bg);
@@ -138,8 +125,4 @@
 
 .user-drop-content li {
   padding: 1em 0;
-}
-
-.user-drop-content li:hover {
-  background: var(--light_grey);
 }

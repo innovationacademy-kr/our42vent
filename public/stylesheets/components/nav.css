@@ -42,11 +42,6 @@ nav {
   z-index: 2;
 }
 
-.navbar-tab-inactive:hover {
-  filter: contrast(1.05);
-  transition: filter 0.2s ease-in;
-}
-
 .navbar-tab-all {
   cursor: pointer;
 }
@@ -93,11 +88,6 @@ nav {
   width: 20%;
 }
 
-.box-wrapper:hover {
-  filter: contrast(1.2);
-  transition: filter 0.3s ease-in-out;
-}
-
 .box-wrapper > div {
   font-size: 0.87em;
   padding: 0 0 0 10px;
@@ -121,10 +111,6 @@ nav {
   right: 10%;
   top: calc(95px - 0.5em);
   transition: 0.3s;
-}
-
-.material-icons-outlined.category-scroll:hover {
-  color: var(--white);
 }
 
 .flip-icon {

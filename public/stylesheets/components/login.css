@@ -16,11 +16,6 @@
   width: 320px;
 }
 
-.login-button:hover {
-  background: var(--turq_btn_hover);
-  cursor: pointer;
-}
-
 @media screen and (max-width: 768px) {
   .layout-login,
   .login-logo,

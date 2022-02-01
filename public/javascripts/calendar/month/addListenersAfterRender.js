@@ -5,11 +5,7 @@ import { createElementAddClass } from '../../utils/domNodeUtils.js';
 export default function addListenersAfterRender(allEvents) {
   loadMore();
   highlightHoveredMultiLabel();
-  /**
-   * TODO: navigator.maxTouchPoints === 0 로 touch screen 을 걸러주는데
-   * 터치 스크린 랩탑도 걸러져서 개선이 필요합니다.
-   */
-  if (navigator.maxTouchPoints === 0) showBeginAt(allEvents);
+  showBeginAt(allEvents);
   clickEventDetails();
 }
 
@@ -54,7 +50,8 @@ function showBeginAt(allEvents) {
   );
 
   labelsNodeList.forEach(label => {
-    label.addEventListener('mousemove', e => {
+    label.addEventListener('pointermove', e => {
+      if (e.pointerType === 'touch') return;
       const prevSVGWrapper = document.querySelector('.beginat-svg');
       if (prevSVGWrapper) prevSVGWrapper.remove();
 
@@ -67,7 +64,7 @@ function showBeginAt(allEvents) {
       const startTime = isMulti
         ? `${beginAtKST.slice(5, 7)}/${beginAtKST.slice(8, 10)} ${beginAtKST.slice(11, 16)}`
         : beginAtKST.slice(11, 16);
-      const boxWidth = isMulti ? 70 : 40;
+      const boxWidth = isMulti ? 68 : 40;
       SVGWrapper.innerHTML =
         `<svg width="${boxWidth}" height="23" viewBox="0 0 ${boxWidth} 23" fill="none"` +
         `xmlns="http://www.w3.org/2000/svg"><rect x="${boxWidth}" y="22.0771" width="${boxWidth}" height="22"` +
@@ -78,7 +75,8 @@ function showBeginAt(allEvents) {
       SVGWrapper.style.top = `${e.clientY + 12 + window.scrollY}`;
     });
 
-    label.addEventListener('mouseleave', () => {
+    label.addEventListener('pointerleave', e => {
+      if (e.pointerType === 'touch') return;
       const prevSVGWrapper = document.querySelector('.beginat-svg');
       if (prevSVGWrapper) prevSVGWrapper.remove();
     });
