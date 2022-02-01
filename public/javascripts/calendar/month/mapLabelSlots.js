@@ -1,8 +1,9 @@
 // 이벤트별 띠지 길이 설정 & 띠지 slot 설정 엔트리 함수
 export default function mapLabelSlots(dateEventArray, dateIndex, durationHash, firstDate) {
-  const newDurationHash = durationHash;
   const boxHeight = document.querySelector('.month-date').offsetHeight - 20;
   const curEventArray = dateEventArray[dateIndex].eventArray;
+  const curSlot = dateEventArray[dateIndex].slot;
+  const newDurationHash = durationHash;
 
   curEventArray.forEach((event, eventIndex) => {
     const curEvent = event;
@@ -10,9 +11,17 @@ export default function mapLabelSlots(dateEventArray, dateIndex, durationHash, f
 
     if (!(id in durationHash))
       newDurationHash[`${id}`] = initDurationHash(beginAt, endAt, firstDate);
+
     curEvent.isMulti = newDurationHash[`${id}`].isMulti;
-    curEvent.length = getLabelLength(boxHeight, dateIndex, eventIndex, newDurationHash[`${id}`]);
-    if (!Object.values(dateEventArray[dateIndex].slot).includes(eventIndex))
+    curEvent.length = getLabelLength(
+      boxHeight,
+      curSlot,
+      dateIndex,
+      newDurationHash[`${id}`],
+      eventIndex
+    );
+
+    if (!Object.values(curSlot).includes(eventIndex))
       setSlots(dateEventArray, dateIndex, curEvent, eventIndex);
   });
   fillEmptySlots(dateEventArray, dateIndex);
@@ -20,10 +29,14 @@ export default function mapLabelSlots(dateEventArray, dateIndex, durationHash, f
 
 // durationHash 에 없으면 해당 이벤트 초기값 설정
 function initDurationHash(beginAt, endAt, firstDate) {
+  const [beginAtModified, endAtModified] = [
+    new Date(beginAt).setHours(0, 0, 0, 0),
+    new Date(endAt).setHours(0, 0, 0, 0),
+  ];
   const remainingDays =
     firstDate > new Date(beginAt).getTime()
-      ? Math.floor((new Date(endAt).getTime() - firstDate) / 86400000) + 1
-      : Math.floor((new Date(endAt).getTime() - new Date(beginAt).getTime()) / 86400000) + 1;
+      ? (endAtModified - firstDate) / 8.64e7 + 1
+      : (endAtModified - beginAtModified) / 8.64e7 + 1;
   const isMulti = remainingDays > 1;
   return { remainingDays, isMulti, isNextRow: false };
 }
@@ -33,11 +46,15 @@ function initDurationHash(beginAt, endAt, firstDate) {
  * 해당 이벤트 durationHash 에 아직 표시해야하는 띠지 길이 업데이트
  * 이벤트 띠지 길이 (length) 설정
  */
-function getLabelLength(boxHeight, dateIndex, eventIndex, curDurationInfo) {
+function getLabelLength(boxHeight, curSlot, dateIndex, curDurationInfo, eventIndex) {
   const newDurationInfo = curDurationInfo;
+  const nextEmptySlotIndex = findSlotIndex(curSlot);
   let length = newDurationInfo.remainingDays >= 1 ? 1 : -1;
 
-  if (boxHeight - (eventIndex + 1) * 24 < 22) {
+  if (
+    !Object.values(curSlot).includes(eventIndex) &&
+    boxHeight - (nextEmptySlotIndex + 1) * 24 < 22
+  ) {
     newDurationInfo.remainingDays -= 1;
   } else if (newDurationInfo.remainingDays > 1) {
     length = -1;
@@ -66,17 +83,13 @@ function setSlots(dateEventArray, dateIndex, curEvent, eventIndex) {
   const curSlot = newDateEventArray[dateIndex].slot;
 
   if (length > 1) {
+    const slotIndex = findSlotIndex(newDateEventArray[dateIndex].slot);
     for (let k = 0; k < length && dateIndex + k < newDateEventArray.length; k += 1) {
       const { eventArray } = newDateEventArray[dateIndex + k];
       const matchingIndex = eventArray.findIndex(e => e.id === id);
-      const slotIndex = curSlot[`${eventIndex}`]
-        ? `${eventIndex}`
-        : `${findSlotIndex(newDateEventArray[dateIndex + k].slot)}`;
-      newDateEventArray[dateIndex + k].slot[slotIndex] = matchingIndex;
+      newDateEventArray[dateIndex + k].slot[`${slotIndex}`] = matchingIndex;
     }
-  } else if (length === 1) {
-    curSlot[`${findSlotIndex(curSlot)}`] = eventIndex;
-  }
+  } else if (length === 1) curSlot[`${findSlotIndex(curSlot)}`] = eventIndex;
 }
 
 // 중간에 빈 슬롯 있으면 빈 div 로 채워줄 공간이라고 -1 index 로 표시
@@ -87,9 +100,7 @@ function fillEmptySlots(dateEventArray, dateIndex) {
 
   let slotIndex = 0;
   while (slotIndex + 1 < maxSlotIndex) {
-    while (keyArray.includes(slotIndex)) {
-      slotIndex += 1;
-    }
+    while (keyArray.includes(slotIndex)) slotIndex += 1;
     newDateEvent.slot[`${slotIndex}`] = -1;
     slotIndex += 1;
   }
@@ -100,8 +111,6 @@ function findSlotIndex(slot) {
   const keyArray = Object.keys(slot).map(key => Number(key));
 
   let slotIndex = 0;
-  while (keyArray.includes(slotIndex)) {
-    slotIndex += 1;
-  }
+  while (keyArray.includes(slotIndex)) slotIndex += 1;
   return slotIndex;
 }
