@@ -52,9 +52,11 @@
 /* SECTION: Today 아이콘 & user dropdown 레이아웃 */
 
 .header-right {
+  align-items: center;
   column-gap: 15px;
   display: flex;
   flex-direction: row;
+  height: 70px;
   justify-self: right;
 }
 
@@ -85,6 +87,7 @@
 /* SECTION: 사용자 dropdown */
 
 .header-user {
+  height: 70px;
   position: relative;
 }
 
