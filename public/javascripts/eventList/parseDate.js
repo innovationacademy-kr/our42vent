@@ -23,13 +23,3 @@ export function getFullTime(timestamp) {
 export function getDateGap(begin, end) {
   return Math.floor((new Date(end).getTime() - new Date(begin).getTime()) / 8.64e7); // 8.64e7 = 1일을 milisecond로 변환한 값
 }
-
-// 이벤트가 특정 날짜에 일어나는지 확인
-export function isBtwnDates(curDate, beginAt, endAt) {
-  if (
-    curDate.localeCompare(getFullDate(new Date(beginAt).getTime())) >= 0 &&
-    curDate.localeCompare(getFullDate(new Date(endAt).getTime())) <= 0
-  )
-    return true;
-  return false;
-}

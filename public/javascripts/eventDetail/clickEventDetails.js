@@ -120,7 +120,7 @@ async function setEventDetails(eventId) {
 }
 
 export default async function clickEventDetails() {
-  // event-(id)로 시작하는 모든 element select
+  // _eventId-(id)로 시작하는 모든 element select
   const eventList = document.querySelectorAll('[class^=_eventId-]');
 
   // 각각의 띠지에 클릭 이벤트리스너 설정

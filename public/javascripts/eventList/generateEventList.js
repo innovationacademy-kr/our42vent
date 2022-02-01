@@ -1,12 +1,12 @@
 import { createElementAddClass } from '../utils/domNodeUtils.js';
-import { getFullDate, getFullTime, getDateGap, isBtwnDates } from '../utils/eventListUtils.js';
+import { getFullDate, getFullTime, getDateGap } from './parseDate.js';
 
 // 서버로부터 해당 유저의 event list를 받아옴
 async function getEventList() {
   try {
-    const res = await axios.get('/event/list/data');
+    const { data } = await axios.get('/event/list/data');
 
-    return res.data;
+    return data;
   } catch (err) {
     // TODO : 적절하게 에러 핸들링 해줘야함
     throw new Error(err.message);
@@ -89,6 +89,16 @@ function showNoEventMessage() {
   eventListSection.appendChild(
     createElementAddClass('div', ['eventlist-no-content', 'xxlarge'], '생성한 이벤트가 없습니다.')
   );
+}
+
+// 이벤트가 특정 날짜에 일어나는지 확인
+function isBtwnDates(curDate, beginAt, endAt) {
+  if (
+    curDate.localeCompare(getFullDate(new Date(beginAt).getTime())) >= 0 &&
+    curDate.localeCompare(getFullDate(new Date(endAt).getTime())) <= 0
+  )
+    return true;
+  return false;
 }
 
 // 이벤트들을 받아와서 파싱 후 DOM element 생성
