@@ -1,16 +1,14 @@
 import pool from '../config/createMySQLPool.js';
-import consoleLogger from '../lib/consoleLogger.js';
+import { logger } from '../config/winston.js';
 
 // my_event 테이블에 INSERT
 export async function insertMyEvent(userId, eventId, notification) {
-  consoleLogger.info(
-    `insertMyEvent : try inserting eventId=${eventId}, notification=${notification} `
-  );
+  logger.info(`insertMyEvent : try inserting eventId=${eventId}, notification=${notification} `);
 
   const sql = 'INSERT INTO my_event (eventId, userId, notification) VALUES (?, ?, ?);';
 
   const rows = await pool.execute(sql, [eventId, userId, notification]);
-  consoleLogger.info('insertMyEvent : query success : ', rows);
+  logger.info(`insertMyEvent : query success : ${JSON.stringify(rows)}`);
 }
 
 // 내가 등록한 이벤트 SELECT
@@ -22,7 +20,7 @@ export async function selectMyEvents(userId, firstDate, lastDate) {
     'ORDER BY beginAt';
 
   const [rows] = await pool.execute(sql, [userId, firstDate, lastDate, firstDate, firstDate]);
-  consoleLogger.info('selectMyEvents : query success');
+  logger.info('selectMyEvents : query success');
   return rows;
 }
 
@@ -30,7 +28,7 @@ export async function selectMyEvents(userId, firstDate, lastDate) {
 export async function selectNotificationMyEvent(userId, eventId) {
   const sql = 'SELECT notification FROM my_event WHERE userId=? AND eventId=?';
   const [rows] = await pool.execute(sql, [userId, eventId]);
-  consoleLogger.info(
+  logger.info(
     `selectExistsMyEvent : query success : isMyEvent checked for userId=${userId}, eventId=${eventId}`
   );
   return rows;
@@ -40,7 +38,16 @@ export async function selectNotificationMyEvent(userId, eventId) {
 export async function deleteMyEvent(userId, eventId) {
   const sql = 'DELETE FROM my_event WHERE (userID=? AND eventID=?)';
   await pool.execute(sql, [userId, eventId]);
-  consoleLogger.info(
+  logger.info(
     `deleteMyEvent : query success : deleted my_event entry userId=${userId}, eventId=${eventId}`
+  );
+}
+
+export async function deleteSubscribedEvent(eventId) {
+  const sql = 'DELETE FROM my_event WHERE eventID=?';
+
+  await pool.execute(sql, [eventId]);
+  logger.info(
+    `deleteSubscribedEvent : query success : deleted event entry eventId=${eventId} in my_event`
   );
 }

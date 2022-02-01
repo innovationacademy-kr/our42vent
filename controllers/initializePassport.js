@@ -1,5 +1,5 @@
 import { Strategy as FortyTwoStrategy } from 'passport-42';
-import consoleLogger from '../lib/consoleLogger.js';
+import { logger } from '../config/winston.js';
 import { insertUser } from '../models/accessUserTable.js';
 
 // 42-api의 사용자 profile에서 필요한 사용자 정보 추출
@@ -9,7 +9,7 @@ function profileToUser(profile) {
     username: profile.username,
     profileImage: profile.photos[0].value,
   };
-  consoleLogger.info('profileToUser : ', user);
+  logger.info(`profileToUser : ${JSON.stringify(user)}`);
   return user;
 }
 
@@ -19,7 +19,7 @@ export default function initializePassport(passport) {
       {
         clientID: process.env.FORTYTWO_APP_ID,
         clientSecret: process.env.FORTYTWO_APP_SECRET,
-        callbackURL: process.env.RETURN_URL
+        callbackURL: process.env.RETURN_URL,
       },
       async (accessToken, refreshToken, profile, cb) => {
         try {
@@ -28,7 +28,7 @@ export default function initializePassport(passport) {
           await insertUser(user);
           cb(null, user);
         } catch (err) {
-          consoleLogger.error('FortyTwoStrategy : error :', err.stack);
+          logger.warn(`FortyTwoStrategy : ${err.stack}`);
           cb(err);
         }
       }

@@ -1,4 +1,4 @@
-import consoleLogger from '../lib/consoleLogger.js';
+import { logger } from '../config/winston.js';
 import {
   deleteEvent,
   selectCreatedEvents,
@@ -22,7 +22,7 @@ export async function eventListController(req, res) {
       referrer: '/event/list',
     });
   } catch (err) {
-    consoleLogger.error(err.stack);
+    logger.warn(err.stack);
     res.status(500).end();
   }
 }
@@ -33,7 +33,7 @@ export async function eventDeleteController(req, res) {
 
     res.end();
   } catch (err) {
-    consoleLogger.error(err.stack);
+    logger.warn(err.stack);
     res.status(500).end();
   }
 }
@@ -44,7 +44,7 @@ export async function eventDataController(req, res) {
 
     res.json(eventList);
   } catch (err) {
-    consoleLogger.error(err.stack);
+    logger.warn(err.stack);
     res.status(500).end();
   }
 }
@@ -64,7 +64,7 @@ export async function eventDetailController(req, res) {
 
     res.json(event);
   } catch (err) {
-    consoleLogger.error(err.stack);
+    logger.warn(err.stack);
     res.status(500).end();
   }
 }
@@ -76,7 +76,7 @@ export async function eventEditController(req, res) {
 
     res.end();
   } catch (err) {
-    consoleLogger.error(err.stack);
+    logger.warn(err.stack);
     res.status(500).end();
   }
 }
