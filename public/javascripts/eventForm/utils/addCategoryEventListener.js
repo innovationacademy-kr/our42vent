@@ -1,6 +1,6 @@
 import { colorizeBorderForStr } from './colorizeBorder.js';
 
-function checkCategoryAndcolorizeBorder(element) {
+function checkCategoryAndColorizeBorder(element) {
   if (element.value === 'none') {
     colorizeBorderForStr(false, element, true);
   } else {
@@ -13,7 +13,7 @@ export default function addCategoryEventListener() {
 
   // 카테고리 변경시 2초동안 테두리색 변경
   category.addEventListener('change', () => {
-    checkCategoryAndcolorizeBorder(category);
+    checkCategoryAndColorizeBorder(category);
     setTimeout(() => {
       category.style.border = 'none';
     }, 2000);
@@ -21,7 +21,7 @@ export default function addCategoryEventListener() {
 
   // 이벤트 생성 버튼 클릭시, 카테고리 테두리색 변경
   category.addEventListener('invalid', () => {
-    checkCategoryAndcolorizeBorder(category);
+    checkCategoryAndColorizeBorder(category);
   });
 
   // 카테고리에 포커스가 사라지면, 1초동안 테두리색 변경

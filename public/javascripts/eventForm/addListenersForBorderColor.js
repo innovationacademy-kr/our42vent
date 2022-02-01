@@ -3,8 +3,6 @@ import addTextEventListener from './utils/addTextEventListener.js';
 import addTimeEventListener from './utils/addTimeEventListener.js';
 
 function addListenersForBorderColor() {
-  // addTextEventListener(inputId, maxByte, isRequired, isTextarea)
-
   addTextEventListener('event-title', 224, true, false);
   addTextEventListener('event-pic', 56, false, false);
   addTextEventListener('event-location', 224, true, false);

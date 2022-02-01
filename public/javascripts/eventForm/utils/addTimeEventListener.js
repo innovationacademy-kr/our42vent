@@ -6,9 +6,7 @@ function checkMinMaxTime(time) {
   const max = new Date('4242-12-31T23:59');
   const timeObj = new Date(time);
 
-  if (timeObj >= min && timeObj <= max) {
-    return true;
-  }
+  if (timeObj >= min && timeObj <= max) return true;
   return false;
 }
 
@@ -17,9 +15,7 @@ function checkTimeOrder(beginAt, endAt) {
 
   const beginAtTime = new Date(beginAt);
   const endAtTime = new Date(endAt);
-  if (beginAtTime <= endAtTime) {
-    return true;
-  }
+  if (beginAtTime <= endAtTime) return true;
   return false;
 }
 
