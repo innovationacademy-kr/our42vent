@@ -3,8 +3,6 @@ import { createElementAddClass } from '../../utils/domNodeUtils.js';
 // 띠지 HTML element 생성 & append, 하루 이상 이벤트 띠지 길이 & 위치 설정
 export function createLabel(eventInfo, eventsDiv, slotIndex) {
   const { category, id, isMulti, length, title } = eventInfo;
-  const boxWidth = document.querySelector('.month-date-events').offsetWidth;
-
   if (length === -1) {
     eventsDiv.appendChild(createElementAddClass('div', ['month-label-empty']));
   } else if (isMulti) {
@@ -14,6 +12,7 @@ export function createLabel(eventInfo, eventsDiv, slotIndex) {
   }
 
   if (length > 1) {
+    const boxWidth = document.querySelector('.calendar-month').offsetWidth / 7;
     const multiDayLabel = eventsDiv.appendChild(
       createElementAddClass(
         'div',
@@ -21,7 +20,7 @@ export function createLabel(eventInfo, eventsDiv, slotIndex) {
         title
       )
     );
-    multiDayLabel.style.width = `${(boxWidth - 4) * 2 + boxWidth * (length - 2) - 1}`;
+    multiDayLabel.style.width = `${(boxWidth - 5) * 2 + boxWidth * (length - 2) - 1}`;
     multiDayLabel.style.top = `${20 + 24 * slotIndex}`;
   }
 }
