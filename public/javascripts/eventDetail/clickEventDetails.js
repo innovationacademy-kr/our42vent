@@ -122,7 +122,7 @@ export async function setEventDetails(eventId) {
 }
 
 export async function clickEventDetails() {
-  // event-(id)로 시작하는 모든 element select
+  // _eventId-(id)로 시작하는 모든 element select
   const eventList = document.querySelectorAll('[class^=_eventId-]');
 
   // 각각의 띠지에 클릭 이벤트리스너 설정
@@ -133,7 +133,7 @@ export async function clickEventDetails() {
     event.addEventListener('click', async () => {
       await setEventDetails(eventId);
 
-      //  상세보기에 event-(id)를 id로 넣어줌 (나중에 my_event post할때 event id 필요)
+      //  상세보기에 eventId를 id로 넣어줌 (나중에 my_event post할때 event id 필요)
       [detailElement.id] = event.classList;
       detailElement.style.display = 'grid';
     });

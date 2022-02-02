@@ -8,25 +8,24 @@
   width: 40%;
 }
 
-.details-exit-button {
+.details-exit-button,
+.details-share-button {
   color: var(--white);
   cursor: pointer;
   padding: 5px 0;
   position: absolute;
-  right: 5px;
-  top: 0px;
   vertical-align: -1;
 }
 
+.details-exit-button {
+  right: 5px;
+  top: 0px;
+}
+
 .details-share-button.material-icons {
-  color: var(--white);
-  cursor: pointer;
-  padding: 5px 0;
-  position: absolute;
+  font-size: 19px;
   right: 35px;
   top: 2px;
-  font-size: 19px;
-  vertical-align: -1;
   user-select: none;
 }
 

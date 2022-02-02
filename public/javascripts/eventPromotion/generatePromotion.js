@@ -1,3 +1,6 @@
+import setDuration from '../eventDetail/utils/setDuration.js';
+import setRange from '../eventDetail/utils/setRange.js';
+
 function resize(element) {
   const textarea = element;
 
@@ -7,10 +10,12 @@ function resize(element) {
 
 export default function generatePromotion(event) {
   const { id, title, personInCharge, beginAt, endAt, location, topic, details } = event;
-  let promotion =
-    `${title}\n\n주제: ${topic}\n일시: ${beginAt.replace('T', ' ').substring(0, 16)}` +
-    ` ~ ${endAt.replace('T', ' ').substring(0, 16)}\n장소: ${location}`;
-
+  const { diffInDays } = setDuration(beginAt, endAt);
+  let promotion = `${title}\n\n주제: ${topic}\n일시: ${setRange(
+    beginAt,
+    endAt,
+    diffInDays
+  )}\n장소: ${location}`;
   if (personInCharge) promotion += `\n발표자/담당자: ${personInCharge}`;
   if (details) promotion += `\n\n${details}`;
 

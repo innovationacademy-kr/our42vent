@@ -11,8 +11,8 @@ export default function clickExitOrShareButton(eventParam, eventId) {
   shareButton.addEventListener('click', () => {
     const event = eventParam;
     event.id = eventId;
-    event.beginAt = new Date(new Date(event.beginAt).getTime() + 3.24e7).toISOString();
-    event.endAt = new Date(new Date(event.endAt).getTime() + 3.24e7).toISOString();
+    event.beginAt = new Date(event.beginAt).toISOString();
+    event.endAt = new Date(event.endAt).toISOString();
     generatePromotion(event);
   });
 }

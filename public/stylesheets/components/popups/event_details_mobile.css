@@ -31,26 +31,26 @@
   width: 100%;
 }
 
-.details-exit-button {
+.details-exit-button,
+.details-share-button {
   color: var(--white);
   cursor: pointer;
   padding: 5px 0;
   position: absolute;
-  right: 5px;
-  top: 0px;
   vertical-align: -1;
 }
 
-.details-share-button.material-icons {
-  color: var(--white);
-  cursor: pointer;
-  font-size: 19px;
-  padding: 5px 0;
+.details-exit-button {
   position: absolute;
+  right: 5px;
+  top: 0px;
+}
+
+.details-share-button.material-icons {
+  font-size: 19px;
   right: 35px;
   top: 2px;
   user-select: none;
-  vertical-align: -1;
 }
 
 .details-exit-button:hover,
