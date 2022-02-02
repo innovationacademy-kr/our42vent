@@ -18,11 +18,21 @@
           name="beginAt"
           required
           type="datetime-local"
+          min="1970-01-01T00:00"
+          max="4242-12-31T23:59"
         />
       </div>
       <div class="form-endat">
         <label class="form-label text-bold" for="event-endat">종료 시간</label>
-        <input class="form-oneline" id="event-endat" name="endAt" required type="datetime-local" />
+        <input
+          class="form-oneline"
+          id="event-endat"
+          name="endAt"
+          required
+          type="datetime-local"
+          min="1970-01-01T00:00"
+          max="4242-12-31T23:59"
+        />
       </div>
       <div class="form-location">
         <label class="form-label text-bold" for="event-location">장소</label>
@@ -31,6 +41,7 @@
       <div class="form-category">
         <label class="form-label text-bold" for="event-category">카테고리</label>
         <select class="form-oneline" id="event-category" name="category" required>
+          <option value="none">카테고리 설정</option>
           <option value="lecture">특강</option>
           <option value="contest">해커톤/공모전</option>
           <option value="conference">세미나/컨퍼런스</option>
