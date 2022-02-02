@@ -1,4 +1,4 @@
-#!bin/bash
+#! /bin/bash
 
 SQL_PATH=$(dirname $0)
 
