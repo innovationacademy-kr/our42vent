@@ -91,3 +91,97 @@
     cursor: pointer;
   }
 }
+
+@media (pointer: coarse) {
+  /* SECTION: login */
+
+  .login-button:active {
+    background: var(--turq_btn_hover);
+    cursor: pointer;
+  }
+
+  /* SECTION: header */
+
+  .header-today.material-icons-outlined:active,
+  .header-new.material-icons-outlined:active {
+    color: var(--turq_btn_hover);
+    cursor: pointer;
+  }
+
+  .header-title > .material-icons:active {
+    color: var(--light_grey);
+    cursor: pointer;
+  }
+
+  .user-drop-button:active > .user-username {
+    color: var(--light_mint);
+  }
+
+  .user-drop-content li:active {
+    background: var(--light_grey);
+  }
+
+  /* SECTION: nav */
+
+  .navbar-tab-inactive:active {
+    filter: contrast(1.05);
+    transition: filter 0.2s ease-in;
+  }
+
+  .box-wrapper:active {
+    filter: contrast(1.2);
+    transition: filter 0.3s ease-in-out;
+  }
+
+  .material-icons-outlined.category-scroll:active {
+    color: var(--white);
+  }
+
+  /* SECTION: 이벤트 리스트 */
+
+  .list-content-icon label:active {
+    color: var(--turq_btn_hover) !important;
+    cursor: pointer;
+  }
+
+  /* SECTION: 달력 띠지 */
+
+  .month-label-single:active,
+  .month-more-button:active {
+    box-shadow: 1px 1px 1px var(--dark_grey);
+  }
+
+  .month-label-single:active {
+    background: rgba(235, 236, 240, 0.3);
+  }
+
+  /* SECTION: 이벤트 상세정보 */
+
+  .details-exit-button:active {
+    color: var(--details_exit_grey);
+  }
+
+  .details-myevent-button:active {
+    background: var(--turq_btn_hover);
+  }
+
+  .details-cancel-button:active {
+    background: var(--red_cancel_btn_hover);
+  }
+
+  /* SECTION: 이벤트 생성 폼 */
+
+  .form-button-exit:active {
+    background: var(--red_cancel_btn_hover);
+  }
+
+  .form-button-edit:active,
+  .form-button-new:active {
+    background: var(--turq_btn_hover);
+  }
+
+  main > .create-event-button:active {
+    background: var(--turq_btn_hover);
+    cursor: pointer;
+  }
+}
