@@ -39,7 +39,7 @@ export async function generateMonth() {
     return [dateEventArray, firstDate, year];
   } catch (err) {
     // TODO: 지워야하는 로그, 추후 적절한 에러 메시지 UI / 리다이렉션
-    console.log(err.message);
+    console.log(err.stack);
     return null;
   }
 }
