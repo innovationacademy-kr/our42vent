@@ -1,4 +1,6 @@
-#!bin/bash
+#! /bin/bash
+
+SQL_PATH=$(dirname $0)
 
 echo "DB 테이블을 생성합니다"
 echo "mysql 유저명을 입력하세요"
@@ -17,25 +19,25 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
-mysql -u$user -p$passwd $DATABASE < create_table_user.sql
+mysql -u$user -p$passwd $DATABASE < $SQL_PATH/create_table_user.sql
 if [ $? -eq 0 ]; then
 	echo "user table을 만드는데 성공하였습니다"
 else
 	echo "user table이 이미 존재하는지 확인해주세요"
 fi
-mysql -u$user -p$passwd $DATABASE < create_table_event.sql
+mysql -u$user -p$passwd $DATABASE < $SQL_PATH/create_table_event.sql
 if [ $? -eq 0 ]; then
 	echo "event table을 만드는데 성공하였습니다"
 else
 	echo "event table이 이미 존재하는지 확인해주세요"
 fi
-mysql -u$user -p$passwd $DATABASE < create_table_my_event.sql
+mysql -u$user -p$passwd $DATABASE < $SQL_PATH/create_table_my_event.sql
 if [ $? -eq 0 ]; then
 	echo "my_event table을 만드는데 성공하였습니다"
 else
 	echo "my_event table이 이미 존재하는지 확인해주세요"
 fi
-mysql -u$user -p$passwd $DATABASE < insert_intra.sql
+mysql -u$user -p$passwd $DATABASE < $SQL_PATH/insert_intra.sql
 if [ $? -eq 0 ]; then
 	echo "인트라 id 데이터를 넣는데  성공하였습니다"
 else
