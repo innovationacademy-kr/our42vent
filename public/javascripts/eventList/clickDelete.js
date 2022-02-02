@@ -21,8 +21,9 @@ function deleteEvent(event) {
 }
 
 // 삭제 아이콘에 이벤트 할당
-export default function addClickListenerForDelete(eventListSection) {
+export default function clickDelete(eventListSection) {
   const deleteButtonElementArray = eventListSection.querySelectorAll('.list-delete');
+
   deleteButtonElementArray.forEach(eventElement =>
     eventElement.addEventListener('click', deleteEvent)
   );

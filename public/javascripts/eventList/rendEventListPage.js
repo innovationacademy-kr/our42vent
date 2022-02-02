@@ -1,13 +1,11 @@
-import addClickListenerForDelete from './addClickListenerForDelete.js';
-import addClickListenerForEdit from './addClickListenerForEdit.js';
+import clickDelete from './clickDelete.js';
+import clickEdit from './clickEdit.js';
+import clickEventListToday from './clickEventListToday.js';
 import clickEventDetails from '../eventDetail/clickEventDetails.js';
 import generateEventList from './generateEventList.js';
-import addClickListnerForToday from './addClickListnerForToday.js';
 
 function getScrollOffset(eventListSection) {
   const outdatedDivArray = eventListSection.querySelectorAll('.date-outdated');
-  console.log(outdatedDivArray);
-  console.log(outdatedDivArray[outdatedDivArray.length - 1].getBoundingClientRect());
 
   return outdatedDivArray.length === 0
     ? 0
@@ -38,9 +36,9 @@ function setLayoutForEventList() {
 }
 
 function addListenersForEventList(eventListSection, scrollOffset) {
-  addClickListnerForToday(eventListSection, scrollOffset);
-  addClickListenerForDelete(eventListSection);
-  addClickListenerForEdit(eventListSection);
+  clickEventListToday(eventListSection, scrollOffset);
+  clickDelete(eventListSection);
+  clickEdit(eventListSection);
   clickEventDetails();
 }
 
@@ -50,10 +48,8 @@ async function rendEventListPage() {
     await generateEventList();
 
     const eventListSection = document.querySelector('.eventlist');
-    console.log(eventListSection.getBoundingClientRect());
-    const scrollOffset = getScrollOffset(eventListSection);
-    console.log(scrollOffset);
     eventListSection.scrollTo({ top: 0 });
+    const scrollOffset = getScrollOffset(eventListSection);
     eventListSection.scrollTo({ top: scrollOffset });
     addListenersForEventList(eventListSection, scrollOffset);
   } catch (err) {

@@ -71,7 +71,7 @@ async function editEventListener(event) {
 }
 
 //  수정 아이콘에 이벤트 할당
-export default function addClickListenerForEdit(eventListSection) {
+export default function clickEdit(eventListSection) {
   const editEventElementArray = eventListSection.querySelectorAll('.list-edit');
 
   editEventElementArray.forEach(eventElement =>
