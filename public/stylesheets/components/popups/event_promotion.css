@@ -14,9 +14,9 @@
 }
 
 .promotion-exit-button.material-icons {
+  position: absolute;
   right: 1%;
   top: 5px;
-  position: absolute;
 }
 
 .promotion-content-wrapper {
