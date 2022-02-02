@@ -1,4 +1,4 @@
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
   /* SECTION: login */
 
   .login-button:hover {
