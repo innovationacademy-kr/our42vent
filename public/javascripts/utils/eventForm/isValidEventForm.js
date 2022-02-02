@@ -46,8 +46,6 @@ function checkTextValidity(inputId) {
 // 시작(종료)시간 입력여부와 기간내 시간인지 확인 후 true/false 반환
 function checkTimeValidity(inputId) {
   const input = document.getElementById(inputId);
-  const dateMin = new Date('1970-01-01T00:00');
-  const dateMax = new Date('4242-12-31T23:59');
   const inputDate = new Date(input.value);
   const timeName = inputId === 'event-beginat' ? '시작' : '종료';
   let ret = true;
@@ -55,7 +53,7 @@ function checkTimeValidity(inputId) {
   if (input.value === '') {
     input.setCustomValidity(`${timeName} 시간을 선택해주세요`);
     ret = false;
-  } else if (inputDate < dateMin || inputDate > dateMax) {
+  } else if (inputDate < new Date('1970-01-01T00:00') || inputDate > new Date('4242-12-31T23:59')) {
     input.setCustomValidity(`${timeName} 시간은 1970년부터 4242년 사이에서 선택해주세요`);
     ret = false;
   } else {

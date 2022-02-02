@@ -30,9 +30,7 @@ export default function addTextEventListener(inputId) {
 
   inputElement.addEventListener('focusin', () => {
     colorizeTextBorder(inputId, inputElement);
-    inputElement.addEventListener('keyup', () => {
-      colorizeTextBorder(inputId, inputElement);
-    });
+    inputElement.addEventListener('keyup', () => colorizeTextBorder(inputId, inputElement));
   });
 
   inputElement.addEventListener('focusout', () => {

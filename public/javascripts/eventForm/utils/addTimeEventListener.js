@@ -4,8 +4,7 @@ function isValidTimeRange(time) {
   const max = new Date('4242-12-31T23:59');
   const timeObj = new Date(time);
 
-  if (timeObj >= min && timeObj <= max) return true;
-  return false;
+  return timeObj >= min && timeObj <= max;
 }
 
 function isValidTimeOrder() {
@@ -14,11 +13,12 @@ function isValidTimeOrder() {
   const beginAtTime = new Date(beginAt);
   const endAtTime = new Date(endAt);
 
-  if (beginAtTime <= endAtTime) return true;
-  return false;
+  return beginAtTime <= endAtTime;
 }
 
-function colorizeTimeBorder(eleToColor, eleToCompare) {
+function colorizeTimeBorder(elementToColor, eleToCompare) {
+  const eleToColor = elementToColor;
+
   if (
     eleToColor.value !== '' &&
     isValidTimeRange(eleToColor.value) &&

@@ -8,7 +8,5 @@ export default function countByte(inputValue) {
    * 브라우저에서 나오면서 \n -> \r\n
    * 이를 고려하기 위해 여기서 미리 \n만큼의 개수를 더함.
    */
-  const bytesCount = new TextEncoder().encode(inputValue).length + newLineCount;
-
-  return bytesCount;
+  return new TextEncoder().encode(inputValue).length + newLineCount;
 }
