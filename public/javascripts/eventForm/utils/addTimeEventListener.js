@@ -48,13 +48,9 @@ export default function addTimeEventListener() {
   });
 
   // 이벤트 생성 버튼 클릭시, 테두리 색 변경
-  beginAt.addEventListener('invalid', () => {
-    colorizeTimeBorder(beginAt, endAt);
-  });
+  beginAt.addEventListener('invalid', () => colorizeTimeBorder(beginAt, endAt));
 
-  endAt.addEventListener('invalid', () => {
-    colorizeTimeBorder(endAt, beginAt);
-  });
+  endAt.addEventListener('invalid', () => colorizeTimeBorder(endAt, beginAt));
 
   // input에 포커스가 없어지면, 1초동안 테두리색 변경
   beginAt.addEventListener('blur', () => {
