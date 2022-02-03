@@ -155,10 +155,10 @@ nav {
 }
 
 .toggle-all-event {
-  padding: 0 0 0 10px;
   height: 100%;
-  width: 100%;
   line-height: 30px;
+  padding: 0 0 0 10px;
+  width: 100%;
 }
 
 .box-wrapper > i {
