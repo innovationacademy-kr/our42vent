@@ -7,7 +7,6 @@ const todayButton = document.querySelector('.header-today-button');
  * TODO: navigator.maxTouchPoints === 0 로 touch screen 을 걸러주는데
  * 터치 스크린 랩탑도 걸러져서 개선이 필요합니다.
  */
-
 export default function hoverTodayButton() {
   if (navigator.maxTouchPoints === 0) {
     todayButton.addEventListener('mousemove', e => {
