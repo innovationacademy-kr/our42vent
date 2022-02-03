@@ -41,7 +41,7 @@ app.use(/^\/(?!login|logout).*$/, verifyUser);
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
-app.set('layout', 'layouts/desktopLayout');
+app.set('layout', 'layouts/layout');
 
 // router 연결
 app.use('/', indexRoute(express));

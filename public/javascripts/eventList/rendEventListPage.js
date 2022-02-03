@@ -1,7 +1,7 @@
 import clickDelete from './clickDelete.js';
 import clickEdit from './clickEdit.js';
 import clickEventListToday from './clickEventListToday.js';
-import clickEventDetails from '../eventDetail/clickEventDetails.js';
+import { clickEventDetails } from '../eventDetail/clickEventDetails.js';
 import generateEventList from './generateEventList.js';
 
 function getScrollOffset(eventListSection) {

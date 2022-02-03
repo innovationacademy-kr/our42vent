@@ -1,3 +1,4 @@
+import clickExitOrShareButton from './clickExitOrShareButton.js';
 import setCategoryName from './utils/setCategoryName.js';
 import setDuration from './utils/setDuration.js';
 import setRange from './utils/setRange.js';
@@ -81,8 +82,10 @@ function fillButtonNotification(beginAt, endAt, isMyEvent, notification) {
 }
 
 // 불러온 이벤트 상세정보를 각 항목에 입력
-async function setEventDetails(eventId) {
+export async function setEventDetails(eventId) {
   try {
+    const event = await getEventDetails(eventId);
+
     const {
       title,
       personInCharge,
@@ -94,8 +97,7 @@ async function setEventDetails(eventId) {
       details,
       isMyEvent,
       notification,
-    } = await getEventDetails(eventId);
-
+    } = event;
     document.querySelector('.details-category').textContent = setCategoryName(category);
     document.querySelector('.details-title').textContent = title;
 
@@ -110,7 +112,7 @@ async function setEventDetails(eventId) {
     ).innerHTML = `<i class="material-icons">room</i>&nbsp;${location}`;
     fillPICTopicDetails(personInCharge, topic, details);
     fillButtonNotification(beginAt, endAt, isMyEvent, notification);
-
+    clickExitOrShareButton(event, eventId);
     // 알림 설정시, 다음 이벤트 상세보기에서 default로 원상복귀
     document.getElementById('details-notification').value = 'none';
   } catch (err) {
@@ -119,7 +121,7 @@ async function setEventDetails(eventId) {
   }
 }
 
-export default async function clickEventDetails() {
+export async function clickEventDetails() {
   // _eventId-(id)로 시작하는 모든 element select
   const eventList = document.querySelectorAll('[class^=_eventId-]');
 
@@ -128,10 +130,10 @@ export default async function clickEventDetails() {
     const eventId = event.classList[0].substring(9);
     const detailElement = document.querySelector('.layout-details');
 
-    event.addEventListener('click', () => {
-      setEventDetails(eventId);
+    event.addEventListener('click', async () => {
+      await setEventDetails(eventId);
 
-      //  상세보기에 event-(id)를 id로 넣어줌 (나중에 my_event post할때 event id 필요)
+      //  상세보기에 eventId를 id로 넣어줌 (나중에 my_event post할때 event id 필요)
       [detailElement.id] = event.classList;
       detailElement.style.display = 'grid';
     });

@@ -72,6 +72,11 @@ body {
   cursor: pointer;
 }
 
+.promotion {
+  max-width: 432px;
+  width: 80vw;
+}
+
 /* SECTION: 뷰포트가 768px 이하일 때  */
 
 @media screen and (max-width: 768px) {
