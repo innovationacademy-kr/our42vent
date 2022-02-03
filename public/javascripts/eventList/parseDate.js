@@ -18,8 +18,3 @@ export function getFullTime(timestamp) {
   if (min < 10) min = `0${min}`;
   return `${hour}:${min}`;
 }
-
-// 며칠동안 이벤트가 진행되는지
-export function getDateGap(begin, end) {
-  return Math.floor((new Date(end).getTime() - new Date(begin).getTime()) / 8.64e7); // 8.64e7 = 1일을 milisecond로 변환한 값
-}

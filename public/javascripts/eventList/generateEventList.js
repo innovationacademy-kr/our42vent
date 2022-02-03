@@ -1,15 +1,14 @@
 import { createElementAddClass } from '../utils/domNodeUtils.js';
-import { getFullDate, getFullTime, getDateGap } from './parseDate.js';
+import { getFullDate, getFullTime } from './parseDate.js';
 
 // 서버로부터 해당 유저의 event list를 받아옴
 async function getEventList() {
   try {
     const { data } = await axios.get('/event/list/data');
-
     return data;
   } catch (err) {
-    // TODO : 적절하게 에러 핸들링 해줘야함
-    throw new Error(err.message);
+    // TODO : 에러 페이지로 리다이렉트 시켜줘야함
+    window.location.replace('/');
   }
 }
 
@@ -75,7 +74,10 @@ function createEventListElement(eventListInfoDiv, item, isOutdated) {
 
 function fillEventDates(eventDates, event) {
   const date = getFullDate(new Date(event.beginAt).getTime());
-  const dateGap = getDateGap(event.beginAt, event.endAt);
+  const dateGap = Math.floor(
+    (new Date(event.endAt).setHours(0, 0, 0, 0) - new Date(event.beginAt).setHours(0, 0, 0, 0)) /
+      8.64e7
+  );
 
   for (let i = 0; i <= dateGap; i += 1) {
     const [beginYear, beginMonth, beginDate] = date.split('-');
@@ -93,12 +95,10 @@ function showNoEventMessage() {
 
 // 이벤트가 특정 날짜에 일어나는지 확인
 function isBtwnDates(curDate, beginAt, endAt) {
-  if (
+  return (
     curDate.localeCompare(getFullDate(new Date(beginAt).getTime())) >= 0 &&
     curDate.localeCompare(getFullDate(new Date(endAt).getTime())) <= 0
-  )
-    return true;
-  return false;
+  );
 }
 
 // 이벤트들을 받아와서 파싱 후 DOM element 생성

@@ -7,7 +7,7 @@ import generateEventList from './generateEventList.js';
 function getScrollOffset(eventListSection) {
   const outdatedDivArray = eventListSection.querySelectorAll('.date-outdated');
 
-  return outdatedDivArray.length === 0
+  return !outdatedDivArray.length
     ? 0
     : outdatedDivArray[outdatedDivArray.length - 1].getBoundingClientRect().bottom -
         eventListSection.getBoundingClientRect().top +
@@ -42,19 +42,15 @@ function addListenersForEventList(eventListSection, scrollOffset) {
   clickEventDetails();
 }
 
-async function rendEventListPage() {
-  try {
-    setLayoutForEventList();
-    await generateEventList();
+async function renderEventListPage() {
+  setLayoutForEventList();
+  await generateEventList();
 
-    const eventListSection = document.querySelector('.eventlist');
-    eventListSection.scrollTo({ top: 0 });
-    const scrollOffset = getScrollOffset(eventListSection);
-    eventListSection.scrollTo({ top: scrollOffset });
-    addListenersForEventList(eventListSection, scrollOffset);
-  } catch (err) {
-    window.location.replace('/');
-  }
+  const eventListSection = document.querySelector('.eventlist');
+  eventListSection.scrollTo({ top: 0 });
+  const scrollOffset = getScrollOffset(eventListSection);
+  eventListSection.scrollTo({ top: scrollOffset });
+  addListenersForEventList(eventListSection, scrollOffset);
 }
 
-rendEventListPage();
+renderEventListPage();
