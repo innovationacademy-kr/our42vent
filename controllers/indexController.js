@@ -6,7 +6,7 @@ export default async function indexController(req, res) {
   if (!user) user = { name: 'anonymous', profileImage: '' };
 
   res.status(200).render('index', {
-    layout: 'layouts/desktopLayout',
+    layout: 'layouts/layout',
     title: '우리42벤트 | ALL EVENTS',
     username: user.name,
     profileImage: user.profileImage,
