@@ -11,12 +11,12 @@
 @import 'components/header.css';
 @import 'components/footer.css';
 @import 'components/login.css';
-
-@import 'components/popups/event_form_mobile.css';
-@import 'components/popups/event_details_mobile.css';
 @import 'components/contents/main.css';
 @import 'components/contents/event_list.css';
 @import 'components/contents/month_calendar.css';
+@import 'components/popups/event_form_mobile.css';
+@import 'components/popups/event_details_mobile.css';
+@import 'components/popups/event_promotion.css';
 @import 'components/nav_toggle.css';
 @import 'presets/mobile_spec.css';
 

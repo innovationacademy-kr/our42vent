@@ -19,7 +19,7 @@
   width: 60%;
 }
 
-.category-exit {
+.category-share-exit {
   display: flex;
   position: relative;
 }
@@ -31,22 +31,29 @@
   width: 100%;
 }
 
-.details-exit-button {
-  background: var(--turq_btn);
-  border: none;
+.details-exit-button,
+.details-share-button {
   color: var(--white);
   cursor: pointer;
-  height: 30px;
-  line-height: 30px;
   padding: 5px 0;
   position: absolute;
-  right: 0px;
-  top: 0px;
   vertical-align: -1;
-  width: 30px;
 }
 
-.details-exit-button:hover {
+.details-exit-button {
+  right: 5px;
+  top: 0px;
+}
+
+.details-share-button.material-icons {
+  font-size: 19px;
+  right: 35px;
+  top: 2px;
+  user-select: none;
+}
+
+.details-exit-button:hover,
+.details-share-button:hover {
   color: var(--details_exit_grey);
 }
 
