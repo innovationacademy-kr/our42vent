@@ -1,4 +1,5 @@
 import consoleLogger from '../lib/consoleLogger.js';
+import validateEventData from '../lib/validateEventData.js';
 import {
   deleteEvent,
   selectCreatedEvents,
@@ -72,11 +73,13 @@ export async function eventDetailController(req, res) {
 export async function eventEditController(req, res) {
   try {
     const event = req.fields;
-    await updateEvent(event, req.params.eventId, res.locals.userId);
 
+    validateEventData(event);
+    await updateEvent(event, req.params.eventId, res.locals.userId);
     res.end();
   } catch (err) {
     consoleLogger.error(err.stack);
-    res.status(500).end();
+    if (err.name === 'InputError') res.status(400).end();
+    else res.status(500).end();
   }
 }

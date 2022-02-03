@@ -1,4 +1,4 @@
-import { checkTime, checkByte } from '../eventForm/clickNewEventButton.js';
+import isValidEventForm from '../utils/eventForm/isValidEventForm.js';
 import { getFullDate, getFullTime } from './parseDate.js';
 import { alertModal } from '../utils/sweetAlertMixin.js';
 
@@ -27,15 +27,7 @@ function fillEventData(event) {
 
 // 수정한 이벤트를 DB에 업데이트
 function putEditedEventData(eventId, formData) {
-  if (
-    checkByte('event-title', 224) &&
-    checkByte('event-pic', 56) &&
-    checkTime('event-beginat', '시작') &&
-    checkTime('event-endat', '종료') &&
-    checkByte('event-location', 224) &&
-    checkByte('event-topic', 480) &&
-    checkByte('event-details', 4064)
-  ) {
+  if (isValidEventForm()) {
     axios
       .put(`/event/${eventId}`, formData)
       .then(() => {

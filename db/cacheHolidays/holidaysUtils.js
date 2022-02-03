@@ -55,6 +55,9 @@ export default async function getHolidays(dates, year, month) {
         return data;
       })
     );
+
+    if (holidays.join().match('ERROR')) throw new Error('failed to fetch holiday data');
+
     return holidaysXmlToDate(holidays)
       .filter(date => date >= dates[0] && date <= dates.at(-1))
       .map(date => date.toISOString());
