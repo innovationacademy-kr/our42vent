@@ -29,6 +29,8 @@
     transition: filter 0.3s ease-in-out;
   }
 
+  .promotion-exit-button:hover,
+  .promotion-copy-button:hover,
   .material-icons-outlined.category-scroll:hover {
     color: var(--white);
   }
@@ -60,6 +62,8 @@
     background: var(--turq_btn_hover);
   }
 
+  .promotion-exit-button:hover,
+  .promotion-copy-button:hover,
   .login-button:hover,
   .header-today.material-icons-outlined:hover,
   .header-new.material-icons-outlined:hover,
@@ -105,6 +109,8 @@
     transition: filter 0.3s ease-in-out;
   }
 
+  .promotion-exit-button:hover,
+  .promotion-copy-button:hover,
   .material-icons-outlined.category-scroll:active {
     color: var(--white);
   }

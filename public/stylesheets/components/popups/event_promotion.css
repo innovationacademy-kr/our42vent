@@ -69,9 +69,3 @@
   right: 6%;
   top: 34px;
 }
-
-.promotion-exit-button:hover,
-.promotion-copy-button:hover {
-  color: var(--white);
-  cursor: pointer;
-}

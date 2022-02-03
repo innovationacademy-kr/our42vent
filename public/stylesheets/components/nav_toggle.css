@@ -139,11 +139,6 @@ nav {
   width: 130px;
 }
 
-.box-wrapper:hover {
-  filter: contrast(1.2);
-  transition: filter 0.3s ease-in-out;
-}
-
 .navbar-toggle-all > a {
   width: 100%;
 }
