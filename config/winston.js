@@ -6,24 +6,31 @@ const { printf, colorize } = format;
 const colorizer = colorize();
 
 //  console에 찍는 log format
-const logFormat = printf(msg => {
+const consoleLogFormat = printf(msg => {
   // 라인 전체에 로그 레벨을 기반으로 색깔을 입혀줌
   const timeString = new Date().toTimeString().slice(0, 8);
 
   return colorizer.colorize(msg.level, `${timeString} ${msg.level.toUpperCase()}: ${msg.message}`);
 });
 
+const fileLogFormat = printf(msg => {
+  // 라인 전체에 로그 레벨을 기반으로 색깔을 입혀줌
+  const timeString = new Date().toTimeString().slice(0, 8);
+
+  return `${timeString} ${msg.level.toUpperCase()}: ${msg.message}`;
+});
+
 const logger = createLogger({
   transports: [
     new transports.Console({
       level: 'http',
-      format: logFormat,
+      format: consoleLogFormat,
     }),
 
     new DailyRotateFile({
       datePattern: 'YYYY-MM-DD',
       filename: `${logDir}/info/%DATE%.log`,
-      format: format.json(),
+      format: fileLogFormat,
       level: 'info',
       maxFiles: 30,
       zippedArchive: true,
@@ -32,7 +39,7 @@ const logger = createLogger({
     new DailyRotateFile({
       datePattern: 'YYYY-MM-DD',
       filename: `${logDir}/warn/%DATE%.log`,
-      format: format.json(),
+      format: fileLogFormat,
       level: 'warning',
       maxFiles: 30,
       zippedArchive: true,
@@ -41,7 +48,7 @@ const logger = createLogger({
     new DailyRotateFile({
       datePattern: 'YYYY-MM-DD',
       filename: `${logDir}/error/%DATE%.log`,
-      format: format.json(),
+      format: fileLogFormat,
       level: 'error',
       maxFiles: 30,
       zippedArchive: true,
