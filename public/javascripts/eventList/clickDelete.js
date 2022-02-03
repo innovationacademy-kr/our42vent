@@ -12,17 +12,19 @@ function deleteEvent(event) {
             .then(() => window.location.replace('/event/list/'));
         })
         .catch(() => {
-          alertModal.fire({ title: '오류가 발생하였습니다.', icon: 'error' });
           //   TODO : 적절한 에러 핸들링 필요
-          window.location.replace('/event/list');
+          alertModal
+            .fire({ title: '오류가 발생하였습니다.', icon: 'error' })
+            .then(() => window.location.replace('/event/list'));
         });
     }
   });
 }
 
 // 삭제 아이콘에 이벤트 할당
-export default function addClickListenerForDelete() {
-  const deleteButtonElementArray = document.querySelectorAll('.list-delete');
+export default function clickDelete(eventListSection) {
+  const deleteButtonElementArray = eventListSection.querySelectorAll('.list-delete');
+
   deleteButtonElementArray.forEach(eventElement =>
     eventElement.addEventListener('click', deleteEvent)
   );
