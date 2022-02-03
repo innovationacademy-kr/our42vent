@@ -97,6 +97,7 @@
 
 .list-content-icon {
   grid-area: icon;
+  white-space: nowrap;
 }
 
 .list-edit {
@@ -114,7 +115,7 @@
 }
 
 .list-content-icon i {
-  font-size: 1em;
+  font-size: 1.2em;
 }
 
 .list-content-icon label:hover {
