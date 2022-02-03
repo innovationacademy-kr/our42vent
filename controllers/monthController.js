@@ -1,6 +1,6 @@
+import { logger } from '../config/winston.js';
 import getHolidayCache from '../lib/calendar/getHolidayCache.js';
 import { checkYearMonthRange, getMonthDates, mapDayEvent } from '../lib/calendar/monthUtils.js';
-import consoleLogger from '../lib/consoleLogger.js';
 import { selectMonthEvents } from '../models/accessEventTable.js';
 import { selectMyEvents } from '../models/accessMyEventTable.js';
 
@@ -32,7 +32,7 @@ export default async function monthController(req, res) {
       noWeeks: Number(noWeeks),
     });
   } catch (err) {
-    consoleLogger.error(err.stack);
+    logger.warn(err.stack);
     return res.status(500).end();
   }
 }

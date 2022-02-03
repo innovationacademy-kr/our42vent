@@ -1,4 +1,4 @@
-import consoleLogger from '../lib/consoleLogger.js';
+import { logger } from '../config/winston.js';
 import { setTokens } from '../lib/jwtUtils.js';
 import { verifyLoginUser } from '../middlewares/verifyUser.js';
 
@@ -17,17 +17,12 @@ export default function loginRoute(express, passport) {
   router.get('/42/return', (req, res) => {
     passport.authenticate('42', { session: false }, async (err, user) => {
       try {
-        if (err) {
-          consoleLogger.error('passport authenticate return : error :', err);
-          throw err;
-        }
-        if (!user) {
-          consoleLogger.error('passport authenticate return : error : No User');
-          throw new Error('No User');
-        }
+        if (err || !user) throw err;
+
         setTokens(res, user);
         res.redirect('/');
       } catch (err) {
+        logger.warn(`passport authenticate return :  ${err.stack}`);
         res.redirect('/login');
       }
     })(req, res);
