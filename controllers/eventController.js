@@ -16,7 +16,7 @@ export async function eventListController(req, res) {
     if (!user) user = { name: 'anonymous', profileImage: '' };
 
     res.render('eventList', {
-      layout: 'layouts/desktopLayout',
+      layout: 'layouts/layout',
       title: '우리42벤트 | EVENT LIST',
       username: user.name,
       profileImage: user.profileImage,
@@ -81,5 +81,15 @@ export async function eventEditController(req, res) {
     logger.warn(err.stack);
     if (err.name === 'InputError') res.status(400).end();
     else res.status(500).end();
+  }
+}
+
+export async function eventInfoController(req, res) {
+  try {
+    res.cookie('eventId', req.params.eventId);
+    res.redirect('/');
+  } catch (err) {
+    consoleLogger.error(err.stack);
+    res.status(500).end();
   }
 }
