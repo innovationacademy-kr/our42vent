@@ -62,7 +62,7 @@ nav {
   grid-area: category;
   overflow-x: auto;
   -ms-overflow-style: none; /* for IE and edge*/
-  scrollbar-width: 0px; /* for firefox*/
+  scrollbar-width: none; /* for firefox*/
   width: 100%;
 }
 

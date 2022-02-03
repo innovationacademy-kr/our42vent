@@ -22,10 +22,22 @@
 }
 
 @media screen and (max-width: 768px) {
+  body {
+    overflow: hidden;
+  }
+
+  .login-logo {
+    margin: 30px 0 60px;
+  }
+
   .layout-login,
   .login-logo,
   .login-button {
     max-width: 320px;
-    width: 80vw;
+    width: 60vw;
+  }
+
+  .login-version {
+    margin: 10px 0 120px;
   }
 }
