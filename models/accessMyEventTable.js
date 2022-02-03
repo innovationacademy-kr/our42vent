@@ -43,7 +43,7 @@ export async function deleteMyEvent(userId, eventId) {
   );
 }
 
-export async function deleteSubscribedEvent(eventId) {
+export async function deleteSubscriptions(eventId) {
   const sql = 'DELETE FROM my_event WHERE eventID=?';
 
   await pool.execute(sql, [eventId]);

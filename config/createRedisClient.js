@@ -15,4 +15,5 @@ const client = createClient({
 client.connect();
 client.on('ready', () => logger.info('createRedisClient : Redis is Ready'));
 client.on('error', err => logger.error(`createRedisClient : Redis Client Error${err.stack}`));
+
 export default client;

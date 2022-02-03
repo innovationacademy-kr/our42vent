@@ -1,4 +1,3 @@
-import { deleteSubscribedEvent } from './accessMyEventTable.js';
 import pool from '../config/createMySQLPool.js';
 import { logger } from '../config/winston.js';
 
@@ -35,7 +34,6 @@ export async function selectEvent(eventId) {
 
 // eventId 기반으로 이벤트 삭제
 export async function deleteEvent(eventId, userId) {
-  await deleteSubscribedEvent(eventId);
   const sql = `DELETE FROM event WHERE id=? AND creator=?`;
 
   await pool.execute(sql, [eventId, userId]);

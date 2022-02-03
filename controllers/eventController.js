@@ -6,7 +6,7 @@ import {
   selectEvent,
   updateEvent,
 } from '../models/accessEventTable.js';
-import { selectNotificationMyEvent } from '../models/accessMyEventTable.js';
+import { selectNotificationMyEvent, deleteSubscriptions } from '../models/accessMyEventTable.js';
 import { selectUser } from '../models/accessUserTable.js';
 
 export async function eventListController(req, res) {
@@ -30,7 +30,9 @@ export async function eventListController(req, res) {
 
 export async function eventDeleteController(req, res) {
   try {
-    await deleteEvent(req.params.eventId, res.locals.userId);
+    const { eventId } = req.params;
+    await deleteSubscriptions(eventId);
+    await deleteEvent(eventId, res.locals.userId);
 
     res.end();
   } catch (err) {
@@ -89,7 +91,7 @@ export async function eventInfoController(req, res) {
     res.cookie('eventId', req.params.eventId);
     res.redirect('/');
   } catch (err) {
-    consoleLogger.error(err.stack);
+    logger.warn(err.stack);
     res.status(500).end();
   }
 }
