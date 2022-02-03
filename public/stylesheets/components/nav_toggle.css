@@ -150,9 +150,15 @@ nav {
   transition: filter 0.3s ease-in-out;
 }
 
-.toggle-all-event,
-.toggle-my-event {
+.navbar-toggle-all > a {
+  width: 100%;
+}
+
+.toggle-all-event {
   padding: 0 0 0 10px;
+  height: 100%;
+  width: 100%;
+  line-height: 30px;
 }
 
 .box-wrapper > i {
