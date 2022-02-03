@@ -33,10 +33,12 @@ function highlightHoveredMultiLabel() {
     const curMultiLabelsNodeList = document.querySelectorAll(`.${multiLabelNode.classList[0]}`);
     curMultiLabelsNodeList.forEach(curLabel => {
       const curMultiLabel = curLabel;
-      multiLabelNode.addEventListener('mouseenter', () => {
+      multiLabelNode.addEventListener('pointerenter', e => {
+        if (e.pointerType === 'touch') return;
         curMultiLabel.style.boxShadow = '1px 1px 1px var(--dark_grey)';
       });
-      multiLabelNode.addEventListener('mouseleave', () => {
+      multiLabelNode.addEventListener('pointerleave', e => {
+        if (e.pointerType === 'touch') return;
         curMultiLabel.style.boxShadow = 'none';
       });
     });
