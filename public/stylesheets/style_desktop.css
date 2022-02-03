@@ -13,11 +13,12 @@
 @import 'components/footer.css';
 @import 'components/login.css';
 
-@import 'components/popups/event_form.css';
 @import 'components/contents/main.css';
 @import 'components/contents/event_list.css';
 @import 'components/contents/month_calendar.css';
+@import 'components/popups/event_form.css';
 @import 'components/popups/event_details.css';
+@import 'components/popups/event_promotion.css';
 @import 'components/nav.css';
 
 /* SECTION: 폰트 적용 */

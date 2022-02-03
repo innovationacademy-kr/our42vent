@@ -1,4 +1,4 @@
-import clickEventDetails from '../../eventDetail/clickEventDetails.js';
+import { clickEventDetails } from '../../eventDetail/clickEventDetails.js';
 import { createElementAddClass } from '../../utils/domNodeUtils.js';
 
 // 업데이트 된 DOM에 적용되는 eventlisteners

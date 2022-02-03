@@ -1,5 +1,5 @@
 import pool from '../config/createMySQLPool.js';
-import consoleLogger from '../lib/consoleLogger.js';
+import { logger } from '../config/winston.js';
 
 // 해당 월 범위 안에 있는 이벤트 select
 export async function selectMonthEvents(firstDate, lastDate) {
@@ -7,7 +7,7 @@ export async function selectMonthEvents(firstDate, lastDate) {
     'SELECT id, title, beginAt, endAt, category FROM event ' +
     'WHERE (beginAt >= ? AND beginAt < ?) OR (beginAt < ? AND endAt > ?) ORDER BY beginAt';
   const [rows] = await pool.execute(sql, [firstDate, lastDate, firstDate, firstDate]);
-  consoleLogger.info('SELECT MONTH EVENT : query success');
+  logger.info('selectMonthEvent : query success');
   return rows;
 }
 
@@ -18,10 +18,7 @@ export async function selectCreatedEvents(creatorId) {
     'WHERE creator=? ORDER BY beginAt ';
 
   const [rows] = await pool.execute(sql, [creatorId]);
-  consoleLogger.info(
-    'selectUserEvent : query success : ',
-    `creator ${creatorId} has ${rows.length} events`
-  );
+  logger.info(`selectUserEvent : query success : creator ${creatorId} has ${rows.length} events`);
   return rows;
 }
 
@@ -31,7 +28,7 @@ export async function selectEvent(eventId) {
     'topic, details, creator FROM event WHERE id=?';
 
   const [[rows]] = await pool.execute(sql, [eventId]);
-  consoleLogger.info('selectEvent : query success : ', rows);
+  logger.info(`selectEvent : query success : ${JSON.stringify(rows)}`);
   return rows;
 }
 
@@ -40,13 +37,13 @@ export async function deleteEvent(eventId, userId) {
   const sql = `DELETE FROM event WHERE id=? AND creator=?`;
 
   await pool.execute(sql, [eventId, userId]);
-  consoleLogger.info(`deleteEvent : query success : deleted user=${userId}'s event=${eventId}`);
+  logger.info(`deleteEvent : query success : deleted user=${userId}'s event=${eventId}`);
 }
 
 // 이벤트 insert 쿼리
 export async function insertEvent(userId, event) {
   const { title, personInCharge, beginAt, endAt, location, category, topic, details } = event;
-  consoleLogger.info('insertEvent : event details : ', event);
+  logger.info(`insertEvent : event details : ${JSON.stringify(event)}`);
 
   const sql =
     'INSERT INTO event ' +
@@ -65,7 +62,8 @@ export async function insertEvent(userId, event) {
     topic,
     details,
   ]);
-  consoleLogger.info('insertEvent : query success : ', rows);
+  logger.info(`insertEvent : query success : ${JSON.stringify(rows)}`);
+  return rows[0].insertId; // db에 insert된 data의 pk
 }
 
 export async function updateEvent(event, eventId, userId) {
@@ -88,5 +86,5 @@ export async function updateEvent(event, eventId, userId) {
     eventId,
     userId,
   ]);
-  consoleLogger.info('updateEvent : query success : ', rows);
+  logger.info(`updateEvent : query success : ${JSON.stringify(rows)}`);
 }

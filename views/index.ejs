@@ -6,6 +6,7 @@
 <script defer type="module" src="/javascripts/nav/categoryFilterHandler.js"></script>
 <script defer type="module" src="/javascripts/nav/tabSelectHandler.js"></script>
 <script defer type="module" src="/javascripts/calendar/month/resizeHandler.js"></script>
+<script defer type="module" src="/javascripts/eventInfo/eventInfo.js"></script>
 <%- contentFor('headerTitle') %>
 <div class="header-title">
   <i class="material-icons title-prev">arrow_back_ios_new</i>
@@ -18,4 +19,5 @@
 <%- contentFor('content') %>
 <section class="calendar-month"></section>
 <%- contentFor('eventForm') %> <%- include('components/eventForm') %> <%- contentFor('eventDetails')
-%> <%- include('components/eventDetails') %>
+%> <%- include('components/eventDetails') %> <%- contentFor('eventPromotion') %> <%-
+include('components/eventPromotion') %>

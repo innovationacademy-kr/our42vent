@@ -1,6 +1,7 @@
 body {
   font-size: 16px;
   height: 100vh;
+  overflow: auto;
 }
 
 @media screen and (min-width: 1920px) {
@@ -36,7 +37,8 @@ body {
   width: 100%;
 }
 
-.layout-form {
+.layout-form,
+.layout-promotion {
   background: rgba(255, 255, 255, 0.9);
   display: grid;
   height: 100vh;

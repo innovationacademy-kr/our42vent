@@ -1,4 +1,4 @@
-import consoleLogger from '../lib/consoleLogger.js';
+import { logger } from '../config/winston.js';
 import { accessSign, verifyAccess, verifyRefresh } from '../lib/jwtUtils.js';
 
 // 토큰을 검증하여 성공하면 next(), 실패하면 로그인 페이지로 redirect
@@ -16,7 +16,7 @@ export async function verifyUser(req, res, next) {
         res.locals.userId = refreshResult.id;
         const accessToken = accessSign(refreshResult.id);
 
-        consoleLogger.info('verifyUser : accessToken reissued : ', accessToken);
+        logger.info(`verifyUser : accessToken reissued : ${accessToken}`);
         res.cookie('accessToken', accessToken, {
           secure: true,
           httpOnly: true,
@@ -29,7 +29,7 @@ export async function verifyUser(req, res, next) {
       }
     }
   } catch (err) {
-    consoleLogger.error('verifyUser : ', err);
+    logger.warn(`verifyUser : ${err.stack}`);
     res.status(401).json({ error: 'Unexpected Error in verifyUser' });
   }
 }
@@ -45,11 +45,11 @@ export async function verifyLoginUser(req, res, next) {
     } else {
       const refreshResult = await verifyRefresh(req.cookies.refreshToken);
 
-      res.locals.userId = refreshResult.id;
       if (refreshResult.verified) {
+        res.locals.userId = refreshResult.id;
         const accessToken = accessSign(refreshResult.id);
 
-        consoleLogger.info('verifyLoginUser : accessToken reissued : ', accessToken);
+        logger.info(`verifyLoginUser : accessToken reissued : , ${accessToken}`);
         res.cookie('accessToken', accessToken, {
           secure: true,
           httpOnly: true,
@@ -62,7 +62,7 @@ export async function verifyLoginUser(req, res, next) {
       }
     }
   } catch (err) {
-    consoleLogger.error('verifyLoginUser : ', err);
+    logger.warn(`verifyLoginUser : ${err.stack}`);
     res.status(401).json({ error: 'Unexpected Error in verifyLoginUser' });
   }
 }

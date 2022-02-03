@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import consoleLogger from '../lib/consoleLogger.js';
+import { logger } from '../config/winston.js';
 import { deleteToken } from '../models/accessTokenRedis.js';
 
 export default async function logoutController(req, res) {
@@ -10,9 +10,9 @@ export default async function logoutController(req, res) {
     const { id } = decoded;
     deleteToken(id);
     res.clearCookie('refreshToken');
-    consoleLogger.info(`logoutController : ${id} : 로그아웃 성공!`);
+    logger.info(`logoutController : ${id} : 로그아웃 성공!`);
   } catch (err) {
-    consoleLogger.error('logoutController : ', err);
+    logger.warn(err.stack);
   }
   res.redirect('/login');
 }

@@ -42,7 +42,8 @@
     background: rgba(235, 236, 240, 0.3);
   }
 
-  .details-exit-button:hover {
+  .details-exit-button:hover,
+  .details-share-button:hover {
     color: var(--details_exit_grey);
   }
 
@@ -117,7 +118,8 @@
     background: rgba(235, 236, 240, 0.3);
   }
 
-  .details-exit-button:active {
+  .details-exit-button:active,
+  .details-share-button:active {
     color: var(--details_exit_grey);
   }
 
