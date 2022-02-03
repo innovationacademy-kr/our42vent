@@ -18,12 +18,12 @@ function loadMore() {
   const moreButtonList = document.querySelectorAll('.month-more-button');
   moreButtonList.forEach(moreButton => {
     const moreContentDiv = moreButton.parentElement.querySelector('.month-more');
-    moreButton.addEventListener('focus', () => {
+    moreButton.addEventListener('click', () => {
       moreContentDiv.style.display = 'grid';
     });
 
     document.addEventListener('click', e => {
-      if (moreButton !== document.activeElement && !moreContentDiv.contains(e.target))
+      if (e.target !== moreButton && !moreContentDiv.contains(e.target))
         moreContentDiv.style.display = 'none';
     });
   });
@@ -72,7 +72,7 @@ function showBeginAt(allEvents) {
         `<svg width="${boxWidth}" height="23" viewBox="0 0 ${boxWidth} 23" fill="none"` +
         `xmlns="http://www.w3.org/2000/svg"><rect x="${boxWidth}" y="22.0771" width="${boxWidth}" height="22"` +
         `rx="3" transform="rotate(-180 ${boxWidth} 22.0771)" fill="black" fill-opacity="0.7"/><text x="8"` +
-        `y="14" fill="#fff" width="${boxWidth}" height="26" font-family="sans-serif" font-size="11">` +
+        `y="14" fill="#fff" width="${boxWidth}" height="26" font-family="'Noto Sans KR', sans-serif" font-size="11">` +
         `${startTime}</text></svg>`;
       SVGWrapper.style.left = `${e.clientX - boxWidth + 2}`;
       SVGWrapper.style.top = `${e.clientY + 12 + window.scrollY}`;

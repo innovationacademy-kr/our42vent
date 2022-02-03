@@ -141,7 +141,6 @@ nav {
   height: 30px;
   margin: 15px 0 15px 20px;
   transition: filter 0.3s ease-in-out;
-  user-select: none;
   width: 130px;
 }
 
@@ -163,9 +162,10 @@ nav {
 
 .box-wrapper > i {
   background: var(--white);
-  display: block;
   font-size: 1em;
+  font-weight: bold;
   height: 14.44px;
+  line-height: 14.44px;
   margin: 0 0 0 10px;
   width: 16px;
 }

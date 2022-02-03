@@ -1,6 +1,5 @@
 import drawMonth from '../calendar/month/drawMonth.js';
 
-const categories = ['특강', '시험', '해커톤 / 공모전', '세미나 / 컨퍼런스', '커뮤니티'];
 const checkboxArray = document.querySelectorAll('input[type=checkbox]');
 
 // 카테고리 checkbox 표시 & 반영 이벤트 핸들러

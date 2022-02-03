@@ -28,7 +28,6 @@ nav {
   grid-area: tab;
   height: 24px;
   line-height: 30px;
-  user-select: none;
 }
 
 .navbar-tab-active {
@@ -91,7 +90,6 @@ nav {
   max-width: 200px;
   min-width: 130px;
   transition: filter 0.3s ease-in-out;
-  user-select: none;
   width: 20%;
 }
 
@@ -110,6 +108,7 @@ nav {
   background: var(--white);
   display: block;
   font-size: 1em;
+  font-weight: bold;
   height: 14.44px;
   margin: 0 0 0 10px;
   width: 16px;
