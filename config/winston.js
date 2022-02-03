@@ -14,7 +14,6 @@ const consoleLogFormat = printf(msg => {
 });
 
 const fileLogFormat = printf(msg => {
-  // 라인 전체에 로그 레벨을 기반으로 색깔을 입혀줌
   const timeString = new Date().toTimeString().slice(0, 8);
 
   return `${timeString} ${msg.level.toUpperCase()}: ${msg.message}`;
