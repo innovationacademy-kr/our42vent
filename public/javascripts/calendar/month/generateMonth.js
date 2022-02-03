@@ -45,4 +45,4 @@ export async function generateMonth() {
 }
 
 // resize 시 새로 렌더링 할 때 필요한 데이터 export
-export const renderInfo = [generateMonth()];
+export const renderInfo = window.location.pathname === '/' ? [generateMonth()] : [];

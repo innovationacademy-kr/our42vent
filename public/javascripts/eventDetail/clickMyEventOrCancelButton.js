@@ -32,7 +32,7 @@ cancelButton.addEventListener('click', () => {
     .then(res => {
       // TODO : 이벤트 등록 취소 알림 모달 창
       detailsElement.style.display = 'none';
-      renderInfo[0] = generateMonth();
+      if (window.location.pathname === '/') renderInfo[0] = generateMonth();
     })
     .catch(err => {
       // TODO : client side 에러핸들링

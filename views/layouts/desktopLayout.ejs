@@ -33,6 +33,7 @@
     <script defer type="module" src="/javascripts/nav/navToggle.js"></script>
     <%- defineContent('scriptFiles') %>
     <script defer type="module" src="/javascripts/eventDetail/clickEventDetails.js"></script>
+    <script defer type="module" src="/javascripts/eventDetail/clickExitButton.js"></script>
     <script
       defer
       type="module"
@@ -41,10 +42,7 @@
     <script defer type="module" src="/javascripts/eventForm/checkTime.js"></script>
     <script defer type="module" src="/javascripts/eventForm/clickNewEventButton.js"></script>
     <script defer type="module" src="/javascripts/eventForm/eventFormDisplay.js"></script>
-    <script defer type="module" src="/javascripts/eventPromotion/clickExitPromotion.js"></script>
-    <script defer type="module" src="/javascripts/eventPromotion/clickCopyPromotion.js"></script>
     <script defer type="module" src="/javascripts/eventForm/addListenersForBorderColor.js"></script>
-    <script defer type="module" src="/javascripts/header/hoverTodayButton.js"></script>
   </head>
   <body>
     <div class="layout">
@@ -165,8 +163,7 @@
         </div>
       </nav>
       <main class="main">
-        <%- content %><%- defineContent('eventForm') %><%- defineContent('eventDetails') %><%-
-        defineContent('eventPromotion') %>
+        <%- content %><%- defineContent('eventForm') %><%- defineContent('eventDetails') %>
       </main>
       <footer class="footer">
         <p class="footer-developers small text-center">
