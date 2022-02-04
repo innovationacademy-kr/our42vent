@@ -28,11 +28,6 @@
   top: 3px;
 }
 
-.details-exit-button:hover,
-.details-share-button:hover {
-  color: var(--details_exit_grey);
-}
-
 .details-category,
 .details-title,
 .details-range {
@@ -50,6 +45,15 @@
   line-height: 30px;
   padding: 5px 0;
   width: 100%;
+}
+
+.details-exit-button {
+  background: var(--turq_btn);
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
 }
 
 .details-title {
@@ -140,16 +144,8 @@
   background: var(--turq_btn);
 }
 
-.details-myevent-button:hover {
-  background: var(--turq_btn_hover);
-}
-
 .details-cancel-button {
   background: var(--red_cancel_btn);
-}
-
-.details-cancel-button:hover {
-  background: var(--red_cancel_btn_hover);
 }
 
 .details-notification-info {

@@ -1,8 +1,5 @@
 import { renderInfo, generateMonth } from './generateMonth.js';
 
-const titleYear = document.querySelector('.title-calendar-year');
-const titleMonth = document.querySelector('.title-calendar-month');
-
 // 다음 달 버튼 클릭하면 다음 달 달력 렌더링
 const nextMonthButton = document.querySelector('.title-next');
 
