@@ -1,50 +1,68 @@
 import axios from 'axios';
 import mysql from 'mysql2/promise';
+import { promisify } from 'util';
 import redisClient from '../../config/createRedisClient.js';
 import getFtAccessToken from './getFtAccessToken.js';
 import consoleLogger from '../../lib/consoleLogger.js';
 import parseEventData from '../../lib/parseEventData.js';
 
 // 가장 최근의 intra event를 기준으로 그 이후 ~ 현재 시각 까지 업데이트된 event get
-async function getUpdatedIntraEvent(latestDate) {
+async function getUpdatedIntraEvent(latestDate, depth = 0) {
+  if (depth > 3) throw new Error('too many recursion');
   try {
     const token = await getFtAccessToken(redisClient);
     if (!token) throw new Error('token does not exist');
     latestDate.setMilliseconds(999);
     const latestDateStr = JSON.stringify(latestDate);
     const curDateStr = JSON.stringify(new Date());
-    const res = await axios.get(
-      `https://api.intra.42.fr/v2/campus/29/events?range[updated_at]=${latestDateStr},${curDateStr}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const res = await axios.get('https://api.intra.42.fr/v2/campus/29/cursus/21/events', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: {
+        'range[updated_at]': `${latestDateStr},${curDateStr}`,
+      },
+    });
     return res.data;
   } catch (err) {
+    if (err.response.statusText === 'Unauthorized') {
+      redisClient.del('ft_access_token');
+      await promisify(setTimeout)(1000); // 연속 요청 방지를 위한 1000
+      consoleLogger.info('getUpdatedIntraEvent : Unauthorized Access : request again');
+      const data = await getUpdatedIntraEvent(latestDate, depth + 1);
+      return data;
+    }
     throw new Error(err.message);
   }
 }
 
 // 가장 최근의 intra event를 기준으로 그 이후 ~ 현재 시각 까지 업데이트된 exam get
-async function getUpdatedIntraExam(latestDate) {
+async function getUpdatedIntraExam(latestDate, depth = 0) {
+  if (depth > 3) throw new Error('too many recursion');
   try {
     const token = await getFtAccessToken(redisClient);
     if (!token) throw new Error('token does not exist');
     latestDate.setMilliseconds(999);
     const latestDateStr = JSON.stringify(latestDate);
     const curDateStr = JSON.stringify(new Date());
-    const res = await axios.get(
-      `https://api.intra.42.fr/v2/campus/29/exams?range[updated_at]=${latestDateStr},${curDateStr}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const res = await axios.get('https://api.intra.42.fr/v2/campus/29/cursus/21/exams', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: {
+        'range[updated_at]': `${latestDateStr},${curDateStr}`,
+        'page[size]': 100,
+      },
+    });
     return res.data;
   } catch (err) {
+    if (err.response.statusText === 'Unauthorized') {
+      redisClient.del('ft_access_token');
+      await promisify(setTimeout)(1000);
+      consoleLogger.info('getUpdatedIntraExam : Unauthorized Access : request again');
+      const data = await getUpdatedIntraExam(latestDate, depth + 1);
+      return data;
+    }
     throw new Error(err.message);
   }
 }
@@ -93,7 +111,9 @@ async function updateEventData() {
     const { modifiedAt: latestExamDate } = await selectLatestExam(connection);
     const eventList = await getUpdatedIntraEvent(latestEventDate);
     const examList = await getUpdatedIntraExam(latestExamDate);
-    eventList.push(...examList);
+
+    const examSet = new Set(examList.map(JSON.stringify));
+    eventList.push(...[...examSet].map(JSON.parse));
     if (!eventList.length) {
       consoleLogger.info('updateEventData : no event to update', new Date());
       return;
