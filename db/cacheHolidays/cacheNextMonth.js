@@ -8,8 +8,8 @@ import consoleLogger from '../../lib/consoleLogger.js';
 async function cacheNextMonth() {
   try {
     const today = localizeDateTime(new Date());
-    const [year, month] = [today.getFullYear() + 1, today.getMonth() + 1];
-    const { dates } = getMonthDates(year, month);
+    const [year, month] = [today.getFullYear() + 1, today.getMonth()];
+    const { dates } = getMonthDates(year, month + 1);
 
     const holidays = await getHolidays(dates, year, month);
     const expire = Math.ceil((new Date(year, month + 12, 1, 9) - today) / 1000);

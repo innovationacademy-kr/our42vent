@@ -119,11 +119,6 @@ nav {
   z-index: 2;
 }
 
-.navbar-tab-inactive:hover {
-  filter: contrast(1.05);
-  transition: filter 0.2s ease-in;
-}
-
 .navbar-category > input {
   display: none;
 }
@@ -141,25 +136,31 @@ nav {
   height: 30px;
   margin: 15px 0 15px 20px;
   transition: filter 0.3s ease-in-out;
-  user-select: none;
   width: 130px;
 }
 
-.box-wrapper:hover {
-  filter: contrast(1.2);
-  transition: filter 0.3s ease-in-out;
+.navbar-toggle-all > a {
+  width: 100%;
 }
 
-.toggle-all-event,
+.toggle-all-event {
+  height: 100%;
+  line-height: 30px;
+  padding: 0 0 0 10px;
+  width: 100%;
+}
+
 .toggle-my-event {
   padding: 0 0 0 10px;
+  width: 100%;
 }
 
 .box-wrapper > i {
   background: var(--white);
-  display: block;
   font-size: 1em;
+  font-weight: bold;
   height: 14.44px;
+  line-height: 14.44px;
   margin: 0 0 0 10px;
   width: 16px;
 }

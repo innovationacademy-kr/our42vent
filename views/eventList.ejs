@@ -1,6 +1,7 @@
 <%- contentFor('scriptFiles') %>
-<script defer type="module" src="/javascripts/eventList/setLayoutForEventList.js"></script>
+<script defer type="module" src="/javascripts/eventList/renderEventListPage.js"></script>
 <%- contentFor('content') %>
 <section class="eventlist"></section>
 <%- contentFor('eventForm') %> <%- include('components/eventForm') %> <%- contentFor('eventDetails')
-%> <%- include('components/eventDetails') %>
+%> <%- include('components/eventDetails') %><%- contentFor('eventPromotion') %> <%-
+include('components/eventPromotion') %>

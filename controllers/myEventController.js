@@ -1,4 +1,4 @@
-import consoleLogger from '../lib/consoleLogger.js';
+import { logger } from '../config/winston.js';
 import { insertMyEvent, deleteMyEvent } from '../models/accessMyEventTable.js';
 
 // 이벤트 등록 컨트롤러
@@ -10,7 +10,7 @@ export async function subscribeEventController(req, res) {
     insertMyEvent(res.locals.userId, req.params.eventId, notification);
     res.end();
   } catch (err) {
-    consoleLogger.error(err.stack);
+    logger.warn(err.stack);
     res.status(500).end();
   }
 }
@@ -18,10 +18,10 @@ export async function subscribeEventController(req, res) {
 // 등록 취소 컨트롤러
 export async function unsubscribeEventController(req, res) {
   try {
-    deleteMyEvent(res.locals.userId, req.params.eventId);
+    await deleteMyEvent(res.locals.userId, req.params.eventId);
     res.end();
   } catch (err) {
-    consoleLogger.error(err.stack);
+    logger.warn(err.stack);
     res.status(500).end();
   }
 }

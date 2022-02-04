@@ -3,8 +3,6 @@ import { createElementAddClass } from '../../utils/domNodeUtils.js';
 // 띠지 HTML element 생성 & append, 하루 이상 이벤트 띠지 길이 & 위치 설정
 export function createLabel(eventInfo, eventsDiv, slotIndex) {
   const { category, id, isMulti, length, title } = eventInfo;
-  const boxWidth = document.querySelector('.month-date-events').offsetWidth;
-
   if (length === -1) {
     eventsDiv.appendChild(createElementAddClass('div', ['month-label-empty']));
   } else if (isMulti) {
@@ -14,6 +12,7 @@ export function createLabel(eventInfo, eventsDiv, slotIndex) {
   }
 
   if (length > 1) {
+    const boxWidth = document.querySelector('.calendar-month').offsetWidth / 7;
     const multiDayLabel = eventsDiv.appendChild(
       createElementAddClass(
         'div',
@@ -21,7 +20,7 @@ export function createLabel(eventInfo, eventsDiv, slotIndex) {
         title
       )
     );
-    multiDayLabel.style.width = `${(boxWidth - 4) * 2 + boxWidth * (length - 2) - 1}`;
+    multiDayLabel.style.width = `${(boxWidth - 5) * 2 + boxWidth * (length - 2) - 1}`;
     multiDayLabel.style.top = `${20 + 24 * slotIndex}`;
   }
 }
@@ -30,23 +29,21 @@ export function createLabel(eventInfo, eventsDiv, slotIndex) {
 export function fillMoreEventContent(moreEventContentInfo) {
   const { date, dateIndex, eventArray, moreEventDiv, isHoliday, noDays } = moreEventContentInfo;
 
-  let rows = ' 1fr';
-  for (let i = 1; moreEventDiv.style.gridTemplateRows !== '' && i < eventArray.length; i += 1)
-    rows += rows;
-  moreEventDiv.style.gridTemplateRows = `40px${rows}`;
   if (noDays - dateIndex - 1 <= 7) moreEventDiv.style.bottom = 0;
+  if (dateIndex % 7 === 6) moreEventDiv.style.right = 0;
 
   const holidayClass = isHoliday ? 'sunday' : null;
   moreEventDiv.appendChild(
     createElementAddClass('div', ['month-more-date', 'large', 'text-center', holidayClass], date)
   );
 
+  const eventSlot = moreEventDiv.appendChild(createElementAddClass('div', ['month-more-event']));
   eventArray.forEach(event => {
     const { category, id, isMulti, length, title } = event;
     if (length === -1 || isMulti) {
-      moreEventDiv.appendChild(createMultiEndLabel(id, category, title));
+      eventSlot.appendChild(createMultiEndLabel(id, category, title));
     } else {
-      createAppendSingleDayLabel(moreEventDiv, id, category, title);
+      createAppendSingleDayLabel(eventSlot, id, category, title);
     }
   });
 }
