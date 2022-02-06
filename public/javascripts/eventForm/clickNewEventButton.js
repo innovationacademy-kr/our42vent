@@ -1,6 +1,7 @@
-import { alertModal, confirmModal } from '../utils/sweetAlertMixin.js';
 import generatePromotion from '../eventPromotion/generatePromotion.js';
+import api from '../utils/createAxiosInterceptor.js';
 import isValidEventForm from '../utils/eventForm/isValidEventForm.js';
+import { alertModal, confirmModal } from '../utils/sweetAlertMixin.js';
 
 // 이벤트 생성 버튼 입력전, 모든 항목 입력 완료시 이벤트 생성 post 요청
 function clickNewEventButton() {
@@ -8,7 +9,7 @@ function clickNewEventButton() {
     const form = document.querySelector('.form');
     const formData = new FormData(form);
 
-    axios
+    api
       .post('/event', formData)
       .then(res => {
         confirmModal
@@ -22,7 +23,7 @@ function clickNewEventButton() {
             if (result.isConfirmed) {
               form.reset();
               form.parentNode.style.display = 'none'; // 이벤트 생성 폼 삭제
-              generatePromotion(res.data);
+              generatePromotion(res);
             } else {
               window.location.replace(window.location.pathname);
             }
@@ -30,7 +31,6 @@ function clickNewEventButton() {
       })
       .catch(err => {
         alertModal.fire({ title: '오류가 발생하였습니다.', icon: 'error' });
-        console.log(err.stack);
       });
   }
 }

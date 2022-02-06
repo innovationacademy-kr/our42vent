@@ -1,7 +1,9 @@
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { createLogger, transports, format } from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
 
-const logDir = 'logs';
+const logDir = dirname(fileURLToPath(import.meta.url)).replace('config', 'logs');
 const { printf, colorize } = format;
 const colorizer = colorize();
 

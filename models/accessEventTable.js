@@ -36,8 +36,9 @@ export async function selectEvent(eventId) {
 export async function deleteEvent(eventId, userId) {
   const sql = `DELETE FROM event WHERE id=? AND creator=?`;
 
-  await pool.execute(sql, [eventId, userId]);
+  const [deleted] = await pool.execute(sql, [eventId, userId]);
   logger.info(`deleteEvent : query success : deleted user=${userId}'s event=${eventId}`);
+  return deleted;
 }
 
 // 이벤트 insert 쿼리

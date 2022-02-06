@@ -6,6 +6,8 @@ import createError from 'http-errors';
 import morgan from 'morgan';
 import passport from 'passport';
 import { dirname, join } from 'path';
+import Sentry from '@sentry/node';
+import Tracing from '@sentry/tracing';
 import { fileURLToPath } from 'url';
 import { httpErrorStream } from './config/winston.js';
 import initializePassport from './controllers/initializePassport.js';
@@ -28,7 +30,20 @@ initializePassport(passport);
 // express 세팅
 const app = express();
 
-app.use(morgan('dev', { skip: (req, res) => res.statusCode >= 400 }));
+Sentry.init({
+  dsn: process.env.SENTRY_DSM,
+  integrations: [
+    new Sentry.Integrations.Http({ tracing: true }),
+    new Tracing.Integrations.Express({ app }),
+  ],
+  tracesSampleRate: 1.0,
+});
+
+app.use(Sentry.Handlers.requestHandler());
+app.use(Sentry.Handlers.tracingHandler());
+
+// TODO : 400 미만의 모든 요청에 대한 로그가 필요한지 고민해봐야함
+// app.use(morgan('dev', { skip: (req, res) => res.statusCode >= 400 }));
 app.use(morgan('dev', { skip: (req, res) => res.statusCode < 400, stream: httpErrorStream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -54,13 +69,16 @@ app.use('/calendar', calendarRoute(express));
 app.use((req, res, next) => next(createError(404)));
 
 // 에러 핸들러
+app.use(Sentry.Handlers.errorHandler());
+
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
+  const status = err.status || 500;
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // 에러 페이지 렌더
-  res.status(err.status || 500).render('error', { layout: false });
+  res.status(status).render('error', { layout: false, status });
 });
 
 export default app;
