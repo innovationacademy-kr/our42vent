@@ -115,14 +115,14 @@ async function updateEventData() {
     const examSet = new Set(examList.map(JSON.stringify));
     eventList.push(...[...examSet].map(JSON.parse));
     if (!eventList.length) {
-      consoleLogger.info('updateEventData : no event to update', new Date());
+      consoleLogger.info('updateEventData : no event to update');
       return;
     }
     const parsedEvents = await parseEventData(eventList);
     await insertUpdatedEventList(connection, parsedEvents);
-    consoleLogger.info('updateEventData : events updated!', new Date());
+    consoleLogger.info('updateEventData : events updated!');
   } catch (err) {
-    consoleLogger.error('updateEventData : ', new Date(), err.stack);
+    consoleLogger.error('updateEventData : ', err.stack);
   } finally {
     redisClient.quit();
     connection.end();

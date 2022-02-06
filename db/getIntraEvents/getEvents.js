@@ -79,7 +79,7 @@ async function initEventData() {
     const examSet = new Set(examList.map(JSON.stringify));
     eventList.push(...secondEventList, ...[...examSet].map(JSON.parse));
     if (!eventList.length) {
-      consoleLogger.info('initEventData : no event to initialize', new Date());
+      consoleLogger.info('initEventData : no event to initialize');
       return;
     }
     const parsedEvents = await parseEventData(eventList);
