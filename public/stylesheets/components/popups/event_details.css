@@ -47,15 +47,6 @@
   width: 100%;
 }
 
-.details-exit-button {
-  background: var(--turq_btn);
-  border: none;
-  color: var(--white);
-  cursor: pointer;
-  height: 30px;
-  width: 30px;
-}
-
 .details-title {
   line-height: 1.25em;
   padding: 1% 2.5em;
