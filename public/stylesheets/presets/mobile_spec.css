@@ -67,12 +67,6 @@ body {
   font-weight: 900;
 }
 
-.header-today:hover,
-.header-new:hover {
-  color: var(--turq_btn_hover);
-  cursor: pointer;
-}
-
 .promotion {
   max-width: 432px;
   width: 80vw;

@@ -22,6 +22,6 @@ export default function redrawMonth() {
       categoriesArray
     );
     fillDateEvents(filteredDateEventArray, firstDate, year);
-    addListenersAfterRender(dateEventArray.flatMap(dateEvent => dateEvent.eventArray));
+    addListenersAfterRender(filteredDateEventArray.flatMap(dateEvent => dateEvent.eventArray));
   });
 }

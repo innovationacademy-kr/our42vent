@@ -87,7 +87,7 @@ export async function eventEditController(req, res, next) {
 
 export async function eventInfoController(req, res, next) {
   try {
-    res.cookie('eventId', req.params.eventId);
+    res.cookie('eventId', req.params.eventId, { sameSite: 'strict' });
     res.redirect('/');
   } catch (err) {
     logger.warn(err.stack);

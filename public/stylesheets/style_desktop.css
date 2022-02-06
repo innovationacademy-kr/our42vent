@@ -5,6 +5,7 @@
 @import 'presets/font.css';
 @import 'presets/layout.css';
 @import 'presets/category.css';
+@import 'presets/touch_responsive.css';
 
 /* SECTION: 컴포넌트 */
 

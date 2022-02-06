@@ -119,11 +119,6 @@ nav {
   z-index: 2;
 }
 
-.navbar-tab-inactive:hover {
-  filter: contrast(1.05);
-  transition: filter 0.2s ease-in;
-}
-
 .navbar-category > input {
   display: none;
 }
@@ -144,11 +139,6 @@ nav {
   width: 130px;
 }
 
-.box-wrapper:hover {
-  filter: contrast(1.2);
-  transition: filter 0.3s ease-in-out;
-}
-
 .navbar-toggle-all > a {
   width: 100%;
 }
@@ -156,6 +146,11 @@ nav {
 .toggle-all-event {
   height: 100%;
   line-height: 30px;
+  padding: 0 0 0 10px;
+  width: 100%;
+}
+
+.toggle-my-event {
   padding: 0 0 0 10px;
   width: 100%;
 }

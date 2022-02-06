@@ -19,6 +19,7 @@ export async function generateMonth() {
 
   const { yearParam, monthParam } = getParams();
   const { dateEventArray, noWeeks, year, monthIndex } = await getMonthData(yearParam, monthParam);
+
   const categoriesArray = sessionStorage.getItem('categories').split('-').slice(1);
   const firstDate =
     dateEventArray[0].date !== 1
@@ -35,7 +36,7 @@ export async function generateMonth() {
     categoriesArray
   );
   fillDateEvents(filteredDateEventArray, firstDate, year);
-  addListenersAfterRender(dateEventArray.flatMap(dateEvent => dateEvent.eventArray));
+  addListenersAfterRender(filteredDateEventArray.flatMap(dateEvent => dateEvent.eventArray));
   return [dateEventArray, firstDate, year];
 }
 
