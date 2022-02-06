@@ -11,7 +11,7 @@ export default async function getFtAccessToken(redisClient) {
         client_secret: process.env.FORTYTWO_APP_SECRET,
       });
       const newToken = res.data.access_token;
-      const result = await redisClient.setEx('ft_access_token', 6000, newToken);
+      const result = await redisClient.setEx('ft_access_token', 7200, newToken);
       if (result.localeCompare('OK')) throw new Error(`failed to insert ft access token`);
       consoleLogger.info('getFtAccessToken : issued new token');
       return newToken;

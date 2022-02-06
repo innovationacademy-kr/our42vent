@@ -6,13 +6,17 @@ import consoleLogger from '../../lib/consoleLogger.js';
 import parseEventData from '../../lib/parseEventData.js';
 
 // intra에서 100개의 이벤트를 get
-async function getIntraEvent() {
+async function getIntraEvent(pageNum) {
   try {
     const token = await getFtAccessToken(redisClient);
     if (!token) throw new Error('token does not exist');
-    const res = await axios.get('https://api.intra.42.fr/v2/campus/29/events?page[size]=100', {
+    const res = await axios.get('https://api.intra.42.fr/v2/campus/29/cursus/21/events', {
       headers: {
         Authorization: `Bearer ${token}`,
+      },
+      params: {
+        'page[size]': 100,
+        'page[number]': pageNum,
       },
     });
     return res.data;
@@ -22,14 +26,18 @@ async function getIntraEvent() {
 }
 
 // intra에서 100개의 Exam을 get
-async function getIntraExam() {
+async function getIntraExam(pageNum) {
   try {
     // token 만료 방지를 위해 getFtAccessToken 한 번 더 호출.
     const token = await getFtAccessToken(redisClient);
     if (!token) throw new Error('token does not exist');
-    const res = await axios.get('https://api.intra.42.fr/v2/campus/29/exams?page[size]=100', {
+    const res = await axios.get('https://api.intra.42.fr/v2/campus/29/cursus/21/exams', {
       headers: {
         Authorization: `Bearer ${token}`,
+      },
+      params: {
+        'page[size]': 100,
+        'page[number]': pageNum,
       },
     });
     return res.data;
@@ -61,11 +69,17 @@ async function insertEventList(eventList) {
 // event와 exam을 불러와서 db에 저장
 async function initEventData() {
   try {
-    const eventList = await getIntraEvent();
-    const examList = await getIntraExam();
-    eventList.push(...examList);
+    const eventList = await getIntraEvent(1);
+    const secondEventList = await getIntraEvent(2);
+    const examList = await getIntraExam(1);
+    const secondExamList = await getIntraExam(2);
+    const thirdExamList = await getIntraExam(3);
+
+    examList.push(...secondExamList, ...thirdExamList);
+    const examSet = new Set(examList.map(JSON.stringify));
+    eventList.push(...secondEventList, ...[...examSet].map(JSON.parse));
     if (!eventList.length) {
-      consoleLogger.info('initEventData : no event to initialize', new Date());
+      consoleLogger.info('initEventData : no event to initialize');
       return;
     }
     const parsedEvents = await parseEventData(eventList);
