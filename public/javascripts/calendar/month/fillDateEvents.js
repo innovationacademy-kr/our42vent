@@ -11,7 +11,9 @@ export default function fillDateEvents(dateEventArray, firstDate, year) {
     const curDateEvent = dateEventArray[dateIndex];
     fillDay(dateDiv, curDateEvent, year, new Date());
 
-    const eventsDiv = dateDiv.appendChild(createElementAddClass('div', ['month-date-events']));
+    const eventsDiv = dateDiv.appendChild(
+      createElementAddClass('div', ['month-date-events', 'select-none'])
+    );
 
     mapLabelSlots(dateEventArray, dateIndex, durationHash, firstDate);
     fillEvents(dateEventArray, dateIndex, eventsDiv);
