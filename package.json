@@ -23,6 +23,7 @@
     "express-ejs-layouts": "^2.5.1",
     "express-formidable": "^1.2.0",
     "express-session": "^1.17.2",
+    "helmet": "^5.0.2",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",

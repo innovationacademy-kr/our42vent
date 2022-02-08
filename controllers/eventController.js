@@ -53,9 +53,10 @@ export async function eventDetailController(req, res, next) {
     const { eventId } = req.params;
     const event = await selectEvent(eventId);
 
-    // TODO : 바로 페이지로 접근하면 크롬 자체에서 에러를 뱉음... error page redirection 고민해보기...
-    if (!event) res.status(404).end();
-    else {
+    if (!event) {
+      if ('cors'.localeCompare(req.get('Sec-Fetch-Mode'))) res.redirect('/error/404');
+      res.status(404).end();
+    } else {
       const myEventNotification = await selectNotificationMyEvent(res.locals.userId, eventId);
 
       if (!myEventNotification.length) event.isMyEvent = false;

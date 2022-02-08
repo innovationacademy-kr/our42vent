@@ -1,3 +1,22 @@
-<h1><%= message %></h1>
-<h2><%= status %></h2>
-<pre><%= error.stack %></pre>
+<!DOCTYPE html lang="ko">
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/assets/favicons/our42vent.ico" rel="short icon" type="image/x-icon" />
+    <title>우리42벤트 | ERROR</title>
+    <link rel="stylesheet" href="/stylesheets/components/error.css" />
+  </head>
+  <body>
+    <section class="error">
+      <div class="error-container">
+        <img class="error-container-img" src="/assets/images/<%= img %>" alt="error image" />
+        <div class="error-container-status"><%= status %></div>
+      </div>
+      <div class="error-message"><%= message %></div>
+      <div class="error-stack"><%= stack %></div>
+      <a href="/"><img class="error-logo" src="/assets/favicons/our42vent.ico" alt="42 logo" /></a>
+    </section>
+  </body>
+</html>

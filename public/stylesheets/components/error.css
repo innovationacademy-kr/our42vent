@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Chango&family=Gaegu:wght@300;400;700&display=swap');
+
+.error {
+  align-items: center;
+  color: #363e49;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Gaegu', cursive;
+  font-weight: bold;
+  height: 100%;
+  justify-content: center;
+  margin: 0 auto 0;
+  position: relative;
+  row-gap: 20px;
+  width: 100%;
+}
+
+.error-container {
+  height: auto;
+  max-height: 75%;
+  max-width: 58.5%;
+  object-fit: contain;
+  position: relative;
+  width: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .error-container {
+    height: auto;
+    max-height: 100%;
+    max-width: 78%;
+    width: auto;
+  }
+}
+
+.error-container-img {
+  height: 100%;
+  width: 100%;
+}
+
+.error-container-status {
+  font-size: min(7vw, 9vh);
+  left: 32%;
+  position: absolute;
+  top: 20%;
+  transform: translate(-50%, -50%);
+}
+
+.error-message {
+  font-size: min(7vw, 9vh);
+}
+
+.error-stack {
+  display: none;
+}
+
+.error-logo {
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  width: 5vw;
+}
