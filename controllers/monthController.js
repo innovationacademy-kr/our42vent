@@ -8,7 +8,7 @@ import { selectMyEvents } from '../models/accessMyEventTable.js';
 export default async function monthController(req, res, next) {
   try {
     const yearParam = Number(req.params.year);
-    const monthParam = Number(req.paras.month);
+    const monthParam = Number(req.params.month);
     const cacheKey = `m_${yearParam}${monthParam}`;
 
     const { year, month } = checkYearMonthRange(yearParam, monthParam);
