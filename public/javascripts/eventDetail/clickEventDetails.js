@@ -1,5 +1,6 @@
 import clickExitOrShareButton from './clickExitOrShareButton.js';
 import api from '../utils/createAxiosInterceptor.js';
+import replaceToHyperlink from './utils/replaceToHyperlink.js';
 import setCategoryName from './utils/setCategoryName.js';
 import setDuration from './utils/setDuration.js';
 import setRange from './utils/setRange.js';
@@ -40,7 +41,7 @@ function fillPICTopicDetails(personInCharge, topic, details) {
   if (details !== '' && details !== null) {
     detailsElement.innerHTML =
       '<div class="details-details-label text-bold">상세정보</div>' +
-      `<div class="details-details-content">${details}</div>`;
+      `<div class="details-details-content">${replaceToHyperlink(details)}</div>`;
     detailsElement.style.display = 'flex';
   } else {
     detailsElement.innerHTML = '';
@@ -114,7 +115,7 @@ export async function setEventDetails(eventId) {
 
   document.querySelector(
     '.details-location'
-  ).innerHTML = `<i class="material-icons">room</i>&nbsp;${location}`;
+  ).innerHTML = `<i class="material-icons">room</i>&nbsp;${replaceToHyperlink(location)}`;
   fillPICTopicDetails(personInCharge, topic, details);
   fillButtonNotification(beginAt, endAt, isMyEvent, notification);
   clickExitOrShareButton(event, eventId);
