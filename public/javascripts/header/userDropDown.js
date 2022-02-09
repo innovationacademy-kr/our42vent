@@ -1,20 +1,20 @@
 const userDropButton = document.querySelector('.user-drop-button');
 const userDropContent = document.querySelector('.user-drop-content');
-const userDropLogout = userDropContent.lastElementChild.firstElementChild;
+const userDropLogout = userDropContent.firstElementChild.nextElementSibling.firstElementChild;
 
 userDropButton.addEventListener('click', () => {
-  if (userDropContent.classList.contains('hidden')) {
+  if (userDropContent.classList.contains('hidden'))
     userDropButton.firstElementChild.style.color = 'var(--light_mint)';
-  } else if (!userDropContent.classList.contains('hidden')) {
+  else if (!userDropContent.classList.contains('hidden'))
     userDropButton.firstElementChild.style.color = 'var(--white)';
-  }
+
   userDropContent.classList.toggle('hidden');
 });
 
 userDropLogout.addEventListener('click', () => sessionStorage.clear());
 
-window.addEventListener('click', event => {
-  if (!event.target.matches('.user-drop-button, .user-username, .user-imageurl')) {
+document.body.addEventListener('click', e => {
+  if (!userDropButton.contains(e.target) && !userDropContent.contains(e.target)) {
     if (!userDropContent.classList.contains('hidden')) {
       userDropContent.classList.toggle('hidden');
       userDropButton.firstElementChild.style.color = 'var(--white)';

@@ -33,6 +33,7 @@
     <script defer type="module" src="/javascripts/nav/navToggle.js"></script>
     <%- defineContent('scriptFiles') %>
     <script defer type="module" src="/javascripts/eventDetail/clickEventDetails.js"></script>
+    <script defer type="module" src="/javascripts/eventDetail/clickNotificationSelect.js"></script>
     <script
       defer
       type="module"
@@ -45,6 +46,7 @@
     <script defer type="module" src="/javascripts/eventPromotion/clickCopyPromotion.js"></script>
     <script defer type="module" src="/javascripts/eventForm/addListenersForBorderColor.js"></script>
     <script defer type="module" src="/javascripts/header/hoverTodayButton.js"></script>
+    <script defer type="module" src="/javascripts/notification/initNotificationSetting.js"></script>
   </head>
   <body>
     <div class="layout">
@@ -75,9 +77,17 @@
                 <img class="user-imageurl" src="<%= profileImage %>" alt="user profile image" />
               </div>
             </div>
-            <ul class="user-drop-content hidden text-center">
-              <a href="/event/list"><li class="text-bold">내가 생성한 이벤트</li></a
-              ><a href="/logout"><li class="text-bold">로그아웃</li></a>
+            <ul class="user-drop-content hidden text-center text-bold small">
+              <a href="/event/list"><li>내가 생성한 이벤트</li></a
+              ><a href="/logout"><li>로그아웃</li></a>
+              <li class="notification-wrapper">
+                <p>알림</p>
+                <div class="notification-switch">
+                  <input type="checkbox" />
+                  <span class="notification-switch-slider small"></span>
+                  <div class="notification-switch-blocker"></div>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -162,6 +172,14 @@
           <hr class="toggle-divider" />
           <div class="toggle-user small"><a href="/event/list">내가 생성한 이벤트</a></div>
           <div class="toggle-user small"><a href="/logout">로그아웃</a></div>
+          <div class="toggle-user notification-wrapper small">
+            <p>알림</p>
+            <div class="notification-switch">
+              <input type="checkbox" />
+              <span class="notification-switch-slider small"></span>
+              <div class="notification-switch-blocker"></div>
+            </div>
+          </div>
         </div>
       </nav>
       <main class="main">

@@ -71,17 +71,6 @@ nav.change {
   transition: transform 0.4s;
 }
 
-.toggle-user {
-  margin: 10px 23px;
-}
-
-.toggle-divider {
-  border: 0px;
-  border-top: 1px solid var(--nav_box_shadow);
-  transform: translateX(12px);
-  width: 130px;
-}
-
 /* SECTION : 네비바 사이드 메뉴 생성 */
 
 nav {
@@ -168,4 +157,43 @@ nav {
 .box-wrapper > div {
   padding: 0 0 0 10px;
   width: 70%;
+}
+
+/* SECTION: user 드롭다운 대체 */
+
+.toggle-user {
+  height: 2.7em;
+  line-height: 2.7em;
+  margin: 0 23px;
+}
+
+.notification-wrapper {
+  justify-content: left;
+}
+
+.notification-switch {
+  height: 18px;
+  width: 40px;
+}
+
+.notification-switch-slider {
+  border-radius: 18px;
+}
+
+.notification-switch-slider:before {
+  height: 10px;
+  width: 10px;
+}
+
+.notification-switch input:checked + .notification-switch-slider:before {
+  -webkit-transform: translateX(22px);
+  -ms-transform: translateX(22px);
+  transform: translateX(22px);
+}
+
+.toggle-divider {
+  border: 0px;
+  border-top: 1px solid var(--nav_box_shadow);
+  transform: translateX(12px);
+  width: 130px;
 }

@@ -129,3 +129,73 @@
 .user-drop-content li {
   padding: 1em 0;
 }
+
+/* SECTION: 알림 설정 스위치 */
+.notification-wrapper {
+  align-items: center;
+  column-gap: 0.75em;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.notification-switch {
+  height: 22px;
+  position: relative;
+  width: 48px;
+}
+
+.notification-switch-blocker {
+  display: none;
+  height: 22px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 48px;
+}
+
+.notification-switch input {
+  height: 0;
+  opacity: 0;
+  width: 0;
+}
+
+.notification-switch-slider {
+  background-color: var(--notification_switch_bg);
+  border-radius: 22px;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.6s;
+  -webkit-transition: 0.6s;
+}
+
+.notification-switch-slider:before {
+  background-color: var(--white);
+  border-radius: 50%;
+  bottom: 4px;
+  content: '';
+  height: 14px;
+  left: 4px;
+  position: absolute;
+  transition: 0.6s;
+  -webkit-transition: 0.6s;
+  width: 14px;
+}
+
+.notification-switch input:checked + .notification-switch-slider {
+  background-color: var(--turq_btn);
+}
+
+.notification-switch input:focus + .notification-switch-slider {
+  box-shadow: 0 0 1px var(--turq_btn);
+}
+
+.notification-switch input:checked + .notification-switch-slider:before {
+  transform: translateX(26px);
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+}

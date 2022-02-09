@@ -142,3 +142,8 @@
 .details-notification-info {
   color: var(--dark_grey);
 }
+
+.notification-alert-svg {
+  position: absolute;
+  z-index: 5;
+}
