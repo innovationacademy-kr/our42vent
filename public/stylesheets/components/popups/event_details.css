@@ -143,6 +143,10 @@
   color: var(--dark_grey);
 }
 
+.details-anchor {
+  all: revert;
+}
+
 .notification-alert-svg {
   position: absolute;
   z-index: 5;
