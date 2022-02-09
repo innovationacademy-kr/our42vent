@@ -25,12 +25,14 @@ export async function verifyUser(req, res, next) {
         });
         next();
       } else {
-        res.redirect('/login');
+        if ('cors'.localeCompare(req.get('Sec-Fetch-Mode'))) res.redirect('/login');
+        res.status(401).end();
       }
     }
   } catch (err) {
     logger.warn(`verifyUser : ${err.stack}`);
-    res.status(401).json({ error: 'Unexpected Error in verifyUser' });
+    err.status = 401;
+    next(err);
   }
 }
 
@@ -63,6 +65,7 @@ export async function verifyLoginUser(req, res, next) {
     }
   } catch (err) {
     logger.warn(`verifyLoginUser : ${err.stack}`);
-    res.status(401).json({ error: 'Unexpected Error in verifyLoginUser' });
+    err.status = 401;
+    next(err);
   }
 }
