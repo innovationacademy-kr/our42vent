@@ -1,3 +1,4 @@
+import api from '../utils/createAxiosInterceptor.js';
 import isValidEventForm from '../utils/eventForm/isValidEventForm.js';
 import { getFullDate, getFullTime } from './parseDate.js';
 import { alertModal } from '../utils/sweetAlertMixin.js';
@@ -28,30 +29,24 @@ function fillEventForm(event) {
 // 수정한 이벤트를 DB에 업데이트
 function putEditedEventData(eventId, formData) {
   if (isValidEventForm()) {
-    axios
+    api
       .put(`/event/${eventId}`, formData)
       .then(() => {
         alertModal
           .fire({ title: '수정이 완료되었습니다.', icon: 'success' })
           .then(() => window.location.replace('/event/list'));
       })
-      .catch(() => {
-        // TODO : 적절하게 에러 핸들링 해줘야함
-        alertModal
-          .fire({ title: '오류가 발생하였습니다.', icon: 'error' })
-          .then(() => window.location.replace('/event/list'));
-      });
+      .catch(err => alertModal.fire({ title: '오류가 발생하였습니다.', icon: 'error' }));
   }
 }
 
 async function editEventListener(event) {
   const eventId = event.target.classList[0]; // class의 이름으로 부터 eventid를 받아옴
   try {
-    const { data } = await axios.get(`/event/${eventId}`);
+    const data = await api.get(`/event/${eventId}`);
 
     fillEventForm(data);
   } catch (err) {
-    //   TODO : 적절하게 에러 핸들링 해줘야함
     window.location.replace('/event/list');
   }
 

@@ -18,19 +18,21 @@ export async function verifyUser(req, res, next) {
 
         logger.info(`verifyUser : accessToken reissued : ${accessToken}`);
         res.cookie('accessToken', accessToken, {
-          // secure: true,
+          secure: true,
           httpOnly: true,
           expires: new Date(Date.now() + 3.6e6), // 1시간 뒤 만료
           sameSite: 'lax',
         });
         next();
       } else {
-        res.redirect('/login');
+        if ('cors'.localeCompare(req.get('Sec-Fetch-Mode'))) res.redirect('/login');
+        res.status(401).end();
       }
     }
   } catch (err) {
     logger.warn(`verifyUser : ${err.stack}`);
-    res.status(401).json({ error: 'Unexpected Error in verifyUser' });
+    err.status = 401;
+    next(err);
   }
 }
 
@@ -51,7 +53,7 @@ export async function verifyLoginUser(req, res, next) {
 
         logger.info(`verifyLoginUser : accessToken reissued : , ${accessToken}`);
         res.cookie('accessToken', accessToken, {
-          // secure: true,
+          secure: true,
           httpOnly: true,
           expires: new Date(Date.now() + 3.6e6), // 1시간 뒤 만료
           sameSite: 'lax',
@@ -63,6 +65,7 @@ export async function verifyLoginUser(req, res, next) {
     }
   } catch (err) {
     logger.warn(`verifyLoginUser : ${err.stack}`);
-    res.status(401).json({ error: 'Unexpected Error in verifyLoginUser' });
+    err.status = 401;
+    next(err);
   }
 }

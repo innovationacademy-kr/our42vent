@@ -1,5 +1,6 @@
-import { alertModal } from '../utils/sweetAlertMixin.js';
 import subscribePushService from './subscribePushService.js';
+import api from '../utils/createAxiosInterceptor.js';
+import { alertModal } from '../utils/sweetAlertMixin.js';
 
 async function initNotificationCheckbox(checkboxList) {
   const registration = await navigator.serviceWorker.getRegistration();
@@ -61,7 +62,7 @@ async function changeNotificationListener(checked) {
     const subscription = await registration.pushManager.getSubscription();
 
     await subscription.unsubscribe();
-    await axios.delete('/push', { data: subscription });
+    await api.delete('/push', { data: subscription });
     notificationSelect.disabled = true;
   } else {
     const permission = await Notification.requestPermission();
@@ -73,7 +74,7 @@ async function changeNotificationListener(checked) {
     });
     const subscription = await subscribePushService(registration);
 
-    await axios.post('/push', { subscription, isFirst: true });
+    await api.post('/push', { subscription, isFirst: true });
     notificationSelect.disabled = false;
   }
 }

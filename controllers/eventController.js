@@ -1,4 +1,3 @@
-import schedule from 'node-schedule';
 import { logger } from '../config/winston.js';
 import { cancelScheduledPushes } from '../lib/push/pushUtils.js';
 import validateEventData from '../lib/validateEventData.js';
@@ -16,71 +15,72 @@ import {
 import { selectUser } from '../models/accessUserTable.js';
 
 export async function eventListController(req, res) {
-  try {
-    let user = await selectUser(res.locals.userId);
+  let user = await selectUser(res.locals.userId);
 
-    if (!user) user = { name: 'anonymous', profileImage: '' };
+  if (!user) user = { name: 'anonymous', profileImage: '' };
 
-    res.render('eventList', {
-      layout: 'layouts/layout',
-      title: '우리42벤트 | EVENT LIST',
-      username: user.name,
-      profileImage: user.profileImage,
-      referrer: '/event/list',
-    });
-  } catch (err) {
-    logger.warn(err.stack);
-    res.status(500).end();
-  }
+  res.status(200).render('eventList', {
+    layout: 'layouts/layout',
+    title: '우리42벤트 | EVENT LIST',
+    username: user.name,
+    profileImage: user.profileImage,
+    referrer: '/event/list',
+  });
 }
 
-export async function eventDeleteController(req, res) {
+export async function eventDeleteController(req, res, next) {
   try {
     const { eventId } = req.params;
     await deleteSubscriptions(eventId);
-    await deleteEvent(eventId, res.locals.userId);
+    const affectedRows = await deleteEvent(eventId, res.locals.userId);
+    if (!affectedRows) res.status(405);
 
     res.end();
 
     cancelScheduledPushes(eventId);
   } catch (err) {
     logger.warn(err.stack);
-    res.status(500).end();
+    next(err);
   }
 }
 
-export async function eventDataController(req, res) {
+export async function eventDataController(req, res, next) {
   try {
     const eventList = await selectCreatedEvents(res.locals.userId);
 
     res.json(eventList);
   } catch (err) {
     logger.warn(err.stack);
-    res.status(500).end();
+    next(err);
   }
 }
 
-export async function eventDetailController(req, res) {
+export async function eventDetailController(req, res, next) {
   try {
     const { eventId } = req.params;
     const event = await selectEvent(eventId);
-    const myEventNotification = await selectNotificationMyEvent(res.locals.userId, eventId);
 
-    if (!myEventNotification.length) {
-      event.isMyEvent = false;
+    if (!event) {
+      if ('cors'.localeCompare(req.get('Sec-Fetch-Mode'))) res.redirect('/error/404');
+      res.status(404).end();
     } else {
-      event.isMyEvent = true;
-      event.notification = myEventNotification[0].notification;
-    }
+      const myEventNotification = await selectNotificationMyEvent(res.locals.userId, eventId);
 
-    res.json(event);
+      if (!myEventNotification.length) event.isMyEvent = false;
+      else {
+        event.isMyEvent = true;
+        event.notification = myEventNotification[0].notification;
+      }
+
+      res.json(event);
+    }
   } catch (err) {
     logger.warn(err.stack);
-    res.status(500).end();
+    next(err);
   }
 }
 
-export async function eventEditController(req, res) {
+export async function eventEditController(req, res, next) {
   try {
     const event = req.fields;
     const { userId } = res.locals;
@@ -98,17 +98,16 @@ export async function eventEditController(req, res) {
     }
   } catch (err) {
     logger.warn(err.stack);
-    if (err.name === 'InputError') res.status(400).end();
-    else res.status(500).end();
+    next(err);
   }
 }
 
-export async function eventInfoController(req, res) {
+export async function eventInfoController(req, res, next) {
   try {
     res.cookie('eventId', req.params.eventId, { sameSite: 'strict' });
     res.redirect('/');
   } catch (err) {
     logger.warn(err.stack);
-    res.status(500).end();
+    next(err);
   }
 }

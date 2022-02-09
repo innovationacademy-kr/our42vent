@@ -1,4 +1,6 @@
 import { renderInfo, generateMonth } from '../calendar/month/generateMonth.js';
+import api from '../utils/createAxiosInterceptor.js';
+import { alertModal } from '../utils/sweetAlertMixin.js';
 
 const myEventButton = document.querySelector('.details-myevent-button');
 const cancelButton = document.querySelector('.details-cancel-button');
@@ -57,13 +59,14 @@ myEventButton.addEventListener('click', async () => {
   const detailsElement = document.querySelector('.layout-details');
   const eventId = detailsElement.id.substring(9);
 
-  axios
+  api
     .post(`/event/myevent/${eventId}`, { notification })
-    .then(() => toggleNotification('subscribe'))
-    .catch(err => {
-      // TODO : client side 에러핸들링
-      console.log(err.message);
-    });
+    .then(res => {
+      alertModal
+        .fire({ title: '이벤트에 등록되었습니다.', icon: 'success' })
+        .then(() => toggleNotification('subscribe'));
+    })
+    .catch(err => alertModal.fire({ title: '오류가 발생하였습니다.', icon: 'error' }));
 });
 
 // '등록 취소' 클릭 시, my_event delete
@@ -71,11 +74,12 @@ cancelButton.addEventListener('click', () => {
   const detailsElement = document.querySelector('.layout-details');
   const eventId = detailsElement.id.substring(9);
 
-  axios
+  api
     .delete(`/event/myevent/${eventId}`)
-    .then(() => toggleNotification('unsubscribe'))
-    .catch(err => {
-      // TODO : client side 에러핸들링
-      console.log(err.message);
-    });
+    .then(res => {
+      alertModal
+        .fire({ title: '등록이 취소되었습니다.', icon: 'warning' })
+        .then(() => toggleNotification('unsubscribe'));
+    })
+    .catch(err => alertModal.fire({ title: '오류가 발생하였습니다.', icon: 'error' }));
 });

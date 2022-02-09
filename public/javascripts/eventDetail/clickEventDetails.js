@@ -1,11 +1,17 @@
 import clickExitOrShareButton from './clickExitOrShareButton.js';
+import api from '../utils/createAxiosInterceptor.js';
 import setCategoryName from './utils/setCategoryName.js';
 import setDuration from './utils/setDuration.js';
 import setRange from './utils/setRange.js';
+import { alertModal } from '../utils/sweetAlertMixin.js';
 
 // 띠지 클릭시, 해당 이벤트 상세 정보 select
 async function getEventDetails(eventId) {
-  const { data } = await axios.get(`/event/${eventId}`);
+  const data = await api.get(`/event/${eventId}`).catch(err => {
+    alertModal.fire({ title: '오류가 발생하였습니다.', icon: 'error' }).then(() => {
+      throw err;
+    });
+  });
   return data;
 }
 
@@ -87,44 +93,39 @@ function fillButtonNotification(beginAt, endAt, isMyEvent, notification) {
 
 // 불러온 이벤트 상세정보를 각 항목에 입력
 export async function setEventDetails(eventId) {
-  try {
-    const event = await getEventDetails(eventId);
+  const event = await getEventDetails(eventId);
 
-    const {
-      title,
-      personInCharge,
-      beginAt,
-      endAt,
-      location,
-      category,
-      topic,
-      details,
-      isMyEvent,
-      notification,
-    } = event;
-    document.querySelector('.details-category').textContent = setCategoryName(category);
-    document.querySelector('.details-title').textContent = title;
+  const {
+    title,
+    personInCharge,
+    beginAt,
+    endAt,
+    location,
+    category,
+    topic,
+    details,
+    isMyEvent,
+    notification,
+  } = event;
+  document.querySelector('.details-category').textContent = setCategoryName(category);
+  document.querySelector('.details-title').textContent = title;
 
-    const { duration, diffInDays } = setDuration(beginAt, endAt);
-    document.querySelector('.details-range').textContent = setRange(beginAt, endAt, diffInDays);
-    document.querySelector(
-      '.details-duration'
-    ).innerHTML = `<i class="material-icons"> schedule</i>&nbsp;&nbsp;${duration}`;
+  const { duration, diffInDays } = setDuration(beginAt, endAt);
+  document.querySelector('.details-range').textContent = setRange(beginAt, endAt, diffInDays);
+  document.querySelector(
+    '.details-duration'
+  ).innerHTML = `<i class="material-icons"> schedule</i>&nbsp;&nbsp;${duration}`;
 
-    document.querySelector(
-      '.details-location'
-    ).innerHTML = `<i class="material-icons">room</i>&nbsp;${location}`;
+  document.querySelector(
+    '.details-location'
+  ).innerHTML = `<i class="material-icons">room</i>&nbsp;${location}`;
 
-    fillPICTopicDetails(personInCharge, topic, details);
-    fillButtonNotification(beginAt, endAt, isMyEvent, notification);
-    clickExitOrShareButton(event, eventId);
+  fillPICTopicDetails(personInCharge, topic, details);
+  fillButtonNotification(beginAt, endAt, isMyEvent, notification);
+  clickExitOrShareButton(event, eventId);
 
-    // 알림 설정시, 다음 이벤트 상세보기에서 default로 원상복귀
-    document.getElementById('details-notification').value = 'none';
-  } catch (err) {
-    // TODO 에러페이지 표시
-    console.log(err.message);
-  }
+  // 알림 설정시, 다음 이벤트 상세보기에서 default로 원상복귀
+  document.getElementById('details-notification').value = 'none';
 }
 
 export async function clickEventDetails() {

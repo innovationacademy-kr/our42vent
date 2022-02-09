@@ -23,7 +23,7 @@ export async function subscribePushController(req, res, next) {
     await replacePushSubscription(userId, JSON.stringify(subscription));
 
     res.cookie('pushToken', userId, {
-      // secure: true,
+      secure: true,
       expires: new Date(Date.now() + 3.6e6), // 1시간 뒤 만료
       sameSite: 'strict',
       signed: true,

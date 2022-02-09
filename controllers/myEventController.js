@@ -5,7 +5,7 @@ import { insertMyEvent, deleteMyEvent } from '../models/accessMyEventTable.js';
 import { selectPushSubscriptionByUser } from '../models/accessPushSubscriptionTable.js';
 
 // 이벤트 등록 컨트롤러
-export async function subscribeEventController(req, res) {
+export async function subscribeEventController(req, res, next) {
   const { notification } = req.body;
   const notificationNumber = notification === 'none' ? null : Number(notification);
   const { eventId } = req.params;
@@ -22,12 +22,12 @@ export async function subscribeEventController(req, res) {
     res.end();
   } catch (err) {
     logger.warn(err.stack);
-    res.status(500).end();
+    next(err);
   }
 }
 
 // 등록 취소 컨트롤러
-export async function unsubscribeEventController(req, res) {
+export async function unsubscribeEventController(req, res, next) {
   try {
     await deleteMyEvent(res.locals.userId, req.params.eventId);
     res.end();
@@ -42,6 +42,6 @@ export async function unsubscribeEventController(req, res) {
     jobIdArray.forEach(id => jobs[id]?.cancel());
   } catch (err) {
     logger.warn(err.stack);
-    res.status(500).end();
+    next(err);
   }
 }
