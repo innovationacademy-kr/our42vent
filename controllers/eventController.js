@@ -27,8 +27,8 @@ export async function eventDeleteController(req, res, next) {
   try {
     const { eventId } = req.params;
     await deleteSubscriptions(eventId);
-    const deleted = await deleteEvent(eventId, res.locals.userId);
-    if (!deleted.affectedRows) res.status(405);
+    const affectedRows = await deleteEvent(eventId, res.locals.userId);
+    if (!affectedRows) res.status(405);
 
     res.end();
   } catch (err) {

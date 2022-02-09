@@ -1,6 +1,6 @@
+import { getFullDate, getFullTime } from './parseDate.js';
 import api from '../utils/createAxiosInterceptor.js';
 import { createElementAddClass } from '../utils/domNodeUtils.js';
-import { getFullDate, getFullTime } from './parseDate.js';
 
 // 서버로부터 해당 유저의 event list를 받아옴
 async function getEventList() {

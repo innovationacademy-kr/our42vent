@@ -73,8 +73,8 @@ app.use('/calendar', calendarRoute(express));
 app.use('/error', errorRoute(express));
 
 // 에러 핸들러
-app.use((req, res, next) => next(createError(404)));
 app.use(Sentry.Handlers.errorHandler());
+app.use((req, res, next) => next(createError(404)));
 app.use(errorHandler());
 
 export default app;
