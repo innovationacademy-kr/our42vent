@@ -1,8 +1,9 @@
 import clickExitOrShareButton from './clickExitOrShareButton.js';
+import replaceToHyperlink from './utils/replaceToHyperlink.js';
 import setCategoryName from './utils/setCategoryName.js';
 import setDuration from './utils/setDuration.js';
 import setRange from './utils/setRange.js';
-import replaceToHyperlink from '../eventForm/utils/replaceToHyperlink.js';
+import api from '../utils/createAxiosInterceptor.js';
 import { alertModal } from '../utils/sweetAlertMixin.js';
 
 // 띠지 클릭시, 해당 이벤트 상세 정보 select
