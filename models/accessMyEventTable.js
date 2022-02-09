@@ -62,12 +62,12 @@ export async function selectNextNotifications(start) {
     'result.userId=ps.userId';
 
   const [rows] = await pool.execute(sql, [start]);
-  logger.info('selectMyEvents : query success');
+  logger.info('selectNextNotifications : query success');
   return rows;
 }
 
 export async function updateMyEvent(eventId, beginAt) {
   const sql = 'UPDATE MY_EVENT SET sendAt=(? - INTERVAL notification MINUTE) WHERE eventId=?';
   const [rows] = await pool.execute(sql, [beginAt, eventId]);
-  logger.info(`updateEvent : query success : ${JSON.stringify(rows)}`);
+  logger.info(`updateMyEvent : query success : ${JSON.stringify(rows)}`);
 }
