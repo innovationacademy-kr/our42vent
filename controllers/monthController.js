@@ -5,7 +5,7 @@ import { selectMonthEvents } from '../models/accessEventTable.js';
 import { selectMyEvents } from '../models/accessMyEventTable.js';
 
 // month 데이터 json 으로 가공 & client 에 전송
-export default async function monthController(req, res) {
+export default async function monthController(req, res, next) {
   try {
     const yearParam = Number(req.params.year);
     const monthParam = Number(req.params.month);
@@ -25,7 +25,7 @@ export default async function monthController(req, res) {
       : await selectMonthEvents(firstDate, lastDate);
     const dateEventArray = mapDayEvent(dates, monthEventsArray, holidays);
 
-    return res.json({
+    res.json({
       dateEventArray,
       year: Number(year),
       monthIndex: Number(month),
@@ -33,6 +33,6 @@ export default async function monthController(req, res) {
     });
   } catch (err) {
     logger.warn(err.stack);
-    return res.status(500).end();
+    next(err);
   }
 }

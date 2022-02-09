@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="description" content="42 Seoul Event Calendar" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SRY1GN8KQK"></script>
+    <script src="/javascripts/config/setGoogleAnalytics.js"></script>
     <link href="/assets/favicons/our42vent.ico" rel="short icon" type="image/x-icon" />
     <title><%= title %></title>
     <link
@@ -28,6 +30,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script
+      defer
+      src="https://browser.sentry-cdn.com/6.17.4/bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer type="module" src="/javascripts/config/sentry.js"></script>
     <script defer type="module" src="/javascripts/header/adjustNameSize.js"></script>
     <script defer type="module" src="/javascripts/header/userDropDown.js"></script>
     <script defer type="module" src="/javascripts/nav/navToggle.js"></script>
@@ -72,7 +80,12 @@
             <div class="user-drop-button">
               <span class="user-username large text-bold select-none"><%= username %></span>
               <div class="user-image-wrapper">
-                <img class="user-imageurl" src="<%= profileImage %>" alt="user profile image" />
+                <img
+                  class="user-imageurl"
+                  src="<%= profileImage %>"
+                  alt="user profile image"
+                  crossorigin
+                />
               </div>
             </div>
             <ul class="user-drop-content hidden text-center">

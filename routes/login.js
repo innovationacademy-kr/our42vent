@@ -19,7 +19,7 @@ export default function loginRoute(express, passport) {
       try {
         if (err || !user) throw err;
 
-        setTokens(res, user);
+        await setTokens(res, user);
         res.redirect('/');
       } catch (err) {
         logger.warn(`passport authenticate return :  ${err.stack}`);
