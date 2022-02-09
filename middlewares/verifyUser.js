@@ -18,7 +18,7 @@ export async function verifyUser(req, res, next) {
 
         logger.info(`verifyUser : accessToken reissued : ${accessToken}`);
         res.cookie('accessToken', accessToken, {
-          secure: true,
+          // secure: true,
           httpOnly: true,
           expires: new Date(Date.now() + 3.6e6), // 1시간 뒤 만료
           sameSite: 'lax',
@@ -51,7 +51,7 @@ export async function verifyLoginUser(req, res, next) {
 
         logger.info(`verifyLoginUser : accessToken reissued : , ${accessToken}`);
         res.cookie('accessToken', accessToken, {
-          secure: true,
+          // secure: true,
           httpOnly: true,
           expires: new Date(Date.now() + 3.6e6), // 1시간 뒤 만료
           sameSite: 'lax',

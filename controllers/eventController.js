@@ -1,4 +1,6 @@
+import schedule from 'node-schedule';
 import { logger } from '../config/winston.js';
+import { cancelScheduledPushes } from '../lib/push/pushUtils.js';
 import validateEventData from '../lib/validateEventData.js';
 import {
   deleteEvent,
@@ -6,7 +8,11 @@ import {
   selectEvent,
   updateEvent,
 } from '../models/accessEventTable.js';
-import { selectNotificationMyEvent, deleteSubscriptions } from '../models/accessMyEventTable.js';
+import {
+  selectNotificationMyEvent,
+  deleteSubscriptions,
+  updateMyEvent,
+} from '../models/accessMyEventTable.js';
 import { selectUser } from '../models/accessUserTable.js';
 
 export async function eventListController(req, res) {
@@ -35,6 +41,8 @@ export async function eventDeleteController(req, res) {
     await deleteEvent(eventId, res.locals.userId);
 
     res.end();
+
+    cancelScheduledPushes(eventId);
   } catch (err) {
     logger.warn(err.stack);
     res.status(500).end();
@@ -75,10 +83,19 @@ export async function eventDetailController(req, res) {
 export async function eventEditController(req, res) {
   try {
     const event = req.fields;
+    const { userId } = res.locals;
+    const { eventId } = req.params;
 
     validateEventData(event);
-    await updateEvent(event, req.params.eventId, res.locals.userId);
+    const newBeginAt = new Date(event.beginAt);
+    const { beginAt } = await selectEvent(req.params.eventId);
+    await updateEvent(event, eventId, userId);
     res.end();
+
+    if (beginAt !== newBeginAt) {
+      updateMyEvent(eventId, newBeginAt);
+      cancelScheduledPushes(eventId);
+    }
   } catch (err) {
     logger.warn(err.stack);
     if (err.name === 'InputError') res.status(400).end();

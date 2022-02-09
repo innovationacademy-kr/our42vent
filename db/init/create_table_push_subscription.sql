@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS push_subscription (
+	sub VARCHAR(768) NOT NULL UNIQUE,
+	userId INT NOT NULL,
+	FOREIGN KEY (userId) REFERENCES user(id),
+	PRIMARY KEY (sub)
+);

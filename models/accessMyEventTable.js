@@ -2,12 +2,14 @@ import pool from '../config/createMySQLPool.js';
 import { logger } from '../config/winston.js';
 
 // my_event 테이블에 INSERT
-export async function insertMyEvent(userId, eventId, notification) {
-  logger.info(`insertMyEvent : try inserting eventId=${eventId}, notification=${notification} `);
+export async function insertMyEvent(userId, eventId, notification, sendAt) {
+  logger.info(
+    `insertMyEvent : try inserting eventId=${eventId}, notification=${notification}, sendAt=${sendAt} `
+  );
 
-  const sql = 'INSERT INTO my_event (eventId, userId, notification) VALUES (?, ?, ?);';
+  const sql = 'INSERT INTO my_event (eventId, userId, notification, sendAt) VALUES (?, ?, ?, ?);';
 
-  const rows = await pool.execute(sql, [eventId, userId, notification]);
+  const rows = await pool.execute(sql, [eventId, userId, notification, sendAt]);
   logger.info(`insertMyEvent : query success : ${JSON.stringify(rows)}`);
 }
 
@@ -50,4 +52,22 @@ export async function deleteSubscriptions(eventId) {
   logger.info(
     `deleteSubscribedEvent : query success : deleted event entry eventId=${eventId} in my_event`
   );
+}
+
+export async function selectNextNotifications(start) {
+  const sql =
+    'SELECT sendAt, notification, title, result.eventId, ps.sub FROM ' +
+    '(SELECT sendAt, eventId, userId, notification FROM my_event WHERE sendAt=?) AS result ' +
+    'INNER JOIN event ON result.eventId=event.id INNER JOIN push_subscription AS ps ON ' +
+    'result.userId=ps.userId';
+
+  const [rows] = await pool.execute(sql, [start]);
+  logger.info('selectMyEvents : query success');
+  return rows;
+}
+
+export async function updateMyEvent(eventId, beginAt) {
+  const sql = 'UPDATE MY_EVENT SET sendAt=(? - INTERVAL notification MINUTE) WHERE eventId=?';
+  const [rows] = await pool.execute(sql, [beginAt, eventId]);
+  logger.info(`updateEvent : query success : ${JSON.stringify(rows)}`);
 }
