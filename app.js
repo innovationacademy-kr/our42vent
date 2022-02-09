@@ -10,8 +10,10 @@ import { dirname, join } from 'path';
 import Sentry from '@sentry/node';
 import Tracing from '@sentry/tracing';
 import { fileURLToPath } from 'url';
+import helmetConfig from './config/helmet.js';
 import { httpErrorStream } from './config/winston.js';
 import initializePassport from './controllers/initializePassport.js';
+import errorHandler from './middlewares/errorHandler.js';
 import { verifyUser } from './middlewares/verifyUser.js';
 import calendarRoute from './routes/calendar.js';
 import errorRoute from './routes/error.js';
@@ -41,22 +43,11 @@ Sentry.init({
   tracesSampleRate: 1.0,
 });
 
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        connectSrc: ["'self'", 'https://*.sentry.io/api/'],
-        scriptSrc: ["'self'", 'https://cdn.jsdelivr.net/', 'https://browser.sentry-cdn.com/'],
-        imgSrc: ["'self'", 'https://cdn.intra.42.fr/'],
-        frameSrc: ["'self'", 'https://browser.sentry-cdn.com'],
-      },
-    },
-    crossOriginEmbedderPolicy: false,
-  })
-);
+app.use(helmet(helmetConfig));
 
 app.use(Sentry.Handlers.requestHandler());
 app.use(Sentry.Handlers.tracingHandler());
+
 // TODO : 400 미만의 모든 요청에 대한 로그가 필요한지 고민해봐야함
 app.use(morgan('dev', { skip: (req, res) => res.statusCode >= 400 }));
 app.use(morgan('dev', { skip: (req, res) => res.statusCode < 400, stream: httpErrorStream }));
@@ -81,33 +72,9 @@ app.use('/event', eventRoute(express));
 app.use('/calendar', calendarRoute(express));
 app.use('/error', errorRoute(express));
 
-// 404 발생 시 에러 핸들러로
-app.use((req, res, next) => next(createError(404)));
-
 // 에러 핸들러
+app.use((req, res, next) => next(createError(404)));
 app.use(Sentry.Handlers.errorHandler());
-
-app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  const status = err.status || 500;
-  const stack = err.stack || '';
-  const img = status < 500 ? '4xx.jpg' : '5xx.jpg';
-  let message;
-  switch (status) {
-    case 404:
-      message = '페이지가 없어요...';
-      break;
-    case 500:
-      message = '서버가 터졌어요...';
-      break;
-    default:
-      message = err.message || '페이지에 문제가 생겼어요...';
-      break;
-  }
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // 에러 페이지 렌더
-  res.status(status).render('error', { layout: false, status, stack, message, img });
-});
+app.use(errorHandler());
 
 export default app;

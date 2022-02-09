@@ -33,7 +33,7 @@ const logger = createLogger({
       filename: `${logDir}/info/%DATE%.log`,
       format: fileLogFormat,
       level: 'info',
-      maxFiles: 30,
+      maxFiles: '30d',
       zippedArchive: true,
     }),
 
@@ -41,8 +41,8 @@ const logger = createLogger({
       datePattern: 'YYYY-MM-DD',
       filename: `${logDir}/warn/%DATE%.log`,
       format: fileLogFormat,
-      level: 'warning',
-      maxFiles: 30,
+      level: 'warn',
+      maxFiles: '30d',
       zippedArchive: true,
     }),
 
@@ -51,7 +51,7 @@ const logger = createLogger({
       filename: `${logDir}/error/%DATE%.log`,
       format: fileLogFormat,
       level: 'error',
-      maxFiles: 30,
+      maxFiles: '30d',
       zippedArchive: true,
     }),
   ],

@@ -8,12 +8,14 @@ import { removeNodeList } from '../../utils/domNodeUtils.js';
 // cli 렌더링에 필요한 날짜 & 이벤트 데이터 비동기 요청
 async function getMonthData(year, month) {
   const data = sessionStorage.getItem('isMyEvent')
-    ? await api
-        .get(`/calendar/myEvent/month/${year}/${month}`)
-        .catch(err => window.location.replace('/error/500'))
-    : await api
-        .get(`/calendar/month/${year}/${month}`)
-        .catch(err => window.location.replace('/error/500'));
+    ? await api.get(`/calendar/myEvent/month/${year}/${month}`).catch(err => {
+        window.location.replace('/error/500');
+        throw err;
+      })
+    : await api.get(`/calendar/month/${year}/${month}`).catch(err => {
+        window.location.replace('/error/500');
+        throw err;
+      });
   return data;
 }
 

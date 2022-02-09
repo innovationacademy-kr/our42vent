@@ -4,9 +4,10 @@ import { getFullDate, getFullTime } from './parseDate.js';
 
 // 서버로부터 해당 유저의 event list를 받아옴
 async function getEventList() {
-  const data = await api
-    .get('/event/list/data')
-    .catch(err => window.location.replace('/error/500'));
+  const data = await api.get('/event/list/data').catch(err => {
+    window.location.replace('/error/500');
+    throw err;
+  });
   return data || [];
 }
 

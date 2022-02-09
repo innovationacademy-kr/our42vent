@@ -11,7 +11,7 @@ function clickNewEventButton() {
 
     api
       .post('/event', formData)
-      .then(res => {
+      .then(data => {
         confirmModal
           .fire({
             title: '이벤트가 생성되었습니다.',
@@ -23,7 +23,7 @@ function clickNewEventButton() {
             if (result.isConfirmed) {
               form.reset();
               form.parentNode.style.display = 'none'; // 이벤트 생성 폼 삭제
-              generatePromotion(res);
+              generatePromotion(data);
             } else {
               window.location.replace(window.location.pathname);
             }
