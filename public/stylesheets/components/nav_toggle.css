@@ -186,9 +186,9 @@ nav {
 }
 
 .notification-switch input:checked + .notification-switch-slider:before {
-  -webkit-transform: translateX(22px);
-  -ms-transform: translateX(22px);
   transform: translateX(22px);
+  -ms-transform: translateX(22px);
+  -webkit-transform: translateX(22px);
 }
 
 .toggle-divider {

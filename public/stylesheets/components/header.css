@@ -196,6 +196,6 @@
 
 .notification-switch input:checked + .notification-switch-slider:before {
   transform: translateX(26px);
-  -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
+  -webkit-transform: translateX(26px);
 }

@@ -14,10 +14,12 @@ userDropButton.addEventListener('click', () => {
 userDropLogout.addEventListener('click', () => sessionStorage.clear());
 
 document.body.addEventListener('click', e => {
-  if (!userDropButton.contains(e.target) && !userDropContent.contains(e.target)) {
-    if (!userDropContent.classList.contains('hidden')) {
-      userDropContent.classList.toggle('hidden');
-      userDropButton.firstElementChild.style.color = 'var(--white)';
-    }
+  if (
+    !userDropButton.contains(e.target) &&
+    !userDropContent.contains(e.target) &&
+    !userDropContent.classList.contains('hidden')
+  ) {
+    userDropContent.classList.toggle('hidden');
+    userDropButton.firstElementChild.style.color = 'var(--white)';
   }
 });

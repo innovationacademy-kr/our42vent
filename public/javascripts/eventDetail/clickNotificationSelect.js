@@ -18,7 +18,7 @@ notificationSelect.addEventListener('pointermove', e => {
     `y="14" fill="#fff" width="${130}" height="26" font-family="'Noto Sans KR', sans-serif" ` +
     `font-size="11">알림 설정이 꺼져있습니다</text></svg>`;
   SVGWrapper.style.left = `${e.clientX - 134}`;
-  SVGWrapper.style.top = `${e.clientY - 28 - window.scrollY}`;
+  SVGWrapper.style.top = `${e.clientY - 28 + window.scrollY}`;
 });
 
 notificationSelect.addEventListener('pointerleave', e => {

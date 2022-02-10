@@ -6,20 +6,20 @@ import { selectPushSubscriptionByUser } from '../models/accessPushSubscriptionTa
 
 // 이벤트 구독 컨트롤러
 export async function subscribeEventController(req, res, next) {
-  const { notification } = req.body;
-  const notificationNumber = notification === 'none' ? null : Number(notification);
-  const { eventId } = req.params;
-
   try {
+    const { notification } = req.body;
+    const notifyIn = notification === 'none' ? null : Number(notification);
+    const { eventId } = req.params;
+
     // 알림 보낼 시간 sendAt 설정
     let sendAt = null;
-    if (notificationNumber !== null) {
+    if (notifyIn !== null) {
       const { beginAt } = await selectEvent(eventId);
-      sendAt = new Date(beginAt - notificationNumber * 60000);
+      sendAt = new Date(beginAt - notifyIn * 60000);
     }
 
-    insertMyEvent(res.locals.userId, eventId, notificationNumber, sendAt);
-    res.end();
+    insertMyEvent(res.locals.userId, eventId, notifyIn, sendAt);
+    res.status(200).end();
   } catch (err) {
     logger.warn(err.stack);
     next(err);

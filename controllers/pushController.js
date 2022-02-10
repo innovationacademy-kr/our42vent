@@ -46,10 +46,10 @@ export async function subscribePushController(req, res, next) {
 
 // 알림 설정 껐을 때 db 업데이트
 export async function unsubscribePushController(req, res, next) {
-  const subscription = req.body;
-
   try {
+    const subscription = req.body;
     const deleted = await deletePushSubscription(JSON.stringify(subscription));
+
     if (!deleted.affectedRows) res.status(405);
     res.end();
   } catch (err) {

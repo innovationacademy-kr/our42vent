@@ -56,10 +56,9 @@ export async function deleteSubscriptions(eventId) {
 
 export async function selectNextNotifications(start) {
   const sql =
-    'SELECT sendAt, notification, title, result.eventId, ps.sub FROM ' +
-    '(SELECT sendAt, eventId, userId, notification FROM my_event WHERE sendAt=?) AS result ' +
-    'INNER JOIN event ON result.eventId=event.id INNER JOIN push_subscription AS ps ON ' +
-    'result.userId=ps.userId';
+    'SELECT notification, event.title, eventId, ps.sub FROM my_event ' +
+    'INNER JOIN event ON eventId=event.id INNER JOIN push_subscription AS ps ON ' +
+    'my_event.userId=ps.userId WHERE sendAt=?';
 
   const [rows] = await pool.execute(sql, [start]);
   logger.info('selectNextNotifications : query success');
