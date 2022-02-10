@@ -27,7 +27,7 @@ export default function eventRouter(express) {
 
   router.get('/info/:eventId(\\d+)', eventInfoController);
 
-  // 내 이벤트(My event)로 등록하기
+  // 내 이벤트(My event)로 구독하기
   router.post('/myevent/:eventId(\\d+)', subscribeEventController);
   router.delete('/myevent/:eventId(\\d+)', unsubscribeEventController);
   return router;

@@ -11,8 +11,8 @@
   "license": "MIT",
   "author": "ghan, jiskim, sehhong, yongjule",
   "dependencies": {
-    "@sentry/node": "^6.17.4",
-    "@sentry/tracing": "^6.17.4",
+    "@sentry/node": "^6.17.6",
+    "@sentry/tracing": "^6.17.6",
     "axios": "^0.24.0",
     "calendar": "^0.1.1",
     "cookie-parser": "~1.4.4",
@@ -30,9 +30,11 @@
     "morgan": "~1.9.1",
     "mysql2": "^2.3.3",
     "node-color-log": "^7.0.0",
+    "node-schedule": "^2.1.0",
     "passport": "^0.5.2",
     "passport-42": "^1.2.6",
     "redis": "^4.0.2",
+    "web-push": "^3.4.5",
     "winston": "^3.5.0",
     "winston-daily-rotate-file": "^4.6.0"
   },

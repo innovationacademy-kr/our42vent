@@ -7,7 +7,7 @@ export default async function insertEventController(req, res, next) {
     // 이벤트 form 에 작성된 내용이 req.fields 에 담겨있다
     const event = req.fields;
 
-    // 새 이벤트 등록전, 서버에서 이벤트폼 Input 유효성 검증
+    // 새 이벤트 구독전, 서버에서 이벤트폼 Input 유효성 검증
     validateEventData(event);
     event.id = await insertEvent(res.locals.userId, event);
     res.json(event);

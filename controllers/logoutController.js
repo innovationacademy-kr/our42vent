@@ -4,6 +4,7 @@ import { deleteToken } from '../models/accessTokenRedis.js';
 
 export default async function logoutController(req, res) {
   try {
+    res.clearCookie('pushToken');
     res.clearCookie('accessToken');
 
     const decoded = jwt.decode(req.cookies.refreshToken);

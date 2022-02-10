@@ -28,7 +28,7 @@ allEventsTab.addEventListener('click', () => {
   }
 });
 
-// 내가 등록한 이벤트 탭 클릭 핸들러
+// 내가 구독한 이벤트 탭 클릭 핸들러
 myEventsTab.addEventListener('click', () => {
   if (!sessionStorage.getItem('isMyEvent')) {
     sessionStorage.setItem('isMyEvent', '1');
