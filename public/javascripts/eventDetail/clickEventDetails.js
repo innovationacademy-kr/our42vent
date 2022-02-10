@@ -49,7 +49,7 @@ function fillPICTopicDetails(personInCharge, topic, details) {
   }
 }
 
-// 등록 여부에 따라 알림 & 버튼 설정
+// 구독 여부에 따라 알림 & 버튼 설정
 function fillButtonNotification(beginAt, endAt, isMyEvent, notification) {
   const [now, beginAtObj, endAtObj] = [new Date(), new Date(beginAt), new Date(endAt)];
   const notificationButtonRow = document.querySelector('.notification-button');

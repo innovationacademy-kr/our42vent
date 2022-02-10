@@ -53,7 +53,7 @@ function toggleNotification(action) {
   }
 }
 
-// '내 이벤트로 등록' 클릭 시, my_event insert
+// '이벤트 구독' 클릭 시, my_event insert
 myEventButton.addEventListener('click', async () => {
   const notification = document.getElementById('details-notification').value;
   const detailsElement = document.querySelector('.layout-details');
@@ -63,13 +63,13 @@ myEventButton.addEventListener('click', async () => {
     .post(`/event/myevent/${eventId}`, { notification })
     .then(res => {
       alertModal
-        .fire({ title: '이벤트에 등록되었습니다.', icon: 'success' })
+        .fire({ title: '이벤트가 구독되었습니다.', icon: 'success' })
         .then(() => toggleNotification('subscribe'));
     })
     .catch(err => alertModal.fire({ title: '오류가 발생하였습니다.', icon: 'error' }));
 });
 
-// '등록 취소' 클릭 시, my_event delete
+// '구독 취소' 클릭 시, my_event delete
 cancelButton.addEventListener('click', () => {
   const detailsElement = document.querySelector('.layout-details');
   const eventId = detailsElement.id.substring(9);
@@ -78,7 +78,7 @@ cancelButton.addEventListener('click', () => {
     .delete(`/event/myevent/${eventId}`)
     .then(res => {
       alertModal
-        .fire({ title: '등록이 취소되었습니다.', icon: 'warning' })
+        .fire({ title: '구독이 취소되었습니다.', icon: 'warning' })
         .then(() => toggleNotification('unsubscribe'));
     })
     .catch(err => alertModal.fire({ title: '오류가 발생하였습니다.', icon: 'error' }));

@@ -4,7 +4,7 @@ import { selectEvent } from '../models/accessEventTable.js';
 import { insertMyEvent, deleteMyEvent } from '../models/accessMyEventTable.js';
 import { selectPushSubscriptionByUser } from '../models/accessPushSubscriptionTable.js';
 
-// 이벤트 등록 컨트롤러
+// 이벤트 구독 컨트롤러
 export async function subscribeEventController(req, res, next) {
   const { notification } = req.body;
   const notificationNumber = notification === 'none' ? null : Number(notification);
@@ -26,13 +26,13 @@ export async function subscribeEventController(req, res, next) {
   }
 }
 
-// 등록 취소 컨트롤러
+// 구독 취소 컨트롤러
 export async function unsubscribeEventController(req, res, next) {
   try {
     await deleteMyEvent(res.locals.userId, req.params.eventId);
     res.end();
 
-    // 이미 알림이 스케줄 됐는데 사용자가 등록 취소한 경우 스케줄 된 알림 취소
+    // 이미 알림이 스케줄 됐는데 사용자가 구독 취소한 경우 스케줄 된 알림 취소
     const pushSubArray = await selectPushSubscriptionByUser(res.locals.userId);
     const endPointArray = pushSubArray.map(obj => JSON.parse(obj.sub).endpoint);
     const jobs = schedule.scheduledJobs;

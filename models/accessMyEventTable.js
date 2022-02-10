@@ -13,7 +13,7 @@ export async function insertMyEvent(userId, eventId, notification, sendAt) {
   logger.info(`insertMyEvent : query success : ${JSON.stringify(rows)}`);
 }
 
-// 내가 등록한 이벤트 SELECT
+// 내가 구독한 이벤트 SELECT
 export async function selectMyEvents(userId, firstDate, lastDate) {
   const sql =
     'SELECT event.id, title, beginAt, endAt, category FROM event ' +
@@ -26,7 +26,7 @@ export async function selectMyEvents(userId, firstDate, lastDate) {
   return rows;
 }
 
-// 내 이벤트에 등록돼 있으면 알림 정보 SELECT
+// 내 이벤트에 구독돼 있으면 알림 정보 SELECT
 export async function selectNotificationMyEvent(userId, eventId) {
   const sql = 'SELECT notification FROM my_event WHERE userId=? AND eventId=?';
   const [rows] = await pool.execute(sql, [userId, eventId]);

@@ -35,7 +35,7 @@ export async function subscribePushController(req, res, next) {
     if (isFirst)
       sendPush(
         '이벤트 알림 ON',
-        '등록한 이벤트가 시작하기 전 설정한 시간에 알림을 받을 수 있습니다.',
+        '구독한 이벤트가 시작하기 전 설정한 시간에 알림을 받을 수 있습니다.',
         subscription
       );
   } catch (err) {
