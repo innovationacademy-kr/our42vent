@@ -51,9 +51,10 @@ async function editEventListener(event) {
   }
 
   const editButton = document.querySelector('.form-button-edit');
-  editButton.addEventListener('click', async () => {
+  editButton.addEventListener('click', e => {
     const formData = new FormData(document.querySelector('.form'));
     putEditedEventData(eventId, formData);
+    e.target.removeEventListener('click', editEventListener);
   });
 }
 

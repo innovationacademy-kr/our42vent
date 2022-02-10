@@ -7,9 +7,9 @@ export default async function logoutController(req, res) {
     res.clearCookie('accessToken');
 
     const decoded = jwt.decode(req.cookies.refreshToken);
-    const { id } = decoded;
     res.clearCookie('refreshToken');
-    await deleteToken(id);
+    const id = decoded?.id;
+    if (id) await deleteToken(id);
     res.status(200);
     logger.info(`logoutController : ${id} : 로그아웃 성공!`);
   } catch (err) {
