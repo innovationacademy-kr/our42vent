@@ -37,7 +37,6 @@ function setLayoutForEventList() {
   myEventListDiv.parentElement.removeChild(myEventListDiv);
   toggleDivider.style.display = 'none';
   navbarCategoryDiv.style.display = 'none';
-  //   document.querySelector('.layout').style.gridTemplateRows = '70px 1fr 75px';
   document.querySelector('.main').style.height = 'calc(100vh - 70px)';
 }
 
