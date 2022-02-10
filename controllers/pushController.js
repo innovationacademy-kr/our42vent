@@ -2,7 +2,7 @@ import { logger } from '../config/winston.js';
 import { sendPush } from '../lib/push/pushUtils.js';
 import {
   deletePushSubscription,
-  replacePushSubscription,
+  insertPushSubscription,
   selectPushSubscription,
 } from '../models/accessPushSubscriptionTable.js';
 
@@ -20,7 +20,7 @@ export async function subscribePushController(req, res, next) {
     }
 
     // push subscription 객체 db 에 저장
-    await replacePushSubscription(userId, JSON.stringify(subscription));
+    await insertPushSubscription(userId, JSON.stringify(subscription));
 
     res.cookie('pushToken', userId, {
       secure: true,

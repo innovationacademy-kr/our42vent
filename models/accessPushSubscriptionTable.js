@@ -1,11 +1,13 @@
 import pool from '../config/createMySQLPool.js';
 import { logger } from '../config/winston.js';
 
-export async function replacePushSubscription(userId, subscription) {
-  const sql = 'REPLACE INTO push_subscription VALUES (?, ?);';
+export async function insertPushSubscription(userId, subscription) {
+  const sql =
+    'INSERT INTO push_subscription (sub, userId) VALUES (?, ?) ON DUPLICATE KEY ' +
+    'UPDATE updatedAt=CURRENT_TIMESTAMP';
 
   const [rows] = await pool.execute(sql, [subscription, userId]);
-  logger.info(`replacePushSubscription : query success : ${JSON.stringify(rows)}`);
+  logger.info(`insertPushSubscription : query success : ${JSON.stringify(rows)}`);
 }
 
 export async function deletePushSubscription(subscription) {
