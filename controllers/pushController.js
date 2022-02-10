@@ -1,5 +1,6 @@
 import { logger } from '../config/winston.js';
 import { sendPush } from '../lib/push/pushUtils.js';
+import { updateRemoveNotification } from '../models/accessMyEventTable.js';
 import {
   deletePushSubscription,
   insertPushSubscription,
@@ -49,7 +50,7 @@ export async function unsubscribePushController(req, res, next) {
   try {
     const subscription = req.body;
     const deleted = await deletePushSubscription(JSON.stringify(subscription));
-
+    await updateRemoveNotification(res.locals.userId);
     if (!deleted.affectedRows) res.status(405);
     res.end();
   } catch (err) {

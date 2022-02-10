@@ -61,12 +61,19 @@ export async function selectNextNotifications(start) {
     'my_event.userId=ps.userId WHERE sendAt=?';
 
   const [rows] = await pool.execute(sql, [start]);
-  logger.info('selectNextNotifications : query success');
   return rows;
 }
 
-export async function updateMyEvent(eventId, beginAt) {
-  const sql = 'UPDATE MY_EVENT SET sendAt=(? - INTERVAL notification MINUTE) WHERE eventId=?';
+export async function updateSendAtOnEdit(eventId, beginAt) {
+  const sql =
+    'UPDATE MY_EVENT SET sendAt=(? - INTERVAL notification MINUTE) ' +
+    'WHERE eventId=? AND notification IS NOT NULL';
   const [rows] = await pool.execute(sql, [beginAt, eventId]);
-  logger.info(`updateMyEvent : query success : ${JSON.stringify(rows)}`);
+  logger.info(`updateSendAtOnEdit : query success : ${JSON.stringify(rows)}`);
+}
+
+export async function updateRemoveNotification(userId) {
+  const sql = 'UPDATE MY_EVENT SET notification=NULL, sendAt=NULL WHERE userID=?';
+  const [rows] = await pool.execute(sql, [userId]);
+  logger.info(`updateRemoveNotification : query success : ${JSON.stringify(rows)}`);
 }

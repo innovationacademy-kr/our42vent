@@ -10,7 +10,7 @@ import {
 import {
   selectNotificationMyEvent,
   deleteSubscriptions,
-  updateMyEvent,
+  updateSendAtOnEdit,
 } from '../models/accessMyEventTable.js';
 import { selectUser } from '../models/accessUserTable.js';
 
@@ -32,10 +32,11 @@ export async function eventDeleteController(req, res, next) {
   try {
     const { eventId } = req.params;
     await deleteSubscriptions(eventId);
+
     const affectedRows = await deleteEvent(eventId, res.locals.userId);
     if (!affectedRows) res.status(405);
 
-    res.end();
+    res.status(200).end();
 
     cancelScheduledPushes(eventId);
   } catch (err) {
@@ -93,7 +94,7 @@ export async function eventEditController(req, res, next) {
     res.end();
 
     if (beginAt !== newBeginAt) {
-      updateMyEvent(eventId, newBeginAt);
+      updateSendAtOnEdit(eventId, newBeginAt);
       cancelScheduledPushes(eventId);
     }
   } catch (err) {
