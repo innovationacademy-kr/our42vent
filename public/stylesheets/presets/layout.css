@@ -16,7 +16,7 @@ body {
 
 .layout {
   display: grid;
-  grid-template-rows: 70px 50px 1fr 70px;
+  grid-template-rows: 70px 50px 1fr 80px;
   height: inherit;
 }
 
