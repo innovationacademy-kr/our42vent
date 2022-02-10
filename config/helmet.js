@@ -9,7 +9,12 @@ const helmetConfig = {
         'https://www.googletagmanager.com/gtag/',
         'https://www.google-analytics.com/',
       ],
-      imgSrc: ["'self'", 'https://cdn.intra.42.fr/', 'https://www.google-analytics.com/'],
+      imgSrc: [
+        "'self'",
+        'https://cdn.intra.42.fr/',
+        'https://profile.intra.42.fr/',
+        'https://www.google-analytics.com/',
+      ],
       frameSrc: ["'self'", 'https://browser.sentry-cdn.com'],
     },
   },

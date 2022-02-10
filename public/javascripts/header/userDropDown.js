@@ -23,3 +23,10 @@ document.body.addEventListener('click', e => {
     userDropButton.firstElementChild.style.color = 'var(--white)';
   }
 });
+
+const img = document.querySelector('.user-imageurl');
+
+img.addEventListener('error', e => {
+  e.target.src = '/assets/images/user_default.png';
+  e.onerror = null;
+});
