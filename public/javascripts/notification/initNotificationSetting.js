@@ -17,7 +17,7 @@ async function initNotificationCheckbox(checkboxList) {
       if (!pushTokenCookie) {
         const updatedSubscription = await subscribePushService(registration);
 
-        await axios
+        await api
           .post('/push', { subscription: updatedSubscription, isFirst: false })
           .catch(err => {
             if (err.response.status === 403) {
@@ -67,8 +67,11 @@ async function changeNotificationListener(checked) {
   } else {
     const permission = await Notification.requestPermission();
 
-    if (permission !== 'granted')
-      throw new Error(`user has set notification permission to '${permission}'`);
+    if (permission !== 'granted') {
+      const err = new Error();
+      err.permission = permission;
+      throw err;
+    }
     const registration = await navigator.serviceWorker.register('/serviceWorker.js', {
       scope: '/',
     });
@@ -93,9 +96,24 @@ function initNotificationSetting() {
         checkboxList[0].checked = !isChecked;
         checkboxList[1].checked = !isChecked;
         switchBlocker.style.display = 'block';
-        changeNotificationListener(!isChecked).then(() => {
-          switchBlocker.style.display = 'none';
-        });
+        changeNotificationListener(!isChecked)
+          .then(() => {
+            switchBlocker.style.display = 'none';
+          })
+          .catch(err => {
+            const switchBlocker = label.querySelector('.notification-switch-blocker');
+            checkboxList[0].checked = false;
+            checkboxList[1].checked = false;
+            if (err.permission === 'denied')
+              switchBlocker.addEventListener('click', () =>
+                alertModal.fire({
+                  text: '우리42벤트 사이트 알림 설정이 차단되어 있습니다. 브라우저 설정에서 차단을 해제해주세요.',
+                  icon: 'warning',
+                })
+              );
+            else switchBlocker.style.display = 'none';
+            document.querySelector('#details-notification').disabled = true;
+          });
       }
     })
   );
