@@ -1,6 +1,6 @@
 import drawMonth from '../calendar/month/drawMonth.js';
 
-const checkboxArray = document.querySelectorAll('input[type=checkbox]');
+const checkboxArray = document.querySelectorAll('.navbar-category input[type=checkbox]');
 
 // 카테고리 checkbox 표시 & 반영 이벤트 핸들러
 checkboxArray.forEach((item, index) => {

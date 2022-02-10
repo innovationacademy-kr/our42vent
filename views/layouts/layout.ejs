@@ -41,6 +41,7 @@
     <script defer type="module" src="/javascripts/nav/navToggle.js"></script>
     <%- defineContent('scriptFiles') %>
     <script defer type="module" src="/javascripts/eventDetail/clickEventDetails.js"></script>
+    <script defer type="module" src="/javascripts/eventDetail/clickNotificationSelect.js"></script>
     <script
       defer
       type="module"
@@ -53,6 +54,7 @@
     <script defer type="module" src="/javascripts/eventPromotion/clickCopyPromotion.js"></script>
     <script defer type="module" src="/javascripts/eventForm/addListenersForBorderColor.js"></script>
     <script defer type="module" src="/javascripts/header/hoverTodayButton.js"></script>
+    <script defer type="module" src="/javascripts/notification/initNotificationSetting.js"></script>
   </head>
   <body>
     <div class="layout">
@@ -88,9 +90,17 @@
                 />
               </div>
             </div>
-            <ul class="user-drop-content hidden text-center">
-              <a href="/event/list"><li class="text-bold">내가 생성한 이벤트</li></a
-              ><a href="/logout"><li class="text-bold">로그아웃</li></a>
+            <ul class="user-drop-content hidden text-center text-bold small">
+              <a href="/event/list"><li>내가 생성한 이벤트</li></a
+              ><a href="/logout"><li>로그아웃</li></a>
+              <li class="notification-wrapper">
+                <p>알림</p>
+                <div class="notification-switch">
+                  <input type="checkbox" />
+                  <span class="notification-switch-slider small"></span>
+                  <div class="notification-switch-blocker"></div>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -126,7 +136,7 @@
             </div>
             <div class="navbar-tab-my navbar-tab-inactive">
               <div class="navbar-toggle-my box-wrapper select-none small">
-                <div class="toggle-my-event text-left">내가 등록한 이벤트</div>
+                <div class="toggle-my-event text-left">내가 구독한 이벤트</div>
               </div>
               <svg
                 width="200"
@@ -139,7 +149,7 @@
                   d="M18.8806 27.5716C16.0471 33.5 9.52797 37 0 37L200 36.9995C190.472 36.9995 183.953 33.4996 181.119 27.5711C178.286 21.6426 178.286 15.6432 176.105 8.57133C173.923 1.4995 169.41 0.999508 163.48 1L36.5198 1.00049C30.5898 0.999996 26.0766 1.49999 23.8954 8.57182C21.7142 15.6436 21.7142 21.6431 18.8806 27.5716Z"
                   stroke="none"
                 />
-                <text x="49" y="24" fill="black">내가 등록한 이벤트</text>
+                <text x="49" y="24" fill="black">내가 구독한 이벤트</text>
               </svg>
             </div>
           </div>
@@ -175,6 +185,14 @@
           <hr class="toggle-divider" />
           <div class="toggle-user small"><a href="/event/list">내가 생성한 이벤트</a></div>
           <div class="toggle-user small"><a href="/logout">로그아웃</a></div>
+          <div class="toggle-user notification-wrapper small">
+            <p>알림</p>
+            <div class="notification-switch">
+              <input type="checkbox" />
+              <span class="notification-switch-slider small"></span>
+              <div class="notification-switch-blocker"></div>
+            </div>
+          </div>
         </div>
       </nav>
       <main class="main">

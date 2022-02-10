@@ -2,16 +2,18 @@ import pool from '../config/createMySQLPool.js';
 import { logger } from '../config/winston.js';
 
 // my_event 테이블에 INSERT
-export async function insertMyEvent(userId, eventId, notification) {
-  logger.info(`insertMyEvent : try inserting eventId=${eventId}, notification=${notification} `);
+export async function insertMyEvent(userId, eventId, notification, sendAt) {
+  logger.info(
+    `insertMyEvent : try inserting eventId=${eventId}, notification=${notification}, sendAt=${sendAt} `
+  );
 
-  const sql = 'INSERT INTO my_event (eventId, userId, notification) VALUES (?, ?, ?);';
+  const sql = 'INSERT INTO my_event (eventId, userId, notification, sendAt) VALUES (?, ?, ?, ?);';
 
-  const rows = await pool.execute(sql, [eventId, userId, notification]);
+  const rows = await pool.execute(sql, [eventId, userId, notification, sendAt]);
   logger.info(`insertMyEvent : query success : ${JSON.stringify(rows)}`);
 }
 
-// 내가 등록한 이벤트 SELECT
+// 내가 구독한 이벤트 SELECT
 export async function selectMyEvents(userId, firstDate, lastDate) {
   const sql =
     'SELECT event.id, title, beginAt, endAt, category FROM event ' +
@@ -24,7 +26,7 @@ export async function selectMyEvents(userId, firstDate, lastDate) {
   return rows;
 }
 
-// 내 이벤트에 등록돼 있으면 알림 정보 SELECT
+// 내 이벤트에 구독돼 있으면 알림 정보 SELECT
 export async function selectNotificationMyEvent(userId, eventId) {
   const sql = 'SELECT notification FROM my_event WHERE userId=? AND eventId=?';
   const [rows] = await pool.execute(sql, [userId, eventId]);
@@ -50,4 +52,21 @@ export async function deleteSubscriptions(eventId) {
   logger.info(
     `deleteSubscribedEvent : query success : deleted event entry eventId=${eventId} in my_event`
   );
+}
+
+export async function selectNextNotifications(start) {
+  const sql =
+    'SELECT notification, event.title, eventId, ps.sub FROM my_event ' +
+    'INNER JOIN event ON eventId=event.id INNER JOIN push_subscription AS ps ON ' +
+    'my_event.userId=ps.userId WHERE sendAt=?';
+
+  const [rows] = await pool.execute(sql, [start]);
+  logger.info('selectNextNotifications : query success');
+  return rows;
+}
+
+export async function updateMyEvent(eventId, beginAt) {
+  const sql = 'UPDATE MY_EVENT SET sendAt=(? - INTERVAL notification MINUTE) WHERE eventId=?';
+  const [rows] = await pool.execute(sql, [beginAt, eventId]);
+  logger.info(`updateMyEvent : query success : ${JSON.stringify(rows)}`);
 }

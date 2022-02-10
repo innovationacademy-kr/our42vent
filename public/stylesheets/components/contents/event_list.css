@@ -50,8 +50,8 @@
   align-items: center;
   display: grid;
   grid-template-areas: 'category title time location icon';
-  grid-template-columns: 16px calc(55% - 16px - 2.5em) 22.5% 22.5% 2.5em;
-  margin: 0 0 5px 0;
+  grid-template-columns: 16px calc(55% - 16px - 3em) 22.5% 22.5% 3em;
+  margin: 0 0 5px;
 }
 
 .list-category {

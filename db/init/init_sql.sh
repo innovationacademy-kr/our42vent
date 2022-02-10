@@ -37,6 +37,12 @@ if [ $? -eq 0 ]; then
 else
 	echo "my_event table이 이미 존재하는지 확인해주세요"
 fi
+mysql -u$user -p$passwd $DATABASE < $SQL_PATH/create_table_push_subscription.sql
+if [ $? -eq 0 ]; then
+	echo "push_subscription table을 만드는데 성공하였습니다"
+else
+	echo "push_subscription table이 이미 존재하는지 확인해주세요"
+fi
 mysql -u$user -p$passwd $DATABASE < $SQL_PATH/insert_intra.sql
 if [ $? -eq 0 ]; then
 	echo "인트라 id 데이터를 넣는데  성공하였습니다"

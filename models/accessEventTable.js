@@ -18,7 +18,9 @@ export async function selectCreatedEvents(creatorId) {
     'WHERE creator=? ORDER BY beginAt ';
 
   const [rows] = await pool.execute(sql, [creatorId]);
-  logger.info(`selectUserEvent : query success : creator ${creatorId} has ${rows.length} events`);
+  logger.info(
+    `selectCreatedEvents : query success : creator ${creatorId} has ${rows.length} events`
+  );
   return rows;
 }
 

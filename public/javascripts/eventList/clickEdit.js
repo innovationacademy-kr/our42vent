@@ -33,7 +33,7 @@ function putEditedEventData(eventId, formData) {
       .put(`/event/${eventId}`, formData)
       .then(() => {
         alertModal
-          .fire({ title: '편집이 완료되었습니다.', icon: 'success' })
+          .fire({ title: '수정이 완료되었습니다.', icon: 'success' })
           .then(() => window.location.replace('/event/list'));
       })
       .catch(err => alertModal.fire({ title: '오류가 발생하였습니다.', icon: 'error' }));
