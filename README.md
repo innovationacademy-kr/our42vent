@@ -2,25 +2,32 @@
 
 <br>
 
-<center>
+<p align='center'>
 <img src='https://raw.githubusercontent.com/innovationacademy-kr/our42vent/31b47343ee2021cfc653ba9d7adaf4919b072416/public/assets/images/our42vent_logo_white.svg' alt='our42vent_logo_white' width='200' height='' style='background:#13171d'/>
+</p>
 
 <br>
+<p align='center'>
+  <b><em>
+    슬랙에 마구잡이로 올라오는 42 이벤트들을 한 눈에 볼 수 있는 캘린더 웹사이트 
+    </em>
+  </b>
+</p>
 
-**_슬랙에 마구잡이로 올라오는 42 이벤트들을 한 눈에 볼 수 있는 캘린더 웹사이트_**
+<p align='center'>
 
-![node](https://img.shields.io/badge/node.js-000000.svg?&style=for-the-badge&logo=node.js)
-![express](https://img.shields.io/badge/express-000000.svg?&style=for-the-badge&logo=express)
-![ejs](https://img.shields.io/badge/ejs-000000.svg?&style=for-the-badge&logo=ejs)
-![mariadb](https://img.shields.io/badge/mariadb-000000.svg?&style=for-the-badge&logo=mariadb)
-![redis](https://img.shields.io/badge/redis-000000.svg?&style=for-the-badge&logo=redis)
-![npm](https://img.shields.io/badge/npm-000000.svg?&style=for-the-badge&logo=npm)
-![javascript](https://img.shields.io/badge/javascript-000000.svg?&style=for-the-badge&logo=javascript)
-![css](https://img.shields.io/badge/css-000000.svg?&style=for-the-badge&logo=css3)
-![html](https://img.shields.io/badge/html-000000.svg?&style=for-the-badge&logo=html5)
+<img src='https://img.shields.io/badge/node.js-000000.svg?&style=for-the-badge&logo=node.js' alt='node_logo' >
+<img src='https://img.shields.io/badge/express-000000.svg?&style=for-the-badge&logo=express' alt='node_logo' >
+<img src='https://img.shields.io/badge/ejs-000000.svg?&style=for-the-badge&logo=ejs' alt='node_logo' >
+<img src='https://img.shields.io/badge/mariadb-000000.svg?&style=for-the-badge&logo=mariadb' alt='node_logo' >
+<img src='https://img.shields.io/badge/redis-000000.svg?&style=for-the-badge&logo=redis' alt='node_logo' >
+<img src='https://img.shields.io/badge/npm-000000.svg?&style=for-the-badge&logo=npm' alt='node_logo' >
+<img src='https://img.shields.io/badge/javascript-000000.svg?&style=for-the-badge&logo=javascript' alt='node_logo' >
+<img src='https://img.shields.io/badge/css3-000000.svg?&style=for-the-badge&logo=css3' alt='node_logo' >
+<img src='https://img.shields.io/badge/html5-000000.svg?&style=for-the-badge&logo=html5' alt='node_logo' >
 
-</center>
-
+</p>
+ 
 ## Introduction
 
 ### ✅ 이벤트 일정 확인
