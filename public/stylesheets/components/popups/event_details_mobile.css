@@ -162,3 +162,7 @@
 .details-notification-info {
   color: var(--dark_grey);
 }
+
+.details-anchor {
+  all: revert;
+}
