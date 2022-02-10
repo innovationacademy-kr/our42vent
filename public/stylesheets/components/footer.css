@@ -1,8 +1,15 @@
 .footer {
+  align-items: center;
   background: var(--grey);
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.footer-icon {
+  height: 1.25em;
+  margin: 0 0.25em;
+  width: 1.25em;
 }
 
 .footer-developers,
