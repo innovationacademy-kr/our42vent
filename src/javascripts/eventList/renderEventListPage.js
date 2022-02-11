@@ -17,10 +17,16 @@ function getScrollOffset(eventListSection) {
 // 내가 생성한 이벤트 페이지의 레이아웃 설정
 function setLayoutForEventList() {
   const navTag = document.querySelector('nav');
-  if (window.innerWidth > 1080) navTag.classList.add('hidden');
+  if (window.innerWidth > 1080) {
+    document.querySelector('.layout').style.gridTemplateRows = '70px 1fr 80px';
+    navTag.classList.add('hidden');
+  } else document.querySelector('.layout').style.gridTemplateRows = '70px 1fr 60px';
+
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 1080) navTag.classList.add('hidden');
-    else navTag.classList.remove('hidden');
+    if (window.innerWidth > 1080) {
+      document.querySelector('.layout').style.gridTemplateRows = '70px 1fr 80px';
+      navTag.classList.add('hidden');
+    } else document.querySelector('.layout').style.gridTemplateRows = '70px 1fr 60px';
   });
 
   const navbarCategoryDiv = navTag.querySelector('.navbar-category');
@@ -31,7 +37,6 @@ function setLayoutForEventList() {
   myEventListDiv.parentElement.removeChild(myEventListDiv);
   toggleDivider.style.display = 'none';
   navbarCategoryDiv.style.display = 'none';
-  document.querySelector('.layout').style.gridTemplateRows = '70px 1fr 60px';
   document.querySelector('.main').style.height = 'calc(100vh - 70px)';
 }
 

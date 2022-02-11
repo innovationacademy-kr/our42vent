@@ -132,4 +132,8 @@ body {
   .details-content {
     width: 95%;
   }
+
+  .swal2-title {
+    font-size: 1.5em !important;
+  }
 }

@@ -1,3 +1,4 @@
+import '../config/sentry.js';
 import '../header/adjustNameSize.js';
 import '../header/userDropDown.js';
 import '../nav/navToggle.js';

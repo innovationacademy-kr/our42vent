@@ -1,7 +1,9 @@
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { createLogger, transports, format } from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
 
-const logDir = 'logs';
+const logDir = dirname(fileURLToPath(import.meta.url)).replace('config', 'logs');
 const { printf, colorize } = format;
 const colorizer = colorize();
 
@@ -31,7 +33,7 @@ const logger = createLogger({
       filename: `${logDir}/info/%DATE%.log`,
       format: fileLogFormat,
       level: 'info',
-      maxFiles: 30,
+      maxFiles: '30d',
       zippedArchive: true,
     }),
 
@@ -39,8 +41,8 @@ const logger = createLogger({
       datePattern: 'YYYY-MM-DD',
       filename: `${logDir}/warn/%DATE%.log`,
       format: fileLogFormat,
-      level: 'warning',
-      maxFiles: 30,
+      level: 'warn',
+      maxFiles: '30d',
       zippedArchive: true,
     }),
 
@@ -49,7 +51,7 @@ const logger = createLogger({
       filename: `${logDir}/error/%DATE%.log`,
       format: fileLogFormat,
       level: 'error',
-      maxFiles: 30,
+      maxFiles: '30d',
       zippedArchive: true,
     }),
   ],

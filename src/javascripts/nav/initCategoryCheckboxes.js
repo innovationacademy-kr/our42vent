@@ -3,7 +3,7 @@
  * 이전에 check 돼있던 카테고리 checkbox 들 checked 로 전환 및 표시
  */
 function initCheckboxes() {
-  const checkboxArray = document.querySelectorAll('input[type=checkbox]');
+  const checkboxArray = document.querySelectorAll('.navbar-category input[type=checkbox]');
   let checkedCategoriesArray = [];
 
   if (!sessionStorage.getItem('categories')) {

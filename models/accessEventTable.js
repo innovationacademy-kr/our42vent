@@ -18,7 +18,9 @@ export async function selectCreatedEvents(creatorId) {
     'WHERE creator=? ORDER BY beginAt ';
 
   const [rows] = await pool.execute(sql, [creatorId]);
-  logger.info(`selectUserEvent : query success : creator ${creatorId} has ${rows.length} events`);
+  logger.info(
+    `selectCreatedEvents : query success : creator ${creatorId} has ${rows.length} events`
+  );
   return rows;
 }
 
@@ -36,8 +38,9 @@ export async function selectEvent(eventId) {
 export async function deleteEvent(eventId, userId) {
   const sql = `DELETE FROM event WHERE id=? AND creator=?`;
 
-  await pool.execute(sql, [eventId, userId]);
+  const [deleted] = await pool.execute(sql, [eventId, userId]);
   logger.info(`deleteEvent : query success : deleted user=${userId}'s event=${eventId}`);
+  return deleted.affectedRows;
 }
 
 // 이벤트 insert 쿼리
@@ -51,7 +54,7 @@ export async function insertEvent(userId, event) {
     'topic, details) ' +
     'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);';
 
-  const rows = await pool.execute(sql, [
+  const [rows] = await pool.execute(sql, [
     userId,
     title,
     personInCharge,
@@ -63,7 +66,7 @@ export async function insertEvent(userId, event) {
     details,
   ]);
   logger.info(`insertEvent : query success : ${JSON.stringify(rows)}`);
-  return rows[0].insertId; // db에 insert된 data의 pk
+  return rows.insertId; // db에 insert된 data의 pk
 }
 
 export async function updateEvent(event, eventId, userId) {
