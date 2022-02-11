@@ -69,3 +69,7 @@ body {
 .hidden {
   display: none;
 }
+
+.swal2-title {
+  font-size: 1.65em !important;
+}
