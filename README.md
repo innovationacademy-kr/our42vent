@@ -49,6 +49,9 @@
 
 - 이벤트 생성 후 자동으로 홍보글이 만들어져서 손쉽게 홍보할 수 있습니다.
 
+### 🧭 사용 가이드
+- [우리42벤트 가이드](https://teal-grill-819.notion.site/42-e71f7d1e8fc24f90b3ca079b3affc837)에서 서비스 사용 가이드를 확인하세요.
+
 ## Contributing
 
 - 우리42벤트는 오픈 소스 프로젝트입니다. 프로젝트에 기여하기 원하신다면 [CONTRIBUTION.md](/CONTRIBUTION.md) 따라서 PR 해주세요!
