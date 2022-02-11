@@ -2,6 +2,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
+dotenv.config();
 const __dirname = path.dirname(fileURLToPath(import.meta.url)); // 현재 디렉토리 주소 __dirname 에 저장
 const mod = {
   mode: process.env.NODE_ENV,

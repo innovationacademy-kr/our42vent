@@ -15,7 +15,7 @@ export default async function subscribePushService(registration) {
   await navigator.serviceWorker.ready;
 
   const publicVAPIDKey =
-    'BM9QjkyqV9IiwOfuXXIwmq-oteF3ZJQu_vQXyPC-w4FGud6CXxhbFU0SRlCQJfEg9IhDfLXi9x6MzzP4nogUOQE';
+    'BKEcD06WlgB9e8eXU-5Xdit23c1kG2QSssM82RJGGb7hqgJpyO7tZexvO_9oNvjuLHXogLAcEVXcT_3Qz-Xj5Nk';
 
   // Push Service 구독
   await registration.pushManager.subscribe({
