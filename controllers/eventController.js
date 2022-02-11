@@ -36,7 +36,7 @@ export async function eventDeleteController(req, res, next) {
     const affectedRows = await deleteEvent(eventId, res.locals.userId);
     if (!affectedRows) res.status(405);
 
-    res.status(200).end();
+    res.end();
 
     cancelScheduledPushes(eventId);
   } catch (err) {
