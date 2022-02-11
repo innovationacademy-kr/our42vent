@@ -8,6 +8,6 @@ export default function replaceToHyerlink(text) {
     if (httpsRegex.test(match)) prefix = '';
     else if (match === '42seoul.io/cluster') prefix = 'http://';
     else prefix = 'https://';
-    return `<a class="details-anchor" href="${prefix + match}">${match}</a>`;
+    return `<a class="details-anchor" target="_blank" href="${prefix + match}">${match}</a>`;
   });
 }
