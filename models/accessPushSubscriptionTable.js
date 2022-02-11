@@ -18,7 +18,7 @@ export async function deletePushSubscription(subscription) {
     `deletePushSubscription : query success : deleted push_subscription entry ` +
       `sub=${subscription}`
   );
-  return deleted;
+  return deleted.affectedRows;
 }
 
 export async function selectPushSubscription(subscription) {

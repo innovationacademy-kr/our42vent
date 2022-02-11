@@ -72,6 +72,7 @@ async function changeNotificationListener(checked) {
       err.permission = permission;
       throw err;
     }
+
     const registration = await navigator.serviceWorker.register('/serviceWorker.js', {
       scope: '/',
     });
