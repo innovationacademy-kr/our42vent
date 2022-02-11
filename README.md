@@ -50,15 +50,15 @@
 - 이벤트 생성 후 자동으로 홍보글이 만들어져서 손쉽게 홍보할 수 있습니다.
 
 ### 🧭 사용 가이드
-- [우리42벤트 가이드](https://teal-grill-819.notion.site/42-e71f7d1e8fc24f90b3ca079b3affc837)에서 서비스 사용 가이드를 확인하세요.
+- <a href="https://teal-grill-819.notion.site/42-e71f7d1e8fc24f90b3ca079b3affc837" target="_blank">우리42벤트 가이드</a>에서 서비스 사용 가이드를 확인하세요.
 
 ## Contributing
 
-- 우리42벤트는 오픈 소스 프로젝트입니다. 프로젝트에 기여하기 원하신다면 [CONTRIBUTION.md](/CONTRIBUTION.md) 따라서 PR 해주세요!
+- 우리42벤트는 오픈 소스 프로젝트입니다. 프로젝트에 기여하기 원하신다면 <a href="/CONTRIBUTION.md" target="_blank">CONTRIBUTION.md</a> 따라서 PR 해주세요!
 
 ## DevLog
 
-- 프로젝트 [DevLog](https://teal-grill-819.notion.site/42-DevLog-88791cfa191b42c9a4bc46103bfede46) & [기획 문서](https://teal-grill-819.notion.site/42-cd34716bc09d4670857cceb5f040a87a) 에서 개발 과정을 확인할 수 있습니다.
+- 프로젝트 <a href="https://teal-grill-819.notion.site/42-DevLog-88791cfa191b42c9a4bc46103bfede46" target="_blank">DevLog</a> & <a href="https://teal-grill-819.notion.site/42-cd34716bc09d4670857cceb5f040a87a" target="_blank">기획 문서</a>에서 개발 과정을 확인할 수 있습니다.
 
 ## Contact
 
