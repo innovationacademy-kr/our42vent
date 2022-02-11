@@ -1,0 +1,201 @@
+/* SECTION: 모바일에서만 필요한 요소 비활성화 */
+
+.toggle-icon {
+  display: none;
+}
+
+/* SECTION: 헤더 */
+
+.header {
+  background: var(--header_bg);
+  display: grid;
+  grid-template-columns: 168px minmax(200px, 300px);
+  height: 70px;
+  justify-content: space-between;
+  place-items: center;
+  position: relative;
+}
+
+/* SECTION: 로고 */
+
+.header-logo-img {
+  width: 84px;
+}
+
+/* SECTION: Calendar 타이틀 */
+
+.header-title {
+  align-items: center;
+  color: var(--white);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 0%);
+  width: 300px;
+}
+
+.header-title > .material-icons {
+  font-size: 2em;
+}
+
+.title-calendar > * {
+  line-height: 1.2em;
+}
+
+/* SECTION: Today 아이콘 & user dropdown 레이아웃 */
+
+.header-right {
+  align-items: center;
+  column-gap: 15px;
+  display: flex;
+  flex-direction: row;
+  height: 70px;
+  justify-self: right;
+}
+
+/* SECTION: Today 아이콘 */
+
+.header-today-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.material-icons-outlined.header-today {
+  color: var(--white);
+  font-size: 2em;
+  height: 70px;
+  line-height: 70px;
+}
+
+.today-svg {
+  position: absolute;
+  z-index: 3;
+}
+
+/* SECTION: 사용자 dropdown */
+
+.header-user {
+  height: 70px;
+  position: relative;
+}
+
+.user-drop-button {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  height: 70px;
+  justify-content: right;
+}
+
+.user-username {
+  color: var(--white);
+  margin: 0 20px 0 10px;
+  text-align: right;
+  vertical-align: middle;
+  word-break: break-word;
+}
+
+.user-image-wrapper {
+  border-radius: 50%;
+  display: grid;
+  height: 42px;
+  margin: 0 42px 0 10px;
+  overflow: hidden;
+  place-items: center;
+  position: relative;
+  width: 42px;
+}
+
+.user-imageurl {
+  position: absolute;
+  width: 56px;
+}
+
+.user-drop-content {
+  background: var(--white);
+  border: 1px solid var(--header_bg);
+  border-top: none;
+  color: var(--header_bg);
+  position: absolute;
+  right: 0;
+  width: 200px;
+  z-index: 3;
+}
+
+.user-drop-content li {
+  padding: 1em 0;
+}
+
+/* SECTION: 알림 설정 스위치 */
+.notification-wrapper {
+  align-items: center;
+  column-gap: 0.75em;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.notification-switch {
+  height: 22px;
+  position: relative;
+  width: 48px;
+}
+
+.notification-switch-blocker {
+  display: none;
+  height: 22px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 48px;
+}
+
+.notification-switch input {
+  height: 0;
+  opacity: 0;
+  width: 0;
+}
+
+.notification-switch-slider {
+  background-color: var(--notification_switch_bg);
+  border-radius: 22px;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.6s;
+  -webkit-transition: 0.6s;
+}
+
+.notification-switch-slider:before {
+  background-color: var(--white);
+  border-radius: 50%;
+  bottom: 4px;
+  content: '';
+  height: 14px;
+  left: 4px;
+  position: absolute;
+  transition: 0.6s;
+  -webkit-transition: 0.6s;
+  width: 14px;
+}
+
+.notification-switch input:checked + .notification-switch-slider {
+  background-color: var(--turq_btn);
+}
+
+.notification-switch input:focus + .notification-switch-slider {
+  box-shadow: 0 0 1px var(--turq_btn);
+}
+
+.notification-switch input:checked + .notification-switch-slider:before {
+  transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  -webkit-transform: translateX(26px);
+}

@@ -1,0 +1,7 @@
+.main {
+  display: grid;
+  height: calc(100vh - 120px);
+  overflow: hidden;
+  place-items: center;
+  position: relative;
+}

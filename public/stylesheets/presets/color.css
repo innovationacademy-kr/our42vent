@@ -1,0 +1,31 @@
+:root {
+  --black: #000;
+  --calendar_border: #535662;
+  --dark_grey: #a9a9a9;
+  --white: #fff;
+  --grey: #c4c4c4;
+  --details_exit_grey: #d3d3d3;
+  --light_grey: #ebecf0;
+  --light_mint: #c2e5d3;
+  --more_bg: #fafafa;
+  --header_bg: #2a2d38;
+  --footer_font: #777;
+  --turq_btn: #58b7ba;
+  --red_cancel_btn: #e2667c;
+  --red_cancel_btn_hover: #d9324f;
+  --turq_btn_hover: #6d9fa1;
+  --grey_outdated: #848484;
+  --sunday_red: #f00;
+  --tab_inactive: #f5dadb;
+  --nav_box_shadow: #a9a9a9;
+  --gray_nav_scroll: #808080;
+  --turq_detail_title: #01a2a4;
+  --notification_switch_bg: #ccc;
+
+  /* 카테고리 색 */
+  --category_lecture: #cfbaf0;
+  --category_exam: #ffcfd2;
+  --category_contest: #fbf8cc;
+  --category_conference: #8eecf5;
+  --category_community: #b9fbc0;
+}

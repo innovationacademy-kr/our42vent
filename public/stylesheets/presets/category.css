@@ -1,0 +1,41 @@
+/* SECTION: 카테고리 색 */
+
+.month-label-multi.lecture,
+.month-label-end.lecture,
+.lecture .single-category,
+.box-wrapper.lecture,
+.category-lecture {
+  background: var(--category_lecture);
+}
+
+.month-label-multi.exam,
+.month-label-end.exam,
+.exam .single-category,
+.box-wrapper.exam,
+.category-exam {
+  background: var(--category_exam);
+}
+
+.month-label-multi.contest,
+.month-label-end.contest,
+.contest .single-category,
+.box-wrapper.contest,
+.category-contest {
+  background: var(--category_contest);
+}
+
+.month-label-multi.conference,
+.month-label-end.conference,
+.conference .single-category,
+.box-wrapper.conference,
+.category-conference {
+  background: var(--category_conference);
+}
+
+.month-label-multi.community,
+.month-label-end.community,
+.community .single-category,
+.box-wrapper.community,
+.category-community {
+  background: var(--category_community);
+}

@@ -1,0 +1,153 @@
+.details-content {
+  background: var(--white);
+  display: grid;
+  max-height: 96%;
+  max-width: 800px;
+  overflow-y: scroll;
+  scrollbar-width: thin; /* for firefox */
+  width: 40%;
+}
+
+.details-exit-button,
+.details-share-button {
+  color: var(--white);
+  cursor: pointer;
+  padding: 5px 0;
+  position: absolute;
+  vertical-align: -1;
+}
+
+.details-exit-button {
+  right: 5px;
+  top: 0px;
+}
+
+.details-share-button.material-icons {
+  font-size: 18px;
+  right: 35px;
+  top: 3px;
+}
+
+.details-category,
+.details-title,
+.details-range {
+  background: var(--turq_btn);
+  color: var(--white);
+}
+
+.category-share-exit {
+  display: flex;
+  position: relative;
+}
+
+.details-category {
+  color: var(--white);
+  line-height: 30px;
+  padding: 5px 0;
+  width: 100%;
+}
+
+.details-title {
+  line-height: 1.25em;
+  padding: 1% 2.5em;
+  word-break: break-word;
+}
+
+.details-range {
+  line-height: 35px;
+}
+
+.duration-location {
+  align-items: center;
+  background: var(--turq_detail_title);
+  color: var(--white);
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 18px;
+  min-height: 28px;
+  padding: 12px 0;
+  row-gap: 8px;
+}
+
+.duration-location > div > i {
+  font-size: 20px;
+  vertical-align: -4.5px;
+}
+
+.details-duration,
+.details-location {
+  padding: 0 10%;
+}
+
+.pic-topic-details {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  place-items: center;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.details-pic,
+.details-topic,
+.details-details {
+  line-height: normal;
+  padding: 10px 0px;
+  width: 80%;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.details-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.details-pic,
+.details-pic-label,
+.details-topic-label,
+.details-details-label {
+  height: 30px;
+  line-height: 30px;
+}
+
+.notification-button {
+  align-items: flex-start;
+  display: flex;
+  height: 46px;
+  justify-content: space-between;
+  justify-self: center;
+  margin: 0 0 24px;
+  width: 80%;
+}
+
+.details-myevent-button,
+.details-cancel-button {
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  line-height: 46px;
+  width: 120px;
+}
+
+.details-myevent-button {
+  background: var(--turq_btn);
+}
+
+.details-cancel-button {
+  background: var(--red_cancel_btn);
+}
+
+.details-notification-info {
+  color: var(--dark_grey);
+}
+
+.details-anchor {
+  all: revert;
+}
+
+.notification-alert-svg {
+  position: absolute;
+  z-index: 5;
+}

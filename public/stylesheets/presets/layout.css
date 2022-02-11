@@ -1,0 +1,75 @@
+body {
+  font-size: 16px;
+  height: 100vh;
+  overflow: auto;
+}
+
+@media screen and (min-width: 1920px) {
+  body {
+    font-size: 18px;
+  }
+
+  .navbar-tab-my text {
+    transform: translateX(-3%);
+  }
+}
+
+.layout {
+  display: grid;
+  grid-template-rows: 70px 50px 1fr 80px;
+  height: inherit;
+}
+
+.login-body {
+  background: black;
+  display: grid;
+  height: 100vh;
+  place-items: center;
+  width: 100%;
+}
+
+.layout-login {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.layout-form,
+.layout-promotion {
+  background: rgba(255, 255, 255, 0.9);
+  display: grid;
+  height: 100vh;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 4;
+}
+
+.layout-details {
+  background: rgba(248, 248, 248, 0.9);
+  display: none;
+  height: 100vh;
+  left: 0;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 4;
+}
+
+/* SECTION: display 형태 공통 적용 class */
+.show {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.swal2-title {
+  font-size: 1.65em !important;
+}

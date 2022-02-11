@@ -1,0 +1,173 @@
+.layout-details {
+  background: rgba(238, 237, 237, 0.9);
+  height: 100%;
+  left: 0;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  word-break: break-all;
+  z-index: 4;
+}
+
+.details-content {
+  background: var(--white);
+  display: grid;
+  max-height: 96%;
+  max-width: 432px;
+  overflow: auto;
+  width: 60%;
+}
+
+.category-share-exit {
+  display: flex;
+  position: relative;
+}
+
+.details-category {
+  color: var(--white);
+  line-height: 30px;
+  padding: 5px 0;
+  width: 100%;
+}
+
+.details-exit-button,
+.details-share-button {
+  color: var(--white);
+  cursor: pointer;
+  padding: 5px 0;
+  position: absolute;
+  vertical-align: -1;
+}
+
+.details-exit-button {
+  right: 5px;
+  top: 0px;
+}
+
+.details-share-button.material-icons {
+  font-size: 18px;
+  right: 35px;
+  top: 3px;
+}
+
+.details-category,
+.details-title,
+.details-range {
+  background: var(--turq_btn);
+  color: var(--white);
+}
+
+.details-title {
+  line-height: 1.25em;
+  padding: 1% 2.5em;
+  scrollbar-width: none;
+}
+
+.details-title::-webkit-scrollbar {
+  display: none;
+}
+
+.duration-location {
+  align-items: center;
+  background: var(--turq_detail_title);
+  color: var(--white);
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 18px;
+  padding: 3% 0;
+}
+
+.duration-location > div > i {
+  font-size: 1.5em;
+  vertical-align: -4.5px;
+}
+
+.details-duration {
+  padding: 0 0 0 10%;
+  width: 140px;
+}
+
+.details-location {
+  padding: 0 10%;
+}
+
+.details-range {
+  line-height: 35px;
+}
+
+.pic-topic-details {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  min-height: 80px;
+  padding: 10px 0;
+  place-items: center;
+  white-space: pre-wrap;
+  width: 100%;
+  word-break: break-word;
+}
+
+.details-pic,
+.details-topic,
+.details-details {
+  line-height: normal;
+  padding: 5px 0 10px;
+  width: 80%;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.details-pic,
+.details-pic-label,
+.details-topic-label,
+.details-details-label {
+  height: 1.75em;
+  line-height: 1.75em;
+}
+
+.details-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.notification-button {
+  align-items: flex-start;
+  display: flex;
+  height: 46px;
+  justify-content: space-between;
+  justify-self: center;
+  margin: 0 0 20px;
+  width: 80%;
+}
+
+.details-cancel-button,
+.details-myevent-button {
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  padding: 12px 6px;
+  width: minmax(30%, 120px);
+}
+
+.details-myevent-button {
+  background: var(--turq_btn);
+}
+
+.details-cancel-button {
+  padding: 12px;
+  background: var(--red_cancel_btn);
+}
+
+.details-notification-info {
+  color: var(--dark_grey);
+}
+
+.details-anchor {
+  all: revert;
+}
+
+.notification-alert-svg {
+  position: absolute;
+  z-index: 5;
+}

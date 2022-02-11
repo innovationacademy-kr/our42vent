@@ -1,0 +1,38 @@
+.login-logo {
+  margin: 40px 0 80px;
+  width: 320px;
+}
+
+.login-version {
+  color: var(--white);
+  margin: 10px 0 0;
+}
+
+.login-button {
+  background: var(--turq_btn);
+  border: none;
+  color: var(--white);
+  height: 50px;
+  width: 320px;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    overflow: hidden;
+  }
+
+  .login-logo {
+    margin: 30px 0 60px;
+  }
+
+  .layout-login,
+  .login-logo,
+  .login-button {
+    max-width: 320px;
+    width: 60vw;
+  }
+
+  .login-version {
+    margin: 10px 0 120px;
+  }
+}

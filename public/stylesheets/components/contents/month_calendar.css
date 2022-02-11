@@ -1,0 +1,138 @@
+/* SECTION: 월단위 캘린더 */
+
+.calendar-month {
+  display: grid;
+  grid-template: 20px repeat(5, 1fr) / repeat(7, 1fr);
+  height: 99%;
+  width: 80%;
+}
+
+.day-title,
+.month-date {
+  border-right: var(--calendar_border) solid 1px;
+  border-bottom: var(--calendar_border) solid 1px;
+}
+
+.month-date {
+  display: grid;
+  grid-template-rows: 20px calc(100% - 20px);
+  position: relative;
+}
+
+/* SECTION: 날짜 표시 */
+
+.month-day-circle {
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  display: inline-block;
+  height: 1em;
+  margin: 1px 3px;
+  width: 1em;
+}
+
+.today-circle {
+  background: var(--header_bg);
+  border: 2px solid var(--header_bg);
+  color: var(--white);
+}
+
+.sunday {
+  color: var(--sunday_red);
+}
+
+/* SECTION: 이벤트 띠지 표시 */
+
+.month-date-events {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.month-label-single,
+.month-label-multi,
+.month-label-end,
+.month-label-empty {
+  border-radius: 5px;
+  height: 22px;
+  line-height: 24px;
+  margin: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.month-label-single,
+.month-label-end {
+  z-index: 1;
+}
+
+.month-label-multi,
+.month-label-end {
+  padding: 0 0 0 8px;
+}
+
+.month-label-single {
+  padding: 0 0 0 3px;
+}
+
+.month-label-multi {
+  position: absolute;
+  z-index: 2;
+}
+
+.month-more-button {
+  background: var(--light_grey);
+  border-radius: 5px;
+  border: none;
+  height: 20px;
+  line-height: 22px;
+  margin: 1px;
+  padding: 0 0 0 8px;
+  vertical-align: middle;
+}
+
+.month-label-single,
+.month-label-multi,
+.month-label-end,
+.month-more-button {
+  cursor: pointer;
+}
+
+.single-category {
+  border-radius: 2px;
+  display: inline-block;
+  height: 7px;
+  margin: 0 3px 0 0;
+  width: 7px;
+}
+
+.month-more {
+  padding: 0.87em;
+  background: var(--more_bg);
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px var(--grey), -2px -2px 5px var(--grey), 2px -2px 5px var(--grey),
+    -2px 2px 5px var(--grey);
+  display: none;
+  grid-template-rows: 2.3em 1fr;
+  max-height: 150%;
+  position: absolute;
+  width: 90%;
+  z-index: 3;
+}
+
+.month-more-date {
+  height: 1.43em;
+  line-height: 1.43em;
+}
+
+.month-more-event {
+  overflow: auto;
+  scrollbar-width: thin; /* for firefox */
+}
+
+.beginat-svg {
+  position: absolute;
+  z-index: 3;
+}

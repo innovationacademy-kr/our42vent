@@ -1,0 +1,144 @@
+/* SECTION: 호버 인식 & pointer: fine 기기 */
+
+@media (hover: hover) and (pointer: fine) {
+  .header-today.material-icons-outlined:hover,
+  .header-new.material-icons-outlined:hover,
+  .list-content-icon label:hover {
+    color: var(--turq_btn_hover);
+  }
+
+  .header-title > .material-icons:hover {
+    color: var(--light_grey);
+  }
+
+  .user-drop-button:hover > .user-username {
+    color: var(--light_mint);
+  }
+
+  .user-drop-content li:hover {
+    background: var(--light_grey);
+  }
+
+  .navbar-tab-inactive:hover {
+    filter: contrast(1.05);
+    transition: filter 0.2s ease-in;
+  }
+
+  .box-wrapper:hover {
+    filter: contrast(1.2);
+    transition: filter 0.3s ease-in-out;
+  }
+
+  .promotion-exit-button:hover,
+  .promotion-copy-button:hover,
+  .material-icons-outlined.category-scroll:hover {
+    color: var(--white);
+  }
+
+  .month-label-single:hover,
+  .month-more-button:hover {
+    box-shadow: 1px 1px 1px var(--dark_grey);
+  }
+
+  .month-label-single:hover {
+    background: rgba(235, 236, 240, 0.3);
+  }
+
+  .details-exit-button:hover,
+  .details-share-button:hover {
+    color: var(--details_exit_grey);
+  }
+
+  .details-cancel-button:hover,
+  .form-button-exit:hover {
+    background: var(--red_cancel_btn_hover);
+  }
+
+  .login-button:hover,
+  .details-myevent-button:hover,
+  .form-button-edit:hover,
+  .form-button-new:hover,
+  main > .create-event-button:hover {
+    background: var(--turq_btn_hover);
+  }
+
+  .promotion-exit-button:hover,
+  .promotion-copy-button:hover,
+  .login-button:hover,
+  .header-today.material-icons-outlined:hover,
+  .header-new.material-icons-outlined:hover,
+  .header-title > .material-icons:hover,
+  .list-content-icon label:hover,
+  main > .create-event-button:hover {
+    cursor: pointer;
+  }
+}
+
+/* SECTION: pointer: coarse 기기 (터치 기기) */
+
+@media (pointer: coarse) {
+  * {
+    cursor: default;
+  }
+
+  .header-today.material-icons-outlined:active,
+  .header-new.material-icons-outlined:active,
+  .list-content-icon label:active {
+    color: var(--turq_btn_hover);
+  }
+
+  .header-title > .material-icons:active {
+    color: var(--light_grey);
+  }
+
+  .user-drop-button:active > .user-username {
+    color: var(--light_mint);
+  }
+
+  .user-drop-content li:active {
+    background: var(--light_grey);
+  }
+
+  .navbar-tab-inactive:active {
+    filter: contrast(1.05);
+    transition: filter 0.2s ease-in;
+  }
+
+  .box-wrapper:active {
+    filter: contrast(1.2);
+    transition: filter 0.3s ease-in-out;
+  }
+
+  .promotion-exit-button:hover,
+  .promotion-copy-button:hover,
+  .material-icons-outlined.category-scroll:active {
+    color: var(--white);
+  }
+
+  .month-label-single:active,
+  .month-more-button:active {
+    box-shadow: 1px 1px 1px var(--dark_grey);
+  }
+
+  .month-label-single:active {
+    background: rgba(235, 236, 240, 0.3);
+  }
+
+  .details-exit-button:active,
+  .details-share-button:active {
+    color: var(--details_exit_grey);
+  }
+
+  .details-cancel-button:active,
+  .form-button-exit:active {
+    background: var(--red_cancel_btn_hover);
+  }
+
+  .login-button:active,
+  .details-myevent-button:active,
+  .form-button-edit:active,
+  .form-button-new:active,
+  main > .create-event-button:active {
+    background: var(--turq_btn_hover);
+  }
+}
