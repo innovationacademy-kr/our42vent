@@ -24,9 +24,7 @@ function clickNewEventButton() {
               form.reset();
               form.parentNode.style.display = 'none'; // 이벤트 생성 폼 삭제
               generatePromotion(data);
-            } else {
-              window.location.replace(window.location.pathname);
-            }
+            } else window.location.reload();
           });
       })
       .catch(err => {
