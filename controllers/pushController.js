@@ -49,9 +49,9 @@ export async function subscribePushController(req, res, next) {
 export async function unsubscribePushController(req, res, next) {
   try {
     const subscription = req.body;
-    const deleted = await deletePushSubscription(JSON.stringify(subscription));
+    const affectedRows = await deletePushSubscription(JSON.stringify(subscription));
+    if (!affectedRows) res.status(405);
     await updateRemoveNotification(res.locals.userId);
-    if (!deleted.affectedRows) res.status(405);
     res.end();
   } catch (err) {
     logger.warn(err.stack);
