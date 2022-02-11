@@ -54,6 +54,7 @@ export async function unsubscribePushController(req, res, next) {
     if (!deleted.affectedRows) res.status(405);
     res.end();
   } catch (err) {
+    logger.warn(err.stack);
     next(err);
   }
 }
