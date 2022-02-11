@@ -20,8 +20,9 @@
 <img src='https://img.shields.io/badge/express-000000.svg?&style=for-the-badge&logo=express' alt='express_logo' >
 <img src='https://img.shields.io/badge/mariadb-000000.svg?&style=for-the-badge&logo=mariadb' alt='mariadb_logo' >
 <img src='https://img.shields.io/badge/redis-000000.svg?&style=for-the-badge&logo=redis' alt='redis_logo' >
-<br>
 <img src='https://img.shields.io/badge/npm-000000.svg?&style=for-the-badge&logo=npm' alt='npm_logo' >
+<br>
+<img src='https://img.shields.io/badge/webpack-000000.svg?&style=for-the-badge&logo=webpack' alt='webpack_logo' >
 <img src='https://img.shields.io/badge/ejs-000000.svg?&style=for-the-badge&logo=ejs' alt='ejs_logo' >
 <img src='https://img.shields.io/badge/javascript-000000.svg?&style=for-the-badge&logo=javascript' alt='javascript_logo' >
 <img src='https://img.shields.io/badge/css3-000000.svg?&style=for-the-badge&logo=css3' alt='css3_logo' >
