@@ -136,4 +136,8 @@ body {
   .swal2-title {
     font-size: 1.5em !important;
   }
+
+  .swal2-html-container {
+    font-size: 0.87em !important;
+  }
 }
