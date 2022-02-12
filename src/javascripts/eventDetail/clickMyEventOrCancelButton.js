@@ -63,7 +63,11 @@ myEventButton.addEventListener('click', async () => {
     .post(`/event/myevent/${eventId}`, { notification })
     .then(res => {
       alertModal
-        .fire({ title: '이벤트가 구독되었습니다.', icon: 'success' })
+        .fire({
+          title: '이벤트가 구독되었습니다.',
+          text: '주의! intra 이벤트에 register된게 아닙니다!',
+          icon: 'success',
+        })
         .then(() => toggleNotification('subscribe'));
     })
     .catch(err => alertModal.fire({ title: '오류가 발생하였습니다.', icon: 'error' }));
