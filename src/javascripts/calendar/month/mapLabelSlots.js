@@ -13,13 +13,13 @@ export default function mapLabelSlots(dateEventArray, dateIndex, durationHash, f
       newDurationHash[`${id}`] = initDurationHash(beginAt, endAt, firstDate);
 
     curEvent.isMulti = newDurationHash[`${id}`].isMulti;
-    curEvent.length = getLabelLength(
+    curEvent.length = curEvent.isMulti ? getLabelLength(
       boxHeight,
       curSlot,
       dateIndex,
       newDurationHash[`${id}`],
       eventIndex
-    );
+    ) : 1;
 
     if (!Object.values(curSlot).includes(eventIndex))
       setSlots(dateEventArray, dateIndex, curEvent, eventIndex);
@@ -49,15 +49,15 @@ function initDurationHash(beginAt, endAt, firstDate) {
 function getLabelLength(boxHeight, curSlot, dateIndex, curDurationInfo, eventIndex) {
   const newDurationInfo = curDurationInfo;
   const nextEmptySlotIndex = findSlotIndex(curSlot);
-  let length = newDurationInfo.remainingDays >= 1 ? 1 : -1;
+  let length = -1;
 
   if (
     !Object.values(curSlot).includes(eventIndex) &&
     boxHeight - (nextEmptySlotIndex + 1) * 24 < 22
   ) {
+    length = 1;
     newDurationInfo.remainingDays -= 1;
-  } else if (newDurationInfo.remainingDays > 1) {
-    length = -1;
+  } else if (newDurationInfo.remainingDays >= 1) {
     if (!(dateIndex % 7)) newDurationInfo.isNextRow = false;
     if (!newDurationInfo.isNextRow) {
       if (newDurationInfo.remainingDays <= 7 - (dateIndex % 7)) {
