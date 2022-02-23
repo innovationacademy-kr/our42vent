@@ -16,7 +16,7 @@ export default function hoverTodayButton() {
       const today = new Date();
       const SVGWrapper = document.body.appendChild(createElementAddClass('div', ['today-svg']));
 
-      const boxWidth = 109;
+      const boxWidth = 114;
       SVGWrapper.innerHTML =
         `<svg width="${boxWidth}" height="23" viewBox="0 0 ${boxWidth} 23" fill="none"` +
         `xmlns="http://www.w3.org/2000/svg"><rect x="${boxWidth}" y="22.0771" width="${boxWidth}" height="22"` +
