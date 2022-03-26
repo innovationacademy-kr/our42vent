@@ -3,9 +3,15 @@
 <br>
 
 <p align='center'>
-<img src='https://raw.githubusercontent.com/innovationacademy-kr/our42vent/31b47343ee2021cfc653ba9d7adaf4919b072416/public/assets/images/our42vent_logo_white.svg' alt='our42vent_logo_white' width='200' height='' style='background:#13171d'/>
+
+<img src='https://raw.githubusercontent.com/innovationacademy-kr/our42vent/31b47343ee2021cfc653ba9d7adaf4919b072416/public/assets/images/our42vent_logo_white.svg#gh-dark-mode-only' alt='our42vent_logo_white' width='200' height='' style='background:#13171d'/>
+
+<img src='https://raw.githubusercontent.com/innovationacademy-kr/our42vent/31b47343ee2021cfc653ba9d7adaf4919b072416/public/assets/images/our42vent_logo_black.svg#gh-light-mode-only' alt='our42vent_logo_white' width='200' height='' style='background:#13171d'/>
+  
 </p>
 
+
+  
 <br>
 <p align='center'>
   <b><em>
@@ -27,8 +33,11 @@
 <img src='https://img.shields.io/badge/javascript-000000.svg?&style=for-the-badge&logo=javascript' alt='javascript_logo' >
 <img src='https://img.shields.io/badge/css3-000000.svg?&style=for-the-badge&logo=css3' alt='css3_logo' >
 <img src='https://img.shields.io/badge/html5-000000.svg?&style=for-the-badge&logo=html5' alt='html5_logo' >
-
+  
 </p>
+
+
+  
  
 ## Introduction
 
@@ -51,6 +60,10 @@
 
 ### 🧭 사용 가이드
 - <a href="https://teal-grill-819.notion.site/42-e71f7d1e8fc24f90b3ca079b3affc837" target="_blank">우리42벤트 가이드</a>에서 서비스 사용 가이드를 확인하세요.
+
+## URL
+ 
+- https://our42vent.42cadet.kr
 
 ## Contributing
 
