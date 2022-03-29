@@ -5,7 +5,9 @@ import { alertModal } from '../utils/sweetAlertMixin.js';
 async function initNotificationCheckbox(checkboxList) {
   const registration = await navigator.serviceWorker.getRegistration();
 
-  if (registration) {
+  if (!registration)
+    document.querySelector('#details-notification').disabled = true;
+  else {
     const notificationSelect = document.querySelector('#details-notification');
 
     await registration.ready;
