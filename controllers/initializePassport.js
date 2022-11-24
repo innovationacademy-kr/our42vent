@@ -7,7 +7,7 @@ function profileToUser(profile) {
   const user = {
     id: profile.id,
     username: profile.username,
-    profileImage: profile.photos[0].value,
+    profileImage: profile._json.image.link,
   };
   logger.info(`profileToUser : ${JSON.stringify(user)}`);
   return user;
